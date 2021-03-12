@@ -1,0 +1,2 @@
+C:\Users\usuario\Desktop\PaintlLess\Debug\PaintlLess.exe
+C:\Users\usuario\Desktop\PaintlLess\Debug\PaintlLess.pdb
