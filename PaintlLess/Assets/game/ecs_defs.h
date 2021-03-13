@@ -3,25 +3,25 @@
 #pragma once
 
 // components -- forward declaration, i.e., assume they are defined somewhere
-//class Transform;
-//class Rectangle;
-//class KeyBoardCtrl;
-//class Bounce;
-//class Image;
-//class Rotate;
+class Transform;
+class Rectangle;
+class KeyBoardCtrl;
+class Bounce;
+class Image;
+class Rotate;
 //class DeAcceleration;
 //class Health;
 //class ShowAtOpposieSide;
 //class Follow;
 
 #define _CMPS_LIST_  \
-	/*Transform,\
+	Transform,\
 	Rectangle,\
 	KeyBoardCtrl,\
 	Image, \
 	Rotate, \
-	Bounce,\
-	DeAcceleration,\
+	Bounce
+	/*DeAcceleration,\
 	Health,\
 	ShowAtOpposieSide,\
 	Follow*/

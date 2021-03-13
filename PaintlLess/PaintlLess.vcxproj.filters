@@ -43,6 +43,9 @@
     <Filter Include="Archivos de origen\json">
       <UniqueIdentifier>{d3c769ca-635c-4d89-bb18-cd6b64615a35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\components">
+      <UniqueIdentifier>{f50b8153-ffb7-47e7-9e13-e8af5ed4a982}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assets\game\Game.cpp">
@@ -86,6 +89,9 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\GameMap.cpp">
+      <Filter>Archivos de origen\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +166,27 @@
     </ClInclude>
     <ClInclude Include="Assets\json\JSONValue.h">
       <Filter>Archivos de encabezado\json</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Image.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Rectangle.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Rotate.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Transform.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\KeyBoardCtrl.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Bounce.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\GameMap.h">
+      <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -20,12 +20,11 @@ Game::~Game() {
 
 void Game::init() {
 
-	SDLUtils::init("Asteroids", 800, 600,
+	SDLUtils::init("PaintLess", 800, 600,
 		"resources/config/pingpong.resources.json");
 
-	auto* fighter = mngr_->addEntity();
-	
-
+	//auto* fighter = mngr_->addEntity();
+	auto* gameMap = mngr_->addEntity();
 
 }
 

@@ -1,7 +1,34 @@
+// This file is part of the course TPV2@UCM - Samir Genaim
+
 #include <iostream>
+#include <memory>
+#include "..\PaintlLess\Assets\game\Game.h"
 
-int main() {
-	std::cout << "Con los gazpachos pasa como con otras recetas tradicionales, ya que en cada familia hay una receta infalible, pero en general, todas ellas tienen un tronco común que espero dejaros claro con este post. Al igual que hicieron los amigos de Wikipaella con la Paella Valenciana, también podríamos hacer lo mismo con los gazpachos ya que unos los harán añadiendo tal o cual ingrediente y otros verán imprescindible el uso de alguno que a lo mejor yo no he incluido.";
-	return 0;
+void start() {
+    Game g;
 
+    g.init();
+    g.start();
+}
+
+
+int main(int, char**) {
+
+    try {
+        start();
+    }
+    catch (const std::string& e) { // catch exceptions thrown as strings
+        std::cerr << e << std::endl;
+    }
+    catch (const char e) { // catch exceptions thrown as char
+        std::cerr << e << std::endl;
+    }
+    catch (const std::exception& e) { // catch exceptions thrown as a sub-type of std::exception
+        std::cerr << e.what();
+    }
+    catch (...) {
+        std::cerr << "Caught and exception of unknown type ...";
+    }
+
+    return 0;
 }
