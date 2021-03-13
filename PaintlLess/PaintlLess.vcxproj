@@ -142,7 +142,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\UNI\2º\2º Cuatri\TPV2\Prácticas\Asteroids\TPV2\TPV2\main.cpp" />
     <ClCompile Include="Assets\ecs\Entity.cpp" />
     <ClCompile Include="Assets\ecs\Manager.cpp" />
     <ClCompile Include="Assets\game\Game.cpp" />
@@ -156,6 +155,7 @@
     <ClCompile Include="Assets\sdlutils\Texture.cpp" />
     <ClCompile Include="Assets\utils\Collisions.cpp" />
     <ClCompile Include="Assets\utils\Vector2D.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\ecs\Component.h" />
