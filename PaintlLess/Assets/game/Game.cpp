@@ -2,7 +2,6 @@
 
 #include "Game.h"
 
-
 #include "../ecs/ecs.h"
 #include "../ecs/Entity.h"
 #include "../sdlutils/InputHandler.h"
@@ -10,6 +9,7 @@
 
 #include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
+#include "..\GameMap.h"
 
 Game::Game() {
 	mngr_.reset(new Manager());
@@ -25,7 +25,7 @@ void Game::init() {
 
 	//auto* fighter = mngr_->addEntity();
 	auto* gameMap = mngr_->addEntity();
-
+	gameMap->addComponent<GameMap>("Assets/level1.txt");
 }
 
 void Game::start() {

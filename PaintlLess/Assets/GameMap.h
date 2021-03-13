@@ -7,6 +7,7 @@
 #include "..\Assets\Transform.h"
 #include "..\Assets\Image.h"
 #include "..\Assets\Rectangle.h"
+#include "..\Assets\ecs\Component.h"	
 #include <string>
 #include <fstream>
 #include <array>
@@ -16,19 +17,17 @@ using namespace std;
 
 typedef unsigned int uint;
 
-class Game;
-
-class GameMap {
+class GameMap : public Component {
 private:		// 0      1      2      3
 	enum MapCell { Grass, Dirt, Tree, Rock };
 	MapCell** cells;
-	Game* game;
-	Manager* _mng;
 	int rows, cols;
-	int cellWidth, cellHeight;
+	int cellWidth, cellHeight; 
+	std::string level;
 public:
-	GameMap(int rows, int cols, Game* g);
-	~GameMap();
+	GameMap(const string levelN);
+	virtual ~GameMap();
+	virtual void init();
 	void loadMap(const string levelName);
 	void render();
 };

@@ -1,2 +1,13 @@
-﻿  Game.cpp
+﻿  GameMap.cpp
+C:\Users\skoon\Desktop\pll\Proyectos2-2020-21\PaintlLess\Assets\GameMap.cpp(39,64): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\skoon\Desktop\pll\Proyectos2-2020-21\PaintlLess\Assets\GameMap.cpp(39,49): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\skoon\Desktop\pll\Proyectos2-2020-21\PaintlLess\Assets\ecs\Entity.h(36,32): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\skoon\Desktop\pll\Proyectos2-2020-21\PaintlLess\Assets\GameMap.cpp(39): message : Vea la referencia a la creación de una instancia de la función plantilla "T *Entity::addComponent<Transform,Vector2D,int&,int&>(Vector2D &&,int &,int &)" que se está compilando
+          with
+          [
+              T=Transform
+          ]
+  Game.cpp
+  main.cpp
+  Generando código...
   PaintlLess.vcxproj -> C:\Users\skoon\Desktop\pll\Proyectos2-2020-21\PaintlLess\x64\Debug\PaintlLess.exe

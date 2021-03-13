@@ -5,16 +5,8 @@
 
 using namespace std;
 
-GameMap::GameMap(int r, int c, Game* g) {
-	rows = r;
-	cols = c;
-	game = g;
-	cells = new MapCell * [rows];
-	for (int r = 0; r < rows; ++r) {
-		for (int c = 0; c < cols; ++c) {
-			cells[r] = new MapCell[cols];
-		}
-	}
+GameMap::GameMap(const string levelN) {
+	level = levelN;
 }
 
 GameMap::~GameMap() {
@@ -23,31 +15,40 @@ GameMap::~GameMap() {
 	delete[] cells;
 }
 
+void GameMap::init() {
+	loadMap(level);
+}
 void GameMap::loadMap(const string levelName) {
 	ifstream file;
 	file.open(levelName);
 	if (!file.is_open())  throw string("No se encuentra el fichero");
 	else {
 		int rows, cols, type;
-		file >> rows >> cols;
+		file >> rows >> cols; 
+		cells = new MapCell * [rows];
+		for (int r = 0; r < rows; ++r) {
+			for (int c = 0; c < cols; ++c) {
+				cells[r] = new MapCell[cols];
+			}
+		}
 		cellHeight = sdlutils().height() / rows;
 		cellWidth = sdlutils().width() / cols;
 		for (int i = 0; i < rows; ++i) {
 			for (int j = 0; j < cols; ++j) {
-				auto casilla = _mng->addEntity();
+				auto* casilla = entity_->getMngr()->addEntity();
 				casilla->addComponent<Transform>(Vector2D(j * cellWidth, i * cellHeight), cellWidth, cellHeight);
 				file >> type;
 				switch (type) {
 				case 0:
-					casilla->addComponent<Image>(new Texture(sdlutils().renderer(), "..\PaintlLess\resources\images\tennis_ball.png"));
+					casilla->addComponent<Image>(&sdlutils().images().at("tennis_ball"));
 					cells[i][j] = Grass;
 					break;
 				case 1:
-					casilla->addComponent<Image>(new Texture(sdlutils().renderer(), "..\PaintlLess\resources\images\asteroid.png"));
+					casilla->addComponent<Image>(&sdlutils().images().at("star"));
 					cells[i][j] = Dirt;
 					break;
 				case 2:
-					casilla->addComponent<Image>(new Texture(sdlutils().renderer(), "..\PaintlLess\resources\images\fighter.png"));
+					casilla->addComponent<Image>(&sdlutils().images().at("fighter"));
 					cells[i][j] = Tree;
 					break;
 				case 3:

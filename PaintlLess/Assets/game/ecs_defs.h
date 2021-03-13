@@ -9,6 +9,7 @@ class KeyBoardCtrl;
 class Bounce;
 class Image;
 class Rotate;
+class GameMap;
 //class DeAcceleration;
 //class Health;
 //class ShowAtOpposieSide;
@@ -20,7 +21,8 @@ class Rotate;
 	KeyBoardCtrl,\
 	Image, \
 	Rotate, \
-	Bounce
+	Bounce , \
+	GameMap
 	/*DeAcceleration,\
 	Health,\
 	ShowAtOpposieSide,\
