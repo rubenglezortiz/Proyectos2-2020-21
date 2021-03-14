@@ -17,6 +17,7 @@ using namespace std;
 
 typedef unsigned int uint;
 
+
 class GameMap : public Component {
 private:		// 0      1      2      3
 	enum MapCell { Grass, Dirt, Tree, Rock };
@@ -30,4 +31,6 @@ public:
 	virtual void init();
 	void loadMap(const string levelName);
 	void render();
+	int getCellWidth() const { return cellWidth; };
+	int getCellHeight() const { return cellHeight; };
 };

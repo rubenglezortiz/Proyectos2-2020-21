@@ -9,8 +9,10 @@
   "images" : [
     { "id" : "sdl_logo", "file" : "resources/images/SDL_logo.png" },
     { "id" : "tennis_ball", "file" : "resources/images/tennis_ball.png" },
-    { "id" : "star", "file" : "resources/images/star.png"}
-  ],
+    { "id" : "star", "file" : "resources/images/star.png"},
+    {"id": "kirin", "file": "resources/images/kirin.png"},
+    {"id" : "fighter", "file" : "resources/images/fighter.png" }
+],
   
   "messages" : [
     { "id" : "PressAnyKey", "text" : "Press Any Key", "font" : "ARIAL24", "color" : "0x112233ff", "bg" : "0xffffffff" },

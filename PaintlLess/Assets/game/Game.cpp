@@ -21,11 +21,26 @@ Game::~Game() {
 void Game::init() {
 
 	SDLUtils::init("PaintLess", 800, 600,
-		"resources/config/pingpong.resources.json");
+		"resources/config/resources.json");
 
 	//auto* fighter = mngr_->addEntity();
 	auto* gameMap = mngr_->addEntity();
 	gameMap->addComponent<GameMap>("Assets/level1.txt");
+
+	
+	
+	
+	Entity* kirin = mngr_->addEntity();
+	kirin->addComponent<Transform>(
+		Vector2D(5, 6), //Posicion
+		Vector2D(),                                                      //Velocidad
+		50.0f,                                                              //Ancho
+		50.0f,                                                              //Alto
+		0.0f);
+	kirin->addComponent<Image>(&sdlutils().images().at("kirin"));
+	mngr_.get()->setHandler<Mapa>(kirin);
+	
+
 }
 
 void Game::start() {

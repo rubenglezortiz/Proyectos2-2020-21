@@ -4,11 +4,13 @@
 
 #include "..\Assets\ecs\Component.h"
 #include "..\Assets\utils\Vector2D.h"
+//#include "..\Assets\GameMap.h"
+
 
 class Transform : public Component {
 public:
 	Transform() :
-		pos_(), vel_(), width_(), height_(), rotation_() {
+		pos_(), vel_(), width_(), height_(), rotation_(), mapa(nullptr) {
 	}
 
 	Transform(Vector2D pos, float width, float height) :
@@ -16,7 +18,8 @@ public:
 		width_(width),
 		height_(height),
 		vel_(Vector2D()),
-		rotation_(0.0)
+		rotation_(0.0),
+		mapa(nullptr) 
 	{
 	}
 	Transform(Vector2D pos, Vector2D vel, float width, float height,
@@ -25,7 +28,8 @@ public:
 		vel_(vel), //
 		width_(width), //
 		height_(height), //
-		rotation_(rotation)
+		rotation_(rotation),
+		mapa(nullptr)
 	{
 	}
 
@@ -65,10 +69,25 @@ public:
 	}
 
 	void update() override {
-		pos_ = pos_ + vel_;
+	}
+
+
+	void init() override {
+		mapa = entity_->getMngr()->getHandler<Mapa>();
+
+	/*	int cellWidth = mapa->getComponent<GameMap>()->getCellWidth();
+		int cellHeight = mapa->getComponent<GameMap>()->getCellHeight();
+		
+		width_ = cellWidth;
+		height_ = cellHeight;
+
+		pos_.setX(pos_.getX() * cellWidth);
+		pos_.setY(pos_.getY() * cellHeight);*/
+		
 	}
 
 private:
+	Entity* mapa;
 	Vector2D pos_;
 	Vector2D vel_;
 	float width_;
