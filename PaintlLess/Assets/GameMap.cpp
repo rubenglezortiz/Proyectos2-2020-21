@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include "..\Assets\game\Game.h"
+#include "./components/PointOnImage.h"
 
 using namespace std;
 
@@ -24,7 +25,7 @@ void GameMap::loadMap(const string levelName) {
 	if (!file.is_open())  throw string("No se encuentra el fichero");
 	else {
 		int rows, cols, type;
-		file >> rows >> cols; 
+		file >> rows >> cols;
 		cells = new MapCell * [rows];
 		for (int r = 0; r < rows; ++r) {
 			for (int c = 0; c < cols; ++c) {
@@ -37,25 +38,27 @@ void GameMap::loadMap(const string levelName) {
 			for (int j = 0; j < cols; ++j) {
 				auto* casilla = entity_->getMngr()->addEntity();
 				casilla->addComponent<Transform>(Vector2D(j * cellWidth, i * cellHeight), cellWidth, cellHeight);
+
 				file >> type;
 				switch (type) {
 				case 0:
-					casilla->addComponent<Image>(&sdlutils().images().at("tennis_ball"));
+					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 0);
 					cells[i][j] = Grass;
 					break;
 				case 1:
-					casilla->addComponent<Image>(&sdlutils().images().at("star"));
+					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 3);
 					cells[i][j] = Dirt;
 					break;
 				case 2:
-					casilla->addComponent<Image>(&sdlutils().images().at("fighter"));
+					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 1);
 					cells[i][j] = Tree;
 					break;
 				case 3:
-					casilla->addComponent<Rectangle>(build_sdlcolor(0x112233ff));
+					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 2);
 					cells[i][j] = Rock;
 					break;
 				}
+				casilla->addComponent<PointOnImage>(casilla->getComponent<Image>());
 			}
 		}
 	}

@@ -4,9 +4,9 @@
 #include "..\Assets\sdlutils\SDLUtils.h"
 #include "..\Assets\ecs\Manager.h"
 #include "..\Assets\ecs\Entity.h"
-#include "..\Assets\Transform.h"
-#include "..\Assets\Image.h"
-#include "..\Assets\Rectangle.h"
+#include "./components/Transform.h"
+#include "./components/Image.h"
+#include "./components/Rectangle.h"
 #include "..\Assets\ecs\Component.h"	
 #include <string>
 #include <fstream>

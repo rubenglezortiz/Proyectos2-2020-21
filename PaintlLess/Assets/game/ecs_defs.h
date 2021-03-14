@@ -10,6 +10,7 @@ class Bounce;
 class Image;
 class Rotate;
 class GameMap;
+class PointOnImage;
 //class DeAcceleration;
 //class Health;
 //class ShowAtOpposieSide;
@@ -22,7 +23,8 @@ class GameMap;
 	Image, \
 	Rotate, \
 	Bounce , \
-	GameMap
+	GameMap,\
+	PointOnImage
 	/*DeAcceleration,\
 	Health,\
 	ShowAtOpposieSide,\

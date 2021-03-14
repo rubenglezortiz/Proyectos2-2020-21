@@ -159,7 +159,13 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Assets\Bounce.h" />
+    <ClInclude Include="Assets\components\Bounce.h" />
+    <ClInclude Include="Assets\components\Image.h" />
+    <ClInclude Include="Assets\components\KeyBoardCtrl.h" />
+    <ClInclude Include="Assets\components\PointOnImage.h" />
+    <ClInclude Include="Assets\components\Rectangle.h" />
+    <ClInclude Include="Assets\components\Rotate.h" />
+    <ClInclude Include="Assets\components\Transform.h" />
     <ClInclude Include="Assets\ecs\Component.h" />
     <ClInclude Include="Assets\ecs\ecs.h" />
     <ClInclude Include="Assets\ecs\ecs_defs_example.h" />
@@ -169,13 +175,9 @@
     <ClInclude Include="Assets\GameMap.h" />
     <ClInclude Include="Assets\game\ecs_defs.h" />
     <ClInclude Include="Assets\game\Game.h" />
-    <ClInclude Include="Assets\Image.h" />
     <ClInclude Include="Assets\json\JSON.h" />
     <ClInclude Include="Assets\json\JSONValue.h" />
     <ClInclude Include="Assets\json\json_demo.h" />
-    <ClInclude Include="Assets\KeyBoardCtrl.h" />
-    <ClInclude Include="Assets\Rectangle.h" />
-    <ClInclude Include="Assets\Rotate.h" />
     <ClInclude Include="Assets\sdlutils\Font.h" />
     <ClInclude Include="Assets\sdlutils\InputHandler.h" />
     <ClInclude Include="Assets\sdlutils\macros.h" />
@@ -186,10 +188,10 @@
     <ClInclude Include="Assets\sdlutils\SoundEffect.h" />
     <ClInclude Include="Assets\sdlutils\Texture.h" />
     <ClInclude Include="Assets\sdlutils\VirtualTimer.h" />
-    <ClInclude Include="Assets\Transform.h" />
     <ClInclude Include="Assets\utils\Collisions.h" />
     <ClInclude Include="Assets\utils\Singleton.h" />
     <ClInclude Include="Assets\utils\Vector2D.h" />
+    <ClInclude Include="PointOnImage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
