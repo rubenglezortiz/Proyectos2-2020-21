@@ -166,6 +166,7 @@
     <ClInclude Include="Assets\components\CardInfo.h" />
     <ClInclude Include="Assets\components\Image.h" />
     <ClInclude Include="Assets\components\KeyBoardCtrl.h" />
+    <ClInclude Include="Assets\components\Movimiento.h" />
     <ClInclude Include="Assets\components\PointOnImage.h" />
     <ClInclude Include="Assets\components\Rectangle.h" />
     <ClInclude Include="Assets\components\Rotate.h" />

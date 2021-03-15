@@ -206,5 +206,11 @@
     <ClInclude Include="Assets\components\PointOnImage.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\components\CardInfo.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Movimiento.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

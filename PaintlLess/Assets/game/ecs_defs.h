@@ -11,6 +11,7 @@ class Image;
 class Rotate;
 class GameMap;
 class PointOnImage;
+class Movimiento;
 //class DeAcceleration;
 //class Health;
 //class ShowAtOpposieSide;
@@ -23,14 +24,15 @@ class PointOnImage;
 	Image, \
 	Rotate, \
 	Bounce , \
-	GameMap,\
+	GameMap, \
+	Movimiento, \
 	PointOnImage
 	/*DeAcceleration,\
 	Health,\
 	ShowAtOpposieSide,\
 	Follow*/
 
-// groups
+	// groups
 
 struct Group_1;
 struct Lives;

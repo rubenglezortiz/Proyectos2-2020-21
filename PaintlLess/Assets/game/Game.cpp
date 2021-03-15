@@ -10,6 +10,7 @@
 #include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
 #include "..\GameMap.h"
+#include "../components/Movimiento.h"
 
 Game::Game() {
 	mngr_.reset(new Manager());
@@ -40,9 +41,8 @@ void Game::init() {
 		0.0f);
 
 	kirin->addComponent<Image>(&sdlutils().images().at("kirin"));
+	kirin->addComponent<Movimiento>();
 	sdlutils().showCursor();
-	
-
 }
 
 void Game::start() {
