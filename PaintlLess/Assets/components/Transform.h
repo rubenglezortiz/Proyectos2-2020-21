@@ -10,7 +10,7 @@
 class Transform : public Component {
 public:
 	Transform() :
-		pos_(), vel_(), width_(), height_(), rotation_(), mapa(nullptr), foo_(false) {
+		pos_(), vel_(), width_(), height_(), rotation_(), mapa(nullptr) {
 	}
 
 	Transform(Vector2D pos, float width, float height) :
@@ -29,10 +29,7 @@ public:
 		width_(width), //
 		height_(height), //
 		rotation_(rotation),
-		mapa(nullptr),
-		foo_(foo)
-	{
-	}
+		mapa(nullptr) {}
 
 	virtual ~Transform() {
 	}
@@ -83,6 +80,5 @@ private:
 	float width_;
 	float height_;
 	float rotation_;
-	bool foo_;
 };
 

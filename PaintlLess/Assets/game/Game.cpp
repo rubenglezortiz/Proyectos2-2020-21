@@ -26,19 +26,18 @@ void Game::init() {
 	//auto* fighter = mngr_->addEntity();
 	auto* gameMap = mngr_->addEntity();
 	gameMap->addComponent<GameMap>("Assets/level1.txt");
+	mngr_.get()->setHandler<Mapa>(gameMap);
 
 	
 	
 
 	Entity* kirin = mngr_->addEntity();
-	mngr_.get()->setHandler<Mapa>(gameMap);
 	kirin->addComponent<Transform>(
 		Vector2D(0, 0), //Posicion
 		Vector2D(),                                                      //Velocidad
 		50.0f,                                                              //Ancho
 		50.0f,                                                              //Alto
-		0.0f,
-		true);
+		0.0f);
 
 	kirin->addComponent<Image>(&sdlutils().images().at("kirin"));
 	sdlutils().showCursor();
