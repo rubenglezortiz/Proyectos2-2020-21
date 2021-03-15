@@ -11,8 +11,9 @@ class Image : public Component {
 public:
 	Image(Texture* tex) :
 		tr_(nullptr), //
-		tex_(tex) //
-		
+		tex_(tex), //
+		currFrame(0)
+
 	{
 		src_ = { 0, 0, tex->width(), tex->height() };
 	}
@@ -21,7 +22,10 @@ public:
 		tr_(nullptr), //
 		tex_(tex), //
 		src_(src)
+
 	{
+		currFrame = src.x * src.w;
+
 	}
 
 	Image(Texture* tex, int rows, int cols, int r, int c) :
@@ -31,6 +35,7 @@ public:
 		auto w = tex->width() / cols;
 		auto h = tex->height() / rows;
 		src_ = { w * c, h * r, w, h };
+		currFrame = c * w;
 	}
 
 
@@ -44,9 +49,14 @@ public:
 
 	void render() override;
 
+	void shiny();
+
+	void dark();
+
 private:
 	Transform* tr_;
 	Texture* tex_;
 	SDL_Rect src_;
+	int currFrame;
 };
 

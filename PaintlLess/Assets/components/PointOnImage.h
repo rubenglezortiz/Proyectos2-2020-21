@@ -10,12 +10,12 @@
 class PointOnImage : public Component {
 public:
 	PointOnImage() :
-		im(nullptr)
+		im(nullptr), pos(Vector2D()), rect(Vector2D()), cont(0)
 	{
 	}
 
 	PointOnImage(Image* image) :
-		im(image)
+		im(image), pos(Vector2D()), rect(Vector2D()), cont(0)
 	{
 	}
 
@@ -35,8 +35,13 @@ public:
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
 
-		if (mX > pos.getX() && mX < pos.getX() + rect.getX() && mY > pos.getY() && mY < pos.getY() + rect.getY())
-			std::cout << "collision";
+		if (sdlutils().currRealTime() > cont + 150) {
+
+			if (mX > pos.getX() && mX < pos.getX() + rect.getX() && mY > pos.getY() && mY < pos.getY() + rect.getY())		im->shiny();
+
+			else im->dark();
+			cont = sdlutils().currRealTime();
+		}
 	}
 
 
@@ -44,5 +49,6 @@ private:
 	Vector2D pos;
 	Vector2D rect;
 	Image* im;
+	int cont;
 };
 

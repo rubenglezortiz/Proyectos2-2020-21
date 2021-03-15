@@ -47,7 +47,7 @@
       <UniqueIdentifier>{f50b8153-ffb7-47e7-9e13-e8af5ed4a982}</UniqueIdentifier>
     </Filter>
     <Filter Include="Archivos de origen\components">
-      <UniqueIdentifier>{cc68ae96-b2ba-4852-a0d7-281f0d66878d}</UniqueIdentifier>
+      <UniqueIdentifier>{223f19f1-f263-42ae-a4ea-6f3d9e6caef1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -204,9 +204,6 @@
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
     <ClInclude Include="Assets\components\PointOnImage.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\CardInfo.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
   </ItemGroup>
