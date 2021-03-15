@@ -31,15 +31,16 @@ void Game::init() {
 	
 
 	Entity* kirin = mngr_->addEntity();
+	mngr_.get()->setHandler<Mapa>(gameMap);
 	kirin->addComponent<Transform>(
-		Vector2D(5, 6), //Posicion
+		Vector2D(0, 0), //Posicion
 		Vector2D(),                                                      //Velocidad
 		50.0f,                                                              //Ancho
 		50.0f,                                                              //Alto
-		0.0f);
+		0.0f,
+		true);
 
 	kirin->addComponent<Image>(&sdlutils().images().at("kirin"));
-	mngr_.get()->setHandler<Mapa>(kirin);
 	sdlutils().showCursor();
 	
 
