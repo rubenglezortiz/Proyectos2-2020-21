@@ -6,3 +6,5 @@ C:\Users\manue\Desktop\Uni\2ºAño\2ºCuatri\TPV2\Practica1\Proyectos2-2020-21\P
 C:\Users\manue\Desktop\Uni\2ºAño\2ºCuatri\TPV2\Practica1\Proyectos2-2020-21\PaintlLess\x64\Debug\PaintlLess.pdb
 C:\Users\usuario\Desktop\UNI\2º\2º Cuatri\P2\PaintLess\Proyectos2-2020-21\PaintlLess\x64\Debug\PaintlLess.exe
 C:\Users\usuario\Desktop\UNI\2º\2º Cuatri\P2\PaintLess\Proyectos2-2020-21\PaintlLess\x64\Debug\PaintlLess.pdb
+C:\Users\ARIALBLAK\Desktop\Proyectos 2\Proyectos2-2020-21\PaintlLess\x64\Debug\PaintlLess.exe
+C:\Users\ARIALBLAK\Desktop\Proyectos 2\Proyectos2-2020-21\PaintlLess\x64\Debug\PaintlLess.pdb

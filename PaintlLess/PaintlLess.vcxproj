@@ -142,6 +142,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assets\components\Image.cpp" />
+    <ClCompile Include="Assets\components\Rectangle.cpp" />
+    <ClCompile Include="Assets\components\Transform.cpp" />
     <ClCompile Include="Assets\ecs\Entity.cpp" />
     <ClCompile Include="Assets\ecs\Manager.cpp" />
     <ClCompile Include="Assets\GameMap.cpp" />

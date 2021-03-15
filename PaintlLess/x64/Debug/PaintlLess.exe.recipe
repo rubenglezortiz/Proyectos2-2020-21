@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project>
-  <ProjectOutputs>
-    <ProjectOutput>
-      <FullPath>C:\Users\usuario\Desktop\UNI\2º\2º Cuatri\P2\PaintLess\Proyectos2-2020-21\PaintlLess\x64\Debug\PaintlLess.exe</FullPath>
-    </ProjectOutput>
-  </ProjectOutputs>
-  <ContentFiles />
-  <SatelliteDlls />
-  <NonRecipeFileRefs />
+  <ProjectOutputs>C:\Users\ARIALBLAK\Desktop\Proyectos 2\Proyectos2-2020-21\PaintlLess\x64\Debug\PaintlLess.exe</ProjectOutputs>
+  <ContentFiles></ContentFiles>
+  <SatelliteDlls></SatelliteDlls>
+  <NonRecipeFileRefs></NonRecipeFileRefs>
 </Project>

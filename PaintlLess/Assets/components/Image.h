@@ -42,10 +42,7 @@ public:
 		assert(tr_ != nullptr);
 	}
 
-	void render() override {
-		SDL_Rect dest = build_sdlrect(tr_->getPos(), tr_->getW(), tr_->getH());
-		tex_->render(src_, dest, tr_->getRot());
-	}
+	void render() override;
 
 private:
 	Transform* tr_;

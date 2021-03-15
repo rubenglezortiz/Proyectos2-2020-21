@@ -13,6 +13,7 @@
 #include <array>
 
 //#include "Game.h"
+class Game;
 using namespace std;
 
 typedef unsigned int uint;

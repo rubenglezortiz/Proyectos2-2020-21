@@ -1,12 +1,19 @@
-﻿  GameMap.cpp
-C:\Users\usuario\Desktop\UNI\2º\2º Cuatri\P2\PaintLess\Proyectos2-2020-21\PaintlLess\Assets\GameMap.cpp(40,64): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario\Desktop\UNI\2º\2º Cuatri\P2\PaintLess\Proyectos2-2020-21\PaintlLess\Assets\GameMap.cpp(40,49): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario\Desktop\UNI\2º\2º Cuatri\P2\PaintLess\Proyectos2-2020-21\PaintlLess\Assets\ecs\Entity.h(36,32): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
-C:\Users\usuario\Desktop\UNI\2º\2º Cuatri\P2\PaintLess\Proyectos2-2020-21\PaintlLess\Assets\GameMap.cpp(40): message : Vea la referencia a la creación de una instancia de la función plantilla "T *Entity::addComponent<Transform,Vector2D,int&,int&>(Vector2D &&,int &,int &)" que se está compilando
+﻿  Image.cpp
+  Rectangle.cpp
+  Transform.cpp
+C:\Users\ARIALBLAK\Desktop\Proyectos 2\Proyectos2-2020-21\PaintlLess\Assets\components\Transform.cpp(9,11): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\ARIALBLAK\Desktop\Proyectos 2\Proyectos2-2020-21\PaintlLess\Assets\components\Transform.cpp(10,12): warning C4244: '=': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\ARIALBLAK\Desktop\Proyectos 2\Proyectos2-2020-21\PaintlLess\Assets\components\Transform.cpp(3,6): warning C4101: 'x': variable local sin referencia
+  GameMap.cpp
+C:\Users\ARIALBLAK\Desktop\Proyectos 2\Proyectos2-2020-21\PaintlLess\Assets\GameMap.cpp(40,64): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\ARIALBLAK\Desktop\Proyectos 2\Proyectos2-2020-21\PaintlLess\Assets\GameMap.cpp(40,49): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\ARIALBLAK\Desktop\Proyectos 2\Proyectos2-2020-21\PaintlLess\Assets\ecs\Entity.h(36,32): warning C4244: 'argumento': conversión de 'int' a 'float'; posible pérdida de datos
+C:\Users\ARIALBLAK\Desktop\Proyectos 2\Proyectos2-2020-21\PaintlLess\Assets\GameMap.cpp(40): message : Vea la referencia a la creación de una instancia de la función plantilla "T *Entity::addComponent<Transform,Vector2D,int&,int&>(Vector2D &&,int &,int &)" que se está compilando
           with
           [
               T=Transform
           ]
   Game.cpp
+  main.cpp
   Generando código...
-  PaintlLess.vcxproj -> C:\Users\usuario\Desktop\UNI\2º\2º Cuatri\P2\PaintLess\Proyectos2-2020-21\PaintlLess\x64\Debug\PaintlLess.exe
+  PaintlLess.vcxproj -> C:\Users\ARIALBLAK\Desktop\Proyectos 2\Proyectos2-2020-21\PaintlLess\x64\Debug\PaintlLess.exe

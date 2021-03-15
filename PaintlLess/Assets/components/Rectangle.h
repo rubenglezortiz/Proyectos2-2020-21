@@ -3,9 +3,9 @@
 #pragma once
 #include <cassert>
 
-#include "..\Assets\ecs\Component.h"
-#include "..\Assets\ecs\Entity.h"
-#include "..\Assets\sdlutils\SDLUtils.h"
+#include "..\ecs\Component.h"
+#include "..\ecs\Entity.h"
+#include "..\sdlutils\SDLUtils.h"
 #include "Transform.h"
 
 class Rectangle : public Component {
@@ -25,15 +25,7 @@ public:
 		assert(tr_ != nullptr);
 
 	}
-	void render() override {
-
-		SDL_SetRenderDrawColor(sdlutils().renderer(), COLOREXP(color_));
-
-		SDL_Rect rect = build_sdlrect(tr_->getPos(), tr_->getW(), tr_->getH());
-
-		SDL_RenderFillRect(sdlutils().renderer(), &rect);
-
-	}
+	void render() override;
 private:
 	SDL_Color color_;
 	Transform* tr_;

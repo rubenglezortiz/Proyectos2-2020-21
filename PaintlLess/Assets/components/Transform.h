@@ -4,7 +4,7 @@
 
 #include "../ecs/Component.h"
 #include "../utils/Vector2D.h"
-//#include "..\Assets\GameMap.h"
+#include "../GameMap.h"
 
 
 class Transform : public Component {
@@ -72,21 +72,10 @@ public:
 	}
 
 
-	void init() override {
-		//mapa = entity_->getMngr()->getHandler<Mapa>(); //COMENTADO POR FALLO DE RUTAS Y PK NO SABEMOS Q ES EL MAP
-
-	/*	int cellWidth = mapa->getComponent<GameMap>()->getCellWidth();
-		int cellHeight = mapa->getComponent<GameMap>()->getCellHeight();
-		
-		width_ = cellWidth;
-		height_ = cellHeight;
-
-		pos_.setX(pos_.getX() * cellWidth);
-		pos_.setY(pos_.getY() * cellHeight);*/
-		
-	}
+	void init() override;
 
 private:
+	
 	Entity* mapa;
 	Vector2D pos_;
 	Vector2D vel_;

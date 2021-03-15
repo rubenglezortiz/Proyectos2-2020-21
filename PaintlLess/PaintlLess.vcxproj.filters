@@ -93,6 +93,15 @@
     <ClCompile Include="Assets\GameMap.cpp">
       <Filter>Archivos de origen\game</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\components\Transform.cpp">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Image.cpp">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Rectangle.cpp">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\game\ecs_defs.h">

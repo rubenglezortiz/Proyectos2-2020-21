@@ -81,6 +81,8 @@ void GameMap::render() {
 
 
 
+
+
 //GameMap GameMap::CreaMapa(string filename) {
 //	MapCell s = MapCell.Empty;
 //	ifstream in(filename);
