@@ -163,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\components\Bounce.h" />
+    <ClInclude Include="Assets\components\CardInfo.h" />
     <ClInclude Include="Assets\components\Image.h" />
     <ClInclude Include="Assets\components\KeyBoardCtrl.h" />
     <ClInclude Include="Assets\components\PointOnImage.h" />

@@ -46,6 +46,9 @@
     <Filter Include="Archivos de encabezado\components">
       <UniqueIdentifier>{f50b8153-ffb7-47e7-9e13-e8af5ed4a982}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\components">
+      <UniqueIdentifier>{cc68ae96-b2ba-4852-a0d7-281f0d66878d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assets\game\Game.cpp">
@@ -94,13 +97,13 @@
       <Filter>Archivos de origen\game</Filter>
     </ClCompile>
     <ClCompile Include="Assets\components\Transform.cpp">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\components\Image.cpp">
-      <Filter>Archivos de encabezado\components</Filter>
+      <Filter>Archivos de origen\components</Filter>
     </ClCompile>
     <ClCompile Include="Assets\components\Rectangle.cpp">
-      <Filter>Archivos de encabezado\components</Filter>
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Image.cpp">
+      <Filter>Archivos de origen\components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +204,9 @@
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
     <ClInclude Include="Assets\components\PointOnImage.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\CardInfo.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
   </ItemGroup>
