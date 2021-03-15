@@ -19,6 +19,10 @@
 *.mod
 *.smod
 
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+
 # Compiled Static libraries
 *.lai
 *.la
@@ -30,5 +34,5 @@
 *.app
 *.tlog
 
-#Folders
-.vs
+# Visual Studio 2015/2017 cache/options directory
+.vs/
