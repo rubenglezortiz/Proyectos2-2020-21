@@ -28,7 +28,6 @@ public:
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
 
-
 		if (ih().mouseButtonEvent() && selected) {
 			if (ih().getMouseButtonState(ih().LEFT)) {
 				if (mX > pos.getX() && mX < pos.getX() + w && mY > pos.getY() - h && mY < pos.getY() - 1) {
@@ -47,8 +46,7 @@ public:
 				selected = false;
 			}
 		}
-
-		if (ih().mouseButtonEvent() && mX > pos.getX() && mX < pos.getX() + w && mY > pos.getY() && mY < pos.getY() + h) {
+		else if (ih().mouseButtonEvent() && mX > pos.getX() && mX < pos.getX() + w && mY > pos.getY() && mY < pos.getY() + h) {
 			if (ih().getMouseButtonState(ih().LEFT)) {
 				selected = true;
 			}
