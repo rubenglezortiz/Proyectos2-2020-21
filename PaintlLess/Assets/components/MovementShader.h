@@ -42,13 +42,13 @@ public:
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
 
-		if (sdlutils().currRealTime() > cont + 100) {
+		if (sdlutils().currRealTime() > cont + 10) {
 
 
-			resultado = mX / mapa->getCellHeight();
-			dest.x = resultado *  mapa->getCellHeight();
-			resultado = mY / mapa->getCellWidth();
-			dest.y = resultado *  mapa->getCellWidth();
+			resultado = mX / mapa->getCellWidth();
+			dest.x = resultado *  mapa->getCellWidth();
+			resultado = mY / mapa->getCellHeight();
+			dest.y = resultado *  mapa->getCellHeight();
 			
 
 			
