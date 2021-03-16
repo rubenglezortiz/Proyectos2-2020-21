@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assets\components\GameMap.cpp" />
     <ClCompile Include="Assets\components\Image.cpp" />
     <ClCompile Include="Assets\components\Rectangle.cpp" />
     <ClCompile Include="Assets\components\Transform.cpp" />
@@ -164,8 +165,10 @@
   <ItemGroup>
     <ClInclude Include="Assets\components\Bounce.h" />
     <ClInclude Include="Assets\components\CardInfo.h" />
+    <ClInclude Include="Assets\components\GameMap.h" />
     <ClInclude Include="Assets\components\Image.h" />
     <ClInclude Include="Assets\components\KeyBoardCtrl.h" />
+    <ClInclude Include="Assets\components\MovementShader.h" />
     <ClInclude Include="Assets\components\Movimiento.h" />
     <ClInclude Include="Assets\components\PointOnImage.h" />
     <ClInclude Include="Assets\components\Rectangle.h" />

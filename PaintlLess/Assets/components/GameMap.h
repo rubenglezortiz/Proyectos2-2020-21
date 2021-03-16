@@ -1,13 +1,15 @@
 #pragma once
 #include "SDL.h" // Windows
 #include "SDL_image.h" // Windows-
-#include "..\Assets\sdlutils\SDLUtils.h"
-#include "..\Assets\ecs\Manager.h"
-#include "..\Assets\ecs\Entity.h"
-#include "./components/Transform.h"
-#include "./components/Image.h"
-#include "./components/Rectangle.h"
-#include "..\Assets\ecs\Component.h"	
+
+#include "../sdlutils/SDLUtils.h"
+#include "../ecs/Manager.h"
+#include "../ecs/Entity.h"
+#include "Transform.h"
+#include "Image.h"
+#include "Rectangle.h"
+#include "../ecs/Component.h"
+
 #include <string>
 #include <fstream>
 #include <array>
@@ -18,11 +20,19 @@ using namespace std;
 
 typedef unsigned int uint;
 
+enum Color { Azul, Verde, Rojo, Amarillo, Ninguno};
+enum TipoCasilla { Pintable, NoPintable};
+
+struct Casilla
+{
+	Color color;
+	TipoCasilla casilla;
+	Entity* character;
+};
 
 class GameMap : public Component {
-private:		// 0      1      2      3
-	enum MapCell { Grass, Dirt, Tree, Rock };
-	MapCell** cells;
+private:		
+	Casilla** cells;
 	int rows, cols;
 	int cellWidth, cellHeight; 
 	std::string level;

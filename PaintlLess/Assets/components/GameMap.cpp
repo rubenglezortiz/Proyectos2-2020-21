@@ -1,8 +1,8 @@
 #include "GameMap.h"
 #include <iostream>
 #include <fstream>
-#include "..\Assets\game\Game.h"
-#include "./components/PointOnImage.h"
+#include "../game/Game.h"
+#include "./PointOnImage.h"
 
 using namespace std;
 
@@ -26,10 +26,10 @@ void GameMap::loadMap(const string levelName) {
 	else {
 		int rows, cols, type;
 		file >> rows >> cols;
-		cells = new MapCell * [rows];
+		cells = new Casilla * [rows];
 		for (int r = 0; r < rows; ++r) {
 			for (int c = 0; c < cols; ++c) {
-				cells[r] = new MapCell[cols];
+				cells[r] = new Casilla[cols];
 			}
 		}
 		cellHeight = sdlutils().height() / rows;
@@ -41,23 +41,29 @@ void GameMap::loadMap(const string levelName) {
 
 				file >> type;
 				switch (type) {
-				case 0:
+				case 0: //Que se supone que es esto ???
 					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 0);
-					cells[i][j] = Grass;
+					cells[i][j].color = Color::Ninguno;
+					cells[i][j].casilla = TipoCasilla::Pintable;
 					break;
 				case 1:
 					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 3);
-					cells[i][j] = Dirt;
+					cells[i][j].color = Color::Ninguno;
+					cells[i][j].casilla = TipoCasilla::Pintable;
 					break;
 				case 2:
 					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 1);
-					cells[i][j] = Tree;
+					cells[i][j].color = Color::Ninguno;
+					cells[i][j].casilla = TipoCasilla::Pintable;
 					break;
 				case 3:
 					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 2);
-					cells[i][j] = Rock;
+					cells[i][j].color = Color::Ninguno;
+					cells[i][j].casilla = TipoCasilla::Pintable;
 					break;
 				}
+
+				cells[i][j].character = nullptr;
 				casilla->addComponent<PointOnImage>(casilla->getComponent<Image>());
 			}
 		}

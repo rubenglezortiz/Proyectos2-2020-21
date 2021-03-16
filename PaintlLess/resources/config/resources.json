@@ -12,7 +12,8 @@
     { "id" : "star", "file" : "resources/images/star.png"},
     { "id" : "kirin", "file": "resources/images/kirin.png"},
     { "id" : "fighter", "file" : "resources/images/fighter.png" },
-    { "id": "tileset", "file": "resources/images/tileset.png" }
+    { "id": "tileset", "file": "resources/images/tileset.png" },
+    { "id": "selector", "file": "resources/images/selector.png" }
   ],
 
   

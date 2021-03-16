@@ -4,7 +4,7 @@
 
 #include "../ecs/Component.h"
 #include "../utils/Vector2D.h"
-#include "../GameMap.h"
+#include "GameMap.h"
 
 
 class Transform : public Component {

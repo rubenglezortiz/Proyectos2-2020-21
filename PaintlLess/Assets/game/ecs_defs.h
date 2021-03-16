@@ -12,6 +12,7 @@ class Rotate;
 class GameMap;
 class PointOnImage;
 class Movimiento;
+class MovementShader;
 //class DeAcceleration;
 //class Health;
 //class ShowAtOpposieSide;
@@ -26,7 +27,8 @@ class Movimiento;
 	Bounce , \
 	GameMap, \
 	Movimiento, \
-	PointOnImage
+	PointOnImage, \
+	MovementShader
 	/*DeAcceleration,\
 	Health,\
 	ShowAtOpposieSide,\

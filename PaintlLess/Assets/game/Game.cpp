@@ -9,8 +9,10 @@
 
 #include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
-#include "..\GameMap.h"
+#include "../components/GameMap.h"
 #include "../components/Movimiento.h"
+
+#include "../components/MovementShader.h"
 
 Game::Game() {
 	mngr_.reset(new Manager());
@@ -35,14 +37,17 @@ void Game::init() {
 	Entity* kirin = mngr_->addEntity();
 	kirin->addComponent<Transform>(
 		Vector2D(0, 0), //Posicion
-		Vector2D(),                                                      //Velocidad
-		50.0f,                                                              //Ancho
-		50.0f,                                                              //Alto
+		Vector2D(),     //Velocidad
+		50.0f,          //Ancho
+		50.0f,          //Alto
 		0.0f);
 
 	kirin->addComponent<Image>(&sdlutils().images().at("kirin"));
 	kirin->addComponent<Movimiento>();
 	sdlutils().showCursor();
+
+	Entity* boardManager = mngr_->addEntity();
+	boardManager->addComponent<MovementShader>(&sdlutils().images().at("selector"));
 }
 
 void Game::start() {
