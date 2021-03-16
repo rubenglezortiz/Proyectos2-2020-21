@@ -25,7 +25,6 @@ public:
 
 	{
 		currFrame = src.x * src.w;
-
 	}
 
 	Image(Texture* tex, int rows, int cols, int r, int c) :

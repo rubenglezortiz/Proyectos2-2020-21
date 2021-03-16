@@ -148,7 +148,6 @@
     <ClCompile Include="Assets\components\Transform.cpp" />
     <ClCompile Include="Assets\ecs\Entity.cpp" />
     <ClCompile Include="Assets\ecs\Manager.cpp" />
-    <ClCompile Include="Assets\GameMap.cpp" />
     <ClCompile Include="Assets\game\Game.cpp" />
     <ClCompile Include="Assets\json\JSON.cpp" />
     <ClCompile Include="Assets\json\JSONValue.cpp" />
