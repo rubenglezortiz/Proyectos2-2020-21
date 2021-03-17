@@ -28,12 +28,13 @@ ul li a {
     padding: 10px 10px 6px 10px;
     border: 1px solid transparent;
     border-radius: 12px;
-    transition: 0.6s ease;
+    transition: 0.3s ease-in-out;
   }
   
 ul li a:hover {
     background-color:  #ac4186;
     color: #d1fdff;
+    box-shadow: 5px -2px #4fc3c7, -5px 2px #ffffff;
 }
 
 
