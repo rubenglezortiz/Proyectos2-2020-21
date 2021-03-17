@@ -4,25 +4,71 @@
 
 #include "../ecs/Component.h"
 #include "../sdlutils/Texture.h"
+#include "GameMap.h"
 
 class MovementShader : public Component {
 public:
 	MovementShader(Texture* tex) :
 		tex_(tex) //
 	{
-		src_ = { 0, 0, tex->width(), tex->height() };
+		cont = 0;
+
+
+
+
+
+
+
+		int mX = ih().getMousePos().first;
+		int mY = ih().getMousePos().second;
+
+		dest.x = mX;
+		dest.y = mY;
+		dest.h = tex_->height();
+		dest.w = tex_->width();
 	}
 
 	virtual ~MovementShader() {
 	}
 
+	void init() override {
+		mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
+		
+		dest.h = mapa->getCellHeight();
+		dest.w = mapa->getCellWidth();
+	}
+
+	void update() override {
+		int mX = ih().getMousePos().first;
+		int mY = ih().getMousePos().second;
+
+		if (sdlutils().currRealTime() > cont + 10) {
+
+
+			resultado = mX / mapa->getCellWidth();
+			dest.x = resultado *  mapa->getCellWidth();
+			resultado = mY / mapa->getCellHeight();
+			dest.y = resultado *  mapa->getCellHeight();
+			
+
+			
+			cont = sdlutils().currRealTime();
+		}
+
+	}
+
 	void render() override
 	{
-
+		tex_->render(dest);
 	}
 
 
 private:
+	int cont;
+	SDL_Rect dest;
+	GameMap* mapa;
+	int resultado;
+
 	Vector2D position;
 	Texture* tex_;
 	SDL_Rect src_;

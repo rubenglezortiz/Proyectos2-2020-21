@@ -35,13 +35,13 @@ public:
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
 
-		if (sdlutils().currRealTime() > cont + 150) {
+		/*if (sdlutils().currRealTime() > cont + 150) {
 
 			if (mX > pos.getX() && mX < pos.getX() + rect.getX() && mY > pos.getY() && mY < pos.getY() + rect.getY())		im->shiny();
 
 			else im->dark();
 			cont = sdlutils().currRealTime();
-		}
+		}*/
 	}
 
 

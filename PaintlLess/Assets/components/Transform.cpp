@@ -5,6 +5,7 @@ void Transform::init() {
 	
 	if (mapa == nullptr) return;
 
+
 	int cellWidth = mapa->getComponent<GameMap>()->getCellWidth();
 	int cellHeight = mapa->getComponent<GameMap>()->getCellHeight();
 

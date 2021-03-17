@@ -29,6 +29,7 @@ public:
 		isKeyUpEvent_ = false;
 		isMouseButtonEvent_ = false;
 		isMouseMotionEvent_ = false;
+		isQuitEvent_ = false;
 		for (auto i = 0u; i < 3; i++) {
 			mbState_[i] = false;
 		}
@@ -52,10 +53,19 @@ public:
 		case SDL_MOUSEBUTTONUP:
 			onMouseButtonChange(event, false);
 			break;
+		case SDL_QUIT:
+			isQuitEvent_ = true;
+			break;
 		default:
 			break;
 		}
 	}
+
+	// quit
+	inline bool quitEvent() {
+		return isQuitEvent_;
+	}
+
 
 	// keyboard
 	inline bool keyDownEvent() {
@@ -144,6 +154,7 @@ private:
 	bool isKeyDownEvent_;
 	bool isMouseMotionEvent_;
 	bool isMouseButtonEvent_;
+	bool isQuitEvent_;
 	std::pair<Sint32, Sint32> mousePos_;
 	std::array<bool, 3> mbState_;
 	const Uint8 *kbState_;
