@@ -165,6 +165,7 @@
     <ClInclude Include="Assets\components\Bounce.h" />
     <ClInclude Include="Assets\components\CardInfo.h" />
     <ClInclude Include="Assets\components\GameMap.h" />
+    <ClInclude Include="Assets\components\Health.h" />
     <ClInclude Include="Assets\components\Image.h" />
     <ClInclude Include="Assets\components\KeyBoardCtrl.h" />
     <ClInclude Include="Assets\components\MovementShader.h" />
