@@ -21,7 +21,7 @@ using namespace std;
 typedef unsigned int uint;
 
 enum Color { Azul, Verde, Rojo, Amarillo, Ninguno};
-enum TipoCasilla { Pintable, NoPintable};
+enum TipoCasilla { Pintable, NoPintable, Base};
 
 struct Casilla
 {
@@ -41,6 +41,9 @@ public:
 	virtual ~GameMap();
 	virtual void init();
 	void loadMap(const string levelName);
+	void setColor(Vector2D cas, Color color);
+	bool movimientoPosible(Vector2D cas);
+	Color getColor(Vector2D cas);
 	void render();
 	int getCellWidth() const { return cellWidth; };
 	int getCellHeight() const { return cellHeight; };

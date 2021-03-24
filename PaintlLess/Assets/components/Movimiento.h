@@ -10,12 +10,15 @@
 class Movimiento : public Component {
 public:
 
-	Movimiento() : tr_(nullptr), selected(false) {}
+	Movimiento() : tr_(nullptr), mapa(nullptr), selected(false) {}
 
 	virtual ~Movimiento() {};
 
 	void init() override {
 		tr_ = entity_->getComponent<Transform>();
+		mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
+		cellWidth = mapa->getCellWidth();
+		cellHeight = mapa->getCellHeight();
 		assert(tr_ != nullptr);
 	}
 
@@ -23,38 +26,56 @@ public:
 
 	void update() override {
 		auto& pos = tr_->getPos();
-		auto w = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>()->getCellWidth();
-		auto h = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>()->getCellHeight();
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
+		Vector2D nextPos = pos;
+
 
 		if (ih().mouseButtonEvent() && selected) {
 			if (ih().getMouseButtonState(ih().LEFT)) {
-				if (mX > pos.getX() && mX < pos.getX() + w && mY > pos.getY() - h && mY < pos.getY() - 1) {
-					pos.setY(pos.getY() - h);
+				if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() - cellHeight && mY < pos.getY() - 1) {
+					nextPos.setY(pos.getY() - cellHeight);
 				}
-				else if (mX > pos.getX() && mX < pos.getX() + w && mY > pos.getY() + h && mY < pos.getY() + h * 2) {
-					pos.setY(pos.getY() + h);
+				else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() + cellHeight && mY < pos.getY() + cellHeight * 2) {
+					nextPos.setY(pos.getY() + cellHeight);
 				}
-				else if (mX > pos.getX() - w && mX < pos.getX() && mY > pos.getY() && mY < pos.getY() + h) {
-					pos.setX(pos.getX() - w);
+				else if (mX > pos.getX() - cellWidth && mX < pos.getX() && mY > pos.getY() && mY < pos.getY() + cellHeight) {
+					nextPos.setX(pos.getX() - cellWidth);
 				}
-				else if (mX > pos.getX() + w && mX < pos.getX() + w * 2 && mY > pos.getY() && mY < pos.getY() + h) {
-					pos.setX(pos.getX() + w);
+				else if (mX > pos.getX() + cellWidth && mX < pos.getX() + cellWidth * 2 && mY > pos.getY() && mY < pos.getY() + cellHeight) {
+					nextPos.setX(pos.getX() + cellWidth);
 				}
 
+				if (mapa->movimientoPosible(SDLPointToMapCoords(nextPos))) pos = nextPos;
 				selected = false;
+
+				mapa->setColor(SDLPointToMapCoords(pos), Amarillo);
 			}
 		}
-		else if (ih().mouseButtonEvent() && mX > pos.getX() && mX < pos.getX() + w && mY > pos.getY() && mY < pos.getY() + h) {
+		else if (ih().mouseButtonEvent() && mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
 			if (ih().getMouseButtonState(ih().LEFT)) {
 				selected = true;
 			}
 		}
+
+	}
+
+	Vector2D MapCoordsToSDLPoint(Vector2D coords) const { //Pasar de coordenadas del mapa a pixeles
+		Vector2D p{ (coords.getX() * cellWidth) , (coords.getY() * cellHeight)/* + DESPL*/ };
+		cout << p.getX() << " " << p.getY() << endl;
+		return p;
+	}
+
+	Vector2D SDLPointToMapCoords(Vector2D p) const { //Pasar de pixeles a coordenadas del mapa
+		Vector2D coords{ (p.getX() / cellWidth), (p.getY()/*-DESPL*/) / cellHeight };
+		cout << coords.getX() << " " << coords.getY() << endl;
+		return coords;
 	}
 
 private:
 	Transform* tr_;
+	GameMap* mapa;
 	bool selected;
+	int cellWidth = 0, cellHeight = 0;
 };
 
