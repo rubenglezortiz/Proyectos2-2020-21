@@ -1,13 +1,14 @@
 // This file is part of the course TPV2@UCM - Samir Genaim
 
 #include "Game.h"
+#include "PlayState.h"
 
 #include "../ecs/ecs.h"
 #include "../ecs/Entity.h"
 #include "../sdlutils/InputHandler.h"
 #include "../sdlutils/SDLUtils.h"
 
-#include "../ecs/Manager.h"
+//#include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
 #include "../components/GameMap.h"
 #include "../components/Movimiento.h"
@@ -17,26 +18,29 @@
 #include "../components/MovementShader.h"
 
 Game::Game() {
-	mngr_.reset(new Manager());
+	//mngr_.reset(new Manager());
+	SDLUtils::init("PaintLess", 800, 600, "resources/config/resources.json");
+	stateMachine = new GameStateMachine();
+	stateMachine->pushState(new PlayState());
+
 }
 
-Game::~Game() {
+Game::~Game() { //revisar
+	delete stateMachine;
 }
 
 void Game::init() {
 
-	SDLUtils::init("PaintLess", 800, 600,
-		"resources/config/resources.json");
+	//SDLUtils::init("PaintLess", 800, 600,
+		//"resources/config/resources.json");
 
 	//auto* fighter = mngr_->addEntity();
-	auto* gameMap = mngr_->addEntity(RenderLayer::Fondo);
+	/*auto* gameMap = mngr_->addEntity();
 	gameMap->addComponent<GameMap>("Assets/level1.txt");
 	mngr_.get()->setHandler<Mapa>(gameMap);
 
-	
-	
 
-	Entity* kirin = mngr_->addEntity(RenderLayer::Personajes);
+	Entity* kirin = mngr_->addEntity();
 	kirin->addComponent<Transform>(
 		Vector2D(0, 0), //Posicion
 		Vector2D(),     //Velocidad
@@ -50,7 +54,7 @@ void Game::init() {
 	sdlutils().showCursor();
 	kirin->getComponent<Health>()->hit();
 	Entity* boardManager = mngr_->addEntity();
-	boardManager->addComponent<PointOnImage>(&sdlutils().images().at("selector"));
+	boardManager->addComponent<PointOnImage>(&sdlutils().images().at("selector"));*/
 }
 
 void Game::start() {
@@ -71,13 +75,13 @@ void Game::start() {
 			continue;
 		}
 
-		mngr_->update();
+		stateMachine->currentState()->update(); //update del GameState
+		/*mngr_->update();
 		mngr_->refresh();
 
 		sdlutils().clearRenderer();
 		mngr_->render();
-		sdlutils().presentRenderer();
-
+		sdlutils().presentRenderer();*/
 
 		Uint32 frameTime = sdlutils().currRealTime() - startTime;
 
@@ -86,4 +90,3 @@ void Game::start() {
 	}
 
 }
-

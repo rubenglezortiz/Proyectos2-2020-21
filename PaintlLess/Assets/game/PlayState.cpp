@@ -16,12 +16,13 @@
 
 PlayState::PlayState() : GameState(){
 	//auto* fighter = mngr_->addEntity();
-	auto* gameMap = mngr_->addEntity();
+	auto* gameMap = mngr_->addEntity(RenderLayer::Fondo);
+	//auto* gameMap = mngr_->addEntity();
 	gameMap->addComponent<GameMap>("Assets/level1.txt");
 	mngr_.get()->setHandler<Mapa>(gameMap);
 
-
-	Entity* kirin = mngr_->addEntity();
+	Entity* kirin = mngr_->addEntity(RenderLayer::Personajes);
+	//Entity* kirin = mngr_->addEntity();
 	kirin->addComponent<Transform>(
 		Vector2D(0, 0), //Posicion
 		Vector2D(),     //Velocidad
