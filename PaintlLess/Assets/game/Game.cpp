@@ -11,6 +11,7 @@
 #include "../utils/Vector2D.h"
 #include "../components/GameMap.h"
 #include "../components/Movimiento.h"
+#include "../components/Health.h"
 
 #include "../components/MovementShader.h"
 
@@ -44,8 +45,9 @@ void Game::init() {
 
 	kirin->addComponent<Image>(&sdlutils().images().at("kirin"));
 	kirin->addComponent<Movimiento>();
+	kirin->addComponent<Health>(3,kirin->getComponent<Transform>());
 	sdlutils().showCursor();
-
+	kirin->getComponent<Health>()->hit();
 	Entity* boardManager = mngr_->addEntity();
 	boardManager->addComponent<MovementShader>(&sdlutils().images().at("selector"));
 }

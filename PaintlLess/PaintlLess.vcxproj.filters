@@ -221,5 +221,9 @@
     <ClInclude Include="Assets\game\Values.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
+
+    <ClInclude Include="Assets\components\Health.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

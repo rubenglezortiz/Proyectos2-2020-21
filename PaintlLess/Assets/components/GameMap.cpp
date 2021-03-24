@@ -41,22 +41,22 @@ void GameMap::loadMap(const string levelName) {
 
 				file >> type;
 				switch (type) {
-				case 0: //Que se supone que es esto ???
+				case 0: // Base
 					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 0);
 					cells[i][j].color = Color::Ninguno;
-					cells[i][j].casilla = TipoCasilla::Pintable;
+					cells[i][j].casilla = TipoCasilla::Base;
 					break;
-				case 1:
+				case 1: // Roca
 					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 3);
 					cells[i][j].color = Color::Ninguno;
 					cells[i][j].casilla = TipoCasilla::Pintable;
 					break;
-				case 2:
+				case 2: // Agua
 					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 1);
 					cells[i][j].color = Color::Ninguno;
-					cells[i][j].casilla = TipoCasilla::Pintable;
+					cells[i][j].casilla = TipoCasilla::NoPintable;
 					break;
-				case 3:
+				case 3: // Cesped
 					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 2);
 					cells[i][j].color = Color::Ninguno;
 					cells[i][j].casilla = TipoCasilla::Pintable;
@@ -71,8 +71,9 @@ void GameMap::loadMap(const string levelName) {
 	file.close();
 
 }
+
 void GameMap::render() {
-	SDL_Rect desRect;
+	/*SDL_Rect desRect;
 
 	desRect.h = sdlutils().height();
 	desRect.w = sdlutils().width();
@@ -80,14 +81,31 @@ void GameMap::render() {
 		for (int c = 0; c < cols; ++c) {
 			desRect.x = c * desRect.w;
 			desRect.y = r * desRect.h;
-
 		}
+	}*/
+}
+
+void GameMap::setColor(Vector2D cas, Color color) {
+	if (getColor(cas) != color && cells[(int)cas.getY()][(int)cas.getX()].casilla == Pintable) {
+
+		auto* pintar = entity_->getMngr()->addEntity();
+		cout << cas.getX() << " " << cas.getY() << endl;
+		pintar->addComponent<Transform>(Vector2D(cas.getX(), cas.getY()), cellWidth, cellHeight);
+		pintar->addComponent<Image>(&sdlutils().images().at("star"));
+
+		cells[(int)cas.getY()][(int)cas.getX()].color = color;
+		cout << "Color: " << getColor(cas) << endl;
 	}
 }
 
+bool GameMap::movimientoPosible(Vector2D cas) {
+	return (cells[(int)cas.getY()][(int)cas.getX()].casilla != NoPintable);
+}
 
 
-
+Color GameMap::getColor(Vector2D cas) {
+	return cells[(int)cas.getY()][(int)cas.getX()].color;
+}
 
 //GameMap GameMap::CreaMapa(string filename) {
 //	MapCell s = MapCell.Empty;

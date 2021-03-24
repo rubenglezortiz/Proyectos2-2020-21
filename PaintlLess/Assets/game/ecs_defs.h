@@ -13,6 +13,7 @@ class GameMap;
 class PointOnImage;
 class Movimiento;
 class MovementShader;
+class Health;
 //class DeAcceleration;
 //class Health;
 //class ShowAtOpposieSide;
@@ -28,7 +29,8 @@ class MovementShader;
 	GameMap, \
 	Movimiento, \
 	PointOnImage, \
-	MovementShader
+	MovementShader, \
+	Health
 	/*DeAcceleration,\
 	Health,\
 	ShowAtOpposieSide,\
