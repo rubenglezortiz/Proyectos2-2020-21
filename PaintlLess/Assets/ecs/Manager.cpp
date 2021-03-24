@@ -5,6 +5,10 @@
 #include <algorithm>
 
 Manager::Manager() {
+	for (int i = 0; i < 6; i++)
+	{
+		renderLayers.push_back(std::vector<Entity*>());
+	}
 }
 
 Manager::~Manager() {
@@ -55,7 +59,15 @@ void Manager::update() {
 }
 
 void Manager::render() {
-	auto n = entities_.size();
-	for (auto i = 0u; i < n; i++)
-		entities_[i]->render();
+	//auto n = entities_.size();
+	//for (auto i = 0u; i < n; i++)
+	//	entities_[i]->render();
+
+	for (std::vector<Entity*> entities : renderLayers)
+	{
+		for (Entity* entity : entities)
+		{
+			entity->render();
+		}
+	}
 }

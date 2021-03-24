@@ -29,14 +29,14 @@ void Game::init() {
 		"resources/config/resources.json");
 
 	//auto* fighter = mngr_->addEntity();
-	auto* gameMap = mngr_->addEntity();
+	auto* gameMap = mngr_->addEntity(RenderLayer::Fondo);
 	gameMap->addComponent<GameMap>("Assets/level1.txt");
 	mngr_.get()->setHandler<Mapa>(gameMap);
 
 	
 	
 
-	Entity* kirin = mngr_->addEntity();
+	Entity* kirin = mngr_->addEntity(RenderLayer::Personajes);
 	kirin->addComponent<Transform>(
 		Vector2D(0, 0), //Posicion
 		Vector2D(),     //Velocidad

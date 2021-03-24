@@ -9,6 +9,8 @@
 #include "ecs.h"
 #include "Entity.h"
 
+enum class RenderLayer { Fondo, Tablero, Tablero2, Tablero3, Personajes, Interfaz};
+
 class Manager {
 public:
 
@@ -16,11 +18,12 @@ public:
 	virtual ~Manager();
 
 	// entities
-	Entity* addEntity() {
+	Entity* addEntity(RenderLayer layer = RenderLayer::Tablero) {
 		Entity *e = new Entity(this);
 		if (e != nullptr) {
 			e->resetGroups();
 			entities_.emplace_back(e);
+			renderLayers[(int)layer].emplace_back(e);
 		}
 		return e;
 	}
@@ -47,7 +50,7 @@ public:
 private:
 
 	std::vector<Entity*> entities_;
+	std::vector<std::vector<Entity*>> renderLayers;
 	std::array<Entity*, ecs::maxHdlr> hdlrs_;
-
 };
 
