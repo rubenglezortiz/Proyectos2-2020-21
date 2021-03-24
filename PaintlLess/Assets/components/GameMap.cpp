@@ -64,7 +64,6 @@ void GameMap::loadMap(const string levelName) {
 				}
 
 				cells[i][j].character = nullptr;
-				casilla->addComponent<PointOnImage>(casilla->getComponent<Image>());
 			}
 		}
 	}

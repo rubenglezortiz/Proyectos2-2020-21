@@ -12,6 +12,7 @@
 #include "../components/GameMap.h"
 #include "../components/Movimiento.h"
 #include "../components/Health.h"
+#include "../components/PointOnImage.h"
 
 #include "../components/MovementShader.h"
 
@@ -49,7 +50,7 @@ void Game::init() {
 	sdlutils().showCursor();
 	kirin->getComponent<Health>()->hit();
 	Entity* boardManager = mngr_->addEntity();
-	boardManager->addComponent<MovementShader>(&sdlutils().images().at("selector"));
+	boardManager->addComponent<PointOnImage>(&sdlutils().images().at("selector"));
 }
 
 void Game::start() {
