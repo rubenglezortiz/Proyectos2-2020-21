@@ -90,9 +90,6 @@
     <ClCompile Include="Assets\json\JSONValue.cpp">
       <Filter>Archivos de origen\json</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\components\Transform.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
@@ -113,6 +110,15 @@
     </ClCompile>
     <ClCompile Include="Assets\game\PlayState.cpp">
       <Filter>Archivos de origen\game</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\game\MainMenuState.cpp">
+      <Filter>Archivos de origen\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\MenuButton.cpp">
+      <Filter>Archivos de origen\components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +244,12 @@
     </ClInclude>
     <ClInclude Include="Assets\game\PlayState.h">
       <Filter>Archivos de encabezado\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\game\MainMenuState.h">
+      <Filter>Archivos de encabezado\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\MenuButton.h">
+      <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

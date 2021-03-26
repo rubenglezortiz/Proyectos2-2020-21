@@ -13,6 +13,7 @@ class GameMap;
 class PointOnImage;
 class Movimiento;
 class MovementShader;
+class MenuButton;
 class Health;
 //class DeAcceleration;
 //class Health;
@@ -30,6 +31,7 @@ class Health;
 	Movimiento, \
 	PointOnImage, \
 	MovementShader, \
+	MenuButton, \
 	Health
 	/*DeAcceleration,\
 	Health,\

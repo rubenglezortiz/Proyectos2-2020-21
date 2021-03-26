@@ -2,6 +2,7 @@
 
 #include "Game.h"
 #include "PlayState.h"
+#include "MainMenuState.h"
 
 #include "../ecs/ecs.h"
 #include "../ecs/Entity.h"
@@ -21,8 +22,8 @@ Game::Game() {
 	//mngr_.reset(new Manager());
 	SDLUtils::init("PaintLess", 800, 600, "resources/config/resources.json");
 	stateMachine = new GameStateMachine();
-	stateMachine->pushState(new PlayState());
-
+	stateMachine->pushState(new MainMenuState(stateMachine)); 
+	//stateMachine->pushState(new PlayState(stateMachine)); para que inicie el juego sin el menu
 }
 
 Game::~Game() { //revisar
@@ -30,31 +31,7 @@ Game::~Game() { //revisar
 }
 
 void Game::init() {
-
-	//SDLUtils::init("PaintLess", 800, 600,
-		//"resources/config/resources.json");
-
-	//auto* fighter = mngr_->addEntity();
-	/*auto* gameMap = mngr_->addEntity();
-	gameMap->addComponent<GameMap>("Assets/level1.txt");
-	mngr_.get()->setHandler<Mapa>(gameMap);
-
-
-	Entity* kirin = mngr_->addEntity();
-	kirin->addComponent<Transform>(
-		Vector2D(0, 0), //Posicion
-		Vector2D(),     //Velocidad
-		50.0f,          //Ancho
-		50.0f,          //Alto
-		0.0f);
-
-	kirin->addComponent<Image>(&sdlutils().images().at("kirin"));
-	kirin->addComponent<Movimiento>();
-	kirin->addComponent<Health>(3,kirin->getComponent<Transform>());
-	sdlutils().showCursor();
-	kirin->getComponent<Health>()->hit();
-	Entity* boardManager = mngr_->addEntity();
-	boardManager->addComponent<PointOnImage>(&sdlutils().images().at("selector"));*/
+	
 }
 
 void Game::start() {
@@ -76,17 +53,10 @@ void Game::start() {
 		}
 
 		stateMachine->currentState()->update(); //update del GameState
-		/*mngr_->update();
-		mngr_->refresh();
-
-		sdlutils().clearRenderer();
-		mngr_->render();
-		sdlutils().presentRenderer();*/
-
+		
 		Uint32 frameTime = sdlutils().currRealTime() - startTime;
 
 		if (frameTime < 20)
 			SDL_Delay(20 - frameTime);
 	}
-
 }

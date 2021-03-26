@@ -4,7 +4,6 @@
 class PlayState : public GameState
 {
 public:
-	PlayState();
+	PlayState(GameStateMachine* gsm);
 	virtual ~PlayState();
 };
-

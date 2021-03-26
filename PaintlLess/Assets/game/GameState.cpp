@@ -1,14 +1,14 @@
 #include "../ecs/Manager.h"
-#include "GameState.h"
 #include "../sdlutils/SDLUtils.h"
+#include "GameState.h"
+#include "GameStateMachine.h"
 
-GameState::GameState() {
+GameState::GameState(GameStateMachine* gsm) {
 	mngr_.reset(new Manager());
+	gameStateMachine = gsm;
 }
 
-GameState::~GameState() {
-
-}
+GameState::~GameState() {}
 
 void GameState::update() { //run
 	mngr_->update();

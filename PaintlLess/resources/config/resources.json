@@ -14,7 +14,8 @@
     { "id" : "fighter", "file" : "resources/images/fighter.png" },
     { "id": "tileset", "file": "resources/images/tileset.png" },
     { "id": "selector", "file": "resources/images/selector.png" },
-	{ "id": "life", "file": "resources/images/life.png" }
+	{ "id": "life", "file": "resources/images/life.png" },
+	{ "id": "start", "file": "resources/images/start.png" }
   ],
 
   
