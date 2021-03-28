@@ -55,8 +55,9 @@ struct Bullet_grp;
 // handlers
 struct Hdlr_1;
 struct Mapa;
+struct BoardManager;
 
-#define _HDLRS_LIST_ Hdlr_1, Mapa
+#define _HDLRS_LIST_ Hdlr_1, Mapa, BoardManager
 
 
 

@@ -17,11 +17,26 @@
 
 PlayState::PlayState(GameStateMachine* gsm) : GameState(gsm){
 
+	//Creación gamemap
 	auto* gameMap = mngr_->addEntity(RenderLayer::Fondo);
 
 	gameMap->addComponent<GameMap>("Assets/level1.txt");
 	mngr_.get()->setHandler<Mapa>(gameMap);
 
+
+	//cración boardManager
+	Entity* boardManager = mngr_->addEntity(RenderLayer::Tablero2);
+	boardManager->addComponent<PointOnImage>(&sdlutils().images().at("selector"));
+	boardManager->addComponent<MovementShader>(&sdlutils().images().at("selector"));
+
+	mngr_.get()->setHandler<BoardManager>(boardManager);
+
+	boardManager->getComponent<MovementShader>()->getValues();
+
+
+
+
+	//Creacion personaje
 	Entity* kirin = mngr_->addEntity(RenderLayer::Personajes);
 
 	kirin->addComponent<Transform>(
@@ -36,8 +51,8 @@ PlayState::PlayState(GameStateMachine* gsm) : GameState(gsm){
 	kirin->addComponent<Health>(3, kirin->getComponent<Transform>());
 	sdlutils().showCursor();
 	kirin->getComponent<Health>()->hit();
-	Entity* boardManager = mngr_->addEntity();
-	boardManager->addComponent<PointOnImage>(&sdlutils().images().at("selector"));
+
+
 }
 
 PlayState::~PlayState() {}

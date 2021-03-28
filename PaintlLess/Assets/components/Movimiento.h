@@ -6,6 +6,7 @@
 #include "../sdlutils/SDLUtils.h"
 #include "../ecs/Entity.h"
 #include "./Transform.h"
+#include "./MovementShader.h"
 
 class Movimiento : public Component {
 public:
@@ -19,6 +20,8 @@ public:
 		mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
 		cellWidth = mapa->getCellWidth();
 		cellHeight = mapa->getCellHeight();
+		movShader = entity_->getMngr()->getHandler<BoardManager>()->getComponent<MovementShader>();
+
 		assert(tr_ != nullptr);
 	}
 
@@ -55,6 +58,7 @@ public:
 		else if (ih().mouseButtonEvent() && mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
 			if (ih().getMouseButtonState(ih().LEFT)) {
 				selected = true;
+				movShader->casillasPosiblesRecu(SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())));
 			}
 		}
 
@@ -73,6 +77,7 @@ public:
 	}
 
 private:
+	MovementShader* movShader;
 	Transform* tr_;
 	GameMap* mapa;
 	bool selected;
