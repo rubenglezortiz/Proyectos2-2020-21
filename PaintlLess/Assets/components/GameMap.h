@@ -45,6 +45,8 @@ public:
 	bool movimientoPosible(Vector2D cas);
 	Color getColor(Vector2D cas);
 	void render();
+	int getRows() const { return rows; };
+	int getColumns() const { return cols; }
 	int getCellWidth() const { return cellWidth; };
 	int getCellHeight() const { return cellHeight; };
 };

@@ -24,7 +24,7 @@ void GameMap::loadMap(const string levelName) {
 	file.open(levelName);
 	if (!file.is_open())  throw string("No se encuentra el fichero");
 	else {
-		int rows, cols, type;
+		int type;
 		file >> rows >> cols;
 		cells = new Casilla * [rows];
 		for (int r = 0; r < rows; ++r) {

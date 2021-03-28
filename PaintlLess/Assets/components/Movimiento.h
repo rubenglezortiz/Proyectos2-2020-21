@@ -53,6 +53,8 @@ public:
 				selected = false;
 
 				mapa->setColor(SDLPointToMapCoords(pos), Amarillo);
+
+				movShader->freeCasillasAPintar();
 			}
 		}
 		else if (ih().mouseButtonEvent() && mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
