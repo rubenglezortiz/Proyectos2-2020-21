@@ -40,7 +40,7 @@ PlayState::PlayState(GameStateMachine* gsm) : GameState(gsm){
 	Entity* kirin = mngr_->addEntity(RenderLayer::Personajes);
 
 	kirin->addComponent<Transform>(
-		Vector2D(4, 4), //Posicion
+		Vector2D(5, 4), //Posicion
 		Vector2D(),     //Velocidad
 		50.0f,          //Ancho
 		50.0f,          //Alto

@@ -51,7 +51,7 @@ public:
 		
 		int casillasAMover = 3;
 		//matriz igual que el tablero inicializada a false
-		vector<vector<bool>> casillasChecked(mapa->getRows(), vector<bool>(mapa->getColumns(), false));
+		vector<vector<bool>> casillasChecked(mapa->getColumns(), vector<bool>(mapa->getRows(), false));
 		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() + 1), casillasChecked);
 		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX() + 1, cSelected.getY()), casillasChecked);
 		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() - 1), casillasChecked);
@@ -69,11 +69,13 @@ public:
 		if (casillasAMover == 0) return;
 		
 		//si la casilla está fuera del mapa no hago nada
-		if (cActual.getX() < 0 || cActual.getX() > mapa->getRows() ||
-			cActual.getY() < 0 || cActual.getY() > mapa->getColumns()) return;
+		if (cActual.getX() < 0 || cActual.getX() >= mapa->getColumns() ||
+			cActual.getY() < 0 || cActual.getY() >= mapa->getRows()) return;
 
+		int suma = -1;
+		if (cSelected.getX() == 0 && cActual.getX() == 0) suma = 0;
 		//si la casilla a la que accedo no ha sido visitada
-		if (!casillasChecked[cActual.getX()][cActual.getY()] ) {
+		if (!casillasChecked[cActual.getX()][cActual.getY()]) {
 
 
 			casillasChecked[cActual.getX()][cActual.getY()] = true;
@@ -81,10 +83,10 @@ public:
 			casillasAPintar.push_back(Vector2D(cActual.getX(), cActual.getY()));
 
 
-			casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cActual.getX(), cActual.getY() + 1), casillasChecked);
-			casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cActual.getX() + 1, cActual.getY()), casillasChecked);
-			casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cActual.getX(), cActual.getY() - 1), casillasChecked);
-			casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cActual.getX() - 1, cActual.getY()), casillasChecked);
+			casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX(), cActual.getY() + 1), casillasChecked);
+			casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX() + 1, cActual.getY()), casillasChecked);
+			casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX(), cActual.getY() - 1), casillasChecked);
+			casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX() - 1, cActual.getY()), casillasChecked);
 
 		}
 		
