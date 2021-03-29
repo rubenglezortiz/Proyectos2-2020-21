@@ -5,7 +5,7 @@
 #include "../ecs/Component.h"
 #include "../sdlutils/Texture.h"
 #include "GameMap.h"
-
+//#include "../game/Values.h"
 
 class MovementShader : public Component {
 
@@ -58,7 +58,7 @@ public:
 
 	void casillasPosiblesRecu(const Vector2D& cSelected, vector<vector<CasillaMov>>& casillasChecked) {
 		
-		int casillasAMover = 3;
+		int casillasAMover = 3;//UnitInfo::Movimiento[Alquimista];
 		//matriz igual que el tablero inicializada a false
 		
 		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() + 1), casillasChecked, false);

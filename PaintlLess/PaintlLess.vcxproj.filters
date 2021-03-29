@@ -251,5 +251,8 @@
     <ClInclude Include="Assets\components\MenuButton.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\game\Values.h">
+      <Filter>Archivos de encabezado\game</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

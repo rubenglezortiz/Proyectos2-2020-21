@@ -30,29 +30,21 @@ public:
 
 	void update() override {
 		auto& pos = tr_->getPos();
-		int mX = ih().getMousePos().first;
-		int mY = ih().getMousePos().second;
+	
 		Vector2D nextPos = pos;
 
 		if (ih().mouseButtonEvent()) {
+			int mX = ih().getMousePos().first;
+			int mY = ih().getMousePos().second;
 			if (selected) {
 				if (ih().getMouseButtonState(ih().LEFT)) {
-					if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() - cellHeight && mY < pos.getY() - 1) {
-						nextPos.setY(pos.getY() - cellHeight);
-					}
-					else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() + cellHeight && mY < pos.getY() + cellHeight * 2) {
-						nextPos.setY(pos.getY() + cellHeight);
-					}
-					else if (mX > pos.getX() - cellWidth && mX < pos.getX() && mY > pos.getY() && mY < pos.getY() + cellHeight) {
-						nextPos.setX(pos.getX() - cellWidth);
-					}
-					else if (mX > pos.getX() + cellWidth && mX < pos.getX() + cellWidth * 2 && mY > pos.getY() && mY < pos.getY() + cellHeight) {
-						nextPos.setX(pos.getX() + cellWidth);
-					}
 
 					//esto se debe hacer en movementshader
-					Vector2D posMovimiento = SDLPointToMapCoords(nextPos);
-					if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible) pos = nextPos;
+					Vector2D posMovimiento = SDLPointToMapCoords(Vector2D(mX,mY));
+					if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible) {
+						pos.setX(posMovimiento.getX() * cellWidth);
+						pos.setY(posMovimiento.getY() * cellHeight);
+					}
 					selected = false;
 
 					mapa->setColor(SDLPointToMapCoords(pos), Amarillo);
@@ -80,7 +72,11 @@ public:
 	}
 
 	Vector2D SDLPointToMapCoords(Vector2D p) const { //Pasar de pixeles a coordenadas del mapa
-		Vector2D coords{ (p.getX() / cellWidth), (p.getY()/*-DESPL*/) / cellHeight };
+		//como las casillas neceitan int se hace aqui el casteo
+		int X = p.getX() / cellWidth;
+		int Y = p.getY()/*-DESPL*/ / cellHeight;
+		//como vector2D es float se hace el casteo pero el valor va a ser .0000
+		Vector2D coords{(float)X,(float) Y};
 		cout << coords.getX() << " " << coords.getY() << endl;
 		return coords;
 	}
