@@ -8,15 +8,15 @@ typedef unsigned int uint;
 namespace UnitInfo {
 enum TipoCarta {Ataque, Defensa, Utilidad};
 
+	const uint Movimiento[2] = { 3, 2 };
 
-	const uint numUnidades = 13;
-	const uint Ataque = {1};
-	
-	const uint Movimiento[numUnidades];
-	const uint Cooldown = {3};
-	const uint Mana = {3};
-	const uint Vida = {2};
-	const TipoCarta tipoCarta = {TipoCarta::Ataque};
+	//const uint numUnidades = 13;
+	//const uint Ataque = {1};
+	//
+	//const uint Cooldown = {3};
+	//const uint Mana = {3};
+	//const uint Vida = {2};
+	//const TipoCarta tipoCarta = {TipoCarta::Ataque};
 
 
 
