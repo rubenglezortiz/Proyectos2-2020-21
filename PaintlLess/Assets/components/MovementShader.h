@@ -59,7 +59,8 @@ public:
 
 		//para no volver a acceder a la inicial
 		casillasChecked[cSelected.getX()][cSelected.getY()] = true;
-
+		size = 0;
+		numCasillas = 0;
 		//if (!(cSelected.getX() == 0 && cActual.getX() != 0))
 
 	}
@@ -107,14 +108,18 @@ public:
 	{
 		SDL_Rect dest;
 
-
+		if(size < 1 )size += 0.1;
+		int cas = 0;
+		numCasillas += 1;
 		for (Vector2D casilla : casillasAPintar) {
+			if (cas == numCasillas) return;
 			dest.x = casilla.getX() * cellWidth /*+ offset*/;
 			dest.y = casilla.getY() * cellHeight /*+ offset*/;
-			dest.h = cellHeight;
-			dest.w = cellWidth;
+			dest.h = cellHeight * size;
+			dest.w = cellWidth * size;
 
 			tex_->render(dest);
+			cas++;
 		}
 	}
 	void freeCasillasAPintar() {
@@ -130,7 +135,8 @@ private:
 
 	//cuando se metan margenes hay que tener cuidadd y sumarlos
 	int cellWidth = 0, cellHeight = 0;
-
+	float size = 0;
+	int numCasillas = 0;
 
 	Vector2D position;
 	Texture* tex_;
