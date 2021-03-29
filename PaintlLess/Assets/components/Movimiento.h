@@ -21,6 +21,7 @@ public:
 		cellWidth = mapa->getCellWidth();
 		cellHeight = mapa->getCellHeight();
 		movShader = entity_->getMngr()->getHandler<BoardManager>()->getComponent<MovementShader>();
+		initializeCasillasChecked();
 
 		assert(tr_ != nullptr);
 	}
@@ -33,37 +34,42 @@ public:
 		int mY = ih().getMousePos().second;
 		Vector2D nextPos = pos;
 
+		if (ih().mouseButtonEvent()) {
+			if (selected) {
+				if (ih().getMouseButtonState(ih().LEFT)) {
+					if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() - cellHeight && mY < pos.getY() - 1) {
+						nextPos.setY(pos.getY() - cellHeight);
+					}
+					else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() + cellHeight && mY < pos.getY() + cellHeight * 2) {
+						nextPos.setY(pos.getY() + cellHeight);
+					}
+					else if (mX > pos.getX() - cellWidth && mX < pos.getX() && mY > pos.getY() && mY < pos.getY() + cellHeight) {
+						nextPos.setX(pos.getX() - cellWidth);
+					}
+					else if (mX > pos.getX() + cellWidth && mX < pos.getX() + cellWidth * 2 && mY > pos.getY() && mY < pos.getY() + cellHeight) {
+						nextPos.setX(pos.getX() + cellWidth);
+					}
 
-		if (ih().mouseButtonEvent() && selected) {
-			if (ih().getMouseButtonState(ih().LEFT)) {
-				if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() - cellHeight && mY < pos.getY() - 1) {
-					nextPos.setY(pos.getY() - cellHeight);
-				}
-				else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() + cellHeight && mY < pos.getY() + cellHeight * 2) {
-					nextPos.setY(pos.getY() + cellHeight);
-				}
-				else if (mX > pos.getX() - cellWidth && mX < pos.getX() && mY > pos.getY() && mY < pos.getY() + cellHeight) {
-					nextPos.setX(pos.getX() - cellWidth);
-				}
-				else if (mX > pos.getX() + cellWidth && mX < pos.getX() + cellWidth * 2 && mY > pos.getY() && mY < pos.getY() + cellHeight) {
-					nextPos.setX(pos.getX() + cellWidth);
-				}
+					//esto se debe hacer en movementshader
+					Vector2D posMovimiento = SDLPointToMapCoords(nextPos);
+					if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible) pos = nextPos;
+					selected = false;
 
-				//esto se debe hacer en movementshader
-				if (mapa->movimientoPosible(SDLPointToMapCoords(nextPos))) pos = nextPos;
-				selected = false;
+					mapa->setColor(SDLPointToMapCoords(pos), Amarillo);
 
-				mapa->setColor(SDLPointToMapCoords(pos), Amarillo);
-
-				movShader->freeCasillasAPintar();
+					//estos métodos son para cuando se deselcciona yuna casilla para restablecer los valores de los vectores...
+					movShader->freeCasillasAPintar();
+					resetCasillasChecked();
+				}
+			}
+			else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
+				if (ih().getMouseButtonState(ih().LEFT)) {
+					selected = true;
+					movShader->casillasPosiblesRecu(SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked);
+				}
 			}
 		}
-		else if (ih().mouseButtonEvent() && mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
-			if (ih().getMouseButtonState(ih().LEFT)) {
-				selected = true;
-				movShader->casillasPosiblesRecu(SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())));
-			}
-		}
+		
 
 	}
 
@@ -80,10 +86,26 @@ public:
 	}
 
 private:
+	vector<vector<MovementShader::CasillaMov>> casillasChecked;
 	MovementShader* movShader;
 	Transform* tr_;
 	GameMap* mapa;
 	bool selected;
 	int cellWidth = 0, cellHeight = 0;
+
+	void initializeCasillasChecked() {
+		//ese método es porque no sabemos inicializar el vector y daba errores UwU
+		vector<vector<MovementShader::CasillaMov>> casillasCheckedAux(mapa->getColumns(), vector<MovementShader::CasillaMov>(mapa->getRows(), { false, false }));;
+		casillasChecked = casillasCheckedAux;
+	}
+
+	void resetCasillasChecked() {
+		for (int x = 0; x < mapa->getColumns(); x++) {
+			for (int y = 0; y < mapa->getRows(); y++) {
+				casillasChecked[x][y].checked = false;
+				casillasChecked[x][y].movPosible = false;
+			}
+		}
+	}
 };
 
