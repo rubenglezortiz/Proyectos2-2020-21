@@ -49,6 +49,7 @@ public:
 					nextPos.setX(pos.getX() + cellWidth);
 				}
 
+				//esto se debe hacer en movementshader
 				if (mapa->movimientoPosible(SDLPointToMapCoords(nextPos))) pos = nextPos;
 				selected = false;
 

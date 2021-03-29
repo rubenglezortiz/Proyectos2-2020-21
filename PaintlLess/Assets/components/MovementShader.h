@@ -75,7 +75,8 @@ public:
 		int suma = -1;
 		if (cSelected.getX() == 0 && cActual.getX() == 0) suma = 0;
 		//si la casilla a la que accedo no ha sido visitada
-		if (!casillasChecked[cActual.getX()][cActual.getY()]) {
+		if (!casillasChecked[cActual.getX()][cActual.getY()] &&
+			mapa->movimientoPosible(Vector2D(cActual.getX(),cActual.getY()))) {
 
 
 			casillasChecked[cActual.getX()][cActual.getY()] = true;
