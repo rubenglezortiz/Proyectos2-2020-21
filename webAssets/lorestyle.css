@@ -37,8 +37,6 @@ ul li a:hover {
     box-shadow: 5px -2px #4fc3c7, -5px 2px #ffffff;
 }
 
-
-
 .title {
     font-size: 110px;
     color: #f1f1f1;    
@@ -92,8 +90,8 @@ ul li a:hover {
     padding-top:1%;
  
     text-align: center;
-    background-color: #4fc3c7;
-    box-shadow: -5px 5px #ac4186, 5px -5px #ffffff;    
+    background-color: #363636;
+    box-shadow: -5px 5px #ac4186, 5px -5px #4fc3c7; 
 }
 
 .text-box div{
