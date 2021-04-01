@@ -44,6 +44,12 @@ html {
     float: left;
 }
 
+.logo_container :hover
+{
+    transition: 0.3s ease-in-out;
+    transform: scaleX(-1);
+}
+
 .logo_container h1 {
     color: #f1f1f1;
     height: 100%;
