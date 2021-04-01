@@ -44,22 +44,22 @@ void GameMap::loadMap(const string levelName) {
 				case 0: // Base
 					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 0);
 					cells[i][j].color = Color::Ninguno;
-					cells[i][j].casilla = TipoCasilla::Base;
+					cells[i][j].tipoCasilla = TipoCasilla::Base;
 					break;
 				case 1: // Roca
 					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 3);
 					cells[i][j].color = Color::Ninguno;
-					cells[i][j].casilla = TipoCasilla::Pintable;
+					cells[i][j].tipoCasilla = TipoCasilla::Pintable;
 					break;
 				case 2: // Agua
 					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 1);
 					cells[i][j].color = Color::Ninguno;
-					cells[i][j].casilla = TipoCasilla::NoPintable;
+					cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
 					break;
 				case 3: // Cesped
 					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 2);
 					cells[i][j].color = Color::Ninguno;
-					cells[i][j].casilla = TipoCasilla::Pintable;
+					cells[i][j].tipoCasilla = TipoCasilla::Pintable;
 					break;
 				}
 
@@ -84,9 +84,8 @@ void GameMap::render() {
 	}*/
 }
 
-void GameMap::setColor(Vector2D cas, Color color) {
-	if (getColor(cas) != color && cells[(int)cas.getY()][(int)cas.getX()].casilla == Pintable) {
-
+void GameMap::setColor(const Vector2D& cas, Color color) {
+	if (getColor(cas) != color && cells[(int)cas.getY()][(int)cas.getX()].tipoCasilla == Pintable) {
 		auto* pintar = entity_->getMngr()->addEntity();
 		cout << cas.getX() << " " << cas.getY() << endl;
 		pintar->addComponent<Transform>(Vector2D(cas.getX(), cas.getY()), cellWidth, cellHeight);
@@ -97,13 +96,35 @@ void GameMap::setColor(Vector2D cas, Color color) {
 	}
 }
 
+void GameMap::setEstado(const Vector2D& cas, TipoCasilla tipo) {
+	assert(casillaValida(cas)); //si a este método se le pasa una casilla de fuera del mapa, error de ejecución
+	cells[(int)cas.getY()][(int)cas.getX()].tipoCasilla = tipo;
+}
+
+void GameMap::setCharacter(const Vector2D& cas, Entity* e) {
+	cells[(int)cas.getY()][(int)cas.getX()].character = e;
+}
+
+void GameMap::removeCharacter(const Vector2D& cas) {
+	cells[(int)cas.getY()][(int)cas.getX()].character = nullptr;
+}
+
+
+
 bool GameMap::movimientoPosible(Vector2D cas) {
-	return (cells[(int)cas.getY()][(int)cas.getX()].casilla != NoPintable);
+	if (!casillaValida(cas))return false;
+	int x = cas.getX(); int y = cas.getY();
+	return (cells[y][x].tipoCasilla != NoPintable && cells[y][x].character == nullptr);
 }
 
 
 Color GameMap::getColor(Vector2D cas) {
 	return cells[(int)cas.getY()][(int)cas.getX()].color;
+}
+
+bool GameMap::casillaValida(const Vector2D& cas) //SUPONEMOS QUE ESTÁ BIEN, ACEPTAMOS CAMBIOS XDD
+{
+	return cas.getX() >= 0 && cas.getX() < getColumns() && cas.getY() >= 0 && cas.getY() < getColumns() < getRows();
 }
 
 //GameMap GameMap::CreaMapa(string filename) {

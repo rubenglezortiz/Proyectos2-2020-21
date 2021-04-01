@@ -26,7 +26,7 @@ enum TipoCasilla { Pintable, NoPintable, Base};
 struct Casilla
 {
 	Color color;
-	TipoCasilla casilla;
+	TipoCasilla tipoCasilla;
 	Entity* character;
 };
 
@@ -41,7 +41,11 @@ public:
 	virtual ~GameMap();
 	virtual void init();
 	void loadMap(const string levelName);
-	void setColor(Vector2D cas, Color color);
+	void setColor(const Vector2D& cas, Color color);
+	void setEstado(const Vector2D& cas, TipoCasilla tipo);
+	void setCharacter(const Vector2D& cas, Entity* e);
+	void removeCharacter(const Vector2D& cas);
+	bool casillaValida(const Vector2D& cas);
 	bool movimientoPosible(Vector2D cas);
 	Color getColor(Vector2D cas);
 	void render();
@@ -49,4 +53,20 @@ public:
 	int getColumns() const { return cols; }
 	int getCellWidth() const { return cellWidth; };
 	int getCellHeight() const { return cellHeight; };
+
+	Vector2D MapCoordsToSDLPoint(Vector2D coords) const { //Pasar de coordenadas del mapa a pixeles
+		Vector2D p{ (coords.getX() * cellWidth) , (coords.getY() * cellHeight)/* + DESPL*/ };
+		cout << p.getX() << " " << p.getY() << endl;
+		return p;
+	}
+
+	Vector2D SDLPointToMapCoords(Vector2D p) { //Pasar de pixeles a coordenadas del mapa
+		//como las casillas neceitan int se hace aqui el casteo
+		int X = p.getX() / cellWidth;
+		int Y = p.getY()/*-DESPL*/ / cellHeight;
+		//como vector2D es float se hace el casteo pero el valor va a ser .0000
+		Vector2D coords{ (float)X,(float)Y };
+		cout << coords.getX() << " " << coords.getY() << endl;
+		return coords;
+	}		
 };

@@ -40,51 +40,45 @@ public:
 	}
 
 	void update() override {
-		auto& pos = entity_->getComponent<Transform>()->getPos();
-
-		Vector2D nextPos = pos;
-
+		auto pos = entity_->getComponent<Transform>()->getPos();
 		if (ih().getMouseButtonState(ih().RIGHT)) {
 			int mX = ih().getMousePos().first;
 			int mY = ih().getMousePos().second;
 			if (selected) {
-				if (ih().getMouseButtonState(ih().RIGHT)) { //???????
-					//esto se debe hacer en movementshader
-					Vector2D posMovimiento = mov->SDLPointToMapCoords(Vector2D(mX, mY));
 
-					//if (casillasHabilidad[posMovimiento.getX()][posMovimiento.getY()]) {
-					//	pos.setX(posMovimiento.getX() * cellWidth);
-					//	pos.setY(posMovimiento.getY() * cellHeight);
-					//}
-					selected = false;
+				//esto se debe hacer en movementshader
+				Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
+
+				if (esConstruible(posMovimiento)) {
+					pos.setX(posMovimiento.getX() * cellWidth);
+					pos.setY(posMovimiento.getY() * cellHeight);
 					generateWall(posMovimiento.getX(), posMovimiento.getY());
-
-					//mapa->setColor(mov->SDLPointToMapCoords(pos), Amarillo);
-
-					////estos métodos son para cuando se deselcciona yuna casilla para restablecer los valores de los vectores...
-					//movShader->freeCasillasAPintar();
-					freeAbilityShader();
-					//resetCasillasChecked();
 				}
+				selected = false;		
+				freeAbilityShader();
+
 			}
 			else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
-				if (ih().getMouseButtonState(ih().RIGHT)) { //?????
-					//si la casilla está fuera del mapa no hago nada
-					//if (nextPos.getX() < 0 || nextPos.getX() >= mapa->getColumns() ||
-					//	nextPos.getY() < 0 || nextPos.getY() >= mapa->getRows()) return;
 
-					selected = true;
-					AbilityShader();
-					//movShader->casillasPosiblesRecu(mov->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked);
-				}
+				//si la casilla está fuera del mapa no hago nada
+				//if (nextPos.getX() < 0 || nextPos.getX() >= mapa->getColumns() ||
+				//	nextPos.getY() < 0 || nextPos.getY() >= mapa->getRows()) return;
+
+				selected = true;
+				AbilityShader();
+				//movShader->casillasPosiblesRecu(mov->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked);
 			}
+		}
+		if (ih().getMouseButtonState(ih().LEFT)) {
+			selected = false;
+			freeAbilityShader();
 		}
 	}
 
 	void AbilityShader() {
 		posArc = entity_->getComponent<Transform>()->getPos();
 
-		posArc = mov->SDLPointToMapCoords(posArc);
+		posArc = mapa->SDLPointToMapCoords(posArc);
 
 		Vector2D posUp = Vector2D(0, 1) + posArc;
 		Vector2D posRight = Vector2D(1, 0) + posArc;
@@ -113,8 +107,20 @@ public:
 			50.0f,          //Alto
 			0.0f);
 
-		e->addComponent<Image>(&sdlutils().images().at("kirin"));
+		e->addComponent<Image>(&sdlutils().images().at("wall"));
 		e->addComponent<Health>(2, e->getComponent<Transform>());
+		mapa->setCharacter(Vector2D(x, y), e);
+	}
+
+	bool esConstruible(const Vector2D& cas) {
+		bool esPosible = false;
+		int i = 0;
+		while (!esPosible && i < casillasHabilidad.size()) {
+			if (cas == casillasHabilidad[i])esPosible = true;
+			i++;
+		}
+		return esPosible;
+
 	}
 
 private:

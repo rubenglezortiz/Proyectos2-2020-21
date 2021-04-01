@@ -41,7 +41,7 @@ PlayState::PlayState(GameStateMachine* gsm) : GameState(gsm){
 	Entity* kirin = mngr_->addEntity(RenderLayer::Personajes);
 
 	kirin->addComponent<Transform>(
-		Vector2D(5, 4), //Posicion
+		Vector2D(0, 0), //Posicion
 		Vector2D(),     //Velocidad
 		50.0f,          //Ancho
 		50.0f,          //Alto
@@ -51,9 +51,23 @@ PlayState::PlayState(GameStateMachine* gsm) : GameState(gsm){
 	kirin->addComponent<Movimiento>();
 	kirin->addComponent<Health>(3, kirin->getComponent<Transform>());
 	sdlutils().showCursor();
-	kirin->getComponent<Health>()->hit();
+	
 	kirin->addComponent<Ability_Architect>();
 
+
+	Entity* kirin2 = mngr_->addEntity(RenderLayer::Personajes);
+
+	kirin2->addComponent<Transform>(
+		Vector2D(1, 0), //Posicion
+		Vector2D(),     //Velocidad
+		50.0f,          //Ancho
+		50.0f,          //Alto
+		0.0f);
+
+	kirin2->addComponent<Image>(&sdlutils().images().at("kirin"));
+	kirin2->addComponent<Movimiento>();
+	kirin2->addComponent<Health>(1, kirin->getComponent<Transform>());
+	kirin2->getComponent<Health>()->hit();
 
 }
 

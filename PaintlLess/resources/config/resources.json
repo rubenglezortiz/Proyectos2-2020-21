@@ -15,7 +15,8 @@
     { "id": "tileset", "file": "resources/images/tileset.png" },
     { "id": "selector", "file": "resources/images/selector.png" },
 	{ "id": "life", "file": "resources/images/life.png" },
-	{ "id": "start", "file": "resources/images/start.png" }
+	{ "id": "start", "file": "resources/images/start.png" },
+	{ "id": "wall", "file": "resources/images/wall.png" }
   ],
 
   

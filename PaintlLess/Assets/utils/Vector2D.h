@@ -17,23 +17,23 @@ public:
 
 	// various constructors
 	Vector2D() noexcept :
-			x_(), y_() {
+		x_(), y_() {
 	}
 
-	Vector2D(const Vector2D &v) :
-			x_(v.getX()), y_(v.getY()) {
+	Vector2D(const Vector2D& v) :
+		x_(v.getX()), y_(v.getY()) {
 	}
 
-	Vector2D(Vector2D &&v) :
-			x_(v.getX()), y_(v.getY()) {
+	Vector2D(Vector2D&& v) :
+		x_(v.getX()), y_(v.getY()) {
 	}
 
-	Vector2D(const Vector2D *v) :
-			x_(v->getX()), y_(v->getY()) {
+	Vector2D(const Vector2D* v) :
+		x_(v->getX()), y_(v->getY()) {
 	}
 
 	Vector2D(float x, float y) :
-			x_(x), y_(y) {
+		x_(x), y_(y) {
 	}
 
 	~Vector2D() {
@@ -62,30 +62,30 @@ public:
 		y_ = y;
 	}
 
-	inline void set(const Vector2D &v) {
+	inline void set(const Vector2D& v) {
 		x_ = v.x_;
 		y_ = v.y_;
 	}
 
-	inline void set(const Vector2D &&v) {
+	inline void set(const Vector2D&& v) {
 		x_ = v.x_;
 		y_ = v.y_;
 	}
 
-	inline void set(const Vector2D *v) {
+	inline void set(const Vector2D* v) {
 		x_ = v->x_;
 		y_ = v->y_;
 	}
 
 	// copy assignment
-	inline Vector2D& operator=(const Vector2D &v) {
+	inline Vector2D& operator=(const Vector2D& v) {
 		x_ = v.x_;
 		y_ = v.y_;
 		return *this;
 	}
 
 	// move assignment - not really needed
-	inline Vector2D& operator=(const Vector2D &&v) {
+	inline Vector2D& operator=(const Vector2D&& v) {
 		x_ = v.x_;
 		y_ = v.y_;
 		return *this;
@@ -115,15 +115,15 @@ public:
 	//
 	//   this->rotate(angle) == v
 	//
-	float angle(const Vector2D &v) const;
+	float angle(const Vector2D& v) const;
 
 	// vector subtraction
-	inline Vector2D operator-(const Vector2D &v) const {
+	inline Vector2D operator-(const Vector2D& v) const {
 		return Vector2D(x_ - v.x_, y_ - v.y_);
 	}
 
 	// vector addition
-	inline Vector2D operator+(const Vector2D &v) const {
+	inline Vector2D operator+(const Vector2D& v) const {
 		return Vector2D(x_ + v.x_, y_ + v.y_);
 	}
 
@@ -138,8 +138,12 @@ public:
 	}
 
 	// scalar multiplication
-	inline float operator *(const Vector2D &d) const {
+	inline float operator *(const Vector2D& d) const {
 		return d.x_ * x_ + d.y_ * y_;
+	}
+
+	inline bool operator == (const Vector2D& d)const {
+		return d.x_ == x_ && d.y_ == y_;
 	}
 
 private:
@@ -149,4 +153,4 @@ private:
 
 // needed for printing a value of tyep Vector2D with std::cout.
 // The definition is in .cpp
-std::ostream& operator<<(std::ostream &os, const Vector2D &v);
+std::ostream& operator<<(std::ostream& os, const Vector2D& v);
