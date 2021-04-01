@@ -11,6 +11,7 @@
 #include "../components/Movimiento.h"
 #include "../components/Health.h"
 #include "../components/PointOnImage.h"
+#include "../components/Ability_Architect.h"
 
 #include "../components/MovementShader.h"
 #include "GameStateMachine.h"
@@ -51,6 +52,7 @@ PlayState::PlayState(GameStateMachine* gsm) : GameState(gsm){
 	kirin->addComponent<Health>(3, kirin->getComponent<Transform>());
 	sdlutils().showCursor();
 	kirin->getComponent<Health>()->hit();
+	kirin->addComponent<Ability_Architect>();
 
 
 }

@@ -33,11 +33,11 @@ public:
 	
 		Vector2D nextPos = pos;
 
-		if (ih().mouseButtonEvent()) {
+		if (ih().getMouseButtonState(ih().LEFT)) {
 			int mX = ih().getMousePos().first;
 			int mY = ih().getMousePos().second;
 			if (selected) {
-				if (ih().getMouseButtonState(ih().LEFT)) {
+				if (ih().getMouseButtonState(ih().LEFT)) { //?????
 
 					//esto se debe hacer en movementshader
 					Vector2D posMovimiento = SDLPointToMapCoords(Vector2D(mX,mY));
@@ -55,7 +55,7 @@ public:
 				}
 			}
 			else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
-				if (ih().getMouseButtonState(ih().LEFT)) {
+				if (ih().getMouseButtonState(ih().LEFT)) { //?????
 					selected = true;
 					movShader->casillasPosiblesRecu(SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked);
 				}

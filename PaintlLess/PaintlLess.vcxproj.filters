@@ -254,5 +254,8 @@
     <ClInclude Include="Assets\game\Values.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Architect.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

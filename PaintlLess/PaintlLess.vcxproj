@@ -167,6 +167,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Assets\components\Ability_Architect.h" />
     <ClInclude Include="Assets\components\Bounce.h" />
     <ClInclude Include="Assets\components\CardInfo.h" />
     <ClInclude Include="Assets\components\GameMap.h" />

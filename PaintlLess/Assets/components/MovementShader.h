@@ -76,7 +76,7 @@ public:
 
 	void casillasPosiblesRecuAux(int casillasAMover, const Vector2D& cSelected, const Vector2D& cActual, vector<vector<CasillaMov>>& casillasChecked, bool base) {
 
-		//si se ha qeudado sin movimiento se devuelve la llamada
+		//si se ha quedado sin movimiento se devuelve la llamada
 		if (casillasAMover == 0) return;
 		
 		//si la casilla está fuera del mapa no hago nada
@@ -113,6 +113,7 @@ public:
 		
 
 	}
+
 	void render() override
 	{
 		SDL_Rect dest;

@@ -15,6 +15,7 @@ class Movimiento;
 class MovementShader;
 class MenuButton;
 class Health;
+class Ability_Architect;
 //class DeAcceleration;
 //class Health;
 //class ShowAtOpposieSide;
@@ -32,7 +33,8 @@ class Health;
 	PointOnImage, \
 	MovementShader, \
 	MenuButton, \
-	Health
+	Health, \
+	Ability_Architect
 	/*DeAcceleration,\
 	Health,\
 	ShowAtOpposieSide,\
