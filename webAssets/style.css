@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(95, 95, 95);
+    background-color: #484D50;
     font-family: Pixel;
     display: flex;
     justify-content: center;
@@ -28,7 +28,7 @@ html {
     margin-top: -10px;
     height: 80px;
     display: block;
-    background-color: #353535;
+    background-color:#282B2D;
 }
 
 .inner_header {
@@ -83,7 +83,7 @@ html {
 
 .title {
     font-size: 110px;
-    color: #f1f1f1;
+    color: #DFDCD8;
     text-align: center;
     text-shadow: 5px -2px #4fc3c7, -5px 2px #ac4186;
 }
@@ -159,7 +159,7 @@ html {
 
 .text-box div {
     padding: 10px;
-    color: #f1f1f1;
+    color: #DFDCD8;
     text-shadow: 0px 1px #013335
 }
 

@@ -1,7 +1,7 @@
 body {
-    background-color: rgb(95, 95, 95);
+    background-color: #484D50;
     font-family: Pixel;
-    color: #f1f1f1;
+    color: #DFDCD8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,7 +39,7 @@ ul li a:hover {
 
 .title {
     font-size: 110px;
-    color: #f1f1f1;    
+    color: #DFDCD8;    
     text-align: center;
     text-shadow: 5px -2px #4fc3c7, -5px 2px #ac4186;
 }
