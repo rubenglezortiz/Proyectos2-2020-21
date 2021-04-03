@@ -120,6 +120,12 @@
     <ClCompile Include="Assets\components\MenuButton.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\game\CharacterSelectionState.cpp">
+      <Filter>Archivos de origen\game</Filter>
+    </ClCompile>
+    <ClCompile Include="CharactersSelected.cpp">
+      <Filter>Archivos de origen\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\game\ecs_defs.h">
@@ -256,6 +262,12 @@
     </ClInclude>
     <ClInclude Include="Assets\components\Ability_Architect.h">
       <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\game\CharacterSelectionState.h">
+      <Filter>Archivos de encabezado\game</Filter>
+    </ClInclude>
+    <ClInclude Include="CharactersSelected.h">
+      <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

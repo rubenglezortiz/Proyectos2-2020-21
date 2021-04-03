@@ -110,7 +110,7 @@ void GameMap::removeCharacter(const Vector2D& cas) {
 }
 
 
-
+// Salta excepción al no encontrar 4 casillas en el borde inferior.
 bool GameMap::movimientoPosible(Vector2D cas) {
 	if (!casillaValida(cas))return false;
 	int x = cas.getX(); int y = cas.getY();

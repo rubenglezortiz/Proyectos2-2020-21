@@ -37,7 +37,7 @@ MainMenuState::MainMenuState(GameStateMachine* gsm) : GameState(gsm) { //Poner l
 
 void MainMenuState::newGame(GameStateMachine* gsm) { //Nuevo partida
 	
-	gsm->pushState(new PlayState(gsm));	
+	gsm->pushState(new CharacterSelectionState(gsm));	
 }
 
 void MainMenuState::loadGame(GameStateMachine* gsm) { //Cargar partida

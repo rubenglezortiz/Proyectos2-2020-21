@@ -7,17 +7,24 @@
   ],
   
  "images" : [
-    { "id" : "sdl_logo", "file" : "resources/images/SDL_logo.png" },
-    { "id" : "tennis_ball", "file" : "resources/images/tennis_ball.png" },
-    { "id" : "star", "file" : "resources/images/star.png"},
-    { "id" : "kirin", "file": "resources/images/kirin.png"},
-    { "id" : "fighter", "file" : "resources/images/fighter.png" },
-    { "id": "tileset", "file": "resources/images/tileset.png" },
-    { "id": "selector", "file": "resources/images/selector.png" },
-	{ "id": "life", "file": "resources/images/life.png" },
-	{ "id": "start", "file": "resources/images/start.png" },
-	{ "id": "wall", "file": "resources/images/wall.png" }
-  ],
+    { "id" : "sdl_logo",   "file" : "resources/images/SDL_logo.png" },
+    { "id" : "tennis_ball","file" : "resources/images/tennis_ball.png" },
+    { "id" : "star",       "file" : "resources/images/star.png"},
+    { "id" : "kirin",      "file" : "resources/images/kirin.png"},
+    { "id" : "fighter",    "file" : "resources/images/fighter.png" },
+    { "id" : "tileset",    "file" : "resources/images/tileset.png" },
+    { "id" : "selector",   "file" : "resources/images/selector.png" },
+	{ "id" : "life",       "file" : "resources/images/life.png" },
+	{ "id" : "start",      "file" : "resources/images/start.png" },
+	{ "id" : "wall",       "file" : "resources/images/wall.png" },
+    { "id" : "tanque",     "file" : "resources/images/tanquew.png"},
+    { "id" : "esqueleto",  "file" : "resourceS/images/esqueletow.png"},
+    { "id" : "druida",     "file" : "resources/images/druidaw.png"},
+    { "id" : "golem",      "file" : "resources/images/golemw.png"},
+    { "id" : "bomba",      "file" : "resources/images/bombahumanaw.png"},
+    { "id" : "picara",     "file" : "resources/images/picaraw.png"},
+    { "id" : "cazador",    "file" : "resources/images/cazadorw.png"}
+ ],
 
   
   "messages" : [

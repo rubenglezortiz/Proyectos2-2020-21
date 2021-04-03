@@ -24,16 +24,11 @@ public:
 	tipoCarta(tipoCarta),
 	icono(ic),
 	currentCoolDown(currentCD), maxCoolDown(maxCD), mana(mana), alcanceAt(alcanceAt), damage(damage), vida(vida),
-	infoMov(alcMov, tipoMov)
-	{
-
+	infoMov(alcMov, tipoMov){
 		if (tipoCarta == TipoCarta::Defensa) {
 			infoMov.energiaMov = 2;
 		}
-		
-		
 	}
-
 
 	void setCurrentCoolDown(int currentCD) {
 		currentCoolDown = currentCD;

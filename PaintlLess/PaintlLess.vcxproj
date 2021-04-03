@@ -149,6 +149,7 @@
     <ClCompile Include="Assets\components\Transform.cpp" />
     <ClCompile Include="Assets\ecs\Entity.cpp" />
     <ClCompile Include="Assets\ecs\Manager.cpp" />
+    <ClCompile Include="Assets\game\CharacterSelectionState.cpp" />
     <ClCompile Include="Assets\game\Game.cpp" />
     <ClCompile Include="Assets\game\GameState.cpp" />
     <ClCompile Include="Assets\game\GameStateMachine.cpp" />
@@ -164,6 +165,7 @@
     <ClCompile Include="Assets\sdlutils\Texture.cpp" />
     <ClCompile Include="Assets\utils\Collisions.cpp" />
     <ClCompile Include="Assets\utils\Vector2D.cpp" />
+    <ClCompile Include="CharactersSelected.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +190,7 @@
     <ClInclude Include="Assets\ecs\Manager.h" />
     <ClInclude Include="Assets\ecs\mpl.h" />
     <ClInclude Include="Assets\GameMap.h" />
+    <ClInclude Include="Assets\game\CharacterSelectionState.h" />
     <ClInclude Include="Assets\game\ecs_defs.h" />
     <ClInclude Include="Assets\game\Game.h" />
     <ClInclude Include="Assets\game\GameState.h" />
@@ -211,6 +214,7 @@
     <ClInclude Include="Assets\utils\Collisions.h" />
     <ClInclude Include="Assets\utils\Singleton.h" />
     <ClInclude Include="Assets\utils\Vector2D.h" />
+    <ClInclude Include="CharactersSelected.h" />
     <ClInclude Include="PointOnImage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,5 +1,6 @@
 #pragma once
 #include "GameState.h"
+#include "CharacterSelectionState.h"
 
 //#include "MenuButton.h"
 //#include "checkML.h"
