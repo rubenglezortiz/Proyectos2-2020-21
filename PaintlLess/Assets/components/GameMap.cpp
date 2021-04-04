@@ -1,6 +1,13 @@
 #include "GameMap.h"
 #include <iostream>
 #include <fstream>
+
+#include <tmxlite/Map.hpp>
+#include <tmxlite/Layer.hpp>
+#include <tmxlite/TileLayer.hpp>
+#include <tmxlite/Tileset.hpp>
+#include <tmxlite/ObjectGroup.hpp>
+
 #include "../game/Game.h"
 #include "./PointOnImage.h"
 
@@ -20,54 +27,114 @@ void GameMap::init() {
 	loadMap(level);
 }
 void GameMap::loadMap(const string levelName) {
-	ifstream file;
-	file.open(levelName);
-	if (!file.is_open())  throw string("No se encuentra el fichero");
-	else {
-		int type;
-		file >> rows >> cols;
-		cells = new Casilla * [rows];
-		for (int r = 0; r < rows; ++r) {
-			for (int c = 0; c < cols; ++c) {
-				cells[r] = new Casilla[cols];
-			}
-		}
-		cellHeight = sdlutils().height() / rows;
-		cellWidth = sdlutils().width() / cols;
-		for (int i = 0; i < rows; ++i) {
-			for (int j = 0; j < cols; ++j) {
-				auto* casilla = entity_->getMngr()->addEntity();
-				casilla->addComponent<Transform>(Vector2D(j * cellWidth, i * cellHeight), cellWidth, cellHeight);
 
-				file >> type;
-				switch (type) {
-				case 0: // Base
-					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 0);
-					cells[i][j].color = Color::Ninguno;
-					cells[i][j].tipoCasilla = TipoCasilla::Base;
-					break;
-				case 1: // Roca
-					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 3);
-					cells[i][j].color = Color::Ninguno;
-					cells[i][j].tipoCasilla = TipoCasilla::Pintable;
-					break;
-				case 2: // Agua
-					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 1);
-					cells[i][j].color = Color::Ninguno;
-					cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
-					break;
-				case 3: // Cesped
-					casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 2);
-					cells[i][j].color = Color::Ninguno;
-					cells[i][j].tipoCasilla = TipoCasilla::Pintable;
-					break;
+	tmx::Map map;
+	if (map.load(sdlutils().tiled()))
+	{
+		const auto& layers = map.getLayers();
+		for (const auto& layer : layers)
+		{
+			if (layer->getType() == tmx::Layer::Type::Tile)
+			{
+				const auto& tileLayer = layer->getLayerAs<tmx::TileLayer>();
+				//read out tile layer properties etc...
+
+				auto tiles = tileLayer.getTiles();
+				int x = tileLayer.getSize().x; int y = tileLayer.getSize().y;
+
+				cells = new Casilla * [y];
+				for (int r = 0; r < y; ++r) {
+					for (int c = 0; c < x; ++c) {
+						cells[r] = new Casilla[x];
+					}
 				}
 
-				cells[i][j].character = nullptr;
+				cellWidth = sdlutils().width() / x;
+				cellHeight = sdlutils().height() / y;
+
+				for (int i = 0; i < y; ++i) {
+					for (int j = 0; j < x; ++j) {
+						auto* casilla = entity_->getMngr()->addEntity();
+						casilla->addComponent<Transform>(Vector2D(j * cellWidth, i * cellHeight), cellWidth, cellHeight);
+
+						switch (tiles[i * x + j].ID) {
+						case 1: // Base
+							casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 0);
+							cells[i][j].color = Color::Ninguno;
+							cells[i][j].tipoCasilla = TipoCasilla::Base;
+							break;
+						case 2: // Roca
+							casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 1);
+							cells[i][j].color = Color::Ninguno;
+							cells[i][j].tipoCasilla = TipoCasilla::Pintable;
+							break;
+						case 3: // Agua
+							casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 2);
+							cells[i][j].color = Color::Ninguno;
+							cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
+							break;
+						case 4: // Cesped
+							casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 3);
+							cells[i][j].color = Color::Ninguno;
+							cells[i][j].tipoCasilla = TipoCasilla::Pintable;
+							break;
+						}
+						cells[i][j].character = nullptr;
+					}
+				}
 			}
 		}
+
 	}
-	file.close();
+
+	//ifstream file;
+	//file.open(levelName);
+	//if (!file.is_open())  throw string("No se encuentra el fichero");
+	//else {
+	//	int type;
+	//	file >> rows >> cols;
+	//	cells = new Casilla * [rows];
+	//	for (int r = 0; r < rows; ++r) {
+	//		for (int c = 0; c < cols; ++c) {
+	//			cells[r] = new Casilla[cols];
+	//		}
+	//	}
+	//	cellHeight = sdlutils().height() / rows;
+	//	cellWidth = sdlutils().width() / cols;
+	//	for (int i = 0; i < rows; ++i) {
+	//		for (int j = 0; j < cols; ++j) {
+	//			auto* casilla = entity_->getMngr()->addEntity();
+	//			casilla->addComponent<Transform>(Vector2D(j * cellWidth, i * cellHeight), cellWidth, cellHeight);
+
+	//			file >> type;
+	//			switch (type) {
+	//			case 0: // Base
+	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 0);
+	//				cells[i][j].color = Color::Ninguno;
+	//				cells[i][j].tipoCasilla = TipoCasilla::Base;
+	//				break;
+	//			case 1: // Roca
+	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 3);
+	//				cells[i][j].color = Color::Ninguno;
+	//				cells[i][j].tipoCasilla = TipoCasilla::Pintable;
+	//				break;
+	//			case 2: // Agua
+	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 1);
+	//				cells[i][j].color = Color::Ninguno;
+	//				cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
+	//				break;
+	//			case 3: // Cesped
+	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 2);
+	//				cells[i][j].color = Color::Ninguno;
+	//				cells[i][j].tipoCasilla = TipoCasilla::Pintable;
+	//				break;
+	//			}
+
+	//			cells[i][j].character = nullptr;
+	//		}
+	//	}
+	//}
+	//file.close();
 
 }
 
