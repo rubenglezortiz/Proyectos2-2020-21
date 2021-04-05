@@ -39,42 +39,40 @@ void GameMap::loadMap(const string levelName) {
 				const auto& tileLayer = layer->getLayerAs<tmx::TileLayer>();
 				//read out tile layer properties etc...
 
-				auto tiles = tileLayer.getTiles();
-				int x = tileLayer.getSize().x; int y = tileLayer.getSize().y;
-				cols = x; rows = y;
-				cells = new Casilla * [y];
-				for (int r = 0; r < y; ++r) {
-					for (int c = 0; c < x; ++c) {
-						cells[r] = new Casilla[x];
+				cols = tileLayer.getSize().x; rows = tileLayer.getSize().y;
+				cells = new Casilla * [rows];
+				for (int r = 0; r < rows; ++r) {
+					for (int c = 0; c < cols; ++c) {
+						cells[r] = new Casilla[cols];
 					}
 				}
 
-				cellWidth = sdlutils().width() / x;
-				cellHeight = sdlutils().height() / y;
+				cellWidth = sdlutils().width() / cols;
+				cellHeight = sdlutils().height() / rows;
 
-				for (int i = 0; i < y; ++i) {
-					for (int j = 0; j < x; ++j) {
+				auto tiles = tileLayer.getTiles();
+				for (int i = 0; i < rows; ++i) {
+					for (int j = 0; j < cols; ++j) {
 						auto* casilla = entity_->getMngr()->addEntity();
+
 						casilla->addComponent<Transform>(Vector2D(j * cellWidth, i * cellHeight), cellWidth, cellHeight);
 
-						switch (tiles[i * x + j].ID) {
+						casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, tiles[i * cols + j].ID - 1);
+
+						switch (tiles[i * cols + j].ID) {
 						case 1: // Base
-							casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 0);
 							cells[i][j].color = Color::Ninguno;
 							cells[i][j].tipoCasilla = TipoCasilla::Base;
 							break;
 						case 2: // Roca
-							casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 1);
-							cells[i][j].color = Color::Ninguno;
-							cells[i][j].tipoCasilla = TipoCasilla::Pintable;
-							break;
-						case 3: // Agua
-							casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 2);
 							cells[i][j].color = Color::Ninguno;
 							cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
 							break;
+						case 3: // Agua
+							cells[i][j].color = Color::Ninguno;
+							cells[i][j].tipoCasilla = TipoCasilla::Pintable;
+							break;
 						case 4: // Cesped
-							casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 3);
 							cells[i][j].color = Color::Ninguno;
 							cells[i][j].tipoCasilla = TipoCasilla::Pintable;
 							break;
@@ -109,22 +107,22 @@ void GameMap::loadMap(const string levelName) {
 	//			file >> type;
 	//			switch (type) {
 	//			case 0: // Base
-	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 0);
+	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 0);
 	//				cells[i][j].color = Color::Ninguno;
 	//				cells[i][j].tipoCasilla = TipoCasilla::Base;
 	//				break;
 	//			case 1: // Roca
-	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 3);
+	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 3);
 	//				cells[i][j].color = Color::Ninguno;
 	//				cells[i][j].tipoCasilla = TipoCasilla::Pintable;
 	//				break;
 	//			case 2: // Agua
-	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 1);
+	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 1);
 	//				cells[i][j].color = Color::Ninguno;
 	//				cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
 	//				break;
 	//			case 3: // Cesped
-	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 2);
+	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 2);
 	//				cells[i][j].color = Color::Ninguno;
 	//				cells[i][j].tipoCasilla = TipoCasilla::Pintable;
 	//				break;
