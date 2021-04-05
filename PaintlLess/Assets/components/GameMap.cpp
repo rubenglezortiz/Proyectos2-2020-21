@@ -41,7 +41,7 @@ void GameMap::loadMap(const string levelName) {
 
 				auto tiles = tileLayer.getTiles();
 				int x = tileLayer.getSize().x; int y = tileLayer.getSize().y;
-
+				cols = x; rows = y;
 				cells = new Casilla * [y];
 				for (int r = 0; r < y; ++r) {
 					for (int c = 0; c < x; ++c) {
