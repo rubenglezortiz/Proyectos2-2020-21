@@ -7,15 +7,18 @@
 
 class Health : public Component { //lleva este componente la destrucción del objeto??
 public:
-	Health(int l): lives(l), mapa(nullptr){}
+	Health(int l): lives(l), tr(nullptr), mapa(nullptr), tex(&sdlutils().images().at("life")){}
 	virtual ~Health() {}
 
-	void init()override;
+	void init() override;
+	void render() override;
 	void hit();
-	void setLives();
+	//void setLives();
 
 private:
 	GameMap* mapa;
-	int lives;
+	Transform* tr;
+	Texture* tex;
+	int lives;	
 };
 
