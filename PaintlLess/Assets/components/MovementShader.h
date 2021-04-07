@@ -37,5 +37,9 @@ private:
 	Vector2D position;
 	Texture* tex_;
 	SDL_Rect src_;
+
+	//Animaciones
+	int numCasillas = 0;
+	float size = 0;
 };
 
