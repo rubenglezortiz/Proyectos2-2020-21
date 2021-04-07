@@ -8,6 +8,7 @@
 #include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
 #include "../components/Ability_Architect.h"
+#include "../components/Ability_Viking.h"
 #include "../components/Attack.h"
 #include "../components/GameMap.h"
 #include "../components/Health.h"
@@ -146,6 +147,7 @@ void PlayState::createEsqueleto() {
 	esqueleto->addComponent<Movimiento>();
 	esqueleto->addComponent<Health>(3);
 	esqueleto->addComponent<Attack>();
+	esqueleto->addComponent<Ability_Viking>();
 	sdlutils().showCursor();
 }
 
