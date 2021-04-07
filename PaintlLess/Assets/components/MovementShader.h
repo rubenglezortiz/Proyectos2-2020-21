@@ -35,11 +35,9 @@ private:
 	vector<Vector2D> casillasAPintar;
 	int cellWidth = 0, cellHeight = 0;
 	Vector2D position;
+	float size;
+	int numCasillas;
 	Texture* tex_;
 	SDL_Rect src_;
-
-	//Animaciones
-	int numCasillas = 0;
-	float size = 0;
 };
 

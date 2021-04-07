@@ -163,7 +163,7 @@ void PlayState::createGolem() {
 // KIRIN
 void PlayState::createKirin() {
 	Entity* kirin = mngr_->addEntity(RenderLayer::Personajes);
-	kirin->addComponent<Transform>(Vector2D(0, 0), Vector2D(), 50.0f, 50.0f, 0.0f);
+	kirin->addComponent<Transform>(Vector2D(5, 5), Vector2D(), 50.0f, 50.0f, 0.0f);
 	kirin->addComponent<Image>(&sdlutils().images().at("kirin"));
 	kirin->addComponent<Movimiento>();
 	kirin->addComponent<Health>(3);
