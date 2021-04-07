@@ -15,6 +15,8 @@
 #include "../components/Movimiento.h"
 #include "../components/PointOnImage.h"
 #include "../components/MovementShader.h"
+#include "../components/DejaMuro.h"
+
 
 #include "GameStateMachine.h"
 
@@ -156,9 +158,10 @@ void PlayState::createGolem() {
 	Entity* golem = mngr_->addEntity(RenderLayer::Personajes);
 	golem->addComponent<Transform>(Vector2D(0, 5), Vector2D(), 50.0f, 50.0f, 0.0f);
 	golem->addComponent<Image>(&sdlutils().images().at("golem"));
-	golem->addComponent<Movimiento>();
-	golem->addComponent<Health>(3);
+	golem->addComponent<Health>(2); //6
 	golem->addComponent<Attack>();
+	golem->addComponent<DejaMuro>();
+
 	sdlutils().showCursor();
 }
 
