@@ -7,13 +7,14 @@
 
 #include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
-#include "../components/GameMap.h"
-#include "../components/Movimiento.h"
-#include "../components/Health.h"
-#include "../components/PointOnImage.h"
 #include "../components/Ability_Architect.h"
-
+#include "../components/Attack.h"
+#include "../components/GameMap.h"
+#include "../components/Health.h"
+#include "../components/Movimiento.h"
+#include "../components/PointOnImage.h"
 #include "../components/MovementShader.h"
+
 #include "GameStateMachine.h"
 
 PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm){
@@ -122,6 +123,7 @@ void PlayState::createBomba() {
 	bomba->addComponent<Image>(&sdlutils().images().at("bomba"));
 	bomba->addComponent<Movimiento>();
 	bomba->addComponent<Health>(3);
+	bomba->addComponent<Attack>();
 	sdlutils().showCursor();
 }
 
@@ -132,6 +134,7 @@ void PlayState::createDruida() {
 	druida->addComponent<Image>(&sdlutils().images().at("druida"));
 	druida->addComponent<Movimiento>();
 	druida->addComponent<Health>(3);
+	druida->addComponent<Attack>();
 	sdlutils().showCursor();
 }
 
@@ -142,6 +145,7 @@ void PlayState::createEsqueleto() {
 	esqueleto->addComponent<Image>(&sdlutils().images().at("esqueleto"));
 	esqueleto->addComponent<Movimiento>();
 	esqueleto->addComponent<Health>(3);
+	esqueleto->addComponent<Attack>();
 	sdlutils().showCursor();
 }
 
@@ -152,6 +156,7 @@ void PlayState::createGolem() {
 	golem->addComponent<Image>(&sdlutils().images().at("golem"));
 	golem->addComponent<Movimiento>();
 	golem->addComponent<Health>(3);
+	golem->addComponent<Attack>();
 	sdlutils().showCursor();
 }
 
@@ -162,6 +167,7 @@ void PlayState::createKirin() {
 	kirin->addComponent<Image>(&sdlutils().images().at("kirin"));
 	kirin->addComponent<Movimiento>();
 	kirin->addComponent<Health>(3);
+	kirin->addComponent<Attack>();
 	sdlutils().showCursor();
 }
 
@@ -172,6 +178,7 @@ void PlayState::createPicara() {
 	picara->addComponent<Image>(&sdlutils().images().at("picara"));
 	picara->addComponent<Movimiento>();
 	picara->addComponent<Health>(3);
+	picara->addComponent<Attack>();
 	sdlutils().showCursor();
 }
 
@@ -182,5 +189,6 @@ void PlayState::createTanque() {
 	tanque->addComponent<Image>(&sdlutils().images().at("tanque"));
 	tanque->addComponent<Movimiento>();
 	tanque->addComponent<Health>(3);
+	tanque->addComponent<Attack>();
 	sdlutils().showCursor();
 }

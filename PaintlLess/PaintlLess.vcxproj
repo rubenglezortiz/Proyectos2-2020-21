@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assets\components\Ability_Architect.cpp" />
+    <ClCompile Include="Assets\components\Attack.cpp" />
     <ClCompile Include="Assets\components\CardInfo.cpp" />
     <ClCompile Include="Assets\components\GameMap.cpp" />
     <ClCompile Include="Assets\components\Health.cpp" />
@@ -187,6 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\components\Ability_Architect.h" />
+    <ClInclude Include="Assets\components\Attack.h" />
     <ClInclude Include="Assets\components\CardInfo.h" />
     <ClInclude Include="Assets\components\GameMap.h" />
     <ClInclude Include="Assets\components\Health.h" />

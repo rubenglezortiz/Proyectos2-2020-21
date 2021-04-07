@@ -9,10 +9,10 @@ void Health::init() {
 void Health::hit() {
 	lives--;
 	if (lives == 0) {
-
 		mapa->removeCharacter(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos()));
 		entity_->setActive(false);
 	}
+	std::cout << "Ataca";
 }
 
 void Health::render() {
