@@ -3,13 +3,17 @@
 void Health::init() {
 	tr = entity_->getComponent<Transform>();
 	mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
+	mapa->setCharacter(mapa->SDLPointToMapCoords(tr->getPos()), entity_); //Poner en la casilla la entidad
 	//setLives();
 }
 
 void Health::hit() {
 	lives--;
 	if (lives == 0) {
-		mapa->removeCharacter(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos()));
+		mapa->removeCharacter(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos())); //Quitar la entidad muerta
+		if (entity_->getComponent<DejaMuro>() != nullptr) {    //Deja muro si es el golem
+			entity_->getComponent<DejaMuro>()->generateWall();
+		}
 		entity_->setActive(false);
 	}
 	std::cout << "Ataca";

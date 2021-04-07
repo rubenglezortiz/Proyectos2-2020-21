@@ -144,8 +144,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assets\components\Ability_Architect.cpp" />
+    <ClCompile Include="Assets\components\Ability_Viking.cpp" />
     <ClCompile Include="Assets\components\Attack.cpp" />
     <ClCompile Include="Assets\components\CardInfo.cpp" />
+    <ClCompile Include="Assets\components\DejaMuro.cpp" />
     <ClCompile Include="Assets\components\GameMap.cpp" />
     <ClCompile Include="Assets\components\Health.cpp" />
     <ClCompile Include="Assets\components\Image.cpp" />
@@ -188,8 +190,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\components\Ability_Architect.h" />
+    <ClInclude Include="Assets\components\Ability_Viking.h" />
     <ClInclude Include="Assets\components\Attack.h" />
     <ClInclude Include="Assets\components\CardInfo.h" />
+    <ClInclude Include="Assets\components\DejaMuro.h" />
     <ClInclude Include="Assets\components\GameMap.h" />
     <ClInclude Include="Assets\components\Health.h" />
     <ClInclude Include="Assets\components\Image.h" />

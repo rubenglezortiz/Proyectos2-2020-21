@@ -6,7 +6,6 @@ void Movimiento::init() {
 	cellWidth = mapa->getCellWidth();
 	cellHeight = mapa->getCellHeight();
 	movShader = entity_->getMngr()->getHandler<BoardManager>()->getComponent<MovementShader>();	
-	mapa->setCharacter(mapa->SDLPointToMapCoords(tr_->getPos()), entity_);
 	initializeCasillasChecked();
 	assert(tr_ != nullptr);
 }

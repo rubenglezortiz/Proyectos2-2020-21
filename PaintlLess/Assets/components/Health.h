@@ -3,6 +3,7 @@
 #include "../ecs/Component.h"
 #include "./Image.h"
 #include "../ecs/Entity.h"
+#include "../components/DejaMuro.h"
 
 
 class Health : public Component { //lleva este componente la destrucción del objeto??
