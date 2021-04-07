@@ -44,6 +44,8 @@ void MovementShader::casillasPosiblesRecu(const Vector2D& cSelected, vector<vect
 	//para no volver a acceder a la inicial
 	casillasChecked[cSelected.getX()][cSelected.getY()].checked = true;
 
+	size = 0;
+	numCasillas = 0;
 	//if (!(cSelected.getX() == 0 && cActual.getX() != 0))
 
 }
@@ -85,13 +87,20 @@ void MovementShader::casillasPosiblesRecuAux(int casillasAMover, const Vector2D&
 
 void MovementShader::render() {
 	SDL_Rect dest;
+
+	if (size < 1) size += 0.1;
+	int cas = 0;
+	numCasillas++;
+
 	for (Vector2D casilla : casillasAPintar) {
-		dest.x = casilla.getX() * cellWidth /*+ offset*/;
+		if (cas == numCasillas) return;
+		dest.x = casilla.getX() * cellWidth  /*+ offset*/;
 		dest.y = casilla.getY() * cellHeight /*+ offset*/;
-		dest.h = cellHeight;
-		dest.w = cellWidth;
+		dest.h = cellHeight * size;
+		dest.w = cellWidth  * size;
 
 		tex_->render(dest);
+		cas++;
 	}
 }
 
