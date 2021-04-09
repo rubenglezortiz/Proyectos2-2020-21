@@ -24,4 +24,5 @@ public:
 	 void createKirin();
 	 void createTanque();
 	 void createPicara();
+	 void createCazador();
 };

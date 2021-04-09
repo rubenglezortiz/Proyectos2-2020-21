@@ -39,8 +39,8 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 
 	auto* Druida = mngr_->addEntity(RenderLayer::Fondo);
 	Druida->addComponent<Transform>(Vector2D(500, 200), w, h);
-	Druida->addComponent<Image>(&sdlutils().images().at("druida"));
-	Druida->addComponent<MenuButton>(gsm, updateDruida);
+	Druida->addComponent<Image>(&sdlutils().images().at("cazador"));
+	Druida->addComponent<MenuButton>(gsm, updateCazador);
 
 	auto* Esqueleto = mngr_->addEntity(RenderLayer::Fondo);
 	Esqueleto->addComponent<Transform>(Vector2D(400, 200), w, h);

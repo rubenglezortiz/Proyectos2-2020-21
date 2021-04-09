@@ -20,7 +20,7 @@
 
 #include "GameStateMachine.h"
 
-PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm){
+PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm) {
 
 	//Creación gamemap
 	auto* gameMap = mngr_->addEntity(RenderLayer::Fondo);
@@ -36,8 +36,8 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 	mngr_.get()->setHandler<BoardManager>(boardManager);
 
 	//boardManager->getComponent<MovementShader>()->getValues();
-	
-	
+
+
 	// Crea a los personajes según el vector de personajes que ha recibido.
 	for (int i = 0; i < charss.size(); ++i) {
 		if (charss[i]) {
@@ -55,7 +55,7 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 				cout << "bomba";
 				break;
 			case Cazador:
-				//createCazador();
+				createCazador();
 				cout << "cazador";
 				break;
 			case Druida:
@@ -96,7 +96,7 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 				break;
 			}
 		}
-		
+
 		cout << i;
 	}
 
@@ -190,10 +190,22 @@ void PlayState::createPicara() {
 // TANQUE
 void PlayState::createTanque() {
 	Entity* tanque = mngr_->addEntity(RenderLayer::Personajes);
-	tanque->addComponent<Transform>(Vector2D(0, 1),Vector2D(), 50.0f, 50.0f, 0.0f);
+	tanque->addComponent<Transform>(Vector2D(0, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
 	tanque->addComponent<Image>(&sdlutils().images().at("tanque"));
 	tanque->addComponent<Movimiento>();
 	tanque->addComponent<Health>(3);
 	tanque->addComponent<Attack>();
 	sdlutils().showCursor();
+}
+
+//CAZADOR
+void PlayState::createCazador() {
+	Entity* cazador = mngr_->addEntity(RenderLayer::Personajes);
+	cazador->addComponent<Transform>(Vector2D(1, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
+	cazador->addComponent<Image>(&sdlutils().images().at("cazador"));
+	cazador->addComponent<Movimiento>();
+	cazador->addComponent<Health>(1);
+	cazador->addComponent<Attack>(2);
+	sdlutils().showCursor();
+
 }
