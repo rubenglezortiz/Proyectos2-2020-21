@@ -75,16 +75,24 @@ public:
 		int suma = -1;
 		if (cSelected.getX() == 0 ) {
 
+			//if (!base && cActual.getX() == 0) return;
 			//si se accede a una casilla de la base desde otra casilla de la base, el booleano base indica si la anterior casilla era de la base
 			if(base && cActual.getX() == 0){
 
 				//si ya hemos pasado por esta casilla de la base al hacer la recursividad para de expandirse
 				for (auto casillaBase : casillasBaseRecorridas) {
-					if (cActual.getX() == casillaBase.getX() && cActual.getY() == casillaBase.getY()) return;
+					if (cActual.getX() == casillaBase.first.getX() && cActual.getY() == casillaBase.first.getY()) {
+						if (casillasAMover > casillaBase.second) {
+							casillaBase.second = casillasAMover;
+						}
+						else {
+							return;
+						}
+					}
 				}
 				suma = 0;
 
-				casillasBaseRecorridas.push_back(cActual);
+				/*if(casillasAMover > casillaBas)*/casillasBaseRecorridas.push_back(pair<Vector2D, int>(cActual, casillasAMover));
 			}
 			estaEnBase = true;
 		}
@@ -133,7 +141,7 @@ private:
 	//guarda las posiciones de las casillas a las que se puede mover en un vector para el render 
 	//cuando se metan margenes hay que tener cuidad y sumarlos
 	vector<Vector2D> casillasAPintar;		
-	vector<Vector2D> casillasBaseRecorridas;
+	vector<pair<Vector2D,int>> casillasBaseRecorridas;
 	int cellWidth = 0, cellHeight = 0;
 	Vector2D position;
 	Texture* tex_;
