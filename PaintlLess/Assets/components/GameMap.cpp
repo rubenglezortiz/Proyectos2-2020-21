@@ -20,8 +20,6 @@ void GameMap::init() {
 	loadMap(level);
 }
 void GameMap::loadMap(const string levelName) {
-
-	
 	ifstream file;
 	file.open(levelName);
 	if (!file.is_open())  throw string("No se encuentra el fichero");
