@@ -60,6 +60,7 @@
 #include "../sdlutils/Texture.h"
 #include "GameMap.h"
 #include "../sdlutils/InputHandler.h"
+#include "../game/LerpingFunctions.h"
 
 class PointOnImage : public Component {
 public:
@@ -89,15 +90,28 @@ public:
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
 
-		if (sdlutils().currRealTime() > cont + 10) {
-
-			resultado = mX / mapa->getCellWidth();
-			dest.x = resultado * mapa->getCellWidth();
-			resultado = mY / mapa->getCellHeight();
-			dest.y = resultado * mapa->getCellHeight();
-			cont = sdlutils().currRealTime();
+		//Ver si la posición actual del cursor es igual a la anterior
+		//La posicion se guarda en coordenadas de mapa porque que coordenadas SDL no podemos
+		//ver cuando cambia de casilla
+		if (!(mapa->SDLPointToMapCoords({ (float)mX, (float)mY }) == currentPosition))
+		{
+			lastPosition = currentPosition; //Si no lo es, la ultima posicion es la actual anterior
+			currentPosition = mapa->SDLPointToMapCoords({ (float)mX, (float)mY }); //Actualizamos la actual
+			lerpTime = 0; //Activamos el lerp
 		}
 
+		if (lerpTime < 1) lerpTime += 0.1; //Aumentar el lerp
+
+		if (sdlutils().currRealTime() > cont + 10) {
+
+			//Convertir posiciones de mapa a SDL
+			Vector2D lastPosSDL = mapa->MapCoordsToSDLPoint(lastPosition);
+			Vector2D currentPosSDL = mapa->MapCoordsToSDLPoint(currentPosition);
+
+			dest.x = LerpFuncts::Lerp(lastPosSDL.getX(), currentPosSDL.getX(), lerpTime);
+			dest.y = LerpFuncts::Lerp(lastPosSDL.getY(), currentPosSDL.getY(), lerpTime);
+			cont = sdlutils().currRealTime();
+		}
 	}
 
 	void render() override
@@ -115,4 +129,9 @@ private:
 	Vector2D position;
 	Texture* tex_;
 	SDL_Rect src_;
+
+	//Animation
+	Vector2D currentPosition;
+	Vector2D lastPosition;
+	float lerpTime = 0;
 };

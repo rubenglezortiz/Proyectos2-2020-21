@@ -215,6 +215,7 @@
     <ClInclude Include="Assets\utils\Singleton.h" />
     <ClInclude Include="Assets\utils\Vector2D.h" />
     <ClInclude Include="CharactersSelected.h" />
+    <ClInclude Include="LerpingFunctions.h" />
     <ClInclude Include="PointOnImage.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
