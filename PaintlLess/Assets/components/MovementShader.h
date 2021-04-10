@@ -49,14 +49,15 @@ public:
 		uint casillasAMover = UnitInfo::Movimiento[Alquimista];
 		//matriz igual que el tablero inicializada a false
 		
-		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() + 1), casillasChecked, false);
-		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX() + 1, cSelected.getY()), casillasChecked, false);
 		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() - 1), casillasChecked, false);
+		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX() + 1, cSelected.getY()), casillasChecked, false);
+		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() + 1), casillasChecked, false);
 		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX() - 1, cSelected.getY()), casillasChecked, false);
 
 		//para no volver a acceder a la inicial
 		casillasChecked[cSelected.getX()][cSelected.getY()].checked = true;
 
+		casillasBaseRecorridas.clear();
 		//if (!(cSelected.getX() == 0 && cActual.getX() != 0))
 
 	}
@@ -70,28 +71,39 @@ public:
 		//si la casilla está fuera del mapa no hago nada
 		if (cActual.getX() < 0 || cActual.getX() >= mapa->getColumns() ||
 			cActual.getY() < 0 || cActual.getY() >= mapa->getRows()) return;
-
 		bool estaEnBase = false;
 		int suma = -1;
 		if (cSelected.getX() == 0 ) {
 
+			//si se accede a una casilla de la base desde otra casilla de la base, el booleano base indica si la anterior casilla era de la base
 			if(base && cActual.getX() == 0){
+
+				//si ya hemos pasado por esta casilla de la base al hacer la recursividad para de expandirse
+				for (auto casillaBase : casillasBaseRecorridas) {
+					if (cActual.getX() == casillaBase.getX() && cActual.getY() == casillaBase.getY()) return;
+				}
 				suma = 0;
+
+				casillasBaseRecorridas.push_back(cActual);
 			}
 			estaEnBase = true;
 		}
 		//si la casilla a la que accedo no ha sido visitada
-		if (!casillasChecked[cActual.getX()][cActual.getY()].checked &&
+		if (/*!casillasChecked[cActual.getX()][cActual.getY()].checked &&*/
 			mapa->movimientoPosible(Vector2D(cActual.getX(),cActual.getY()))) {
 
 			if (!(cSelected.getX() == 0 && cActual.getX() != 0)) casillasChecked[cActual.getX()][cActual.getY()].checked = true;
 
+			
+			if (!casillasChecked[cActual.getX()][cActual.getY()].movPosible) {
 				casillasAPintar.push_back(Vector2D(cActual.getX(), cActual.getY()));
-				casillasChecked[cActual.getX()][cActual.getY()].movPosible = true;				
+				casillasChecked[cActual.getX()][cActual.getY()].movPosible = true;
+			}
+			
 
-				casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX(), cActual.getY() + 1), casillasChecked, estaEnBase);
-				casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX() + 1, cActual.getY()), casillasChecked, estaEnBase);
 				casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX(), cActual.getY() - 1), casillasChecked, estaEnBase);
+				casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX() + 1, cActual.getY()), casillasChecked, estaEnBase);
+				casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX(), cActual.getY() + 1), casillasChecked, estaEnBase);
 				casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX() - 1, cActual.getY()), casillasChecked, estaEnBase);
 		}
 	}
@@ -120,7 +132,8 @@ private:
 	int resultado;
 	//guarda las posiciones de las casillas a las que se puede mover en un vector para el render 
 	//cuando se metan margenes hay que tener cuidad y sumarlos
-	vector<Vector2D> casillasAPintar;									
+	vector<Vector2D> casillasAPintar;		
+	vector<Vector2D> casillasBaseRecorridas;
 	int cellWidth = 0, cellHeight = 0;
 	Vector2D position;
 	Texture* tex_;

@@ -8,7 +8,7 @@ typedef unsigned int uint;
 namespace UnitInfo {
 enum TipoCarta {Ataque, Defensa, Utilidad};
 
-	const uint Movimiento[2] = { 3, 2 };
+	const uint Movimiento[2] = { 4, 2 };
 
 	//const uint numUnidades = 13;
 	//const uint Ataque = {1};
