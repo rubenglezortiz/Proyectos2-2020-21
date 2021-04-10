@@ -49,6 +49,9 @@
     <Filter Include="Archivos de origen\components">
       <UniqueIdentifier>{223f19f1-f263-42ae-a4ea-6f3d9e6caef1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\tmxlite">
+      <UniqueIdentifier>{533ca5cf-627d-43f7-812c-93cab7770579}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assets\game\Game.cpp">
@@ -125,6 +128,39 @@
     </ClCompile>
     <ClCompile Include="CharactersSelected.cpp">
       <Filter>Archivos de origen\game</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\miniz.c">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\FreeFuncs.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\ImageLayer.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\LayerGroup.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\Map.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\Object.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\ObjectGroup.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\Property.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\TileLayer.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\Tileset.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\detail\pugixml.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -272,5 +308,13 @@
     <ClInclude Include="LerpingFunctions.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
+    <ClInclude Include="tmxlite\src\miniz.h">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\config\resources.json">
+      <Filter>Archivos de recursos</Filter>
+    </None>
   </ItemGroup>
 </Project>

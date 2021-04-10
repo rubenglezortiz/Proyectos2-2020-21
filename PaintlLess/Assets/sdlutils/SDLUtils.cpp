@@ -5,6 +5,7 @@
 #include <cassert>
 
 #include "../json/JSON.h"
+#include <tmxlite/Map.hpp>
 
 SDLUtils::SDLUtils() :
 		SDLUtils("SDL Demo", 600, 400) {
@@ -215,6 +216,33 @@ void SDLUtils::loadReasources(std::string filename) {
 		}
 	}
 
+	jValue = root["tiled"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			for (auto& v : jValue->AsArray()) {
+				if (v->IsObject()) {
+					JSONObject vObj = v->AsObject();
+					tiled_ = vObj["file"]->AsString();
+					tmx::Map map; map.load(tiled_);
+					const auto& tilesets = map.getTilesets();
+					int i = 0;
+					for (const auto& tileset : tilesets)
+					{
+						//read out tile set properties, load textures etc...
+						images_.emplace("tileset" + std::to_string(i), Texture(renderer(), tileset.getImagePath()));
+						i++;
+					}
+				}
+				else {
+					throw "'tiled' string in '" + filename
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'tiled' is not an array";
+		}
+	}
 }
 
 void SDLUtils::closeSDLExtensions() {
