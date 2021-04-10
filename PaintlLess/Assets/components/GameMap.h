@@ -9,7 +9,6 @@
 #include "Image.h"
 #include "Rectangle.h"
 #include "../ecs/Component.h"
-
 #include <string>
 #include <fstream>
 #include <array>

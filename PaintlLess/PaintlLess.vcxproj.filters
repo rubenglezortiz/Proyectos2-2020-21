@@ -270,4 +270,7 @@
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
 </Project>
