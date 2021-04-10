@@ -16,9 +16,6 @@ class MovementShader;
 class MenuButton;
 class Health;
 class Ability_Architect;
-class Ability_Viking;
-class Attack;
-class DejaMuro;
 //class DeAcceleration;
 //class Health;
 //class ShowAtOpposieSide;
@@ -37,10 +34,7 @@ class DejaMuro;
 	MovementShader, \
 	MenuButton, \
 	Health, \
-	Ability_Architect , \
-	Ability_Viking,\
-	Attack,\
-    DejaMuro
+	Ability_Architect
 	/*DeAcceleration,\
 	Health,\
 	ShowAtOpposieSide,\

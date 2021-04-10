@@ -7,6 +7,7 @@
 #include "../ecs/Entity.h"
 #include "Transform.h"
 #include "Image.h"
+#include "Rectangle.h"
 #include "../ecs/Component.h"
 #include <string>
 #include <fstream>
@@ -45,14 +46,12 @@ public:
 	void removeCharacter(const Vector2D& cas);
 	bool casillaValida(const Vector2D& cas);
 	bool movimientoPosible(Vector2D cas);
-	bool ataquePosible(Vector2D cas);
 	Color getColor(Vector2D cas);
 	void render();
 	int getRows() const { return rows; };
 	int getColumns() const { return cols; }
 	int getCellWidth() const { return cellWidth; };
 	int getCellHeight() const { return cellHeight; };
-	Entity* getCharacter(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].character; }
 
 	Vector2D MapCoordsToSDLPoint(Vector2D coords) const { //Pasar de coordenadas del mapa a pixeles
 		Vector2D p{ (coords.getX() * cellWidth) , (coords.getY() * cellHeight)/* + DESPL*/ };

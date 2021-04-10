@@ -1,13 +1,6 @@
 #include "GameMap.h"
 #include <iostream>
 #include <fstream>
-
-#include <tmxlite/Map.hpp>
-#include <tmxlite/Layer.hpp>
-#include <tmxlite/TileLayer.hpp>
-#include <tmxlite/Tileset.hpp>
-#include <tmxlite/ObjectGroup.hpp>
-
 #include "../game/Game.h"
 #include "./PointOnImage.h"
 
@@ -28,7 +21,6 @@ void GameMap::init() {
 }
 void GameMap::loadMap(const string levelName) {
 
-<<<<<<< HEAD
 	
 	ifstream file;
 	file.open(levelName);
@@ -71,113 +63,13 @@ void GameMap::loadMap(const string levelName) {
 					cells[i][j].color = Color::Ninguno;
 					cells[i][j].tipoCasilla = TipoCasilla::Pintable;
 					break;
-=======
-	tmx::Map map;
-	if (map.load(sdlutils().tiled()))
-	{
-		const auto& layers = map.getLayers();
-		for (const auto& layer : layers)
-		{
-			if (layer->getType() == tmx::Layer::Type::Tile)
-			{
-				const auto& tileLayer = layer->getLayerAs<tmx::TileLayer>();
-				//read out tile layer properties etc...
-
-				cols = tileLayer.getSize().x; rows = tileLayer.getSize().y;
-				cells = new Casilla * [rows];
-				for (int r = 0; r < rows; ++r) {
-					for (int c = 0; c < cols; ++c) {
-						cells[r] = new Casilla[cols];
-					}
->>>>>>> 686e2ccfc808a05417cec01d274cafc251bdfe09
 				}
 
-				cellWidth = sdlutils().width() / cols;
-				cellHeight = sdlutils().height() / rows;
-
-				auto tiles = tileLayer.getTiles();
-				for (int i = 0; i < rows; ++i) {
-					for (int j = 0; j < cols; ++j) {
-						auto* casilla = entity_->getMngr()->addEntity();
-
-						casilla->addComponent<Transform>(Vector2D(j * cellWidth, i * cellHeight), cellWidth, cellHeight);
-
-						casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, tiles[i * cols + j].ID - 1);
-
-						switch (tiles[i * cols + j].ID) {
-						case 1: // Base
-							cells[i][j].color = Color::Ninguno;
-							cells[i][j].tipoCasilla = TipoCasilla::Base;
-							break;
-						case 2: // Roca
-							cells[i][j].color = Color::Ninguno;
-							cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
-							break;
-						case 3: // Agua
-							cells[i][j].color = Color::Ninguno;
-							cells[i][j].tipoCasilla = TipoCasilla::Pintable;
-							break;
-						case 4: // Cesped
-							cells[i][j].color = Color::Ninguno;
-							cells[i][j].tipoCasilla = TipoCasilla::Pintable;
-							break;
-						}
-						cells[i][j].character = nullptr;
-					}
-				}
+				cells[i][j].character = nullptr;
 			}
 		}
-
 	}
-
-	//ifstream file;
-	//file.open(levelName);
-	//if (!file.is_open())  throw string("No se encuentra el fichero");
-	//else {
-	//	int type;
-	//	file >> rows >> cols;
-	//	cells = new Casilla * [rows];
-	//	for (int r = 0; r < rows; ++r) {
-	//		for (int c = 0; c < cols; ++c) {
-	//			cells[r] = new Casilla[cols];
-	//		}
-	//	}
-	//	cellHeight = sdlutils().height() / rows;
-	//	cellWidth = sdlutils().width() / cols;
-	//	for (int i = 0; i < rows; ++i) {
-	//		for (int j = 0; j < cols; ++j) {
-	//			auto* casilla = entity_->getMngr()->addEntity();
-	//			casilla->addComponent<Transform>(Vector2D(j * cellWidth, i * cellHeight), cellWidth, cellHeight);
-
-	//			file >> type;
-	//			switch (type) {
-	//			case 0: // Base
-	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 0);
-	//				cells[i][j].color = Color::Ninguno;
-	//				cells[i][j].tipoCasilla = TipoCasilla::Base;
-	//				break;
-	//			case 1: // Roca
-	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 3);
-	//				cells[i][j].color = Color::Ninguno;
-	//				cells[i][j].tipoCasilla = TipoCasilla::Pintable;
-	//				break;
-	//			case 2: // Agua
-	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 1);
-	//				cells[i][j].color = Color::Ninguno;
-	//				cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
-	//				break;
-	//			case 3: // Cesped
-	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, 2);
-	//				cells[i][j].color = Color::Ninguno;
-	//				cells[i][j].tipoCasilla = TipoCasilla::Pintable;
-	//				break;
-	//			}
-
-	//			cells[i][j].character = nullptr;
-	//		}
-	//	}
-	//}
-	//file.close();
+	file.close();
 
 }
 
@@ -227,12 +119,6 @@ bool GameMap::movimientoPosible(Vector2D cas) {
 	return (cells[y][x].tipoCasilla != NoPintable && cells[y][x].character == nullptr);
 }
 
-bool GameMap::ataquePosible(Vector2D cas) {
-	if (!casillaValida(cas)) return false;
-	int x = cas.getX(); int y = cas.getY();
-	// Ha de hacer distinción entre personaje amigo y enemigo.
-	return (cells[y][x].character != nullptr);
-}
 
 Color GameMap::getColor(Vector2D cas) {
 	return cells[(int)cas.getY()][(int)cas.getX()].color;
@@ -240,7 +126,7 @@ Color GameMap::getColor(Vector2D cas) {
 
 bool GameMap::casillaValida(const Vector2D& cas) //SUPONEMOS QUE ESTÁ BIEN, ACEPTAMOS CAMBIOS XDD
 {
-	return (cas.getX() >= 0 && cas.getX() < getColumns() && cas.getY() >= 0 && cas.getY() < getRows());
+	return cas.getX() >= 0 && cas.getX() < getColumns() && cas.getY() >= 0 && cas.getY() < getColumns() < getRows();
 }
 
 //GameMap GameMap::CreaMapa(string filename) {

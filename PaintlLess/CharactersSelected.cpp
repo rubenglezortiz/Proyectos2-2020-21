@@ -24,5 +24,5 @@ void CharactersSelected::updatePersonaje(Unit pj) {
 
 void CharactersSelected::play(GameStateMachine* gsm) {
 	if (cont == max) gsm->pushState(new PlayState(gsm, chars));
-	else cout << "Debe seleccionar 6 personajes antes de comenzar a jugar."<<endl;
+	else cout << "Play";
 }
