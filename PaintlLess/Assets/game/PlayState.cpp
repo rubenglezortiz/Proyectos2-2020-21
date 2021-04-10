@@ -197,3 +197,4 @@ void PlayState::createTanque() {
 	tanque->addComponent<Attack>();
 	sdlutils().showCursor();
 }
+
