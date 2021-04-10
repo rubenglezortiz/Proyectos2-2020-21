@@ -34,22 +34,21 @@ void Attack::attack() {
 void Attack::attackShader() {
 	Vector2D pos = tr_->getPos();
 
-	pos = mapa->SDLPointToMapCoords(pos);	
+	pos = mapa->SDLPointToMapCoords(pos);
 
-	for (int i = 1; i <= range; ++i) {
-		Vector2D posUp = Vector2D(0, i) + pos;
-		Vector2D posRight = Vector2D(i, 0) + pos;
-		Vector2D posLeft = Vector2D(-i, 0) + pos;
-		Vector2D posDown = Vector2D(0, -i) + pos;
-		if (mapa->ataquePosible(posUp))
-			casillasAtaque.push_back(posUp);
-		if (mapa->ataquePosible(posRight))
-			casillasAtaque.push_back(posRight);
-		if (mapa->ataquePosible(posLeft))
-			casillasAtaque.push_back(posLeft);
-		if (mapa->ataquePosible(posDown))
-			casillasAtaque.push_back(posDown);
-	}
+	Vector2D posUp = Vector2D(0, 1) + pos;
+	Vector2D posRight = Vector2D(1, 0) + pos;
+	Vector2D posLeft = Vector2D(-1, 0) + pos;
+	Vector2D posDown = Vector2D(0, -1) + pos;
+
+	if (mapa->ataquePosible(posUp)) 
+		casillasAtaque.push_back(posUp);
+	if (mapa->ataquePosible(posRight))
+		casillasAtaque.push_back(posRight);
+	if (mapa->ataquePosible(posLeft))
+		casillasAtaque.push_back(posLeft);
+	if (mapa->ataquePosible(posDown))
+		casillasAtaque.push_back(posDown);
 }
 
 void Attack::render() {

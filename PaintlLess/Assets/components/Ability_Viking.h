@@ -11,8 +11,8 @@
 
 class Ability_Viking : public Component {
 public:
-	Ability_Viking() :tex(nullptr), mapa(nullptr), dest(SDL_Rect()),
-		posVik(Vector2D()), selected(false) {}
+	Ability_Viking() :mov(nullptr), tex(nullptr), mapa(nullptr), dest(SDL_Rect()),
+		posArc(Vector2D()), resultado(0), selected(false) {}
 	virtual ~Ability_Viking() {}
 
 	void init() override;
@@ -20,15 +20,18 @@ public:
 	void update() override;
 	void AbilityShader();
 	void freeAbilityShader();
+	void generateWall(int x, int y);
+	bool esConstruible(const Vector2D& cas);
 
 private:
+	Movimiento* mov;
 	Texture* tex;
 	GameMap* mapa;
 	SDL_Rect dest;
-	Vector2D posVik;
+	Vector2D posArc;
+	int resultado;
 	bool selected;
 	std::vector<Vector2D> casillasHabilidad;
 	//cuando se metan margenes hay que tener cuidadd y sumarlos
 	int cellWidth = 0, cellHeight = 0;
-	float size = 0;
 };

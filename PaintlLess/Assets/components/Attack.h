@@ -10,7 +10,6 @@
 */
 class Attack : public Component {
 private:
-	int range;
 	bool selected;
 	int cellWidth, cellHeight;
 	Transform* tr_;
@@ -19,11 +18,11 @@ private:
 	vector<Vector2D> casillasAtaque;
 
 public:
-	Attack(int r = 1) :
-		range(r), selected(false), cellWidth(0), cellHeight(0), tr_(nullptr), mapa(nullptr), tex_(nullptr)
+	Attack() : 
+	selected(false), cellWidth(0), cellHeight(0), tr_(nullptr), mapa(nullptr), tex_(nullptr)
 	{}
 
-	~Attack() {}
+	~Attack(){}
 
 	void init() override {
 		tr_ = entity_->getComponent<Transform>();
