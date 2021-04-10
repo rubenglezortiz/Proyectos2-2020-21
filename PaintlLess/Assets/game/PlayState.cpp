@@ -196,5 +196,4 @@ void PlayState::createTanque() {
 	tanque->addComponent<Health>(3);
 	tanque->addComponent<Attack>();
 	sdlutils().showCursor();
-//}
 }
