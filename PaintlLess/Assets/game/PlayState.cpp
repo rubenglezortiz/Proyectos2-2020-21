@@ -7,16 +7,20 @@
 
 #include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
-#include "../components/GameMap.h"
-#include "../components/Movimiento.h"
-#include "../components/Health.h"
-#include "../components/PointOnImage.h"
 #include "../components/Ability_Architect.h"
-
+#include "../components/Ability_Viking.h"
+#include "../components/Attack.h"
+#include "../components/GameMap.h"
+#include "../components/Health.h"
+#include "../components/Movimiento.h"
+#include "../components/PointOnImage.h"
 #include "../components/MovementShader.h"
+#include "../components/DejaMuro.h"
+
+
 #include "GameStateMachine.h"
 
-PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm){
+PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm) {
 
 	//Creación gamemap
 	auto* gameMap = mngr_->addEntity(RenderLayer::Fondo);
@@ -29,12 +33,11 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 	Entity* boardManager = mngr_->addEntity(RenderLayer::Tablero2);
 	boardManager->addComponent<PointOnImage>(&sdlutils().images().at("selector"));
 	boardManager->addComponent<MovementShader>(&sdlutils().images().at("selector"));
-
 	mngr_.get()->setHandler<BoardManager>(boardManager);
 
 	//boardManager->getComponent<MovementShader>()->getValues();
-	
-	
+
+
 	// Crea a los personajes según el vector de personajes que ha recibido.
 	for (int i = 0; i < charss.size(); ++i) {
 		if (charss[i]) {
@@ -93,7 +96,7 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 				break;
 			}
 		}
-		
+
 		cout << i;
 	}
 
@@ -142,7 +145,8 @@ void PlayState::createBomba() {
 	bomba->addComponent<Transform>(Vector2D(0, 4), Vector2D(), 50.0f, 50.0f, 0.0f);
 	bomba->addComponent<Image>(&sdlutils().images().at("bomba"));
 	bomba->addComponent<Movimiento>();
-	bomba->addComponent<Health>(3, bomba->getComponent<Transform>());
+	bomba->addComponent<Health>(3);
+	bomba->addComponent<Attack>();
 	sdlutils().showCursor();
 }
 
@@ -162,7 +166,8 @@ void PlayState::createDruida() {
 	druida->addComponent<Transform>(Vector2D(0, 2), Vector2D(), 50.0f, 50.0f, 0.0f);
 	druida->addComponent<Image>(&sdlutils().images().at("druida"));
 	druida->addComponent<Movimiento>();
-	druida->addComponent<Health>(3, druida->getComponent<Transform>());
+	druida->addComponent<Health>(3);
+	druida->addComponent<Attack>();
 	sdlutils().showCursor();
 }
 
@@ -172,7 +177,9 @@ void PlayState::createEsqueleto() {
 	esqueleto->addComponent<Transform>(Vector2D(0, 6), Vector2D(), 50.0f, 50.0f, 0.0f);
 	esqueleto->addComponent<Image>(&sdlutils().images().at("esqueleto"));
 	esqueleto->addComponent<Movimiento>();
-	esqueleto->addComponent<Health>(3, esqueleto->getComponent<Transform>());
+	esqueleto->addComponent<Health>(3);
+	esqueleto->addComponent<Attack>();
+	esqueleto->addComponent<Ability_Viking>();
 	sdlutils().showCursor();
 }
 
@@ -181,18 +188,21 @@ void PlayState::createGolem() {
 	Entity* golem = mngr_->addEntity(RenderLayer::Personajes);
 	golem->addComponent<Transform>(Vector2D(0, 5), Vector2D(), 50.0f, 50.0f, 0.0f);
 	golem->addComponent<Image>(&sdlutils().images().at("golem"));
-	golem->addComponent<Movimiento>();
-	golem->addComponent<Health>(3, golem->getComponent<Transform>());
+	golem->addComponent<Health>(2); //6
+	golem->addComponent<Attack>();
+	golem->addComponent<DejaMuro>();
+
 	sdlutils().showCursor();
 }
 
 // KIRIN
 void PlayState::createKirin() {
 	Entity* kirin = mngr_->addEntity(RenderLayer::Personajes);
-	kirin->addComponent<Transform>(Vector2D(0, 0), Vector2D(), 50.0f, 50.0f, 0.0f);
+	kirin->addComponent<Transform>(Vector2D(5, 5), Vector2D(), 50.0f, 50.0f, 0.0f);
 	kirin->addComponent<Image>(&sdlutils().images().at("kirin"));
 	kirin->addComponent<Movimiento>();
-	kirin->addComponent<Health>(3, kirin->getComponent<Transform>());
+	kirin->addComponent<Health>(3);
+	kirin->addComponent<Attack>();
 	sdlutils().showCursor();
 }
 
@@ -222,7 +232,8 @@ void PlayState::createPicara() {
 	picara->addComponent<Transform>(Vector2D(0, 3), Vector2D(), 50.0f, 50.0f, 0.0f);
 	picara->addComponent<Image>(&sdlutils().images().at("picara"));
 	picara->addComponent<Movimiento>();
-	picara->addComponent<Health>(3, picara->getComponent<Transform>());
+	picara->addComponent<Health>(3);
+	picara->addComponent<Attack>();
 	sdlutils().showCursor();
 }
 
@@ -232,10 +243,12 @@ void PlayState::createTanque() {
 	tanque->addComponent<Transform>(Vector2D(0, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
 	tanque->addComponent<Image>(&sdlutils().images().at("tanque"));
 	tanque->addComponent<Movimiento>();
-	tanque->addComponent<Health>(3, tanque->getComponent<Transform>());
+	tanque->addComponent<Health>(3);
+	tanque->addComponent<Attack>();
 	sdlutils().showCursor();
 }
 
+<<<<<<< HEAD
 // VIKINGO
 void PlayState::createVikingo() {
 	Entity* vikingo = mngr_->addEntity(RenderLayer::Personajes);
@@ -244,4 +257,16 @@ void PlayState::createVikingo() {
 	vikingo->addComponent<Movimiento>();
 	vikingo->addComponent<Health>(3, vikingo->getComponent<Transform>());
 	sdlutils().showCursor();
+=======
+//CAZADOR
+void PlayState::createCazador() {
+	Entity* cazador = mngr_->addEntity(RenderLayer::Personajes);
+	cazador->addComponent<Transform>(Vector2D(1, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
+	cazador->addComponent<Image>(&sdlutils().images().at("cazador"));
+	cazador->addComponent<Movimiento>();
+	cazador->addComponent<Health>(1);
+	cazador->addComponent<Attack>(2);
+	sdlutils().showCursor();
+
+>>>>>>> 686e2ccfc808a05417cec01d274cafc251bdfe09
 }

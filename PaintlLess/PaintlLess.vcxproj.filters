@@ -49,6 +49,9 @@
     <Filter Include="Archivos de origen\components">
       <UniqueIdentifier>{223f19f1-f263-42ae-a4ea-6f3d9e6caef1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\tmxlite">
+      <UniqueIdentifier>{fbbe91f3-ff84-4f75-ae20-e18b9e325ebe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assets\game\Game.cpp">
@@ -93,9 +96,6 @@
     <ClCompile Include="Assets\components\Transform.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\components\Rectangle.cpp">
-      <Filter>Archivos de origen\components</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\components\Image.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
@@ -125,6 +125,66 @@
     </ClCompile>
     <ClCompile Include="CharactersSelected.cpp">
       <Filter>Archivos de origen\game</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\FreeFuncs.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\ImageLayer.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\LayerGroup.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\Map.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\miniz.c">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\Object.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\ObjectGroup.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\Property.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\TileLayer.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\Tileset.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="tmxlite\src\detail\pugixml.cpp">
+      <Filter>Archivos de origen\tmxlite</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Architect.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\CardInfo.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Health.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\MovementShader.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Movimiento.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\PointOnImage.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Attack.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Viking.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\DejaMuro.cpp">
+      <Filter>Archivos de origen\components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -203,32 +263,11 @@
     <ClInclude Include="Assets\GameMap.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
-    <ClInclude Include="PointOnImage.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\Bounce.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
     <ClInclude Include="Assets\components\Image.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\KeyBoardCtrl.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\Rectangle.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\Rotate.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
     <ClInclude Include="Assets\components\Transform.h">
       <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\PointOnImage.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\CardInfo.h">
-      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Assets\components\Movimiento.h">
       <Filter>Archivos de encabezado\components</Filter>
@@ -238,9 +277,6 @@
     </ClInclude>
     <ClInclude Include="Assets\components\GameMap.h">
       <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\Health.h">
-      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Assets\game\GameState.h">
       <Filter>Archivos de encabezado\game</Filter>
@@ -269,6 +305,29 @@
     <ClInclude Include="CharactersSelected.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\components\CardInfo.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Health.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\PointOnImage.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Attack.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Viking.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\DejaMuro.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\config\resources.json">
+      <Filter>Archivos de recursos</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

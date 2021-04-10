@@ -7,16 +7,13 @@
   ],
   
  "images" : [
-    { "id" : "sdl_logo",   "file" : "resources/images/SDL_logo.png" },
-    { "id" : "tennis_ball","file" : "resources/images/tennis_ball.png" },
     { "id" : "star",       "file" : "resources/images/star.png"},
     { "id" : "kirin",      "file" : "resources/images/kirin.png"},
-    { "id" : "fighter",    "file" : "resources/images/fighter.png" },
-    { "id" : "tileset",    "file" : "resources/images/tileset.png" },
     { "id" : "selector",   "file" : "resources/images/selector.png" },
 	{ "id" : "life",       "file" : "resources/images/life.png" },
 	{ "id" : "start",      "file" : "resources/images/start.png" },
 	{ "id" : "wall",       "file" : "resources/images/wall.png" },
+<<<<<<< HEAD
     { "id" : "tanque",     "file" : "resources/images/tanque.png"},
     { "id" : "esqueleto",  "file" : "resourceS/images/esqueleto.png"},
     { "id" : "druida",     "file" : "resources/images/druida.png"},
@@ -46,6 +43,16 @@
     { "id" : "botonDef",   "file" : "resources/images/defensaSP.png"},
     { "id" : "botonUt",    "file" : "resources/images/utilidadSP.png"},
     { "id" : "menuSP",     "file" : "resources/images/night.jpg"},
+=======
+    { "id" : "tanque",     "file" : "resources/images/tanquew.png"},
+    { "id" : "esqueleto",  "file" : "resourceS/images/esqueletow.png"},
+    { "id" : "druida",     "file" : "resources/images/druidaw.png"},
+    { "id" : "golem",      "file" : "resources/images/golemw.png"},
+    { "id" : "bomba",      "file" : "resources/images/bombahumanaw.png"},
+    { "id" : "picara",     "file" : "resources/images/picaraw.png"},
+    { "id" : "cazador",    "file" : "resources/images/cazadorw.png"},
+    { "id" : "selectorA",  "file" : "resources/images/selectorAt.png"},
+>>>>>>> 686e2ccfc808a05417cec01d274cafc251bdfe09
     { "id" : "menu",       "file" : "resources/images/menu.png"}
  ],
 
@@ -63,6 +70,9 @@
   "musics" : [
     { "id" : "beat", "file" : "resources/sound/beat.wav" },
     { "id" : "imperial_march", "file" : "resources/sound/imperial_march.wav" }
-  ]
+  ],
 
+  "tiled": [
+    { "file": "resources/tiled/mapa.tmx" }
+  ]
 }

@@ -5,6 +5,7 @@
 #include <SDL.h>
 #include <string>
 #include <map>
+#include <tmxlite/Map.hpp>
 
 #include "../utils/Singleton.h"
 #include "RandomNumberGenerator.h"
@@ -120,6 +121,10 @@ public:
 		return musics_;
 	}
 
+	inline std::string tiled() {
+		return tileFile_;
+	}
+
 	// Access to the random number generator. It is important to always
 	// use this generator, this way you can regenerate the same sequence
 	// if you start from the same seed
@@ -162,6 +167,7 @@ private:
 	sdl_resource_table<Texture> msgs_; // textures map (string -> texture)
 	sdl_resource_table<SoundEffect> sounds_; // sounds map (string -> sound)
 	sdl_resource_table<Music> musics_; // musics map (string -> music)
+	std::string tileFile_;
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer
