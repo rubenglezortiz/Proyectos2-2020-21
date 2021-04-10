@@ -17,13 +17,21 @@ public:
 	// Destructora.
 	 virtual ~PlayState();
 	// Métodos que crean a los personajes.
- 	 void createBomba();
+	 void createAlquimista();
+	 void createArquitecta();
+	 void createBomba();
+	 void createCazador();
 	 void createDruida();
 	 void createEsqueleto();
 	 void createGolem();
 	 void createKirin();
+	 void createLobo();
+	 void createMonaguillo();
 	 void createTanque();
 	 void createPicara();
+<<<<<<< HEAD
 	 void createVikingo();
+=======
 	 void createCazador();
+>>>>>>> 686e2ccfc808a05417cec01d274cafc251bdfe09
 };

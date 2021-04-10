@@ -2,6 +2,9 @@
 #include "GameState.h"
 #include "Values.h"
 #include "../../CharactersSelected.h"
+#include "../ecs/Manager.h"
+#include "../ecs/Entity.h"
+#include "../sdlutils/SDLUtils.h"
 #include <vector>
 
 class GameStateMachine;
@@ -18,8 +21,8 @@ class CharacterSelectionState : public GameState
 {
 private:
 	// Constantes para el ancho y alto de los sprites de los personajes.
-	 const int w = 100;
-	 const int h = 100;
+	 const int w = 200;
+	 const int h = 200;
 
 public:
 	// Cargamos los botones de los personajes.
@@ -29,6 +32,11 @@ public:
 	// Método que carga la partida.
 	 static void play(GameStateMachine* gsm);
 
+	 
+	// Métodos para cargar la selección de personajes.
+	 static void personajesAtaque(GameStateMachine* gsm);
+	 static void personajesDefensa(GameStateMachine* gsm);
+	 static void personajesUtilidad(GameStateMachine* gsm);
 	// Métodos para seleccionar a los personajes.
 	 static void updateAlquimista(GameStateMachine* gsm);
 	 static void updateArquitecta(GameStateMachine* gsm);

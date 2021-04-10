@@ -27,6 +27,9 @@ void GameMap::init() {
 	loadMap(level);
 }
 void GameMap::loadMap(const string levelName) {
+
+<<<<<<< HEAD
+	
 	ifstream file;
 	file.open(levelName);
 	if (!file.is_open())  throw string("No se encuentra el fichero");
@@ -68,6 +71,7 @@ void GameMap::loadMap(const string levelName) {
 					cells[i][j].color = Color::Ninguno;
 					cells[i][j].tipoCasilla = TipoCasilla::Pintable;
 					break;
+=======
 	tmx::Map map;
 	if (map.load(sdlutils().tiled()))
 	{
@@ -85,6 +89,7 @@ void GameMap::loadMap(const string levelName) {
 					for (int c = 0; c < cols; ++c) {
 						cells[r] = new Casilla[cols];
 					}
+>>>>>>> 686e2ccfc808a05417cec01d274cafc251bdfe09
 				}
 
 				cellWidth = sdlutils().width() / cols;
@@ -235,7 +240,7 @@ Color GameMap::getColor(Vector2D cas) {
 
 bool GameMap::casillaValida(const Vector2D& cas) //SUPONEMOS QUE ESTÁ BIEN, ACEPTAMOS CAMBIOS XDD
 {
-	return cas.getX() >= 0 && cas.getX() < getColumns() && cas.getY() >= 0 && cas.getY() < getColumns() < getRows();
+	return (cas.getX() >= 0 && cas.getX() < getColumns() && cas.getY() >= 0 && cas.getY() < getRows());
 }
 
 //GameMap GameMap::CreaMapa(string filename) {

@@ -9,8 +9,8 @@ using namespace std;
 
 class MainMenuState : public GameState {
 private:
-	const int w = 200;
-	const int h = 120;
+	const int w = 150;
+	const int h = 70;
 public:	
 	MainMenuState(GameStateMachine* gsm);
 	virtual ~MainMenuState() {};
