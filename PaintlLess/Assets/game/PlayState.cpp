@@ -197,23 +197,3 @@ void PlayState::createTanque() {
 	tanque->addComponent<Attack>();
 	sdlutils().showCursor();
 }
-
-// VIKINGO
-void PlayState::createVikingo() {
-	Entity* vikingo = mngr_->addEntity(RenderLayer::Personajes);
-	vikingo->addComponent<Transform>(Vector2D(0, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
-	vikingo->addComponent<Image>(&sdlutils().images().at("vikingo"));
-	vikingo->addComponent<Movimiento>();
-	vikingo->addComponent<Health>(3, vikingo->getComponent<Transform>());
-	sdlutils().showCursor();
-}
-//CAZADOR
-void PlayState::createCazador() {
-	Entity* cazador = mngr_->addEntity(RenderLayer::Personajes);
-	cazador->addComponent<Transform>(Vector2D(1, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
-	cazador->addComponent<Image>(&sdlutils().images().at("cazador"));
-	cazador->addComponent<Movimiento>();
-	cazador->addComponent<Health>(1);
-	cazador->addComponent<Attack>(2);
-	sdlutils().showCursor();
-}
