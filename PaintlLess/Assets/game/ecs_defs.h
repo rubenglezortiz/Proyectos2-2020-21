@@ -3,48 +3,37 @@
 #pragma once
 
 // components -- forward declaration, i.e., assume they are defined somewhere
-class Transform;
-class Rectangle;
-class KeyBoardCtrl;
-class Bounce;
-class Image;
-class Rotate;
-class GameMap;
-class PointOnImage;
-class Movimiento;
-class MovementShader;
-class MenuButton;
-class Health;
+
 class Ability_Architect;
+class Ability_Bomb;
+class Ability_Golem;
 class Ability_Rogue;
 class Ability_Viking;
 class Attack;
-//class DeAcceleration;
-//class Health;
-//class ShowAtOpposieSide;
-//class Follow;
+class GameMap;
+class Health;
+class Image;
+class MenuButton;
+class MovementShader;
+class Movimiento;
+class PointOnImage;
+class Transform;
 
 #define _CMPS_LIST_  \
-	Transform,\
-	Rectangle,\
-	KeyBoardCtrl,\
-	Image, \
-	Rotate, \
-	Bounce , \
-	GameMap, \
-	Movimiento, \
-	PointOnImage, \
-	MovementShader, \
-	MenuButton, \
-	Health, \
-	Ability_Architect , \
-	Ability_Rogue , \
-	Ability_Viking , \
-	Attack
-	/*DeAcceleration,\
-	Health,\
-	ShowAtOpposieSide,\
-	Follow*/
+	Ability_Architect   ,  \
+	Ability_Bomb		,  \
+	Ability_Golem		,  \
+	Ability_Rogue	    ,  \
+	Ability_Viking      ,  \
+	Attack				,  \
+	GameMap				,  \
+	Health              ,  \
+	Image				,  \
+	MenuButton          ,  \
+	MovementShader      ,  \
+	Movimiento			,  \
+	PointOnImage	    ,  \
+	Transform
 
 	// groups
 

@@ -12,6 +12,8 @@
 #include "../components/Health.h"
 #include "../components/PointOnImage.h"
 #include "../components/Ability_Architect.h"
+#include "../components/Ability_Bomb.h"
+#include "../components/Ability_Golem.h"
 #include "../components/Ability_Rogue.h"
 #include "../components/Ability_Viking.h"
 #include "../components/Attack.h"
@@ -125,6 +127,7 @@ void PlayState::createBomba() {
 	bomba->addComponent<Transform>(Vector2D(0, 4), Vector2D(), 50.0f, 50.0f, 0.0f);
 	bomba->addComponent<Image>(&sdlutils().images().at("bomba"));
 	bomba->addComponent<Movimiento>();
+	bomba->addComponent<Ability_Bomb>();
 	bomba->addComponent<Health>(3);
 	sdlutils().showCursor();
 }
@@ -166,6 +169,7 @@ void PlayState::createKirin() {
 	kirin->addComponent<Transform>(Vector2D(0, 0), Vector2D(), 50.0f, 50.0f, 0.0f);
 	kirin->addComponent<Image>(&sdlutils().images().at("kirin"));
 	kirin->addComponent<Movimiento>();
+	kirin->addComponent<Ability_Golem>();
 	kirin->addComponent<Health>(3);
 	sdlutils().showCursor();
 }

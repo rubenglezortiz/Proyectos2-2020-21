@@ -186,6 +186,12 @@
     <ClCompile Include="Assets\components\PointOnImage.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Bomb.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Golem.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\game\ecs_defs.h">
@@ -325,6 +331,12 @@
     </ClInclude>
     <ClInclude Include="Assets\components\Ability_Viking.h">
       <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Bomb.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Golem.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

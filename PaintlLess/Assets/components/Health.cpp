@@ -11,12 +11,12 @@ void Health::hit(int damage) {
     lives -= damage;
     if (lives <= 0) {
         mapa->removeCharacter(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos())); //Quitar la entidad muerta
-      //  if (entity->getComponent<DejaMuro>() != nullptr) {    //Deja muro si es el golem
-      //      entity_->getComponent<DejaMuro>()->generateWall();
-       // }
-       // if (entity_->getComponent<AbilityBomb>() != nullptr) {
-       //     entity_->getComponent<AbilityBomb>()->explode();
-       // }
+        if (entity_->getComponent<Ability_Golem>() != nullptr) {    //Deja muro si es el golem
+             entity_->getComponent<Ability_Golem>()->generateWall();
+        }
+        if (entity_->getComponent<Ability_Bomb>() != nullptr) {
+            entity_->getComponent<Ability_Bomb>()->explode();
+        }
         entity_->setActive(false);
     }
     std::cout << "Ataca";
