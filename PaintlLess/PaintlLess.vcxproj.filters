@@ -162,6 +162,15 @@
     <ClCompile Include="tmxlite\src\detail\pugixml.cpp">
       <Filter>Archivos de origen\tmxlite</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\components\Health.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Attack.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Rogue.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\game\ecs_defs.h">
@@ -275,9 +284,6 @@
     <ClInclude Include="Assets\components\GameMap.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\components\Health.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Assets\game\GameState.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
@@ -310,6 +316,15 @@
     </ClInclude>
     <ClInclude Include="tmxlite\src\miniz.h">
       <Filter>Archivos de origen\tmxlite</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Health.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Attack.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Rogue.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

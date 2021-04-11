@@ -108,7 +108,7 @@ public:
 			0.0f);
 
 		e->addComponent<Image>(&sdlutils().images().at("wall"));
-		e->addComponent<Health>(2, e->getComponent<Transform>());
+		e->addComponent<Health>(2);
 		mapa->setCharacter(Vector2D(x, y), e);
 	}
 

@@ -142,7 +142,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Assets\components\Ability_Rogue.cpp" />
+    <ClCompile Include="Assets\components\Attack.cpp" />
     <ClCompile Include="Assets\components\GameMap.cpp" />
+    <ClCompile Include="Assets\components\Health.cpp" />
     <ClCompile Include="Assets\components\Image.cpp" />
     <ClCompile Include="Assets\components\MenuButton.cpp" />
     <ClCompile Include="Assets\components\Rectangle.cpp" />
@@ -181,6 +184,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\components\Ability_Architect.h" />
+    <ClInclude Include="Assets\components\Ability_Rogue.h" />
+    <ClInclude Include="Assets\components\Attack.h" />
     <ClInclude Include="Assets\components\Bounce.h" />
     <ClInclude Include="Assets\components\CardInfo.h" />
     <ClInclude Include="Assets\components\GameMap.h" />

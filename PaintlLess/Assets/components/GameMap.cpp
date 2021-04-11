@@ -184,6 +184,13 @@ bool GameMap::casillaValida(const Vector2D& cas) //SUPONEMOS QUE ESTÁ BIEN, ACEP
 	return cas.getX() >= 0 && cas.getX() < getColumns() && cas.getY() >= 0 && cas.getY() < getColumns() < getRows();
 }
 
+bool GameMap::ataquePosible(Vector2D cas) {
+	if (!casillaValida(cas)) return false;
+	int x = cas.getX(); int y = cas.getY();
+	// Ha de hacer distinción entre personaje amigo y enemigo.
+	return (cells[y][x].character != nullptr);
+}
+
 //GameMap GameMap::CreaMapa(string filename) {
 //	MapCell s = MapCell.Empty;
 //	ifstream in(filename);

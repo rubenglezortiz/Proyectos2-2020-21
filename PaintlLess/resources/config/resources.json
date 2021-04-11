@@ -23,7 +23,8 @@
     { "id" : "golem",      "file" : "resources/images/golemw.png"},
     { "id" : "bomba",      "file" : "resources/images/bombahumanaw.png"},
     { "id" : "picara",     "file" : "resources/images/picaraw.png"},
-    { "id" : "cazador",    "file" : "resources/images/cazadorw.png"}
+    { "id" : "cazador",    "file" : "resources/images/cazadorw.png"},
+    { "id" : "selectorA",  "file" : "resources/images/selectorAt.png"}
  ],
 
   

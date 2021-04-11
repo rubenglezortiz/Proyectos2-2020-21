@@ -16,6 +16,8 @@ class MovementShader;
 class MenuButton;
 class Health;
 class Ability_Architect;
+class Ability_Rogue;
+class Attack;
 //class DeAcceleration;
 //class Health;
 //class ShowAtOpposieSide;
@@ -34,7 +36,9 @@ class Ability_Architect;
 	MovementShader, \
 	MenuButton, \
 	Health, \
-	Ability_Architect
+	Ability_Architect , \
+	Ability_Rogue , \
+	Attack
 	/*DeAcceleration,\
 	Health,\
 	ShowAtOpposieSide,\
