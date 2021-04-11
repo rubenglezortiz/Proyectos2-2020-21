@@ -18,8 +18,9 @@ class CharacterSelectionState : public GameState
 {
 private:
 	// Constantes para el ancho y alto de los sprites de los personajes.
-	 const int w = 100;
-	 const int h = 100;
+	 const int w = 160;
+	 const int h = 160;
+	 const int offset = 100;
 
 public:
 	// Cargamos los botones de los personajes.
@@ -28,6 +29,11 @@ public:
 
 	// Método que carga la partida.
 	 static void play(GameStateMachine* gsm);
+
+	// Método para mostrar a los personajes seleccionables de cada tipo.
+	 static void personajesAtaque(GameStateMachine* gsm);
+	 static void personajesDefensa(GameStateMachine* gsm);
+	 static void personajesUtilidad(GameStateMachine* gsm);
 
 	// Métodos para seleccionar a los personajes.
 	 static void updateAlquimista(GameStateMachine* gsm);

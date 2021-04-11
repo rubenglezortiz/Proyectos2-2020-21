@@ -15,85 +15,116 @@
 CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameState(gsm) {
 	sdlutils().showCursor();
 
-	// Carga todos los botones.
+	// FONDO --------------------------------------------------------------
+	auto* menuFondo = mngr_->addEntity(RenderLayer::Fondo);
+	menuFondo->addComponent<Transform>(Vector2D(), sdlutils().width(), sdlutils().height());
+	menuFondo->addComponent<Image>(&sdlutils().images().at("menuSP"));
+
+	// BOTONES ------------------------------------------------------------
+	auto* ataque = mngr_->addEntity(RenderLayer::Fondo);
+	ataque->addComponent<Transform>(Vector2D(0, 0), 800/3, h / 2);
+	ataque->addComponent<Image>(&sdlutils().images().at("botonAt"));
+	ataque->addComponent<MenuButton>(gsm, personajesAtaque);
+
+	auto* defensa = mngr_->addEntity(RenderLayer::Fondo);
+	defensa->addComponent<Transform>(Vector2D(800/3, 0), 800/3, h / 2);
+	defensa->addComponent<Image>(&sdlutils().images().at("botonDef"));
+	defensa->addComponent<MenuButton>(gsm, personajesDefensa);
+
+	auto* utilidad = mngr_->addEntity(RenderLayer::Fondo);
+	utilidad->addComponent<Transform>(Vector2D(2 * (800/3), 0), 800/3, h / 2);
+	utilidad->addComponent<Image>(&sdlutils().images().at("botonUt"));
+	utilidad->addComponent<MenuButton>(gsm, personajesUtilidad);
+
+	// PERSONAJES ---------------------------------------------------------
 	auto* Alquimista = mngr_->addEntity(RenderLayer::Fondo);
-	Alquimista->addComponent<Transform>(Vector2D(400, 400), w, h);
-	Alquimista->addComponent<Image>(&sdlutils().images().at("golem"));
+	Alquimista->addComponent<Transform>(Vector2D(0, offset), w, h);
+	Alquimista->addComponent<Image>(&sdlutils().images().at("alquimistaSP"));
 	Alquimista->addComponent<MenuButton>(gsm, updateAlquimista);
 
 	auto* Arquitecta = mngr_->addEntity(RenderLayer::Fondo);
-	Arquitecta->addComponent<Transform>(Vector2D(200, 400), w, h);
-	Arquitecta->addComponent<Image>(&sdlutils().images().at("golem"));
+	Arquitecta->addComponent<Transform>(Vector2D(w, offset), w, h);
+	Arquitecta->addComponent<Image>(&sdlutils().images().at("arquitectaSP"));
 	Arquitecta->addComponent<MenuButton>(gsm, updateArquitecta);
 
 	auto* Bomba = mngr_->addEntity(RenderLayer::Fondo);
-	Bomba->addComponent<Transform>(Vector2D(300, 300), w, h);
-	Bomba->addComponent<Image>(&sdlutils().images().at("bomba"));
+	Bomba->addComponent<Transform>(Vector2D(2 * w, offset), w, h);
+	Bomba->addComponent<Image>(&sdlutils().images().at("bombaSP"));
 	Bomba->addComponent<MenuButton>(gsm, updateBomba);
 
-	// Falta el sprite.
 	auto* Cazador = mngr_->addEntity(RenderLayer::Fondo);
-	Cazador->addComponent<Transform>(Vector2D(400, 300), w, h);
-	Cazador->addComponent<Image>(&sdlutils().images().at("cazador"));
+	Cazador->addComponent<Transform>(Vector2D(3 * w, offset), w, h);
+	Cazador->addComponent<Image>(&sdlutils().images().at("cazadorSP"));
 	Cazador->addComponent<MenuButton>(gsm, updateCazador);
 
 	auto* Druida = mngr_->addEntity(RenderLayer::Fondo);
-	Druida->addComponent<Transform>(Vector2D(500, 200), w, h);
-	Druida->addComponent<Image>(&sdlutils().images().at("druida"));
+	Druida->addComponent<Transform>(Vector2D(4 * w, offset), w, h);
+	Druida->addComponent<Image>(&sdlutils().images().at("druidaSP"));
 	Druida->addComponent<MenuButton>(gsm, updateDruida);
 
 	auto* Esqueleto = mngr_->addEntity(RenderLayer::Fondo);
-	Esqueleto->addComponent<Transform>(Vector2D(400, 200), w, h);
-	Esqueleto->addComponent<Image>(&sdlutils().images().at("esqueleto"));
+	Esqueleto->addComponent<Transform>(Vector2D(w, h + offset), w, h);
+	Esqueleto->addComponent<Image>(&sdlutils().images().at("esqueletoSP"));
 	Esqueleto->addComponent<MenuButton>(gsm, updateEsqueleto);
 
 	auto* Golem = mngr_->addEntity(RenderLayer::Fondo);
-	Cazador->addComponent<Transform>(Vector2D(600, 400), w, h);
-	Cazador->addComponent<Image>(&sdlutils().images().at("golem"));
-	Cazador->addComponent<MenuButton>(gsm, updateGolem);
+	Golem->addComponent<Transform>(Vector2D(2 * w, h + offset), w, h);
+	Golem->addComponent<Image>(&sdlutils().images().at("golemSP"));
+	Golem->addComponent<MenuButton>(gsm, updateGolem);
 
 	auto* Kirin = mngr_->addEntity(RenderLayer::Fondo);
-	Kirin->addComponent<Transform>(Vector2D(200, 200), w, h);
-	Kirin->addComponent<Image>(&sdlutils().images().at("kirin"));
+	Kirin->addComponent<Transform>(Vector2D(3 * w, h + offset), w, h);
+	Kirin->addComponent<Image>(&sdlutils().images().at("alquimistaSP"));
 	Kirin->addComponent<MenuButton>(gsm, updateKirin);
 
-	// Falta el sprite.
 	auto* Lobo = mngr_->addEntity(RenderLayer::Fondo);
-	Lobo->addComponent<Transform>(Vector2D(300, 400), w, h);
-	Lobo->addComponent<Image>(&sdlutils().images().at("golem"));
+	Lobo->addComponent<Transform>(Vector2D(0, 2 * h + offset), w, h);
+	Lobo->addComponent<Image>(&sdlutils().images().at("loboSP"));
 	Lobo->addComponent<MenuButton>(gsm, updateLobo);
 
-	// Falta el sprite.
 	auto* Monaguillo = mngr_->addEntity(RenderLayer::Fondo);
-	Monaguillo->addComponent<Transform>(Vector2D(500, 300), w, h);
-	Monaguillo->addComponent<Image>(&sdlutils().images().at("life"));
+	Monaguillo->addComponent<Transform>(Vector2D(w, 2 * h + offset), w, h);
+	Monaguillo->addComponent<Image>(&sdlutils().images().at("monaguilloSP"));
 	Monaguillo->addComponent<MenuButton>(gsm, updateMonaguillo);
 
 	auto* Picara = mngr_->addEntity(RenderLayer::Fondo);
-	Picara->addComponent<Transform>(Vector2D(600, 200), w, h);
-	Picara->addComponent<Image>(&sdlutils().images().at("picara"));
+	Picara->addComponent<Transform>(Vector2D(2 * w, 2 * h + offset), w, h);
+	Picara->addComponent<Image>(&sdlutils().images().at("picaraSP"));
 	Picara->addComponent<MenuButton>(gsm, updatePicara);
 
 	auto* Tanque = mngr_->addEntity(RenderLayer::Fondo);
-	Tanque->addComponent<Transform>(Vector2D(300, 200), w, h);
-	Tanque->addComponent<Image>(&sdlutils().images().at("tanque"));
+	Tanque->addComponent<Transform>(Vector2D(3 * w, 2 * h + offset), w, h);
+	Tanque->addComponent<Image>(&sdlutils().images().at("tanqueSP"));
 	Tanque->addComponent<MenuButton>(gsm, updateTanque);
 
-	// Falta el sprite.
 	auto* Vikingo = mngr_->addEntity(RenderLayer::Fondo);
-	Vikingo->addComponent<Transform>(Vector2D(500, 400), w, h);
-	Vikingo->addComponent<Image>(&sdlutils().images().at("golem"));
+	Vikingo->addComponent<Transform>(Vector2D(4 * w, 2 * h + offset), w, h);
+	Vikingo->addComponent<Image>(&sdlutils().images().at("vikingoSP"));
 	Vikingo->addComponent<MenuButton>(gsm, updateVikingo);
 
 	// Botón de paso de partida.
 	auto* Boton = mngr_->addEntity(RenderLayer::Fondo);
-	Boton->addComponent<Transform>(Vector2D(700, 500), w, h);
+	Boton->addComponent<Transform>(Vector2D(4*w, h + offset), w, h);
 	Boton->addComponent<Image>(&sdlutils().images().at("star"));
 	Boton->addComponent<MenuButton>(gsm, play);
 }
 
 void CharacterSelectionState::play(GameStateMachine* gsm) { 
 	gsm->getCharSel()->play(gsm);
+}
+
+void CharacterSelectionState::personajesAtaque(GameStateMachine* gsm) {
+	cout << "ataque";
+}
+
+// Método que debería enseñar en pantalla los personajes de defensa.
+void CharacterSelectionState::personajesDefensa(GameStateMachine* gsm) {
+	cout << "defensa";
+}
+
+// Método que debería enseñar en pantalla los personajes de utilidad.
+void CharacterSelectionState::personajesUtilidad(GameStateMachine* gsm) {
+	cout << "utilidad";
 }
 
 // ALQUIMISTA

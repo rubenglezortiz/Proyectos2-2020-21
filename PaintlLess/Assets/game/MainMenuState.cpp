@@ -14,13 +14,18 @@
 MainMenuState::MainMenuState(GameStateMachine* gsm) : GameState(gsm) { //Poner las imagenes y posiciones correctamente
 	//Crear botones
 	sdlutils().showCursor();
+
+	auto* menuFondo = mngr_->addEntity(RenderLayer::Fondo);
+	menuFondo->addComponent<Transform>(Vector2D(0, 0), sdlutils().width(), sdlutils().height());
+	menuFondo->addComponent<Image>(&sdlutils().images().at("menu"));
+
 	auto* bOnline = mngr_->addEntity(RenderLayer::Fondo);
-	bOnline->addComponent<Transform>(Vector2D(300,100),w, h);
+	bOnline->addComponent<Transform>(Vector2D(300,150),w, h);
 	bOnline->addComponent<Image>(&sdlutils().images().at("start"));
 	bOnline->addComponent<MenuButton>(gsm, newGame);
 
 	auto* bLocal = mngr_->addEntity(RenderLayer::Fondo);
-	bLocal->addComponent<Transform>(Vector2D(300, 200), w, h);
+	bLocal->addComponent<Transform>(Vector2D(300, 225), w, h);
 	bLocal->addComponent<Image>(&sdlutils().images().at("start"));
 	bLocal->addComponent<MenuButton>(gsm, newGame);
 
