@@ -7,7 +7,6 @@
 #include "../ecs/Entity.h"
 #include "Transform.h"
 #include "Image.h"
-#include "Rectangle.h"
 #include "../ecs/Component.h"
 
 #include <string>

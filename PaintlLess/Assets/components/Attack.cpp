@@ -1,5 +1,13 @@
 #include "Attack.h"
 
+void Attack::init() {
+	tr_ = entity_->getComponent<Transform>();
+	mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
+	cellWidth = mapa->getCellWidth();
+	cellHeight = mapa->getCellHeight();
+	tex_ = &sdlutils().images().at("selectorA");
+}
+
 void Attack::update() {
 	attack();
 }
@@ -38,19 +46,20 @@ void Attack::attackShader() {
 
 	pos = mapa->SDLPointToMapCoords(pos);
 
-	Vector2D posUp = Vector2D(0, 1) + pos;
-	Vector2D posRight = Vector2D(1, 0) + pos;
-	Vector2D posLeft = Vector2D(-1, 0) + pos;
-	Vector2D posDown = Vector2D(0, -1) + pos;
-
-	if (mapa->ataquePosible(posUp))
-		casillasAtaque.push_back(posUp);
-	if (mapa->ataquePosible(posRight))
-		casillasAtaque.push_back(posRight);
-	if (mapa->ataquePosible(posLeft))
-		casillasAtaque.push_back(posLeft);
-	if (mapa->ataquePosible(posDown))
-		casillasAtaque.push_back(posDown);
+	for (int i = 1; i <= range; ++i) {
+		Vector2D posUp = Vector2D(0, i) + pos;
+		Vector2D posRight = Vector2D(i, 0) + pos;
+		Vector2D posLeft = Vector2D(-i, 0) + pos;
+		Vector2D posDown = Vector2D(0, -i) + pos;
+		if (mapa->ataquePosible(posUp))
+			casillasAtaque.push_back(posUp);
+		if (mapa->ataquePosible(posRight))
+			casillasAtaque.push_back(posRight);
+		if (mapa->ataquePosible(posLeft))
+			casillasAtaque.push_back(posLeft);
+		if (mapa->ataquePosible(posDown))
+			casillasAtaque.push_back(posDown);
+	}
 }
 
 void Attack::render() {

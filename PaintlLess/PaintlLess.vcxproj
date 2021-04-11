@@ -143,15 +143,20 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assets\components\Ability_Rogue.cpp" />
+    <ClCompile Include="Assets\components\Ability_Viking.cpp" />
     <ClCompile Include="Assets\components\Attack.cpp" />
     <ClCompile Include="Assets\components\GameMap.cpp" />
     <ClCompile Include="Assets\components\Health.cpp" />
     <ClCompile Include="Assets\components\Image.cpp" />
     <ClCompile Include="Assets\components\MenuButton.cpp" />
-    <ClCompile Include="Assets\components\Rectangle.cpp" />
+    <ClCompile Include="Assets\components\MovementShader.cpp" />
+    <ClCompile Include="Assets\components\Movimiento.cpp" />
+    <ClCompile Include="Assets\components\Ability_Architect.cpp" />
+    <ClCompile Include="Assets\components\PointOnImage.cpp" />
     <ClCompile Include="Assets\components\Transform.cpp" />
     <ClCompile Include="Assets\ecs\Entity.cpp" />
     <ClCompile Include="Assets\ecs\Manager.cpp" />
+    <ClCompile Include="Assets\game\CardInfo.cpp" />
     <ClCompile Include="Assets\game\CharacterSelectionState.cpp" />
     <ClCompile Include="Assets\game\Game.cpp" />
     <ClCompile Include="Assets\game\GameState.cpp" />
@@ -185,19 +190,15 @@
   <ItemGroup>
     <ClInclude Include="Assets\components\Ability_Architect.h" />
     <ClInclude Include="Assets\components\Ability_Rogue.h" />
+    <ClInclude Include="Assets\components\Ability_Viking.h" />
     <ClInclude Include="Assets\components\Attack.h" />
-    <ClInclude Include="Assets\components\Bounce.h" />
-    <ClInclude Include="Assets\components\CardInfo.h" />
     <ClInclude Include="Assets\components\GameMap.h" />
     <ClInclude Include="Assets\components\Health.h" />
     <ClInclude Include="Assets\components\Image.h" />
-    <ClInclude Include="Assets\components\KeyBoardCtrl.h" />
     <ClInclude Include="Assets\components\MenuButton.h" />
     <ClInclude Include="Assets\components\MovementShader.h" />
     <ClInclude Include="Assets\components\Movimiento.h" />
     <ClInclude Include="Assets\components\PointOnImage.h" />
-    <ClInclude Include="Assets\components\Rectangle.h" />
-    <ClInclude Include="Assets\components\Rotate.h" />
     <ClInclude Include="Assets\components\Transform.h" />
     <ClInclude Include="Assets\ecs\Component.h" />
     <ClInclude Include="Assets\ecs\ecs.h" />
@@ -205,7 +206,7 @@
     <ClInclude Include="Assets\ecs\Entity.h" />
     <ClInclude Include="Assets\ecs\Manager.h" />
     <ClInclude Include="Assets\ecs\mpl.h" />
-    <ClInclude Include="Assets\GameMap.h" />
+    <ClInclude Include="Assets\game\CardInfo.h" />
     <ClInclude Include="Assets\game\CharacterSelectionState.h" />
     <ClInclude Include="Assets\game\ecs_defs.h" />
     <ClInclude Include="Assets\game\Game.h" />
@@ -232,7 +233,6 @@
     <ClInclude Include="Assets\utils\Vector2D.h" />
     <ClInclude Include="CharactersSelected.h" />
     <ClInclude Include="LerpingFunctions.h" />
-    <ClInclude Include="PointOnImage.h" />
     <ClInclude Include="tmxlite\src\miniz.h" />
   </ItemGroup>
   <ItemGroup>

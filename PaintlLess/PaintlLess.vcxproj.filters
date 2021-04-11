@@ -96,9 +96,6 @@
     <ClCompile Include="Assets\components\Transform.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\components\Rectangle.cpp">
-      <Filter>Archivos de origen\components</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\components\Image.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
@@ -165,11 +162,29 @@
     <ClCompile Include="Assets\components\Health.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\components\Attack.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="Assets\components\Ability_Architect.cpp">
+      <Filter>Archivos de origen\components</Filter>
     </ClCompile>
     <ClCompile Include="Assets\components\Ability_Rogue.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Attack.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\MovementShader.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Movimiento.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\game\CardInfo.cpp">
+      <Filter>Archivos de origen\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Viking.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\PointOnImage.cpp">
+      <Filter>Archivos de origen\components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -245,25 +260,7 @@
     <ClInclude Include="Assets\json\JSONValue.h">
       <Filter>Archivos de encabezado\json</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\GameMap.h">
-      <Filter>Archivos de encabezado\game</Filter>
-    </ClInclude>
-    <ClInclude Include="PointOnImage.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\Bounce.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
     <ClInclude Include="Assets\components\Image.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\KeyBoardCtrl.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\Rectangle.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\Rotate.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
     <ClInclude Include="Assets\components\Transform.h">
@@ -271,9 +268,6 @@
     </ClInclude>
     <ClInclude Include="Assets\components\PointOnImage.h">
       <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\CardInfo.h">
-      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Assets\components\Movimiento.h">
       <Filter>Archivos de encabezado\components</Filter>
@@ -320,11 +314,17 @@
     <ClInclude Include="Assets\components\Health.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\components\Attack.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Assets\components\Ability_Rogue.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Attack.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\game\CardInfo.h">
+      <Filter>Archivos de encabezado\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Viking.h">
+      <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

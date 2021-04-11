@@ -17,6 +17,7 @@ class MenuButton;
 class Health;
 class Ability_Architect;
 class Ability_Rogue;
+class Ability_Viking;
 class Attack;
 //class DeAcceleration;
 //class Health;
@@ -38,6 +39,7 @@ class Attack;
 	Health, \
 	Ability_Architect , \
 	Ability_Rogue , \
+	Ability_Viking , \
 	Attack
 	/*DeAcceleration,\
 	Health,\

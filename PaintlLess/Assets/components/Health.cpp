@@ -1,4 +1,4 @@
-﻿#include "./Health.h"
+﻿#include "Health.h"
 
 void Health::init() {
     tr = entity_->getComponent<Transform>();

@@ -14,27 +14,19 @@
 class Attack : public Component {
 private:
 	bool selected;
-	int cellWidth, cellHeight;
+	int cellWidth, cellHeight, range;
 	Transform* tr_;
 	GameMap* mapa;
 	Texture* tex_;
 	vector<Vector2D> casillasAtaque;
 
 public:
-	Attack() :
-		selected(false), cellWidth(0), cellHeight(0), tr_(nullptr), mapa(nullptr), tex_(nullptr)
+	Attack(int r = 1) :
+		range(r), selected(false), cellWidth(0), cellHeight(0), tr_(nullptr), mapa(nullptr), tex_(nullptr)
 	{}
-
 	~Attack() {}
 
-	void init() override {
-		tr_ = entity_->getComponent<Transform>();
-		mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
-		cellWidth = mapa->getCellWidth();
-		cellHeight = mapa->getCellHeight();
-		tex_ = &sdlutils().images().at("selectorA");
-	}
-
+	void init() override;
 	void render() override;
 	void update() override;
 	// Método que detecta los clicks y gestiona el ataque.

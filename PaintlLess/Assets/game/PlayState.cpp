@@ -13,6 +13,7 @@
 #include "../components/PointOnImage.h"
 #include "../components/Ability_Architect.h"
 #include "../components/Ability_Rogue.h"
+#include "../components/Ability_Viking.h"
 #include "../components/Attack.h"
 
 #include "../components/MovementShader.h"
@@ -134,6 +135,7 @@ void PlayState::createDruida() {
 	druida->addComponent<Transform>(Vector2D(0, 2), Vector2D(), 50.0f, 50.0f, 0.0f);
 	druida->addComponent<Image>(&sdlutils().images().at("druida"));
 	druida->addComponent<Movimiento>();
+	druida->addComponent<Ability_Viking>();
 	druida->addComponent<Health>(3);
 	sdlutils().showCursor();
 }
