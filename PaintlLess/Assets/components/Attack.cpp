@@ -38,6 +38,7 @@ void Attack::attack() {
 	}
 	if (ih().getMouseButtonState(ih().RIGHT)) {
 		selected = false;
+		casillasAtaque.clear();
 	}
 }
 

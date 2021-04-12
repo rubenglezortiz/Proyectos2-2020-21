@@ -7,6 +7,7 @@
 class Ability_Architect;
 class Ability_Bomb;
 class Ability_Golem;
+class Ability_Kirin;
 class Ability_Rogue;
 class Ability_Viking;
 class Attack;
@@ -23,6 +24,7 @@ class Transform;
 	Ability_Architect   ,  \
 	Ability_Bomb		,  \
 	Ability_Golem		,  \
+	Ability_Kirin		,  \
 	Ability_Rogue	    ,  \
 	Ability_Viking      ,  \
 	Attack				,  \

@@ -181,7 +181,7 @@ Color GameMap::getColor(Vector2D cas) {
 
 bool GameMap::casillaValida(const Vector2D& cas) //SUPONEMOS QUE ESTÁ BIEN, ACEPTAMOS CAMBIOS XDD
 {
-	return cas.getX() >= 0 && cas.getX() < getColumns() && cas.getY() >= 0 && cas.getY() < getColumns() < getRows();
+	return cas.getX() >= 0 && cas.getX() < getColumns() && cas.getY() >= 0 && cas.getY() < getRows();
 }
 
 bool GameMap::ataquePosible(Vector2D cas) {

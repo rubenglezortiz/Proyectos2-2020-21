@@ -14,6 +14,7 @@
 #include "../components/Ability_Architect.h"
 #include "../components/Ability_Bomb.h"
 #include "../components/Ability_Golem.h"
+#include "../components/Ability_Kirin.h"
 #include "../components/Ability_Rogue.h"
 #include "../components/Ability_Viking.h"
 #include "../components/Attack.h"
@@ -207,6 +208,7 @@ void PlayState::createKirin() {
 	kirin->addComponent<Movimiento>();
 	kirin->addComponent<Health>(3);
 	kirin->addComponent<Attack>();
+	kirin->addComponent<Ability_Kirin>();
 	sdlutils().showCursor();
 }
 
