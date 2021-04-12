@@ -57,7 +57,7 @@ public:
 
 	Vector2D MapCoordsToSDLPoint(Vector2D coords) const { //Pasar de coordenadas del mapa a pixeles
 		Vector2D p{ (coords.getX() * cellWidth) , (coords.getY() * cellHeight)/* + DESPL*/ };
-		cout << p.getX() << " " << p.getY() << endl;
+		//cout << p.getX() << " " << p.getY() << endl;
 		return p;
 	}
 
@@ -67,7 +67,7 @@ public:
 		int Y = p.getY()/*-DESPL*/ / cellHeight;
 		//como vector2D es float se hace el casteo pero el valor va a ser .0000
 		Vector2D coords{ (float)X,(float)Y };
-		cout << coords.getX() << " " << coords.getY() << endl;
+		//cout << coords.getX() << " " << coords.getY() << endl;
 		return coords;
 	}		
 };
