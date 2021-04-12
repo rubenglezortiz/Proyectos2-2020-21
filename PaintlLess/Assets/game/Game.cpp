@@ -51,6 +51,8 @@ void Game::start() {
 			exit = true;
 			continue;
 		}
+		if (ih().isKeyDown(SDLK_0))
+			sdlutils().toggleFullScreen();
 
 		stateMachine->currentState()->update(); //update del GameState
 		

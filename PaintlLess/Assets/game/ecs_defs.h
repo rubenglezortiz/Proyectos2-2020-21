@@ -39,16 +39,12 @@ class Transform;
 
 	// groups
 
-struct Group_1;
-struct Lives;
-struct Asteroid_grp;
-struct Bullet_grp;
+struct Equipo_Rojo;
+struct Equipo_Azul;
 
 #define _GRPS_LIST_ \
-	Group_1, \
-	Lives ,\
-	Asteroid_grp,\
-	Bullet_grp
+	Equipo_Rojo, \
+	Equipo_Azul 
 
 
 // handlers

@@ -188,7 +188,10 @@ bool GameMap::ataquePosible(Vector2D cas) {
 	if (!casillaValida(cas)) return false;
 	int x = cas.getX(); int y = cas.getY();
 	// Ha de hacer distinción entre personaje amigo y enemigo.
-	return (cells[y][x].character != nullptr);
+	bool equipo = false;
+	if (cells[y][x].character != nullptr)
+		equipo = cells[y][x].character->hasGroup<Equipo_Azul>();
+	return equipo;
 }
 
 //GameMap GameMap::CreaMapa(string filename) {

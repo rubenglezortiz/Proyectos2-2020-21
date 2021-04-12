@@ -46,60 +46,61 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 		if (charss[i]) {
 			switch (i) {
 			case Alquimista:
-				createAlquimista();
+				createAlquimista(Primero);
 				cout << "alquimista";
 				break;
 			case Arquitecta:
-				createArquitecta();
+				createArquitecta(Primero);
 				cout << "arquitecta";
 				break;
 			case Bomba:
-				createBomba();
+				createBomba(Primero);
 				cout << "bomba";
 				break;
 			case Cazador:
-				createCazador();
+				createCazador(Primero);
 				cout << "cazador";
 				break;
 			case Druida:
-				createDruida();
+				createDruida(Primero);
 				cout << "druida";
 				break;
 			case Esqueleto:
-				createEsqueleto();
+				createEsqueleto(Primero);
 				cout << "esqueleto";
 				break;
 			case Golem:
-				createGolem();
+				createGolem(Primero);
 				cout << "golem";
 				break;
 			case Kirin:
-				createKirin();
+				createKirin(Primero);
 				cout << "kirin";
 				break;
 			case Lobo:
-				createLobo();
+				createLobo(Primero);
 				cout << "lobo";
 				break;
 			case Monaguillo:
-				createMonaguillo();
+				createMonaguillo(Primero);
 				cout << "monaguillo";
 				break;
 			case Picara:
-				createPicara();
+				createPicara(Primero);
 				cout << "picara";
 				break;
 			case Tanque:
-				createTanque();
+				createTanque(Primero);
 				cout << "tanque";
 				break;
 			case Vikingo:
-				createVikingo();
+				createVikingo(Primero);
 				cout << "vikingo";
 				break;
 			}
 		}
 		
+		createTanque(Segundo);
 		cout << i;
 	}
 
@@ -123,8 +124,10 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 PlayState::~PlayState() {}
 
 // ALQUIMISTA
-void PlayState::createAlquimista() {
+void PlayState::createAlquimista(Equipo c) {
 	Entity* alquimista = mngr_->addEntity(RenderLayer::Personajes);
+	if (c == Primero) alquimista->setGroup<Equipo_Rojo>(alquimista);
+	else alquimista->setGroup<Equipo_Azul>(alquimista);
 	alquimista->addComponent<Transform>(Vector2D(0, 0), Vector2D(), 50.0f, 50.0f, 0.0f);
 	alquimista->addComponent<Image>(&sdlutils().images().at("alquimista"));
 	alquimista->addComponent<Movimiento>();
@@ -133,8 +136,11 @@ void PlayState::createAlquimista() {
 }
 
 // ARQUITECTA
-void PlayState::createArquitecta() {
+void PlayState::createArquitecta(Equipo c) {
 	Entity* arquitecta = mngr_->addEntity(RenderLayer::Personajes);
+
+	if (c == Primero) arquitecta->setGroup<Equipo_Rojo>(arquitecta);
+	else arquitecta->setGroup<Equipo_Azul>(arquitecta);
 	arquitecta->addComponent<Transform>(Vector2D(0, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
 	arquitecta->addComponent<Image>(&sdlutils().images().at("arquitecta"));
 	arquitecta->addComponent<Movimiento>();
@@ -145,8 +151,10 @@ void PlayState::createArquitecta() {
 }
 
 // BOMBA
-void PlayState::createBomba() {
+void PlayState::createBomba(Equipo c) {
 	Entity* bomba = mngr_->addEntity(RenderLayer::Personajes);
+	if (c == Primero) bomba->setGroup<Equipo_Rojo>(bomba);
+	else bomba->setGroup<Equipo_Azul>(bomba);
 	bomba->addComponent<Transform>(Vector2D(0, 2), Vector2D(), 50.0f, 50.0f, 0.0f);
 	bomba->addComponent<Image>(&sdlutils().images().at("bomba"));
 	bomba->addComponent<Movimiento>();
@@ -157,8 +165,10 @@ void PlayState::createBomba() {
 }
 
 // CAZADOR
-void PlayState::createCazador() {
+void PlayState::createCazador(Equipo c) {
 	Entity* cazador = mngr_->addEntity(RenderLayer::Personajes);
+	if (c == Primero) cazador->setGroup<Equipo_Rojo>(cazador);
+	else cazador->setGroup<Equipo_Azul>(cazador);
 	cazador->addComponent<Transform>(Vector2D(0, 3), Vector2D(), 50.0f, 50.0f, 0.0f);
 	cazador->addComponent<Image>(&sdlutils().images().at("cazador"));
 	cazador->addComponent<Movimiento>();
@@ -168,8 +178,10 @@ void PlayState::createCazador() {
 }
 
 // DRUIDA
-void PlayState::createDruida() {
+void PlayState::createDruida(Equipo c) {
 	Entity* druida = mngr_->addEntity(RenderLayer::Personajes);
+	if (c == Primero) druida->setGroup<Equipo_Rojo>(druida);
+	else druida->setGroup<Equipo_Azul>(druida);
 	druida->addComponent<Transform>(Vector2D(0, 4), Vector2D(), 50.0f, 50.0f, 0.0f);
 	druida->addComponent<Image>(&sdlutils().images().at("druida"));
 	druida->addComponent<Movimiento>();
@@ -179,8 +191,10 @@ void PlayState::createDruida() {
 }
 
 // ESQUELETO
-void PlayState::createEsqueleto() {
+void PlayState::createEsqueleto(Equipo c) {
 	Entity* esqueleto = mngr_->addEntity(RenderLayer::Personajes);
+	if (c == Primero) esqueleto->setGroup<Equipo_Rojo>(esqueleto);
+	else esqueleto->setGroup<Equipo_Azul>(esqueleto);
 	esqueleto->addComponent<Transform>(Vector2D(0, 5), Vector2D(), 50.0f, 50.0f, 0.0f);
 	esqueleto->addComponent<Image>(&sdlutils().images().at("esqueleto"));
 	esqueleto->addComponent<Movimiento>();
@@ -190,8 +204,10 @@ void PlayState::createEsqueleto() {
 }
 
 // GOLEM
-void PlayState::createGolem() {
+void PlayState::createGolem(Equipo c) {
 	Entity* golem = mngr_->addEntity(RenderLayer::Personajes);
+	if (c == Primero) golem->setGroup<Equipo_Rojo>(golem);
+	else golem->setGroup<Equipo_Azul>(golem);
 	golem->addComponent<Transform>(Vector2D(0, 6), Vector2D(), 50.0f, 50.0f, 0.0f);
 	golem->addComponent<Image>(&sdlutils().images().at("golem"));
 	golem->addComponent<Ability_Golem>();
@@ -201,8 +217,10 @@ void PlayState::createGolem() {
 }
 
 // KIRIN
-void PlayState::createKirin() {
+void PlayState::createKirin(Equipo c) {
 	Entity* kirin = mngr_->addEntity(RenderLayer::Personajes);
+	if (c == Primero) kirin->setGroup<Equipo_Rojo>(kirin);
+	else kirin->setGroup<Equipo_Azul>(kirin);
 	kirin->addComponent<Transform>(Vector2D(0, 7), Vector2D(), 50.0f, 50.0f, 0.0f);
 	kirin->addComponent<Image>(&sdlutils().images().at("monaguillo"));
 	kirin->addComponent<Movimiento>();
@@ -213,8 +231,10 @@ void PlayState::createKirin() {
 }
 
 // LOBO
-void PlayState::createLobo() {
+void PlayState::createLobo(Equipo c) {
 	Entity* lobo = mngr_->addEntity(RenderLayer::Personajes);
+	if (c == Primero) lobo->setGroup<Equipo_Rojo>(lobo);
+	else lobo->setGroup<Equipo_Azul>(lobo);
 	lobo->addComponent<Transform>(Vector2D(0, 8), Vector2D(), 50.0f, 50.0f, 0.0f);
 	lobo->addComponent<Image>(&sdlutils().images().at("lobo"));
 	lobo->addComponent<Movimiento>();
@@ -224,8 +244,10 @@ void PlayState::createLobo() {
 }
 
 // MONAGUILLO
-void PlayState::createMonaguillo() {
+void PlayState::createMonaguillo(Equipo c) {
 	Entity* monaguillo = mngr_->addEntity(RenderLayer::Personajes);
+	if (c == Primero) monaguillo->setGroup<Equipo_Rojo>(monaguillo);
+	else monaguillo->setGroup<Equipo_Azul>(monaguillo);
 	monaguillo->addComponent<Transform>(Vector2D(2, 0), Vector2D(), 50.0f, 50.0f, 0.0f);
 	monaguillo->addComponent<Image>(&sdlutils().images().at("monaguillo"));
 	monaguillo->addComponent<Movimiento>();
@@ -235,8 +257,10 @@ void PlayState::createMonaguillo() {
 }
 
 // PICARA
-void PlayState::createPicara() {
+void PlayState::createPicara(Equipo c) {
 	Entity* picara = mngr_->addEntity(RenderLayer::Personajes);
+	if (c == Primero) picara->setGroup<Equipo_Rojo>(picara);
+	else picara->setGroup<Equipo_Azul>(picara);
 	picara->addComponent<Transform>(Vector2D(1, 0), Vector2D(), 50.0f, 50.0f, 0.0f);
 	picara->addComponent<Image>(&sdlutils().images().at("picara"));
 	picara->addComponent<Movimiento>();
@@ -247,9 +271,16 @@ void PlayState::createPicara() {
 }
 
 // TANQUE
-void PlayState::createTanque() {
+void PlayState::createTanque(Equipo c) {
 	Entity* tanque = mngr_->addEntity(RenderLayer::Personajes);
-	tanque->addComponent<Transform>(Vector2D(1, 1),Vector2D(), 50.0f, 50.0f, 0.0f);
+	if (c == Primero) {
+		tanque->setGroup<Equipo_Rojo>(tanque);
+		tanque->addComponent<Transform>(Vector2D(1, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
+	}
+	else {
+		tanque->setGroup<Equipo_Azul>(tanque);
+		tanque->addComponent<Transform>(Vector2D(8, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
+	}
 	tanque->addComponent<Image>(&sdlutils().images().at("tanque"));
 	tanque->addComponent<Movimiento>();
 	tanque->addComponent<Health>(3);
@@ -258,8 +289,10 @@ void PlayState::createTanque() {
 }
 
 // VIKINGO
-void PlayState::createVikingo() {
+void PlayState::createVikingo(Equipo c) {
 	Entity* vikingo = mngr_->addEntity(RenderLayer::Personajes);
+	if (c == Primero) vikingo->setGroup<Equipo_Rojo>(vikingo);
+	else vikingo->setGroup<Equipo_Azul>(vikingo);
 	vikingo->addComponent<Transform>(Vector2D(1, 2), Vector2D(), 50.0f, 50.0f, 0.0f);
 	vikingo->addComponent<Image>(&sdlutils().images().at("vikingo"));
 	vikingo->addComponent<Movimiento>();
