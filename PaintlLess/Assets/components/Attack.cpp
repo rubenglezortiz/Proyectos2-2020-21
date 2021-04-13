@@ -1,4 +1,5 @@
 #include "Attack.h"
+#include "../game/PlayState.h"
 
 void Attack::init() {
 	tr_ = entity_->getComponent<Transform>();
@@ -9,16 +10,22 @@ void Attack::init() {
 }
 
 void Attack::update() {
-	attack();
+	if (entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero ||
+		entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) {
+
+		attack();
+
+	}
+
 }
 
 void Attack::attack() {
 	auto& pos = tr_->getPos();
 
-	if (ih().getMouseButtonState(ih().LEFT)) {
+	if (ih().getMouseButtonState(ih().LEFT) ) {
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
-		if (selected) {
+		if (selected ) {
 			//esto se debe hacer en movementshader
 			Vector2D cas = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
 			// Se tendría que hacer diferenciación entre el equipo del personaje.
@@ -27,11 +34,13 @@ void Attack::attack() {
 					mapa->getCharacter(cas)->getComponent<Health>()->hit(entity_->getComponent<Ability_Rogue>()->ataqueCritico());
 				else
 					mapa->getCharacter(cas)->getComponent<Health>()->hit(1);
+
+				playState->aumentarAcciones();
 			}
 			selected = false;
 			casillasAtaque.clear();
 		}
-		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
+		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && playState->getAcciones() > 0) {
 			selected = true;
 			attackShader();
 		}

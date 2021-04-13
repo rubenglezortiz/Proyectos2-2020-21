@@ -22,6 +22,8 @@ typedef unsigned int uint;
 enum Color { Azul, Verde, Rojo, Amarillo, Ninguno};
 enum TipoCasilla { Pintable, NoPintable, Base};
 
+class PlayState;
+
 struct Casilla
 {
 	Color color;
@@ -35,8 +37,10 @@ private:
 	int rows, cols;
 	int cellWidth, cellHeight; 
 	std::string level;
+	PlayState* playState;
+
 public:
-	GameMap(const string levelN);
+	GameMap(const string levelN, PlayState* playState);
 	virtual ~GameMap();
 	virtual void init();
 	void loadMap(const string levelName);

@@ -71,3 +71,10 @@ void Manager::render() {
 		}
 	}
 }
+
+
+void Manager::finTurno() {
+	auto n = entities_.size();
+	for (auto i = 0u; i < n; i++)
+		entities_[i]->finTurno();
+}

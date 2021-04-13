@@ -27,7 +27,7 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 	//Creación gamemap
 	auto* gameMap = mngr_->addEntity(RenderLayer::Fondo);
 
-	gameMap->addComponent<GameMap>("Assets/level1.txt");
+	gameMap->addComponent<GameMap>("Assets/level1.txt", this);
 	mngr_.get()->setHandler<Mapa>(gameMap);
 
 
@@ -149,7 +149,7 @@ void PlayState::createArquitecta(Equipo c) {
 	arquitecta->addComponent<Movimiento>(this);
 	arquitecta->addComponent<Ability_Architect>();
 	arquitecta->addComponent<Health>(3);
-	arquitecta->addComponent<Attack>();
+	arquitecta->addComponent<Attack>(this);
 	sdlutils().showCursor();
 }
 
@@ -163,7 +163,7 @@ void PlayState::createBomba(Equipo c) {
 	bomba->addComponent<Movimiento>(this);
 	bomba->addComponent<Ability_Bomb>();
 	bomba->addComponent<Health>(3);
-	bomba->addComponent<Attack>();
+	bomba->addComponent<Attack>(this);
 	sdlutils().showCursor();
 }
 
@@ -176,7 +176,7 @@ void PlayState::createCazador(Equipo c) {
 	cazador->addComponent<Image>(&sdlutils().images().at("cazador"));
 	cazador->addComponent<Movimiento>(this);
 	cazador->addComponent<Health>(3);
-	cazador->addComponent<Attack>();
+	cazador->addComponent<Attack>(this);
 	sdlutils().showCursor();
 }
 
@@ -189,7 +189,7 @@ void PlayState::createDruida(Equipo c) {
 	druida->addComponent<Image>(&sdlutils().images().at("druida"));
 	druida->addComponent<Movimiento>(this);
 	druida->addComponent<Health>(3);
-	druida->addComponent<Attack>();
+	druida->addComponent<Attack>(this);
 	sdlutils().showCursor();
 }
 
@@ -202,7 +202,7 @@ void PlayState::createEsqueleto(Equipo c) {
 	esqueleto->addComponent<Image>(&sdlutils().images().at("esqueleto"));
 	esqueleto->addComponent<Movimiento>(this);
 	esqueleto->addComponent<Health>(3);
-	esqueleto->addComponent<Attack>();
+	esqueleto->addComponent<Attack>(this);
 	sdlutils().showCursor();
 }
 
@@ -215,7 +215,7 @@ void PlayState::createGolem(Equipo c) {
 	golem->addComponent<Image>(&sdlutils().images().at("golem"));
 	golem->addComponent<Ability_Golem>();
 	golem->addComponent<Health>(3);
-	golem->addComponent<Attack>();
+	golem->addComponent<Attack>(this);
 	sdlutils().showCursor();
 }
 
@@ -228,7 +228,7 @@ void PlayState::createKirin(Equipo c) {
 	kirin->addComponent<Image>(&sdlutils().images().at("monaguillo"));
 	kirin->addComponent<Movimiento>(this);
 	kirin->addComponent<Health>(3);
-	kirin->addComponent<Attack>();
+	kirin->addComponent<Attack>(this);
 	kirin->addComponent<Ability_Kirin>();
 	sdlutils().showCursor();
 }
@@ -242,7 +242,7 @@ void PlayState::createLobo(Equipo c) {
 	lobo->addComponent<Image>(&sdlutils().images().at("lobo"));
 	lobo->addComponent<Movimiento>(this);
 	lobo->addComponent<Health>(3);
-	lobo->addComponent<Attack>();
+	lobo->addComponent<Attack>(this);
 	sdlutils().showCursor();
 }
 
@@ -255,7 +255,7 @@ void PlayState::createMonaguillo(Equipo c) {
 	monaguillo->addComponent<Image>(&sdlutils().images().at("monaguillo"));
 	monaguillo->addComponent<Movimiento>(this);
 	monaguillo->addComponent<Health>(3);
-	monaguillo->addComponent<Attack>();
+	monaguillo->addComponent<Attack>(this);
 	sdlutils().showCursor();
 }
 
@@ -269,7 +269,7 @@ void PlayState::createPicara(Equipo c) {
 	picara->addComponent<Movimiento>(this);
 	picara->addComponent<Health>(3);
 	picara->addComponent<Ability_Rogue>();
-	picara->addComponent<Attack>();
+	picara->addComponent<Attack>(this);
 	sdlutils().showCursor();
 }
 
@@ -287,7 +287,7 @@ void PlayState::createTanque(Equipo c) {
 	tanque->addComponent<Image>(&sdlutils().images().at("tanque"));
 	tanque->addComponent<Movimiento>(this);
 	tanque->addComponent<Health>(3);
-	tanque->addComponent<Attack>();
+	tanque->addComponent<Attack>(this);
 	sdlutils().showCursor();
 }
 
@@ -301,7 +301,7 @@ void PlayState::createVikingo(Equipo c) {
 	vikingo->addComponent<Movimiento>(this);
 	vikingo->addComponent<Health>(3);
 	vikingo->addComponent<Ability_Viking>();
-	vikingo->addComponent<Attack>();
+	vikingo->addComponent<Attack>(this);
 	sdlutils().showCursor();
 }
 
@@ -318,6 +318,7 @@ void PlayState::pasaTurno() {
 	turnosActuales++;
 	if (turnosActuales > MAX_TURNOS*2) cout << "fin de partida\n";
 
+	mngr_->finTurno();
 	cout << "Turno pasado\n";
 
 }

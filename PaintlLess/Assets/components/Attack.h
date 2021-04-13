@@ -11,6 +11,8 @@
 /*
 * Attack gestiona la habilidad de ataque básico de todos los personajes.
 */
+
+class PlayState;
 class Attack : public Component {
 private:
 	bool selected;
@@ -20,9 +22,12 @@ private:
 	Texture* tex_;
 	vector<Vector2D> casillasAtaque;
 
+	PlayState* playState;
+
+
 public:
-	Attack(int r = 1) :
-		range(r), selected(false), cellWidth(0), cellHeight(0), tr_(nullptr), mapa(nullptr), tex_(nullptr)
+	Attack(PlayState* playState, int r = 1) :
+		range(r), selected(false), cellWidth(0), cellHeight(0), tr_(nullptr), mapa(nullptr), tex_(nullptr), playState(playState)
 	{}
 	~Attack() {}
 

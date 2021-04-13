@@ -46,6 +46,7 @@ public:
 	void update();
 	void render();
 	void refresh();
+	void finTurno();
 
 private:
 

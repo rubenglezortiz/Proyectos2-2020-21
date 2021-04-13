@@ -6,10 +6,11 @@
 #include <tmxlite/TileLayer.hpp>
 #include "../game/Game.h"
 #include "./PointOnImage.h"
+#include "../game/PlayState.h"
 
 using namespace std;
 
-GameMap::GameMap(const string levelN) {
+GameMap::GameMap(const string levelN, PlayState* playState): playState(playState) {
 	level = levelN;
 }
 
@@ -188,10 +189,14 @@ bool GameMap::ataquePosible(Vector2D cas) {
 	if (!casillaValida(cas)) return false;
 	int x = cas.getX(); int y = cas.getY();
 	// Ha de hacer distinción entre personaje amigo y enemigo.
-	bool equipo = false;
-	if (cells[y][x].character != nullptr)
-		equipo = cells[y][x].character->hasGroup<Equipo_Azul>();
-	return equipo;
+	if (cells[y][x].character != nullptr) {
+		if (playState->getTurno() == Primero)
+			return cells[y][x].character->hasGroup<Equipo_Rojo>();
+		else
+			return cells[y][x].character->hasGroup<Equipo_Azul>();
+	}
+	else return false;
+		
 }
 
 //GameMap GameMap::CreaMapa(string filename) {

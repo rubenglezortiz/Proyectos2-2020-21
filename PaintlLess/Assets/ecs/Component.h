@@ -30,6 +30,11 @@ public:
 	virtual void render() {
 	}
 
+
+	virtual void finTurno() {
+	}
+
+
 protected:
 	Entity *entity_;
 

@@ -121,6 +121,13 @@ public:
 		}
 	}
 
+	void finTurno() {
+		std::size_t n = components_.size();
+		for (auto i = 0u; i < n; i++) {
+			components_[i]->finTurno();
+		}
+	}
+
 private:
 
 	bool active_;
