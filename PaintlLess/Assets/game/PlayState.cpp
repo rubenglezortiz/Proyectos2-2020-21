@@ -100,9 +100,12 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 			}
 		}
 		
-		createTanque(Segundo);
 		cout << i;
+
 	}
+
+	createTanque(Segundo);
+	//pasaTurno();
 
 
 	//Entity* kirin2 = mngr_->addEntity(RenderLayer::Personajes);
@@ -130,7 +133,7 @@ void PlayState::createAlquimista(Equipo c) {
 	else alquimista->setGroup<Equipo_Azul>(alquimista);
 	alquimista->addComponent<Transform>(Vector2D(0, 0), Vector2D(), 50.0f, 50.0f, 0.0f);
 	alquimista->addComponent<Image>(&sdlutils().images().at("alquimista"));
-	alquimista->addComponent<Movimiento>();
+	alquimista->addComponent<Movimiento>(this);
 	alquimista->addComponent<Health>(3);
 	sdlutils().showCursor();
 }
@@ -143,7 +146,7 @@ void PlayState::createArquitecta(Equipo c) {
 	else arquitecta->setGroup<Equipo_Azul>(arquitecta);
 	arquitecta->addComponent<Transform>(Vector2D(0, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
 	arquitecta->addComponent<Image>(&sdlutils().images().at("arquitecta"));
-	arquitecta->addComponent<Movimiento>();
+	arquitecta->addComponent<Movimiento>(this);
 	arquitecta->addComponent<Ability_Architect>();
 	arquitecta->addComponent<Health>(3);
 	arquitecta->addComponent<Attack>();
@@ -157,7 +160,7 @@ void PlayState::createBomba(Equipo c) {
 	else bomba->setGroup<Equipo_Azul>(bomba);
 	bomba->addComponent<Transform>(Vector2D(0, 2), Vector2D(), 50.0f, 50.0f, 0.0f);
 	bomba->addComponent<Image>(&sdlutils().images().at("bomba"));
-	bomba->addComponent<Movimiento>();
+	bomba->addComponent<Movimiento>(this);
 	bomba->addComponent<Ability_Bomb>();
 	bomba->addComponent<Health>(3);
 	bomba->addComponent<Attack>();
@@ -171,7 +174,7 @@ void PlayState::createCazador(Equipo c) {
 	else cazador->setGroup<Equipo_Azul>(cazador);
 	cazador->addComponent<Transform>(Vector2D(0, 3), Vector2D(), 50.0f, 50.0f, 0.0f);
 	cazador->addComponent<Image>(&sdlutils().images().at("cazador"));
-	cazador->addComponent<Movimiento>();
+	cazador->addComponent<Movimiento>(this);
 	cazador->addComponent<Health>(3);
 	cazador->addComponent<Attack>();
 	sdlutils().showCursor();
@@ -184,7 +187,7 @@ void PlayState::createDruida(Equipo c) {
 	else druida->setGroup<Equipo_Azul>(druida);
 	druida->addComponent<Transform>(Vector2D(0, 4), Vector2D(), 50.0f, 50.0f, 0.0f);
 	druida->addComponent<Image>(&sdlutils().images().at("druida"));
-	druida->addComponent<Movimiento>();
+	druida->addComponent<Movimiento>(this);
 	druida->addComponent<Health>(3);
 	druida->addComponent<Attack>();
 	sdlutils().showCursor();
@@ -197,7 +200,7 @@ void PlayState::createEsqueleto(Equipo c) {
 	else esqueleto->setGroup<Equipo_Azul>(esqueleto);
 	esqueleto->addComponent<Transform>(Vector2D(0, 5), Vector2D(), 50.0f, 50.0f, 0.0f);
 	esqueleto->addComponent<Image>(&sdlutils().images().at("esqueleto"));
-	esqueleto->addComponent<Movimiento>();
+	esqueleto->addComponent<Movimiento>(this);
 	esqueleto->addComponent<Health>(3);
 	esqueleto->addComponent<Attack>();
 	sdlutils().showCursor();
@@ -223,7 +226,7 @@ void PlayState::createKirin(Equipo c) {
 	else kirin->setGroup<Equipo_Azul>(kirin);
 	kirin->addComponent<Transform>(Vector2D(0, 7), Vector2D(), 50.0f, 50.0f, 0.0f);
 	kirin->addComponent<Image>(&sdlutils().images().at("monaguillo"));
-	kirin->addComponent<Movimiento>();
+	kirin->addComponent<Movimiento>(this);
 	kirin->addComponent<Health>(3);
 	kirin->addComponent<Attack>();
 	kirin->addComponent<Ability_Kirin>();
@@ -237,7 +240,7 @@ void PlayState::createLobo(Equipo c) {
 	else lobo->setGroup<Equipo_Azul>(lobo);
 	lobo->addComponent<Transform>(Vector2D(0, 8), Vector2D(), 50.0f, 50.0f, 0.0f);
 	lobo->addComponent<Image>(&sdlutils().images().at("lobo"));
-	lobo->addComponent<Movimiento>();
+	lobo->addComponent<Movimiento>(this);
 	lobo->addComponent<Health>(3);
 	lobo->addComponent<Attack>();
 	sdlutils().showCursor();
@@ -250,7 +253,7 @@ void PlayState::createMonaguillo(Equipo c) {
 	else monaguillo->setGroup<Equipo_Azul>(monaguillo);
 	monaguillo->addComponent<Transform>(Vector2D(2, 0), Vector2D(), 50.0f, 50.0f, 0.0f);
 	monaguillo->addComponent<Image>(&sdlutils().images().at("monaguillo"));
-	monaguillo->addComponent<Movimiento>();
+	monaguillo->addComponent<Movimiento>(this);
 	monaguillo->addComponent<Health>(3);
 	monaguillo->addComponent<Attack>();
 	sdlutils().showCursor();
@@ -263,7 +266,7 @@ void PlayState::createPicara(Equipo c) {
 	else picara->setGroup<Equipo_Azul>(picara);
 	picara->addComponent<Transform>(Vector2D(1, 0), Vector2D(), 50.0f, 50.0f, 0.0f);
 	picara->addComponent<Image>(&sdlutils().images().at("picara"));
-	picara->addComponent<Movimiento>();
+	picara->addComponent<Movimiento>(this);
 	picara->addComponent<Health>(3);
 	picara->addComponent<Ability_Rogue>();
 	picara->addComponent<Attack>();
@@ -282,7 +285,7 @@ void PlayState::createTanque(Equipo c) {
 		tanque->addComponent<Transform>(Vector2D(8, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
 	}
 	tanque->addComponent<Image>(&sdlutils().images().at("tanque"));
-	tanque->addComponent<Movimiento>();
+	tanque->addComponent<Movimiento>(this);
 	tanque->addComponent<Health>(3);
 	tanque->addComponent<Attack>();
 	sdlutils().showCursor();
@@ -295,9 +298,26 @@ void PlayState::createVikingo(Equipo c) {
 	else vikingo->setGroup<Equipo_Azul>(vikingo);
 	vikingo->addComponent<Transform>(Vector2D(1, 2), Vector2D(), 50.0f, 50.0f, 0.0f);
 	vikingo->addComponent<Image>(&sdlutils().images().at("vikingo"));
-	vikingo->addComponent<Movimiento>();
+	vikingo->addComponent<Movimiento>(this);
 	vikingo->addComponent<Health>(3);
 	vikingo->addComponent<Ability_Viking>();
 	vikingo->addComponent<Attack>();
 	sdlutils().showCursor();
+}
+
+
+
+
+
+
+void PlayState::pasaTurno() {
+	accionesPorTurno = MAX_ACCIONES;
+	if (jugadorActual == Primero)jugadorActual = Segundo;
+	else jugadorActual = Primero;
+	
+	turnosActuales++;
+	if (turnosActuales > MAX_TURNOS*2) cout << "fin de partida\n";
+
+	cout << "Turno pasado\n";
+
 }

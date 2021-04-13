@@ -7,6 +7,9 @@
 #include "../game/Values.h"
 #include "../sdlutils/InputHandler.h"
 
+
+
+class PlayState;
 class MovementShader : public Component {
 public:
 	struct CasillaMov {
@@ -39,5 +42,6 @@ private:
 	Vector2D position;
 	Texture* tex_;
 	SDL_Rect src_;
+
 };
 

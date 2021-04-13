@@ -10,7 +10,7 @@
 
 class Movimiento : public Component {
 public:
-	Movimiento() : tr_(nullptr), mapa(nullptr), selected(false), movShader(nullptr), cellWidth(0), cellHeight(0) {}
+	Movimiento(PlayState* playState) : tr_(nullptr), mapa(nullptr), selected(false), movShader(nullptr), cellWidth(0), cellHeight(0), playState(playState) {}
 	virtual ~Movimiento() {};
 
 
@@ -43,4 +43,7 @@ private:
 	int cellHeight;
 	void initializeCasillasChecked();
 	void resetCasillasChecked();
+	PlayState* playState = nullptr;
+
+
 };
