@@ -18,6 +18,20 @@ Manager::~Manager() {
 }
 
 void Manager::refresh() {
+	for (std::vector<Entity*> e : renderLayers)
+		e.erase(std::remove_if( //
+			e.begin(), //
+			e.end(), //
+			[](const Entity* i) { //
+				if (i->isActive()) {
+					return false;
+				}
+				else {
+					return true;
+				}
+			}), //
+			e.end());
+
 	// remove dead entities from the list of entities
 	entities_.erase( //
 		std::remove_if( //
@@ -33,20 +47,6 @@ void Manager::refresh() {
 				}
 			}), //
 		entities_.end());
-
-	for (std::vector<Entity*> e : renderLayers)
-		e.erase(std::remove_if( //
-			e.begin(), //
-			e.end(), //
-			[](const Entity* i) { //
-				if (i->isActive()) {
-					return false;
-				}
-				else {
-					return true;
-				}
-			}), //
-			e.end());
 }
 
 //void Manager::refresh() {
