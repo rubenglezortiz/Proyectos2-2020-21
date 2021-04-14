@@ -143,6 +143,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assets\components\Ability_Bomb.cpp" />
+    <ClCompile Include="Assets\components\Ability_Creeper.cpp" />
+    <ClCompile Include="Assets\components\Ability_Druid.cpp" />
     <ClCompile Include="Assets\components\Ability_Golem.cpp" />
     <ClCompile Include="Assets\components\Ability_Kirin.cpp" />
     <ClCompile Include="Assets\components\Ability_Rogue.cpp" />
@@ -193,6 +195,8 @@
   <ItemGroup>
     <ClInclude Include="Assets\components\Ability_Architect.h" />
     <ClInclude Include="Assets\components\Ability_Bomb.h" />
+    <ClInclude Include="Assets\components\Ability_Creeper.h" />
+    <ClInclude Include="Assets\components\Ability_Druid.h" />
     <ClInclude Include="Assets\components\Ability_Golem.h" />
     <ClInclude Include="Assets\components\Ability_Kirin.h" />
     <ClInclude Include="Assets\components\Ability_Rogue.h" />

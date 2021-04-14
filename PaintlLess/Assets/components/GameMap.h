@@ -50,6 +50,7 @@ public:
 	void removeCharacter(const Vector2D& cas);
 	bool casillaValida(const Vector2D& cas);
 	bool movimientoPosible(Vector2D cas);
+	bool movimientoPosibleEnredadera(Vector2D cas);
 	bool ataquePosible(Vector2D cas);
 	Color getColor(Vector2D cas);
 	void render();

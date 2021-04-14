@@ -17,6 +17,7 @@
 #include "../components/Ability_Kirin.h"
 #include "../components/Ability_Rogue.h"
 #include "../components/Ability_Viking.h"
+#include "../components/Ability_Druid.h"
 #include "../components/Attack.h"
 
 #include "../components/MovementShader.h"
@@ -176,7 +177,7 @@ void PlayState::createCazador(Equipo c) {
 	cazador->addComponent<Image>(&sdlutils().images().at("cazador"));
 	cazador->addComponent<Movimiento>(this);
 	cazador->addComponent<Health>(3);
-	cazador->addComponent<Attack>(this);
+	cazador->addComponent<Attack>(this,2);
 	sdlutils().showCursor();
 }
 
@@ -188,8 +189,8 @@ void PlayState::createDruida(Equipo c) {
 	druida->addComponent<Transform>(Vector2D(0, 4), Vector2D(), 50.0f, 50.0f, 0.0f);
 	druida->addComponent<Image>(&sdlutils().images().at("druida"));
 	druida->addComponent<Movimiento>(this);
-	druida->addComponent<Health>(3);
-	druida->addComponent<Attack>(this);
+	druida->addComponent<Health>(3);	
+	druida->addComponent<Ability_Druid>(this,(int)c);
 	sdlutils().showCursor();
 }
 
@@ -304,7 +305,6 @@ void PlayState::createVikingo(Equipo c) {
 	vikingo->addComponent<Attack>(this);
 	sdlutils().showCursor();
 }
-
 
 
 

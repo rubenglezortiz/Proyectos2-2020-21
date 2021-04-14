@@ -15,6 +15,7 @@
 	{ "id" : "life",       "file" : "resources/images/sprites/life.png" },
     { "id" : "tileset",    "file" : "resources/images/sprites/tileset.png" },
 	{ "id" : "wall",       "file" : "resources/images/sprites/wall.png" },
+	{ "id" : "enredadera", "file" : "resources/images/sprites/enredaderas.png" },
 
     { "id" : "tanque",     "file" : "resources/images/sprites/personajes/tanque.png"},
     { "id" : "esqueleto",  "file" : "resourceS/images/sprites/personajes/esqueleto.png"},

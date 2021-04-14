@@ -175,6 +175,15 @@ bool GameMap::movimientoPosible(Vector2D cas) {
 	return (cells[y][x].tipoCasilla != NoPintable && cells[y][x].character == nullptr);
 }
 
+bool GameMap::movimientoPosibleEnredadera(Vector2D cas) {
+	if (!casillaValida(cas))return false;
+	int x = cas.getX(); int y = cas.getY();
+	if (cells[y][x].character == nullptr)
+		return cells[y][x].tipoCasilla != NoPintable;
+	else 
+		return (cells[y][x].character->hasComponent<Movimiento>() || cells[y][x].character->hasComponent<Attack>() && cells[y][x].tipoCasilla != NoPintable);	
+}
+
 
 Color GameMap::getColor(Vector2D cas) {
 	return cells[(int)cas.getY()][(int)cas.getX()].color;
