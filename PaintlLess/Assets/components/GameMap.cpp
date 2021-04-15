@@ -72,6 +72,7 @@ void GameMap::loadMap(const string levelName) {
 							break;
 						}
 						cells[i][j].character = nullptr;
+						cells[i][j].obstaculo = nullptr;
 					}
 				}
 			}
@@ -163,16 +164,23 @@ void GameMap::setCharacter(const Vector2D& cas, Entity* e) {
 	cells[(int)cas.getY()][(int)cas.getX()].character = e;
 }
 
+void GameMap::setObstaculo(const Vector2D& cas, Entity* e) {
+	cells[(int)cas.getY()][(int)cas.getX()].obstaculo = e;
+}
+
 void GameMap::removeCharacter(const Vector2D& cas) {
 	cells[(int)cas.getY()][(int)cas.getX()].character = nullptr;
 }
 
+void GameMap::removeObstaculo(const Vector2D& cas) {
+	cells[(int)cas.getY()][(int)cas.getX()].obstaculo = nullptr;
+}
 
 // Salta excepción al no encontrar 4 casillas en el borde inferior.
 bool GameMap::movimientoPosible(Vector2D cas) {
 	if (!casillaValida(cas))return false;
 	int x = cas.getX(); int y = cas.getY();
-	return (cells[y][x].tipoCasilla != NoPintable && cells[y][x].character == nullptr);
+	return (cells[y][x].tipoCasilla != NoPintable && cells[y][x].character == nullptr && cells[y][x].obstaculo == nullptr);
 }
 
 bool GameMap::movimientoPosibleEnredadera(Vector2D cas) {
@@ -183,7 +191,6 @@ bool GameMap::movimientoPosibleEnredadera(Vector2D cas) {
 	else 
 		return (cells[y][x].character->hasComponent<Movimiento>() || cells[y][x].character->hasComponent<Attack>() && cells[y][x].tipoCasilla != NoPintable);	
 }
-
 
 Color GameMap::getColor(Vector2D cas) {
 	return cells[(int)cas.getY()][(int)cas.getX()].color;
@@ -203,9 +210,14 @@ bool GameMap::ataquePosible(Vector2D cas) {
 			return cells[y][x].character->hasGroup<Equipo_Rojo>();
 		else
 			return cells[y][x].character->hasGroup<Equipo_Azul>();
+	}	
+	else if (cells[y][x].obstaculo != nullptr) {
+		if (playState->getTurno() == Primero)
+			return cells[y][x].obstaculo->hasGroup<Equipo_Rojo>();
+		else
+			return cells[y][x].obstaculo->hasGroup<Equipo_Azul>();
 	}
-	else return false;
-		
+	else return false;		
 }
 
 //GameMap GameMap::CreaMapa(string filename) {

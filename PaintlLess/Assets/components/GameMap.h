@@ -29,6 +29,7 @@ struct Casilla
 	Color color;
 	TipoCasilla tipoCasilla;
 	Entity* character;
+	Entity* obstaculo;
 };
 
 class GameMap : public Component {
@@ -47,7 +48,9 @@ public:
 	void setColor(const Vector2D& cas, Color color);
 	void setEstado(const Vector2D& cas, TipoCasilla tipo);
 	void setCharacter(const Vector2D& cas, Entity* e);
+	void setObstaculo(const Vector2D& cas, Entity* e);
 	void removeCharacter(const Vector2D& cas);
+	void removeObstaculo(const Vector2D& cas);
 	bool casillaValida(const Vector2D& cas);
 	bool movimientoPosible(Vector2D cas);
 	bool movimientoPosibleEnredadera(Vector2D cas);
@@ -59,6 +62,7 @@ public:
 	int getCellWidth() const { return cellWidth; };
 	int getCellHeight() const { return cellHeight; };
 	Entity* getCharacter(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].character; }
+	Entity* getObstaculo(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].obstaculo; }
 	TipoCasilla getTipoCasilla(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].tipoCasilla; }
 
 	Vector2D MapCoordsToSDLPoint(Vector2D coords) const { //Pasar de coordenadas del mapa a pixeles

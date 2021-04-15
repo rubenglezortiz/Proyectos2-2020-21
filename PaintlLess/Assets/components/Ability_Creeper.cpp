@@ -7,14 +7,15 @@ void Ability_Creeper::init() {
 
 void Ability_Creeper::finTurno()
 {
-	cout << "LFC: "<< lifeCreeper << endl;
 	lifeCreeper -= 1;
-	if (lifeCreeper < 0)
+	if (lifeCreeper < 0) {
+		mapa->removeObstaculo(mapa->SDLPointToMapCoords(tr_->getPos()));
 		entity_->setActive(false);
-	else {
-		auto* e = mapa->getCharacter(mapa->SDLPointToMapCoords(tr_->getPos()));	
-		if (e != nullptr && equip == 0 && e->hasGroup<Equipo_Azul>() || equip == 1 && e->hasGroup<Equipo_Rojo>()) {
-			e->getComponent<Health>()->hit(1);
-		}					
 	}
-}		
+	else {
+		auto* e = mapa->getCharacter(mapa->SDLPointToMapCoords(tr_->getPos()));			// E.Rojo == 0 - E.Azul == 1
+		if (e != nullptr && (equip == 0 && e->hasGroup<Equipo_Azul>()) || (equip == 1 && e->hasGroup<Equipo_Rojo>())) {
+			e->getComponent<Health>()->hit(1);
+		}
+	}
+}

@@ -34,6 +34,7 @@ public:
 	void init() override;
 	void render() override;
 	void update() override;
+	void finTurno() override;
 	// Método que detecta los clicks y gestiona el ataque.
 	void attack();
 	// Método que detecta las casillas que se pueden atacar y renderiza.

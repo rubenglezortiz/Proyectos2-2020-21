@@ -3,14 +3,15 @@
 void Health::init() {
     tr = entity_->getComponent<Transform>();
     mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
-    mapa->setCharacter(mapa->SDLPointToMapCoords(tr->getPos()), entity_); //Poner en la casilla la entidad
+    
     //setLives();
 }
 
 void Health::hit(int damage) {
     lives -= damage;
     if (lives <= 0) {
-        mapa->removeCharacter(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos())); //Quitar la entidad muerta
+        mapa->removeCharacter(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos())); //Quitar la entidad muerta		
+        mapa->removeObstaculo(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos()));
         if (entity_->getComponent<Ability_Golem>() != nullptr) {    //Deja muro si es el golem
              entity_->getComponent<Ability_Golem>()->generateWall();
         }

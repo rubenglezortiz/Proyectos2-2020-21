@@ -13,9 +13,8 @@ private:
 	int lifeCreeper; //los turnos que aguanta
 	int equip;
 
-
 public:
-	Ability_Creeper(int e) : mapa(nullptr), tr_(nullptr), lifeCreeper(4), equip(e){}
+	Ability_Creeper(int e) : mapa(nullptr), tr_(nullptr), lifeCreeper(3), equip(e){}
 	~Ability_Creeper() {}
 
 	void init() override;

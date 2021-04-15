@@ -19,6 +19,11 @@ void Attack::update() {
 
 }
 
+void Attack::finTurno()
+{
+	casillasAtaque.clear();
+}
+
 void Attack::attack() {
 	auto& pos = tr_->getPos();
 
@@ -32,8 +37,14 @@ void Attack::attack() {
 			if (canAttack(cas)) {
 				if (entity_->getComponent<Ability_Rogue>() != nullptr)
 					mapa->getCharacter(cas)->getComponent<Health>()->hit(entity_->getComponent<Ability_Rogue>()->ataqueCritico());
-				else
-					mapa->getCharacter(cas)->getComponent<Health>()->hit(1);
+				else {
+					auto* mCha = mapa->getCharacter(cas);
+					if(mCha != nullptr)
+						mapa->getCharacter(cas)->getComponent<Health>()->hit(1);
+					auto* mObs = mapa->getObstaculo(cas);
+					if(mObs != nullptr)
+						mapa->getObstaculo(cas)->getComponent<Health>()->hit(1);
+				}				
 
 				playState->aumentarAcciones();
 			}

@@ -9,7 +9,7 @@ using namespace std;
 */
 
 enum Equipo { Primero, Segundo };
-
+class GameMap;
 class PlayState : public GameState
 {
 
@@ -19,6 +19,7 @@ private:
 	int accionesPorTurno = MAX_ACCIONES, turnosActuales = 0;
 	int mana;
 	Equipo jugadorActual = Segundo;
+	GameMap* mapa;
 public:
 	// Constructora.
 	PlayState(GameStateMachine* gsm, vector<bool> charss);
@@ -41,15 +42,10 @@ public:
 	void createPicara(Equipo c);
 	void createVikingo(Equipo c);
 
-
-
-
+	
 	void pasaTurno();
 	Equipo getTurno() const { return jugadorActual; }
 
 	void aumentarAcciones() { accionesPorTurno--; };
-	int getAcciones() const { return accionesPorTurno; }
-	
-
-	
+	int getAcciones() const { return accionesPorTurno; }	
 };

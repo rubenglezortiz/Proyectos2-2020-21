@@ -16,6 +16,7 @@ public:
 
 	void init() override;
 	void update() override;
+	void finTurno() override;
 
 	//Vector2D MapCoordsToSDLPoint(Vector2D coords) const { //Pasar de coordenadas del mapa a pixeles
 	//	Vector2D p{ (coords.getX() * cellWidth) , (coords.getY() * cellHeight)/* + DESPL*/ };

@@ -42,6 +42,4 @@ private:
 	Vector2D position;
 	Texture* tex_;
 	SDL_Rect src_;
-
 };
-
