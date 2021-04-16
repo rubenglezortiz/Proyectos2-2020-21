@@ -6,13 +6,14 @@
 
 class Ability_Architect;
 class Ability_Bomb;
+class Ability_Creeper;
+class Ability_Druid;
 class Ability_Golem;
 class Ability_Kirin;
 class Ability_Rogue;
 class Ability_Viking;
-class Ability_Druid;
-class Ability_Creeper;
 class Attack;
+class DeckSpawn;
 class GameMap;
 class Health;
 class Image;
@@ -25,13 +26,14 @@ class Transform;
 #define _CMPS_LIST_  \
 	Ability_Architect   ,  \
 	Ability_Bomb		,  \
+	Ability_Creeper     ,  \
+	Ability_Druid       ,  \
 	Ability_Golem		,  \
 	Ability_Kirin		,  \
 	Ability_Rogue	    ,  \
 	Ability_Viking      ,  \
-	Ability_Druid       ,  \
-	Ability_Creeper     ,  \
 	Attack				,  \
+	DeckSpawn		    ,  \
 	GameMap				,  \
 	Health              ,  \
 	Image				,  \

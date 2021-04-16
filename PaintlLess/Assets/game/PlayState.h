@@ -26,6 +26,8 @@ public:
 	// Destructora.
 	virtual ~PlayState();
 
+	// Método que crea el mazo.
+	void createMazo(int n, int i);
 
 	// Métodos que crean a los personajes.
 	void createAlquimista(Equipo c);
@@ -48,4 +50,5 @@ public:
 
 	void aumentarAcciones() { accionesPorTurno--; };
 	int getAcciones() const { return accionesPorTurno; }	
+
 };

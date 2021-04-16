@@ -19,6 +19,7 @@
 #include "../components/Ability_Viking.h"
 #include "../components/Ability_Druid.h"
 #include "../components/Attack.h"
+#include "../components/DeckSpawn.h"
 
 #include "../components/MovementShader.h"
 #include "GameStateMachine.h"
@@ -41,70 +42,81 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 
 	//boardManager->getComponent<MovementShader>()->getValues();
 
-
+	int x = 2;
 	// Crea a los personajes según el vector de personajes que ha recibido.
 	for (int i = 0; i < charss.size(); ++i) {
 		if (charss[i]) {
 			switch (i) {
 			case Alquimista:
 				createAlquimista(Primero);
+				//createMazo(Alquimista, x);
 				cout << "alquimista";
 				break;
 			case Arquitecta:
 				createArquitecta(Primero);
+				//createMazo(Arquitecta, x);
 				cout << "arquitecta";
 				break;
 			case Bomba:
 				createBomba(Primero);
+				//createMazo(Bomba, x);
 				cout << "bomba";
 				break;
 			case Cazador:
 				createCazador(Primero);
+				//createMazo(Cazador, x);
 				cout << "cazador";
 				break;
 			case Druida:
 				createDruida(Primero);
+				//createMazo(Druida, x);
 				cout << "druida";
 				break;
 			case Esqueleto:
 				createEsqueleto(Primero);
+				//createMazo(Esqueleto, x);
 				cout << "esqueleto";
 				break;
 			case Golem:
 				createGolem(Primero);
+				//createMazo(Golem, x);
 				cout << "golem";
 				break;
 			case Kirin:
 				createKirin(Primero);
+				//createMazo(Kirin, x);
 				cout << "kirin";
 				break;
 			case Lobo:
 				createLobo(Primero);
+				//createMazo(Lobo, x);
 				cout << "lobo";
 				break;
 			case Monaguillo:
 				createMonaguillo(Primero);
+				//createMazo(Monaguillo, x);
 				cout << "monaguillo";
 				break;
 			case Picara:
 				createPicara(Primero);
+				//createMazo(Picara, x);
 				cout << "picara";
 				break;
 			case Tanque:
 				createTanque(Primero);
+				//createMazo(Tanque, x);
 				cout << "tanque";
 				break;
 			case Vikingo:
 				createVikingo(Primero);
+				//createMazo(Vikingo, x);
 				cout << "vikingo";
 				break;
 			}
+			x++;
 		}
-
 		cout << i;
-
 	}
-
 	createTanque(Segundo);
 	sdlutils().showCursor();
 	//pasaTurno();
@@ -128,16 +140,66 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 
 PlayState::~PlayState() {}
 
+void PlayState::createMazo(int n, int i) {
+		auto* boton = mngr_->addEntity(RenderLayer::Interfaz);
+		boton->addComponent<Transform>(Vector2D(i, sdlutils().height() / mapa->getCellHeight()), mapa->getCellWidth(), mapa->getCellHeight());
+		
+		switch (n) {
+		case Alquimista: 
+			boton->addComponent<Image>(&sdlutils().images().at("alquimistaSP"));
+			break;
+		case Arquitecta:
+			boton->addComponent<Image>(&sdlutils().images().at("arquitectaSP"));
+			break;
+		case Bomba:
+			boton->addComponent<Image>(&sdlutils().images().at("bombaSP"));
+			break;
+		case Cazador:
+			boton->addComponent<Image>(&sdlutils().images().at("cazadorSP"));
+			break;
+		case Druida:
+			boton->addComponent<Image>(&sdlutils().images().at("druidaSP"));
+			break;
+		case Esqueleto:
+			boton->addComponent<Image>(&sdlutils().images().at("esqueletoSP"));
+			break;
+		case Golem:
+			boton->addComponent<Image>(&sdlutils().images().at("golemSP"));
+			break;
+		case Kirin:
+			boton->addComponent<Image>(&sdlutils().images().at("monaguilloSP"));
+			break;
+		case Lobo:
+			boton->addComponent<Image>(&sdlutils().images().at("loboSP"));
+			break;
+		case Monaguillo:
+			boton->addComponent<Image>(&sdlutils().images().at("monaguilloSP"));
+			break;
+		case Picara:
+			boton->addComponent<Image>(&sdlutils().images().at("picaraSP"));
+			break;
+		case Tanque:
+			boton->addComponent<Image>(&sdlutils().images().at("tanqueSP"));
+			break;
+		case Vikingo:
+			boton->addComponent<Image>(&sdlutils().images().at("vikingoSP"));
+			break;
+		}
+	
+}
+
 // ALQUIMISTA
 void PlayState::createAlquimista(Equipo c) {
-	Entity* alquimista = mngr_->addEntity(RenderLayer::Personajes);
-	if (c == Primero) alquimista->setGroup<Equipo_Rojo>(alquimista);
-	else alquimista->setGroup<Equipo_Azul>(alquimista);
-	auto t = alquimista->addComponent<Transform>(Vector2D(0, 0), Vector2D(), 50.0f, 50.0f, 0.0f);
-	alquimista->addComponent<Image>(&sdlutils().images().at("alquimista"));
-	alquimista->addComponent<Movimiento>(this);
-	alquimista->addComponent<Health>(3);
-	mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), alquimista);
+	Entity* arquitecta = mngr_->addEntity(RenderLayer::Personajes);
+	if (c == Primero) arquitecta->setGroup<Equipo_Rojo>(arquitecta);
+	else arquitecta->setGroup<Equipo_Azul>(arquitecta);
+	auto t = arquitecta->addComponent<Transform>(Vector2D(0, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
+	arquitecta->addComponent<Image>(&sdlutils().images().at("arquitecta"));
+	arquitecta->addComponent<Movimiento>(this);
+	arquitecta->addComponent<Ability_Architect>();
+	arquitecta->addComponent<Health>(3);
+	arquitecta->addComponent<Attack>(this);
+	mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), arquitecta);
 }
 
 // ARQUITECTA

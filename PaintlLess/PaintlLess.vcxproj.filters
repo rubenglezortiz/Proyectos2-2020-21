@@ -201,6 +201,9 @@
     <ClCompile Include="Assets\components\Ability_Creeper.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\components\DeckSpawn.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\game\ecs_defs.h">
@@ -355,6 +358,9 @@
     </ClInclude>
     <ClInclude Include="Assets\components\Ability_Creeper.h">
       <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\DeckSpawn.h">
+      <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
