@@ -1,16 +1,17 @@
 #include "DeckSpawn.h"
 #include "Ability_Architect.h"
 #include "Ability_Bomb.h"
+#include "Ability_Druid.h"
 #include "Ability_Golem.h"
 #include "Ability_Kirin.h"
+#include "Ability_Priest.h"
 #include "Ability_Rogue.h"
 #include "Ability_Viking.h"
-#include "Ability_Druid.h"
+#include "Attack.h"
 #include "GameMap.h"
+#include "Health.h"
 #include "Image.h"
 #include "Movimiento.h"
-#include "Health.h"
-#include "Attack.h"
 
 void DeckSpawn::init() {
 	mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
@@ -32,7 +33,6 @@ void DeckSpawn::image(Entity* c, string t) {
 	c->addComponent<Image>(&sdlutils().images().at(t));
 }
 
-
 void DeckSpawn::attack(Entity* c, int dmg = 1) {
 	c->addComponent<Attack>(playState, dmg);
 }
@@ -48,7 +48,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 	switch (character) {
 	case Alquimista:
 		image(ctr, "alquimista"); movement(ctr); health(ctr, 2);
-		// Habilidad Alquimista
+		// Habilidad Alquimista.
 		break;
 	case Arquitecta:
 		image(ctr, "arquitecta"); movement(ctr); health(ctr, 2); attack(ctr);
@@ -64,7 +64,6 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 	case Druida:	
 		image(ctr, "druida");     movement(ctr); health(ctr, 2);
 		ctr->addComponent<Ability_Druid>(playState, (int)equipo);
-		sdlutils().showCursor();
 		break;
 	case Esqueleto:
 		image(ctr, "esqueleto");  movement(ctr); health(ctr, 1); attack(ctr);
@@ -79,11 +78,10 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 	case Lobo:
 		image(ctr, "lobo");		  movement(ctr); health(ctr, 2);
 		// Habilidad del lobo.
-		sdlutils().showCursor();
 		break;
 	case Monaguillo:
 		image(ctr, "monaguillo"); movement(ctr); health(ctr, 1); attack(ctr);
-		// Habilidad del monaguillo.
+		ctr->addComponent<Ability_Priest>();
 		break;
 	case Picara:
 		image(ctr, "picara");	  movement(ctr); health(ctr, 2); attack(ctr);

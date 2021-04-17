@@ -22,9 +22,11 @@ public:
 	personaje(pj)
 	{}
 	virtual ~DeckSpawn() {}
+
 	void init() override;
 	void update() override;
 	void render() override;
+
 	void spawnShader(int e);
 	void freeShader();
 

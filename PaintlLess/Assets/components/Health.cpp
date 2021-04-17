@@ -23,6 +23,10 @@ void Health::hit(int damage) {
     std::cout << "Ataca";
 }
 
+void Health::heal(int healing) {
+    lives += healing;
+}
+
 void Health::render() {
     SDL_Rect src;
     src.x = 0; src.y = 0; src.w = tex->width(); src.h = tex->height();

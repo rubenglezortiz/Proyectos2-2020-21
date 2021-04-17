@@ -11,6 +11,7 @@
     { "id" : "start",      "file" : "resources/images/interfaz/start.png" },
     { "id" : "selectorA",  "file" : "resources/images/interfaz/selectorAt.png"},
     { "id" : "selectorSp", "file" : "resources/images/interfaz/selectorSpawn.png" },
+    { "id" : "selectorH", "file" : "resources/images/interfaz/selectorHeal.png" },
     { "id" : "selector",   "file" : "resources/images/interfaz/selector.png" },
 
 	{ "id" : "life",       "file" : "resources/images/sprites/life.png" },

@@ -35,6 +35,7 @@ void Movimiento::update() {
 						pos.setY(posMovimiento.getY() * cellHeight);
 						mapa->setCharacter(mapa->SDLPointToMapCoords(pos), entity_);
 						playState->aumentarAcciones();
+						cout << pos;
 					}
 					selected = false;
 

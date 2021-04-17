@@ -15,6 +15,7 @@ public:
     void init() override;
     void render() override;
     void hit(int damage);
+    void heal(int healing);
     //void setLives();
 
 private:

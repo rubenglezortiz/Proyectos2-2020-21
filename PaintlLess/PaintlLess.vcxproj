@@ -147,6 +147,7 @@
     <ClCompile Include="Assets\components\Ability_Druid.cpp" />
     <ClCompile Include="Assets\components\Ability_Golem.cpp" />
     <ClCompile Include="Assets\components\Ability_Kirin.cpp" />
+    <ClCompile Include="Assets\components\Ability_Priest.cpp" />
     <ClCompile Include="Assets\components\Ability_Rogue.cpp" />
     <ClCompile Include="Assets\components\Ability_Viking.cpp" />
     <ClCompile Include="Assets\components\Attack.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="Assets\components\Ability_Druid.h" />
     <ClInclude Include="Assets\components\Ability_Golem.h" />
     <ClInclude Include="Assets\components\Ability_Kirin.h" />
+    <ClInclude Include="Assets\components\Ability_Priest.h" />
     <ClInclude Include="Assets\components\Ability_Rogue.h" />
     <ClInclude Include="Assets\components\Ability_Viking.h" />
     <ClInclude Include="Assets\components\Attack.h" />
