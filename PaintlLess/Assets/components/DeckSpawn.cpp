@@ -14,132 +14,156 @@
 
 void DeckSpawn::init() {
 	mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
+	tex = &sdlutils().images().at("selectorSp");
+	cellWidth = mapa->getCellWidth();
+	cellHeight = mapa->getCellHeight();
+	playState = mapa->getPlayState();
 }
 
-void DeckSpawn::createCharacter(int character, int equipo) {
-	Entity* charac = entity_->getMngr()->addEntity(RenderLayer::Personajes);
-	if (equipo == Primero) charac->setGroup<Equipo_Rojo>(charac);
-	else charac->setGroup<Equipo_Azul>(charac);
+void DeckSpawn::health(Entity* c, int l) {
+	c->addComponent<Health>(l);
+}
+
+void DeckSpawn::movement(Entity* c) {
+	c->addComponent<Movimiento>(playState);
+}
+
+void DeckSpawn::image(Entity* c, string t) {
+	c->addComponent<Image>(&sdlutils().images().at(t));
+}
+
+
+void DeckSpawn::attack(Entity* c, int dmg = 1) {
+	c->addComponent<Attack>(playState, dmg);
+}
+
+void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
+	Entity* ctr = entity_->getMngr()->addEntity(RenderLayer::Personajes);
+
+	ctr->addComponent<Transform>(pos, Vector2D(), 50.0f, 50.0f, 0.0f);
+
+	if (equipo == Primero) ctr->setGroup<Equipo_Rojo>(ctr);
+	else ctr->setGroup<Equipo_Azul>(ctr);
+
 	switch (character) {
 	case Alquimista:
-		charac->addComponent<Image>(&sdlutils().images().at("alquimista"));
-		//auto t = charac->addComponent<Transform>(Vector2D(0, 0), Vector2D(), 50.0f, 50.0f, 0.0f);
-		//charac->addComponent<Movimiento>(this);
+		image(ctr, "alquimista"); movement(ctr); health(ctr, 2);
 		// Habilidad Alquimista
-		charac->addComponent<Health>(2);
-		//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
 		break;
 	case Arquitecta:
-		charac->addComponent<Image>(&sdlutils().images().at("arquitecta"));
-		//auto t = charac->addComponent<Transform>(Vector2D(0, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
-		//charac->addComponent<Movimiento>(this);
-		charac->addComponent<Ability_Architect>();
-		charac->addComponent<Health>(2);
-		//charac->addComponent<Attack>(this);
-		//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
+		image(ctr, "arquitecta"); movement(ctr); health(ctr, 2); attack(ctr);
+		ctr->addComponent<Ability_Architect>();
 		break;
 	case Bomba:
-		charac->addComponent<Image>(&sdlutils().images().at("bomba"));
-		//auto t = charac->addComponent<Transform>(Vector2D(0, 2), Vector2D(), 50.0f, 50.0f, 0.0f);
-		//charac->addComponent<Movimiento>(this);
-		charac->addComponent<Ability_Bomb>();
-		charac->addComponent<Health>(3);
-		//charac->addComponent<Attack>(this);
-		//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
+		image(ctr, "bomba");      movement(ctr); health(ctr, 3); attack(ctr);
+		ctr->addComponent<Ability_Bomb>();
 		break;
 	case Cazador:
-		charac->addComponent<Image>(&sdlutils().images().at("cazador"));
-		//auto t = charac->addComponent<Transform>(Vector2D(0, 3), Vector2D(), 50.0f, 50.0f, 0.0f);
-		//charac->addComponent<Movimiento>(this);
-		charac->addComponent<Health>(3);
-		//charac->addComponent<Attack>(this, 2);
-		//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
+		image(ctr, "cazador");    movement(ctr); health(ctr, 1); attack(ctr, 2);
 		break;
 	case Druida:	
-		//auto t = charac->addComponent<Transform>(Vector2D(0, 4), Vector2D(), 50.0f, 50.0f, 0.0f);
-		charac->addComponent<Image>(&sdlutils().images().at("druida"));
-		//charac->addComponent<Movimiento>(this);
-		charac->addComponent<Health>(3);
-		//charac->addComponent<Ability_Druid>(this, (int)equipo);
-		//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
+		image(ctr, "druida");     movement(ctr); health(ctr, 2);
+		ctr->addComponent<Ability_Druid>(playState, (int)equipo);
 		sdlutils().showCursor();
 		break;
 	case Esqueleto:
-		//auto t = charac->addComponent<Transform>(Vector2D(0, 5), Vector2D(), 50.0f, 50.0f, 0.0f);
-		charac->addComponent<Image>(&sdlutils().images().at("esqueleto"));
-		//charac->addComponent<Movimiento>(this);
-		charac->addComponent<Health>(3);
-		//charac->addComponent<Attack>(this);
-		//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
+		image(ctr, "esqueleto");  movement(ctr); health(ctr, 1); attack(ctr);
 		break;
 	case Golem:
-		//auto t = charac->addComponent<Transform>(Vector2D(0, 6), Vector2D(), 50.0f, 50.0f, 0.0f);
-		charac->addComponent<Image>(&sdlutils().images().at("golem"));
-		charac->addComponent<Ability_Golem>();
-		charac->addComponent<Health>(3);
-		//charac->addComponent<Attack>(this);
-		//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
+		image(ctr, "golem");					 health(ctr, 4); attack(ctr);
 		break;
 	case Kirin:	
-		//auto t = charac->addComponent<Transform>(Vector2D(0, 7), Vector2D(), 50.0f, 50.0f, 0.0f);
-		charac->addComponent<Image>(&sdlutils().images().at("monaguillo"));
-		//charac->addComponent<Movimiento>(this);
-		charac->addComponent<Health>(3);
-		//charac->addComponent<Attack>(this);
-		charac->addComponent<Ability_Kirin>();
-		//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
+		image(ctr, "monaguillo"); movement(ctr); health(ctr, 2); attack(ctr);
+		ctr->addComponent<Ability_Kirin>();
 		break;
 	case Lobo:
-		//auto t = charac->addComponent<Transform>(Vector2D(0, 8), Vector2D(), 50.0f, 50.0f, 0.0f);
-		charac->addComponent<Image>(&sdlutils().images().at("lobo"));
-		//charac->addComponent<Movimiento>(this);
-		charac->addComponent<Health>(3);
-		//charac->addComponent<Attack>(this);
-		//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
+		image(ctr, "lobo");		  movement(ctr); health(ctr, 2);
+		// Habilidad del lobo.
 		sdlutils().showCursor();
 		break;
 	case Monaguillo:
-		//auto t = charac->addComponent<Transform>(Vector2D(2, 0), Vector2D(), 50.0f, 50.0f, 0.0f);
-		charac->addComponent<Image>(&sdlutils().images().at("monaguillo"));
-		//charac->addComponent<Movimiento>(this);
-		charac->addComponent<Health>(3);
-		//charac->addComponent<Attack>(this);
-		//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
+		image(ctr, "monaguillo"); movement(ctr); health(ctr, 1); attack(ctr);
+		// Habilidad del monaguillo.
 		break;
 	case Picara:
-		//auto t = charac->addComponent<Transform>(Vector2D(1, 0), Vector2D(), 50.0f, 50.0f, 0.0f);
-		charac->addComponent<Image>(&sdlutils().images().at("picara"));
-		//charac->addComponent<Movimiento>(this);
-		charac->addComponent<Health>(3);
-		charac->addComponent<Ability_Rogue>();
-		//charac->addComponent<Attack>(this);
-		//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
-		charac->addComponent<Image>(&sdlutils().images().at("picara"));
+		image(ctr, "picara");	  movement(ctr); health(ctr, 2); attack(ctr);
+		ctr->addComponent<Ability_Rogue>();
 		break;
 	case Tanque:
-		if (equipo == Primero) {
-			charac->setGroup<Equipo_Rojo>(charac);
-			//auto t = charac->addComponent<Transform>(Vector2D(1, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
-			//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
-		}
-		else {
-			charac->setGroup<Equipo_Azul>(charac);
-			//auto t = charac->addComponent<Transform>(Vector2D(8, 1), Vector2D(), 50.0f, 50.0f, 0.0f);
-			//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
-		}
-		charac->addComponent<Image>(&sdlutils().images().at("tanque"));
-		//charac->addComponent<Movimiento>(this);
-		charac->addComponent<Health>(3);
-		//charac->addComponent<Attack>(this);
+		image(ctr, "tanque");     movement(ctr); health(ctr, 4); attack(ctr);
 		break;
 	case Vikingo:
-		//auto t = charac->addComponent<Transform>(Vector2D(1, 2), Vector2D(), 50.0f, 50.0f, 0.0f);
-		charac->addComponent<Image>(&sdlutils().images().at("vikingo"));
-		//charac->addComponent<Movimiento>(this);
-		charac->addComponent<Health>(3);
-		charac->addComponent<Ability_Viking>();
-		//charac->addComponent<Attack>(this);
-		//mapa->setCharacter(mapa->SDLPointToMapCoords(t->getPos()), charac);
+		image(ctr, "vikingo");    movement(ctr); health(ctr, 1); attack(ctr);
+		ctr->addComponent<Ability_Viking>();
 		break;
 	}
+	mapa->setCharacter(mapa->SDLPointToMapCoords(ctr->getComponent<Transform>()->getPos()), ctr);
+}
+
+void DeckSpawn::spawnShader(int e) {
+	int k = 0;
+	int l = 2;
+	if (e == Primero) {
+		k = mapa->getColumns() - 2;
+		l = mapa->getColumns();
+	}
+	for (int i = k; i < l; ++i) {
+		for (int j = 0; j < mapa->getColumns(); ++j) {
+			Vector2D cas = Vector2D(i, j);
+			if (mapa->casillaValida(cas))
+				if (mapa->getTipoCasilla(cas) == Pintable || mapa->getTipoCasilla(cas) == Base)
+					if (mapa->getCharacter(cas) == nullptr && mapa->getObstaculo(cas) == nullptr)
+						casillasSpawn.push_back(cas);
+		}
+	}
+}
+
+void DeckSpawn::render() {
+	SDL_Rect dest;
+	for (Vector2D casilla : casillasSpawn) {
+		dest.x = casilla.getX() * cellWidth/*+ offset*/;
+		dest.y = casilla.getY() * cellHeight /*+ offset*/;
+		dest.h = cellHeight;
+		dest.w = cellWidth;
+		tex->render(dest);
+	}
+}
+
+bool DeckSpawn::spawneableCell(Vector2D p) {
+	int i = 0;
+	bool encontrado = false;
+	while (i < casillasSpawn.size() && !encontrado) {
+		if (casillasSpawn[i] == p) encontrado = true;
+		else i++;
+	}
+	return encontrado;
+}
+
+void DeckSpawn::update() {
+	auto pos = entity_->getComponent<Transform>()->getPos();
+	if (ih().getMouseButtonState(ih().RIGHT)) {
+		int mX = ih().getMousePos().first;
+		int mY = ih().getMousePos().second;
+		if (selected) {
+			//esto se debe hacer en movementshader
+			Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
+			if (spawneableCell(posMovimiento) && playState->getCurrentPlayer() == 1) createCharacter(personaje, 0, posMovimiento);
+			else if (playState->getCurrentPlayer() == 0) createCharacter(personaje, 1, posMovimiento);
+			else cout << "Esa casilla no figura en los spawns.";
+			selected = false;
+			freeShader();
+		}
+		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
+			selected = true;
+			spawnShader(playState->getCurrentPlayer());
+		}
+	}
+	if (ih().getMouseButtonState(ih().LEFT)) {
+		selected = false;
+		freeShader();
+	}
+}
+
+void DeckSpawn::freeShader() {
+	casillasSpawn.clear();
 }

@@ -41,8 +41,9 @@ void GameMap::loadMap(const string levelName) {
 					}
 				}
 
+				int alto = sdlutils().height() - 100;
 				cellWidth = sdlutils().width() / cols;
-				cellHeight = sdlutils().height() / rows;
+				cellHeight = (alto / rows);
 
 				auto tiles = tileLayer.getTiles();
 				for (int i = 0; i < rows; ++i) {

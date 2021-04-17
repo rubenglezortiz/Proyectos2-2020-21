@@ -10,6 +10,7 @@
     { "id" : "star",       "file" : "resources/images/interfaz/star.png"},
     { "id" : "start",      "file" : "resources/images/interfaz/start.png" },
     { "id" : "selectorA",  "file" : "resources/images/interfaz/selectorAt.png"},
+    { "id" : "selectorSp", "file" : "resources/images/interfaz/selectorSpawn.png" },
     { "id" : "selector",   "file" : "resources/images/interfaz/selector.png" },
 
 	{ "id" : "life",       "file" : "resources/images/sprites/life.png" },
@@ -43,10 +44,10 @@
     { "id" : "picaraSP",    "file" : "resources/images/menus/SP/picaraSP.png"},
     { "id" : "tanqueSP",    "file" : "resources/images/menus/SP/tanqueSP.png"},
     { "id" : "vikingoSP",   "file" : "resources/images/menus/SP/vikingoSP.png"},
-    { "id" : "botonAt",    "file" : "resources/images/menus/SP/ataqueSP.png"},
-    { "id" : "botonDef",   "file" : "resources/images/menus/SP/defensaSP.png"},
-    { "id" : "botonUt",    "file" : "resources/images/menus/SP/utilidadSP.png"},
-    { "id" : "menuSP",     "file" : "resources/images/menus/SP/menu.jpeg"},
+    { "id" : "botonAt",     "file" : "resources/images/menus/SP/ataqueSP.png"},
+    { "id" : "botonDef",    "file" : "resources/images/menus/SP/defensaSP.png"},
+    { "id" : "botonUt",     "file" : "resources/images/menus/SP/utilidadSP.png"},
+    { "id" : "menuSP",      "file" : "resources/images/menus/SP/menu.jpeg"},
 
     { "id" : "menu",       "file" : "resources/images/menus/menu.png"}
  ],
