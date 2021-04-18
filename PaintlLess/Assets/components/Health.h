@@ -9,7 +9,7 @@
 
 class Health : public Component { //lleva este componente la destrucci�n del objeto??
 public:
-    Health(int l) : lives(l), tr(nullptr), mapa(nullptr), tex(&sdlutils().images().at("life")) {}
+    Health(int l) : lives(l), livesMax(l+1), tr(nullptr), mapa(nullptr), tex(&sdlutils().images().at("life")) {}
     virtual ~Health() {}
 
     void init() override;
@@ -23,4 +23,5 @@ private:
     Transform* tr;
     Texture* tex;
     int lives;
+    int livesMax;
 };

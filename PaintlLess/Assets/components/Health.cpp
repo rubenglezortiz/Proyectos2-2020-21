@@ -24,7 +24,8 @@ void Health::hit(int damage) {
 }
 
 void Health::heal(int healing) {
-    lives += healing;
+	if(lives != livesMax)
+		lives += healing;
 }
 
 void Health::render() {

@@ -198,14 +198,14 @@
     <ClCompile Include="Assets\components\Ability_Druid.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\components\Ability_Creeper.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\components\DeckSpawn.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Creeper.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
     <ClCompile Include="Assets\components\Ability_Priest.cpp">
-      <Filter>Archivos de origen</Filter>
+      <Filter>Archivos de origen\components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
