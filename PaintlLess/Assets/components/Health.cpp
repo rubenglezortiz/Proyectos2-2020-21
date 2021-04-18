@@ -1,49 +1,54 @@
 ﻿#include "Health.h"
 
 void Health::init() {
-    tr = entity_->getComponent<Transform>();
-    mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
-    
-    //setLives();
+	tr = entity_->getComponent<Transform>();
+	mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
+
+	//setLives();
 }
 
 void Health::hit(int damage) {
-    lives -= damage;
-    if (lives <= 0) {
-        mapa->removeCharacter(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos())); //Quitar la entidad muerta		
-        mapa->removeObstaculo(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos()));
-        if (entity_->getComponent<Ability_Golem>() != nullptr) {    //Deja muro si es el golem
-             entity_->getComponent<Ability_Golem>()->generateWall();
-        }
-        if (entity_->getComponent<Ability_Bomb>() != nullptr) {
-            entity_->getComponent<Ability_Bomb>()->explode();
-        }
-        entity_->setActive(false);
-    }
-    std::cout << "Ataca";
+	lives -= damage;
+	if (lives <= 0) {
+		mapa->removeCharacter(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos())); //Quitar la entidad muerta		
+		mapa->removeObstaculo(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos()));
+		if (entity_->getComponent<Ability_Golem>() != nullptr) {    //Deja muro si es el golem
+			entity_->getComponent<Ability_Golem>()->generateWall();
+		}
+		if (entity_->getComponent<Ability_Bomb>() != nullptr) {
+			entity_->getComponent<Ability_Bomb>()->explode();
+		}
+		entity_->setActive(false);
+	}
+	std::cout << "Ataca";
+}
+
+void Health::healMonaguillo(int healing) {
+	if (lives != livesMax)
+		lives += healing;
 }
 
 void Health::heal(int healing) {
-	if(lives != livesMax)
+	if (lives != livesMax - 1)
 		lives += healing;
 }
 
 void Health::render() {
-    SDL_Rect src;
-    src.x = 0; src.y = 0; src.w = tex->width(); src.h = tex->height();
+	SDL_Rect src;
+	src.x = 0; src.y = 0; src.w = tex->width(); src.h = tex->height();
 
-    Vector2D pos = tr->getPos();
+	Vector2D pos = tr->getPos();
 
-    SDL_Rect dest;
-    dest.x = pos.getX() + mapa->getCellWidth() - tr->getW() / 6; dest.y = pos.getY() + mapa->getCellHeight() - tr->getH() / 5;
-    dest.w = tr->getW() / 6; dest.h = tr->getH() / 5;
+	SDL_Rect dest;
+	dest.x = pos.getX() + mapa->getCellWidth() - tr->getW() / 6; dest.y = pos.getY() + mapa->getCellHeight() - tr->getH() / 5;
+	dest.w = tr->getW() / 6; dest.h = tr->getH() / 5;
 
-    for (int i = 0; i < lives; ++i)
-    {
-        tex->render(src, dest, 0);
-        //Cada vez que pinta uno cambia la posici�n x del siguiente
-        dest.x = dest.x - dest.w;
-    }
+	for (int i = 0; i < lives; ++i)
+	{
+		tex->render(src, dest, 0);
+		//Cada vez que pinta uno cambia la posici�n x del siguiente
+		dest.x = dest.x - dest.w;
+	}
 }
 
 //void Health::setLives() {

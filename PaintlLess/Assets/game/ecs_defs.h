@@ -13,6 +13,7 @@ class Ability_Kirin;
 class Ability_Priest;
 class Ability_Rogue;
 class Ability_Viking;
+class Ability_Tank;
 class Attack;
 class DeckSpawn;
 class GameMap;
@@ -34,6 +35,7 @@ class Transform;
 	Ability_Priest	    ,  \
 	Ability_Rogue	    ,  \
 	Ability_Viking      ,  \
+	Ability_Tank        ,  \
 	Attack				,  \
 	DeckSpawn		    ,  \
 	GameMap				,  \

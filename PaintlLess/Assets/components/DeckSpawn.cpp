@@ -6,6 +6,7 @@
 #include "Ability_Kirin.h"
 #include "Ability_Priest.h"
 #include "Ability_Rogue.h"
+#include "Ability_Tank.h"
 #include "Ability_Viking.h"
 #include "Attack.h"
 #include "GameMap.h"
@@ -89,6 +90,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 		break;
 	case Tanque:
 		image(ctr, "tanque");     movement(ctr); health(ctr, 4); attack(ctr);
+		ctr->addComponent<Ability_Tank>();
 		break;
 	case Vikingo:
 		image(ctr, "vikingo");    movement(ctr); health(ctr, 1); attack(ctr);

@@ -14,7 +14,7 @@ void Ability_Priest::heal() {
 	for (int i = 0; i < casillasHeal.size(); i++) {
 		if (mapa_->getCharacter(casillasHeal[i]) != nullptr) {
 			if ((mapa_->getCharacter(casillasHeal[i])->hasGroup<Equipo_Azul>() && entity_->hasGroup<Equipo_Azul>()) || (mapa_->getCharacter(casillasHeal[i])->hasGroup<Equipo_Rojo>() && entity_->hasGroup<Equipo_Rojo>()))
-			mapa_->getCharacter(casillasHeal[i])->getComponent<Health>()->heal(1);
+			mapa_->getCharacter(casillasHeal[i])->getComponent<Health>()->healMonaguillo(1);
 		}
 	}
 }

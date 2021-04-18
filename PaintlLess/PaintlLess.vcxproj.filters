@@ -207,6 +207,9 @@
     <ClCompile Include="Assets\components\Ability_Priest.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Tank.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\game\ecs_defs.h">
@@ -366,6 +369,9 @@
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
     <ClInclude Include="Assets\components\Ability_Priest.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Tank.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
   </ItemGroup>

@@ -15,8 +15,10 @@ public:
     void init() override;
     void render() override;
     void hit(int damage);
-    void heal(int healing);
+    void healMonaguillo(int healing);
+    void heal(int healing = 1);
     //void setLives();
+    int getLives() { return lives; };
 
 private:
     GameMap* mapa;
