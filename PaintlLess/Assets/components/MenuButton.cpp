@@ -17,6 +17,7 @@ void  MenuButton::update() {	//Falta sombreado hover
 		int mY = ih().getMousePos().second;
 		if (ih().getMouseButtonState(ih().LEFT) && mX > pos.getX() && mX < pos.getX() + tr_->getW() && mY > pos.getY() && mY < pos.getY() + tr_->getH()) {
 			cbOnClick(gsm_);
+			selected = !selected;
 		}
 	}
 }

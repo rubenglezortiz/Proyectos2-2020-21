@@ -207,6 +207,7 @@
     <ClInclude Include="Assets\components\Ability_Tank.h" />
     <ClInclude Include="Assets\components\Ability_Viking.h" />
     <ClInclude Include="Assets\components\Attack.h" />
+    <ClInclude Include="Assets\components\ButtonSelected.h" />
     <ClInclude Include="Assets\components\DeckSpawn.h" />
     <ClInclude Include="Assets\components\GameMap.h" />
     <ClInclude Include="Assets\components\Health.h" />

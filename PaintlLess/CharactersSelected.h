@@ -31,5 +31,8 @@ public:
 	 void updatePersonaje(Unit pj);
 	// Método que pasa a la partida cuando se han seleccionado max personajes.
 	 void play(GameStateMachine* gsm);
+
+	 int getCont() { return cont; }
+	 int getMax() { return max; }
 };
 

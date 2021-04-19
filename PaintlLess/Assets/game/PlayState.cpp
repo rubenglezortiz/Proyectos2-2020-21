@@ -158,7 +158,7 @@ void PlayState::createMazo(int n, int i) {
 			boton->addComponent<DeckSpawn>(Golem);
 			break;
 		case Kirin:
-			boton->addComponent<Image>(&sdlutils().images().at("monaguilloSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("kirinSP"));
 			boton->addComponent<DeckSpawn>(Kirin);
 			break;
 		case Lobo:

@@ -73,7 +73,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 		image(ctr, "golem");					 health(ctr, 4); attack(ctr);
 		break;
 	case Kirin:	
-		image(ctr, "monaguillo"); movement(ctr); health(ctr, 2); attack(ctr);
+		image(ctr, "kirin"); movement(ctr); health(ctr, 2); attack(ctr);
 		ctr->addComponent<Ability_Kirin>();
 		break;
 	case Lobo:

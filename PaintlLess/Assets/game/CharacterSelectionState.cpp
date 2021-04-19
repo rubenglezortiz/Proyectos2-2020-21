@@ -9,6 +9,7 @@
 #include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
 #include "../components/MenuButton.h"
+#include "../components/ButtonSelected.h"
 
 #include "GameStateMachine.h"
 
@@ -41,66 +42,79 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Alquimista->addComponent<Transform>(Vector2D(0, offset), w, h);
 	Alquimista->addComponent<Image>(&sdlutils().images().at("alquimistaSP"));
 	Alquimista->addComponent<MenuButton>(gsm, updateAlquimista);
+	Alquimista->addComponent<ButtonSelected>(&sdlutils().images().at("alquimistaSP2"));
 
 	auto* Arquitecta = mngr_->addEntity(RenderLayer::Fondo);
 	Arquitecta->addComponent<Transform>(Vector2D(w, offset), w, h);
 	Arquitecta->addComponent<Image>(&sdlutils().images().at("arquitectaSP"));
 	Arquitecta->addComponent<MenuButton>(gsm, updateArquitecta);
+	Arquitecta->addComponent<ButtonSelected>(&sdlutils().images().at("arquitectaSP2"));
 
 	auto* Bomba = mngr_->addEntity(RenderLayer::Fondo);
 	Bomba->addComponent<Transform>(Vector2D(2 * w, offset), w, h);
 	Bomba->addComponent<Image>(&sdlutils().images().at("bombaSP"));
 	Bomba->addComponent<MenuButton>(gsm, updateBomba);
+	Bomba->addComponent<ButtonSelected>(&sdlutils().images().at("bombaSP2"));
 
 	auto* Cazador = mngr_->addEntity(RenderLayer::Fondo);
 	Cazador->addComponent<Transform>(Vector2D(3 * w, offset), w, h);
 	Cazador->addComponent<Image>(&sdlutils().images().at("cazadorSP"));
 	Cazador->addComponent<MenuButton>(gsm, updateCazador);
+	Cazador->addComponent<ButtonSelected>(&sdlutils().images().at("cazadorSP2"));
 
 	auto* Druida = mngr_->addEntity(RenderLayer::Fondo);
 	Druida->addComponent<Transform>(Vector2D(4 * w, offset), w, h);
 	Druida->addComponent<Image>(&sdlutils().images().at("druidaSP"));
 	Druida->addComponent<MenuButton>(gsm, updateDruida);
+	Druida->addComponent<ButtonSelected>(&sdlutils().images().at("druidaSP2"));
 
 	auto* Esqueleto = mngr_->addEntity(RenderLayer::Fondo);
 	Esqueleto->addComponent<Transform>(Vector2D(w, h + offset), w, h);
 	Esqueleto->addComponent<Image>(&sdlutils().images().at("esqueletoSP"));
 	Esqueleto->addComponent<MenuButton>(gsm, updateEsqueleto);
+	Esqueleto->addComponent<ButtonSelected>(&sdlutils().images().at("esqueletoSP2"));
 
 	auto* Golem = mngr_->addEntity(RenderLayer::Fondo);
 	Golem->addComponent<Transform>(Vector2D(2 * w, h + offset), w, h);
 	Golem->addComponent<Image>(&sdlutils().images().at("golemSP"));
 	Golem->addComponent<MenuButton>(gsm, updateGolem);
+	Golem->addComponent<ButtonSelected>(&sdlutils().images().at("golemSP2"));
 
 	auto* Kirin = mngr_->addEntity(RenderLayer::Fondo);
 	Kirin->addComponent<Transform>(Vector2D(3 * w, h + offset), w, h);
-	Kirin->addComponent<Image>(&sdlutils().images().at("alquimistaSP"));
+	Kirin->addComponent<Image>(&sdlutils().images().at("kirinSP"));
 	Kirin->addComponent<MenuButton>(gsm, updateKirin);
+	Kirin->addComponent<ButtonSelected>(&sdlutils().images().at("kirinSP2"));
 
 	auto* Lobo = mngr_->addEntity(RenderLayer::Fondo);
 	Lobo->addComponent<Transform>(Vector2D(0, 2 * h + offset), w, h);
 	Lobo->addComponent<Image>(&sdlutils().images().at("loboSP"));
 	Lobo->addComponent<MenuButton>(gsm, updateLobo);
+	Lobo->addComponent<ButtonSelected>(&sdlutils().images().at("loboSP2"));
 
 	auto* Monaguillo = mngr_->addEntity(RenderLayer::Fondo);
 	Monaguillo->addComponent<Transform>(Vector2D(w, 2 * h + offset), w, h);
 	Monaguillo->addComponent<Image>(&sdlutils().images().at("monaguilloSP"));
 	Monaguillo->addComponent<MenuButton>(gsm, updateMonaguillo);
+	Monaguillo->addComponent<ButtonSelected>(&sdlutils().images().at("monaguilloSP2"));
 
 	auto* Picara = mngr_->addEntity(RenderLayer::Fondo);
 	Picara->addComponent<Transform>(Vector2D(2 * w, 2 * h + offset), w, h);
 	Picara->addComponent<Image>(&sdlutils().images().at("picaraSP"));
 	Picara->addComponent<MenuButton>(gsm, updatePicara);
+	Picara->addComponent<ButtonSelected>(&sdlutils().images().at("picaraSP2"));
 
 	auto* Tanque = mngr_->addEntity(RenderLayer::Fondo);
 	Tanque->addComponent<Transform>(Vector2D(3 * w, 2 * h + offset), w, h);
 	Tanque->addComponent<Image>(&sdlutils().images().at("tanqueSP"));
 	Tanque->addComponent<MenuButton>(gsm, updateTanque);
+	Tanque->addComponent<ButtonSelected>(&sdlutils().images().at("tanqueSP2"));
 
 	auto* Vikingo = mngr_->addEntity(RenderLayer::Fondo);
 	Vikingo->addComponent<Transform>(Vector2D(4 * w, 2 * h + offset), w, h);
 	Vikingo->addComponent<Image>(&sdlutils().images().at("vikingoSP"));
 	Vikingo->addComponent<MenuButton>(gsm, updateVikingo);
+	Vikingo->addComponent<ButtonSelected>(&sdlutils().images().at("vikingoSP2"));
 
 	// Botón de paso de partida.
 	auto* Boton = mngr_->addEntity(RenderLayer::Fondo);

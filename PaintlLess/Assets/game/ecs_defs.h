@@ -15,6 +15,7 @@ class Ability_Rogue;
 class Ability_Viking;
 class Ability_Tank;
 class Attack;
+class ButtonSelected;
 class DeckSpawn;
 class GameMap;
 class Health;
@@ -37,6 +38,7 @@ class Transform;
 	Ability_Viking      ,  \
 	Ability_Tank        ,  \
 	Attack				,  \
+	ButtonSelected		,  \
 	DeckSpawn		    ,  \
 	GameMap				,  \
 	Health              ,  \

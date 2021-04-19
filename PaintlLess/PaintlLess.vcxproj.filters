@@ -374,6 +374,9 @@
     <ClInclude Include="Assets\components\Ability_Tank.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\components\ButtonSelected.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\resources.json">

@@ -52,6 +52,10 @@ public:
 
 	void dark();
 
+	void setTexture(Texture* tex) { tex_ = tex; }
+
+	Texture* getTexture() { return tex_; }
+
 private:
 	Transform* tr_;
 	Texture* tex_;

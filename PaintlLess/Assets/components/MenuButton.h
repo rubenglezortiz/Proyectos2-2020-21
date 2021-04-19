@@ -14,6 +14,7 @@ class MenuButton : public Component {
 private:
 	GameStateMachine* gsm_;
 	Transform* tr_;
+	bool selected = false;
 	
 protected:
 	CallBackOnClick* cbOnClick;
@@ -23,4 +24,6 @@ public:
 	virtual ~MenuButton() {};
 	virtual void update();
 	void init() override;
+	bool select() { return selected; }
+	GameStateMachine* getGSM() { return gsm_; }
 };
