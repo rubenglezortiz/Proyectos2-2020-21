@@ -1,6 +1,7 @@
 #include "Ability_Architect.h"
 
 void Ability_Architect::init() {
+	Ability::init();
 	mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
 	mov = entity_->getComponent<Movimiento>();
 	cellWidth = mapa->getCellWidth();
@@ -10,7 +11,7 @@ void Ability_Architect::init() {
 
 void Ability_Architect::render() {
 	SDL_Rect dest;
-	for (Vector2D casilla : casillasHabilidad) {
+	for (Vector2D casilla : abilityCells) {
 		dest.x = casilla.getX() * cellWidth /*+ offset*/;
 		dest.y = casilla.getY() * cellHeight /*+ offset*/;
 		dest.h = cellHeight;
@@ -42,7 +43,7 @@ void Ability_Architect::update() {
 			//if (nextPos.getX() < 0 || nextPos.getX() >= mapa->getColumns() ||
 			//	nextPos.getY() < 0 || nextPos.getY() >= mapa->getRows()) return;
 			selected = true;
-			AbilityShader();
+			AbilityShader(DefenseSh,Cross);
 			//movShader->casillasPosiblesRecu(mov->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked);
 		}
 	}
@@ -52,25 +53,25 @@ void Ability_Architect::update() {
 	}
 }
 
-void Ability_Architect::AbilityShader() {
-	posArc = entity_->getComponent<Transform>()->getPos();
-
-	posArc = mapa->SDLPointToMapCoords(posArc);
-
-	Vector2D posUp = Vector2D(0, 1) + posArc;
-	Vector2D posRight = Vector2D(1, 0) + posArc;
-	Vector2D posLeft = Vector2D(-1, 0) + posArc;
-	Vector2D posDown = Vector2D(0, -1) + posArc;
-
-	if (mapa->movimientoPosible(posUp)) casillasHabilidad.push_back(posUp);
-	if (mapa->movimientoPosible(posRight)) casillasHabilidad.push_back(posRight);
-	if (mapa->movimientoPosible(posLeft)) casillasHabilidad.push_back(posLeft);
-	if (mapa->movimientoPosible(posDown)) casillasHabilidad.push_back(posDown);
-}
-
-void Ability_Architect::freeAbilityShader() {
-	casillasHabilidad.clear();
-}
+//void Ability_Architect::AbilityShader() {
+//	posArc = entity_->getComponent<Transform>()->getPos();
+//
+//	posArc = mapa->SDLPointToMapCoords(posArc);
+//
+//	Vector2D posUp = Vector2D(0, 1) + posArc;
+//	Vector2D posRight = Vector2D(1, 0) + posArc;
+//	Vector2D posLeft = Vector2D(-1, 0) + posArc;
+//	Vector2D posDown = Vector2D(0, -1) + posArc;
+//
+//	if (mapa->movimientoPosible(posUp)) casillasHabilidad.push_back(posUp);
+//	if (mapa->movimientoPosible(posRight)) casillasHabilidad.push_back(posRight);
+//	if (mapa->movimientoPosible(posLeft)) casillasHabilidad.push_back(posLeft);
+//	if (mapa->movimientoPosible(posDown)) casillasHabilidad.push_back(posDown);
+//}
+//
+//void Ability_Architect::freeAbilityShader() {
+//	casillasHabilidad.clear();
+//}
 
 
 void Ability_Architect::generateWall(int x, int y) {

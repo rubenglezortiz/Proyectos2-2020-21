@@ -79,7 +79,6 @@ void Ability_Viking::AbilityShader() {
 		casillasHabilidad.push_back(posVik);
 		posVik = posVik + Vector2D(1, 0);
 	}
-	size = 0;
 	// Si no encuentra objetivo.
 	if (!findObj)freeAbilityShader();
 }

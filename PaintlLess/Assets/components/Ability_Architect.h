@@ -1,14 +1,11 @@
 #pragma once
 
-#include "../ecs/Component.h"
-#include "../sdlutils/Texture.h"
-#include "../ecs/Entity.h"
-#include "./Transform.h"
+#include "./Ability.h"
 #include "../sdlutils/InputHandler.h"
 #include "Movimiento.h"
 #include "Health.h"
 
-class Ability_Architect : public Component {
+class Ability_Architect : public Ability {
 public:
 	Ability_Architect() :mov(nullptr), tex(nullptr), mapa(nullptr), dest(SDL_Rect()),
 		posArc(Vector2D()), resultado(0), selected(false) {}
@@ -17,8 +14,7 @@ public:
 	void init() override;
 	void render() override;
 	void update() override;
-	void AbilityShader();
-	void freeAbilityShader();
+
 	void generateWall(int x, int y);
 	bool esConstruible(const Vector2D& cas);
 private:
