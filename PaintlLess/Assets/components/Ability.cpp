@@ -3,6 +3,9 @@
 
 void Ability::init() {
 	map = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
+	cellWidth = map->getCellWidth();
+	cellHeight = map->getCellHeight();
+	tex = &sdlutils().images().at("selector");
 }
 
 void Ability::AbilityShader(ShaderType st, ShaderForm sf, int d) {
@@ -60,3 +63,26 @@ void Ability::AbilityShader(ShaderType st, ShaderForm sf, int d) {
 }
 
 void Ability::freeAbilityShader() { abilityCells.clear(); }
+
+bool Ability::abilityCheck(const Vector2D& pos) {
+	bool check = false;
+	int cont = 0;
+	while (!check && cont<abilityCells.size()) {
+		if (pos == abilityCells[cont])check = true;
+		cont++;
+	}
+	return check;
+}
+
+void Ability::render() {
+	SDL_Rect dest;
+	if (abilityCells.size() > 0) {
+		for (Vector2D casilla : abilityCells) {
+			dest.x = casilla.getX() * cellWidth /*+ offset*/;
+			dest.y = casilla.getY() * cellHeight /*+ offset*/;
+			dest.h = cellHeight;
+			dest.w = cellWidth;
+			tex->render(dest);
+		}
+	}
+}
