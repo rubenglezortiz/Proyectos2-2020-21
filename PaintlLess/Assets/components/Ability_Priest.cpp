@@ -67,7 +67,7 @@ void Ability_Priest::render() {
 	SDL_Rect dest;
 	for (Vector2D casilla : casillasHeal) {
 		dest.x = casilla.getX() * mapa_->getCellWidth() /*+ offset*/;
-		dest.y = casilla.getY() * mapa_->getCellHeight()/*+ offset*/;
+		dest.y = casilla.getY() * mapa_->getCellHeight() + OFFSET_Y/*+ offset*/;
 		dest.h = mapa_->getCellHeight();
 		dest.w = mapa_->getCellWidth();
 		tex_->render(dest);

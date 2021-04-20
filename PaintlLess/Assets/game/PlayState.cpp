@@ -126,7 +126,7 @@ PlayState::~PlayState() {}
 
 void PlayState::createMazo(int n, int i) {
 		auto* boton = mngr_->addEntity(RenderLayer::Interfaz);
-		boton->addComponent<Transform>(Vector2D(i, sdlutils().height() / mapa->getCellHeight()), mapa->getCellWidth(), mapa->getCellHeight());
+		boton->addComponent<Transform>(Vector2D(i, 9), mapa->getCellWidth(), mapa->getCellHeight());
 		
 		switch (n) {
 		case Alquimista: 

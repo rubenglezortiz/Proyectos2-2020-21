@@ -21,6 +21,7 @@ private:
 	Equipo jugadorActual = Segundo;
 	GameMap* mapa;
 public:
+
 	// Constructora.
 	PlayState(GameStateMachine* gsm, vector<bool> charss);
 	// Destructora.

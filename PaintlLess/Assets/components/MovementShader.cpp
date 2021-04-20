@@ -1,4 +1,5 @@
 #include "./MovementShader.h"
+#include "../game/OffsetInfo.h"
 
 MovementShader::MovementShader(Texture* t) {
 	cont = 0;
@@ -90,7 +91,7 @@ void MovementShader::render() {
 	SDL_Rect dest;
 	for (Vector2D casilla : casillasAPintar) {
 		dest.x = casilla.getX() * cellWidth /*+ offset*/;
-		dest.y = casilla.getY() * cellHeight /*+ offset*/;
+		dest.y = (casilla.getY() * cellHeight) + OFFSET_Y/*+ offset*/;
 		dest.h = cellHeight;
 		dest.w = cellWidth;
 

@@ -8,6 +8,7 @@
   
  "images" : [
     { "id" : "star",       "file" : "resources/images/interfaz/star.png"},
+    { "id" : "star2",       "file" : "resources/images/interfaz/star2.png"},
     { "id" : "start",      "file" : "resources/images/interfaz/start.png" },
     { "id" : "selectorA",  "file" : "resources/images/interfaz/selectorAt.png"},
     { "id" : "selectorS",  "file" : "resources/images/menus/SP/seleccionado.png"},

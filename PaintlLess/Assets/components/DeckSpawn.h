@@ -37,5 +37,4 @@ public:
 
 	void createCharacter(int character, int equipo, Vector2D posClick);
 	bool spawneableCell(Vector2D pos);
-
 };

@@ -5,6 +5,7 @@
 #include "../ecs/Entity.h"
 #include "./Transform.h"
 #include "../sdlutils/InputHandler.h"
+#include "../game/OffsetInfo.h"
 #include "Movimiento.h"
 #include "Health.h"
 

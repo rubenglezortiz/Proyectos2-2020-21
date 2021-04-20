@@ -14,9 +14,7 @@ void Attack::update() {
 		entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) {
 
 		attack();
-
 	}
-
 }
 
 void Attack::finTurno()
@@ -87,7 +85,7 @@ void Attack::render() {
 	SDL_Rect dest;
 	for (Vector2D casilla : casillasAtaque) {
 		dest.x = casilla.getX() * cellWidth /*+ offset*/;
-		dest.y = casilla.getY() * cellHeight /*+ offset*/;
+		dest.y = casilla.getY() * cellHeight + OFFSET_Y/*+ offset*/;
 		dest.h = cellHeight;
 		dest.w = cellWidth;
 

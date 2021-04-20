@@ -47,7 +47,7 @@ void Ability_Viking::render() {
 
 	for (int i = 0; i < casillasHabilidad.size(); ++i) {
 		dest.x = casillasHabilidad[i].getX() * cellWidth /*+ offset*/;
-		dest.y = casillasHabilidad[i].getY() * cellHeight /*+ offset*/;
+		dest.y = casillasHabilidad[i].getY() * cellHeight + OFFSET_Y /*+ offset*/;
 		dest.h = cellHeight;
 		dest.w = cellWidth;
 		if (i < casillasHabilidad.size() - 1)

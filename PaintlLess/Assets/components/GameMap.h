@@ -8,6 +8,7 @@
 #include "Transform.h"
 #include "Image.h"
 #include "../ecs/Component.h"
+#include "../game/OffsetInfo.h"
 
 #include <string>
 #include <fstream>
@@ -67,7 +68,7 @@ public:
 	PlayState* getPlayState() { return playState; }
 
 	Vector2D MapCoordsToSDLPoint(Vector2D coords) const { //Pasar de coordenadas del mapa a pixeles
-		Vector2D p{ (coords.getX() * cellWidth) , (coords.getY() * cellHeight)/* + DESPL*/ };
+		Vector2D p{ (coords.getX() * cellWidth) , (coords.getY() * cellHeight) + OFFSET_Y/* + DESPL*/ };
 		//cout << p.getX() << " " << p.getY() << endl;
 		return p;
 	}
@@ -75,7 +76,7 @@ public:
 	Vector2D SDLPointToMapCoords(Vector2D p) { //Pasar de pixeles a coordenadas del mapa
 		//como las casillas neceitan int se hace aqui el casteo
 		int X = p.getX() / cellWidth;
-		int Y = p.getY()/*-DESPL*/ / cellHeight;
+		int Y = (p.getY()-OFFSET_Y)/*-DESPL*/ / cellHeight;
 		//como vector2D es float se hace el casteo pero el valor va a ser .0000
 		Vector2D coords{ (float)X,(float)Y };
 		//cout << coords.getX() << " " << coords.getY() << endl;

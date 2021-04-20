@@ -7,6 +7,7 @@
 #include "../game/Game.h"
 #include "./PointOnImage.h"
 #include "../game/PlayState.h"
+#include "../game/OffsetInfo.h"
 
 using namespace std;
 
@@ -41,7 +42,7 @@ void GameMap::loadMap(const string levelName) {
 					}
 				}
 
-				int alto = sdlutils().height() - 100;
+				int alto = sdlutils().height() - OFFSET_Y*2;
 				cellWidth = sdlutils().width() / cols;
 				cellHeight = (alto / rows);
 
@@ -50,7 +51,7 @@ void GameMap::loadMap(const string levelName) {
 					for (int j = 0; j < cols; ++j) {
 						auto* casilla = entity_->getMngr()->addEntity();
 
-						casilla->addComponent<Transform>(Vector2D(j * cellWidth, i * cellHeight), cellWidth, cellHeight);
+						casilla->addComponent<Transform>(Vector2D(j * cellWidth, (i * cellHeight) + OFFSET_Y), cellWidth, cellHeight);
 
 						casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, tiles[i * cols + j].ID - 1);
 
@@ -149,7 +150,10 @@ void GameMap::setColor(const Vector2D& cas, Color color) {
 		auto* pintar = entity_->getMngr()->addEntity();
 		cout << cas.getX() << " " << cas.getY() << endl;
 		pintar->addComponent<Transform>(Vector2D(cas.getX(), cas.getY()), cellWidth, cellHeight);
-		pintar->addComponent<Image>(&sdlutils().images().at("star"));
+		if(color == Amarillo)
+			pintar->addComponent<Image>(&sdlutils().images().at("star"));
+		else if (color == Rojo)
+			pintar->addComponent<Image>(&sdlutils().images().at("star2"));
 
 		cells[(int)cas.getY()][(int)cas.getX()].color = color;
 		cout << "Color: " << getColor(cas) << endl;
@@ -209,15 +213,15 @@ bool GameMap::ataquePosible(Vector2D cas) {
 	// Ha de hacer distinción entre personaje amigo y enemigo.
 	if (cells[y][x].character != nullptr) {
 		if (playState->getTurno() == Primero)
-			return cells[y][x].character->hasGroup<Equipo_Rojo>();
+			return !cells[y][x].character->hasGroup<Equipo_Azul>();
 		else
-			return cells[y][x].character->hasGroup<Equipo_Azul>();
+			return !cells[y][x].character->hasGroup<Equipo_Rojo>();
 	}
 	else if (cells[y][x].obstaculo != nullptr) {
 		if (playState->getTurno() == Primero)
-			return cells[y][x].obstaculo->hasGroup<Equipo_Rojo>();
+			return !cells[y][x].obstaculo->hasGroup<Equipo_Azul>();
 		else
-			return cells[y][x].obstaculo->hasGroup<Equipo_Azul>();
+			return !cells[y][x].obstaculo->hasGroup<Equipo_Rojo>();
 	}
 	else return false;
 }

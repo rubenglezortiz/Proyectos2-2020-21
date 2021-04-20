@@ -61,6 +61,7 @@
 #include "GameMap.h"
 #include "../sdlutils/InputHandler.h"
 #include "../game/LerpingFunctions.h"
+#include "../game/OffsetInfo.h"
 
 class PointOnImage : public Component {
 public:
@@ -69,7 +70,7 @@ public:
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
 		dest.x = mX;
-		dest.y = mY;
+		dest.y = mY+ OFFSET_Y;
 		dest.h = tex_->height();
 		dest.w = tex_->width();
 	}

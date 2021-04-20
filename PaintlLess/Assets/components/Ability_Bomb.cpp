@@ -39,6 +39,11 @@ void Ability_Bomb::explode() {
 			mapa->getCharacter(casillas[i])->getComponent<Health>()->hit(1);
 		}
 		//Es pintable ==> Pinta
-		if (mapa->movimientoPosible(casillas[i])) mapa->setColor(casillas[i], Amarillo);
+		if (mapa->movimientoPosible(casillas[i])) {
+			if(entity_->hasGroup<Equipo_Azul>())
+				mapa->setColor(casillas[i], Amarillo);
+			else
+				mapa->setColor(casillas[i], Rojo);
+		} 
 	}
 }

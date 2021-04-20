@@ -1,4 +1,5 @@
 #include "Ability_Architect.h"
+#include "../game/OffsetInfo.h"
 
 void Ability_Architect::init() {
 	mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
@@ -12,7 +13,7 @@ void Ability_Architect::render() {
 	SDL_Rect dest;
 	for (Vector2D casilla : casillasHabilidad) {
 		dest.x = casilla.getX() * cellWidth /*+ offset*/;
-		dest.y = casilla.getY() * cellHeight /*+ offset*/;
+		dest.y = casilla.getY() * cellHeight  + OFFSET_Y/*+ offset*/;
 		dest.h = cellHeight;
 		dest.w = cellWidth;
 		tex->render(dest);

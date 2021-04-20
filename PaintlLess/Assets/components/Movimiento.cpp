@@ -1,5 +1,6 @@
 #include "./Movimiento.h"
 #include "../game/PlayState.h"
+#include "../game/OffsetInfo.h"
 
 
 void Movimiento::init() {
@@ -32,14 +33,17 @@ void Movimiento::update() {
 					if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible) {
 						mapa->removeCharacter(mapa->SDLPointToMapCoords(pos));
 						pos.setX(posMovimiento.getX() * cellWidth);
-						pos.setY(posMovimiento.getY() * cellHeight);
+						pos.setY((posMovimiento.getY() * cellHeight)+ OFFSET_Y);
 						mapa->setCharacter(mapa->SDLPointToMapCoords(pos), entity_);
 						playState->aumentarAcciones();
 						cout << pos;
 					}
 					selected = false;
 
-					mapa->setColor(mapa->SDLPointToMapCoords(pos), Amarillo);
+					if(entity_->hasGroup<Equipo_Azul>())
+						mapa->setColor(mapa->SDLPointToMapCoords(pos), Amarillo);
+					else
+						mapa->setColor(mapa->SDLPointToMapCoords(pos), Rojo); 
 
 					//estos métodos son para cuando se deselcciona yuna casilla para restablecer los valores de los vectores...
 					movShader->freeCasillasAPintar();

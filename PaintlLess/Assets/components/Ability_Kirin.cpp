@@ -103,7 +103,7 @@ void Ability_Kirin::render() {
 
 	for (int i = 0; i < casillas.size(); ++i) {
 		dest.x = casillas[i].getX() * cellWidth /*+ offset*/;
-		dest.y = casillas[i].getY() * cellHeight /*+ offset*/;
+		dest.y = casillas[i].getY() * cellHeight + OFFSET_Y/*+ offset*/;
 		dest.h = cellHeight;
 		dest.w = cellWidth;
 		tex->render(dest);

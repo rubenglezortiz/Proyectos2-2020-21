@@ -230,6 +230,7 @@
     <ClInclude Include="Assets\game\GameState.h" />
     <ClInclude Include="Assets\game\GameStateMachine.h" />
     <ClInclude Include="Assets\game\MainMenuState.h" />
+    <ClInclude Include="Assets\game\OffsetInfo.h" />
     <ClInclude Include="Assets\game\PlayState.h" />
     <ClInclude Include="Assets\game\Values.h" />
     <ClInclude Include="Assets\json\JSON.h" />

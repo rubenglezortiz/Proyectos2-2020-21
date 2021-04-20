@@ -122,7 +122,7 @@ void DeckSpawn::render() {
 	SDL_Rect dest;
 	for (Vector2D casilla : casillasSpawn) {
 		dest.x = casilla.getX() * cellWidth/*+ offset*/;
-		dest.y = casilla.getY() * cellHeight /*+ offset*/;
+		dest.y = casilla.getY() * cellHeight + OFFSET_Y /*+ offset*/;
 		dest.h = cellHeight;
 		dest.w = cellWidth;
 		tex->render(dest);

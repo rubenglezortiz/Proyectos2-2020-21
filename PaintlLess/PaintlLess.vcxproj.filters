@@ -377,6 +377,9 @@
     <ClInclude Include="Assets\components\ButtonSelected.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\game\OffsetInfo.h">
+      <Filter>Archivos de encabezado\game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\resources.json">
