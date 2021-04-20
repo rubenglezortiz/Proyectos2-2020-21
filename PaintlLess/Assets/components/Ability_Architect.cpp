@@ -1,10 +1,5 @@
 #include "Ability_Architect.h"
 
-//void Ability_Architect::init() { //no entiendo pk no se puede meter en la superclase
-//	Ability::init();
-//	
-//}
-
 void Ability_Architect::update() {
 	auto pos = entity_->getComponent<Transform>()->getPos();
 	if (ih().getMouseButtonState(ih().RIGHT)) {

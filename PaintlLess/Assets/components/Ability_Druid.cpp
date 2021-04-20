@@ -2,24 +2,6 @@
 #include "Ability_Creeper.h"
 #include "../game/PlayState.h"
 
-void Ability_Druid::init() {
-	mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
-	cellWidth = mapa->getCellWidth();
-	cellHeight = mapa->getCellHeight();
-	tex = &sdlutils().images().at("selector");
-}
-
-void Ability_Druid::render() {
-	SDL_Rect dest;
-	for (Vector2D casilla : casillasHabilidad) {
-		dest.x = casilla.getX() * cellWidth /*+ offset*/;
-		dest.y = casilla.getY() * cellHeight /*+ offset*/;
-		dest.h = cellHeight;
-		dest.w = cellWidth;
-		tex->render(dest);
-	}
-}
-
 void Ability_Druid::update() {
 	auto pos = entity_->getComponent<Transform>()->getPos();
 	if (ih().getMouseButtonState(ih().RIGHT)) {
@@ -27,13 +9,13 @@ void Ability_Druid::update() {
 		int mY = ih().getMousePos().second;
 		if (selected) {
 			//esto se debe hacer en movementshader
-			Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
+			Vector2D posMovimiento = map->SDLPointToMapCoords(Vector2D(mX, mY));
 
-			if (esConstruible(posMovimiento)) {
+			if (abilityCheck(posMovimiento)) {
 				habilidad = false;
 				pos.setX(posMovimiento.getX() * cellWidth);
 				pos.setY(posMovimiento.getY() * cellHeight);
-				generateWall(posMovimiento.getX(), posMovimiento.getY());
+				generateCreeper(posMovimiento.getX(), posMovimiento.getY());
 			}
 			selected = false;
 			freeAbilityShader();
@@ -44,7 +26,7 @@ void Ability_Druid::update() {
 			//if (nextPos.getX() < 0 || nextPos.getX() >= mapa->getColumns() ||
 			//	nextPos.getY() < 0 || nextPos.getY() >= mapa->getRows()) return;
 			selected = true;
-			AbilityShader();
+			AbilityShader(DefenseSh, Cross);
 			//movShader->casillasPosiblesRecu(mov->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked);
 		}
 	}
@@ -59,37 +41,18 @@ void Ability_Druid::finTurno()
 	habilidad = true;
 }
 
-void Ability_Druid::AbilityShader() {
-	posArc = entity_->getComponent<Transform>()->getPos();
-	posArc = mapa->SDLPointToMapCoords(posArc);
+void Ability_Druid::generateCreeper(int x, int y) {
 
-	Vector2D posUp = Vector2D(0, -1) + posArc;
-	Vector2D posRight = Vector2D(1, 0) + posArc;
-	Vector2D posLeft = Vector2D(-1, 0) + posArc;
-	Vector2D posDown = Vector2D(0, 1) + posArc;
+	posDruid = entity_->getComponent<Transform>()->getPos();
 
-	if (mapa->movimientoPosibleEnredadera(posUp)) casillasHabilidad.push_back(posUp);
-	if (mapa->movimientoPosibleEnredadera(posRight)) casillasHabilidad.push_back(posRight);
-	if (mapa->movimientoPosibleEnredadera(posLeft)) casillasHabilidad.push_back(posLeft);
-	if (mapa->movimientoPosibleEnredadera(posDown)) casillasHabilidad.push_back(posDown);
-}
+	posDruid = map->SDLPointToMapCoords(posDruid);
 
-void Ability_Druid::freeAbilityShader() {
-	casillasHabilidad.clear();
-}
-
-void Ability_Druid::generateWall(int x, int y) {
-
-	posArc = entity_->getComponent<Transform>()->getPos();
-
-	posArc = mapa->SDLPointToMapCoords(posArc);
-
-	Vector2D posUp = Vector2D(0, -1) + posArc;
-	Vector2D posDown = Vector2D(0, 1) + posArc;
+	Vector2D posUp = Vector2D(0, -1) + posDruid;
+	Vector2D posDown = Vector2D(0, 1) + posDruid;
 
 	if (Vector2D(x, y) == posUp || Vector2D(x, y) == posDown) {
 		for (int i = -1; i < 2; i++) {
-			if (mapa->movimientoPosibleEnredadera(Vector2D(x + i, y))) {
+			if (map->movimientoPosibleEnredadera(Vector2D(x + i, y))) {
 				auto* e = entity_->getMngr()->addEntity(RenderLayer::Tablero3);
 				e->addComponent<Transform>(
 					Vector2D(x + i, y), //Posicion
@@ -101,7 +64,7 @@ void Ability_Druid::generateWall(int x, int y) {
 				e->addComponent<Image>(&sdlutils().images().at("enredadera"));
 				e->addComponent<Health>(1);
 				e->addComponent<Ability_Creeper>(equip);
-				mapa->setObstaculo(Vector2D(x + i, y), e);
+				map->setObstaculo(Vector2D(x + i, y), e);
 				if (equip == 0) e->setGroup<Equipo_Rojo>(e);
 				else e->setGroup<Equipo_Azul>(e);
 			}
@@ -109,7 +72,7 @@ void Ability_Druid::generateWall(int x, int y) {
 	}
 	else
 		for (int i = -1; i < 2; i++) {
-			if (mapa->movimientoPosibleEnredadera(Vector2D(x, y + i))) {
+			if (map->movimientoPosibleEnredadera(Vector2D(x, y + i))) {
 				auto* e = entity_->getMngr()->addEntity(RenderLayer::Tablero3);
 				e->addComponent<Transform>(
 					Vector2D(x, y + i), //Posicion
@@ -121,20 +84,10 @@ void Ability_Druid::generateWall(int x, int y) {
 				e->addComponent<Image>(&sdlutils().images().at("enredadera"));
 				e->addComponent<Health>(1);
 				e->addComponent<Ability_Creeper>(equip);
-				mapa->setObstaculo(Vector2D(x, y + i), e);
+				map->setObstaculo(Vector2D(x, y + i), e);
 				if (equip == 0) e->setGroup<Equipo_Rojo>(e);
 				else e->setGroup<Equipo_Azul>(e);
 			}
 		}
 }
 
-
-bool Ability_Druid::esConstruible(const Vector2D& cas) {
-	bool esPosible = false;
-	int i = 0;
-	while (!esPosible && i < casillasHabilidad.size()) {
-		if (cas == casillasHabilidad[i])esPosible = true;
-		i++;
-	}
-	return esPosible;
-}
