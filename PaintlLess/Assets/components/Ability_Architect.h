@@ -7,8 +7,7 @@
 
 class Ability_Architect : public Ability {
 public:
-	Ability_Architect() : dest(SDL_Rect()),
-		posArc(Vector2D()), resultado(0), selected(false) {}
+	Ability_Architect();
 	virtual ~Ability_Architect() {}
 
 	//void init() override; //no soy capaz de meter el init en la superclase

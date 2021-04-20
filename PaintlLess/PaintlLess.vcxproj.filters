@@ -335,9 +335,6 @@
     <ClInclude Include="CharactersSelected.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
-    <ClInclude Include="LerpingFunctions.h">
-      <Filter>Archivos de encabezado\game</Filter>
-    </ClInclude>
     <ClInclude Include="tmxlite\src\miniz.h">
       <Filter>Archivos de origen\tmxlite</Filter>
     </ClInclude>
@@ -385,6 +382,9 @@
     </ClInclude>
     <ClInclude Include="Assets\components\Ability.h">
       <Filter>Archivos de encabezado\components\abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\game\LerpingFunctions.h">
+      <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

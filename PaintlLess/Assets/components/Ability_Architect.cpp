@@ -1,9 +1,15 @@
 #include "Ability_Architect.h"
 
-//void Ability_Architect::init() { //no entiendo pk no se puede meter en la superclase
-//	Ability::init();
-//	
-//}
+
+Ability_Architect::Ability_Architect() : Ability([this](int x, int y) {generateWall;}) {
+	dest = SDL_Rect();
+	posArc = Vector2D();
+	resultado = 0;
+	selected = false;
+}
+
+
+
 
 void Ability_Architect::update() {
 	auto pos = entity_->getComponent<Transform>()->getPos();

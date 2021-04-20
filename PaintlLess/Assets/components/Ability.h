@@ -2,16 +2,20 @@
 #include "../ecs/Component.h"
 #include "../utils/Vector2D.h"
 #include "./Transform.h"
+#include "../sdlutils/InputHandler.h"
 #include<vector>
+#include <functional>
 
-typedef void (*ShaderFunc)();
+//typedef void (*AbilityFunction)(int x, int y);
+using AbilityFunction = void(int x, int y);
+//typedef std::function<void(int, int)> AbilityFunction;
 
 enum ShaderType { AttackSh, DefenseSh };
 enum ShaderForm { Cross, TxT, Viking };
 
 class Ability : public Component {
 public:
-	Ability() {}
+	Ability(AbilityFunction* a) : abilityFunction(a) {}
 	virtual ~Ability() {}
 
 	virtual void init();
@@ -30,4 +34,9 @@ protected:
 	GameMap* map; //NULL
 	bool selected;
 	int cellWidth , cellHeight;
+
+	AbilityFunction* abilityFunction;
+
+	void setAf(AbilityFunction* a);
+	//virtual AbilityFunction(int x, int y) = 0;
 };
