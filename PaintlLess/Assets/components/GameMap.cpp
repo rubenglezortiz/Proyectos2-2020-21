@@ -79,56 +79,6 @@ void GameMap::loadMap(const string levelName) {
 			}
 		}
 	}
-
-	//ifstream file;
-	//file.open(levelName);
-	//if (!file.is_open())  throw string("No se encuentra el fichero");
-	//else {
-	//	int type;
-	//	file >> rows >> cols;
-	//	cells = new Casilla * [rows];
-	//	for (int r = 0; r < rows; ++r) {
-	//		for (int c = 0; c < cols; ++c) {
-	//			cells[r] = new Casilla[cols];
-	//		}
-	//	}
-	//	cellHeight = sdlutils().height() / rows;
-	//	cellWidth = sdlutils().width() / cols;
-	//	for (int i = 0; i < rows; ++i) {
-	//		for (int j = 0; j < cols; ++j) {
-	//			auto* casilla = entity_->getMngr()->addEntity();
-	//			casilla->addComponent<Transform>(Vector2D(j * cellWidth, i * cellHeight), cellWidth, cellHeight);
-
-	//			file >> type;
-	//			switch (type) {
-	//			case 0: // Base
-	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 0);
-	//				cells[i][j].color = Color::Ninguno;
-	//				cells[i][j].tipoCasilla = TipoCasilla::Base;
-	//				break;
-	//			case 1: // Roca
-	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 3);
-	//				cells[i][j].color = Color::Ninguno;
-	//				cells[i][j].tipoCasilla = TipoCasilla::Pintable;
-	//				break;
-	//			case 2: // Agua
-	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 1);
-	//				cells[i][j].color = Color::Ninguno;
-	//				cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
-	//				break;
-	//			case 3: // Cesped
-	//				casilla->addComponent<Image>(&sdlutils().images().at("tileset"), 1, 4, 0, 2);
-	//				cells[i][j].color = Color::Ninguno;
-	//				cells[i][j].tipoCasilla = TipoCasilla::Pintable;
-	//				break;
-	//			}
-
-	//			cells[i][j].character = nullptr;
-	//		}
-	//	}
-	//}
-	//file.close();
-
 }
 
 void GameMap::render() {
@@ -178,21 +128,7 @@ void GameMap::removeObstaculo(const Vector2D& cas) {
 }
 
 // Salta excepción al no encontrar 4 casillas en el borde inferior.
-bool GameMap::movimientoPosible(Vector2D cas) {
-	if (!casillaValida(cas))return false;
-	int x = cas.getX(); int y = cas.getY();
-	return (cells[y][x].tipoCasilla != NoPintable && cells[y][x].character == nullptr && cells[y][x].obstaculo == nullptr);
-}
 
-bool GameMap::movimientoPosibleEnredadera(Vector2D cas) {
-	if (!casillaValida(cas))return false;
-	int x = cas.getX(); int y = cas.getY();
-	if (cells[y][x].obstaculo == nullptr)
-		return cells[y][x].tipoCasilla != NoPintable;
-	else if (cells[y][x].character != nullptr && cells[y][x].obstaculo == nullptr)
-		return (cells[y][x].character->hasComponent<Movimiento>() || cells[y][x].character->hasComponent<Attack>() && cells[y][x].tipoCasilla != NoPintable);
-	else return false;
-}
 
 Color GameMap::getColor(Vector2D cas) {
 	return cells[(int)cas.getY()][(int)cas.getX()].color;
@@ -203,7 +139,24 @@ bool GameMap::casillaValida(const Vector2D& cas) //SUPONEMOS QUE ESTÁ BIEN, ACEP
 	return cas.getX() >= 0 && cas.getX() < getColumns() && cas.getY() >= 0 && cas.getY() < getRows();
 }
 
-bool GameMap::ataquePosible(Vector2D cas) {
+
+bool GameMap::movimientoPosible(const Vector2D& cas) {
+	if (!casillaValida(cas))return false;
+	int x = cas.getX(); int y = cas.getY();
+	return (cells[y][x].tipoCasilla != NoPintable && cells[y][x].character == nullptr && cells[y][x].obstaculo == nullptr);
+}
+
+bool GameMap::movimientoPosibleEnredadera(const Vector2D& cas) {
+	if (!casillaValida(cas))return false;
+	int x = cas.getX(); int y = cas.getY();
+	if (cells[y][x].obstaculo == nullptr)
+		return cells[y][x].tipoCasilla != NoPintable;
+	else if (cells[y][x].character != nullptr && cells[y][x].obstaculo == nullptr)
+		return (cells[y][x].character->hasComponent<Movimiento>() || cells[y][x].character->hasComponent<Attack>() && cells[y][x].tipoCasilla != NoPintable);
+	else return false;
+}
+
+bool GameMap::ataquePosible(const Vector2D& cas) {
 	if (!casillaValida(cas)) return false;
 	int x = cas.getX(); int y = cas.getY();
 	// Ha de hacer distinción entre personaje amigo y enemigo.

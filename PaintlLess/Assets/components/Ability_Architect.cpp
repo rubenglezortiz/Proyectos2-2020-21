@@ -23,7 +23,7 @@ void Ability_Architect::update() {
 			//if (nextPos.getX() < 0 || nextPos.getX() >= mapa->getColumns() ||
 			//	nextPos.getY() < 0 || nextPos.getY() >= mapa->getRows()) return;
 			selected = true;
-			AbilityShader(DefenseSh,Cross);
+			AbilityShader(Cross, DefenseSh);
 			//movShader->casillasPosiblesRecu(mov->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked);
 		}
 	}

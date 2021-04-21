@@ -1,17 +1,9 @@
 #include "Ability_Golem.h"
 
-void Ability_Golem::init() {
-    tr = entity_->getComponent<Transform>();
-    assert(tr != nullptr);
-    mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
-    assert(mapa != nullptr);
-}
 
 void Ability_Golem::generateWall() {
-    Vector2D pos = mapa->SDLPointToMapCoords(tr->getPos());
-
+    Vector2D pos = map->SDLPointToMapCoords(characterTr->getPos());
     auto* e = entity_->getMngr()->addEntity(RenderLayer::Tablero3);
-
     e->addComponent<Transform>(
         pos, //Posicion
         Vector2D(),     //Velocidad

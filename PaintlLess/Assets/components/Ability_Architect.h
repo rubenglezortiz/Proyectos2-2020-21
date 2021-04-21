@@ -7,7 +7,7 @@
 
 class Ability_Architect : public Ability {
 public:
-	Ability_Architect() : dest(SDL_Rect()),
+	Ability_Architect() : Ability(selector), dest(SDL_Rect()),
 		posArc(Vector2D()), resultado(0), selected(false) {}
 	virtual ~Ability_Architect() {}
 

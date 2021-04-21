@@ -11,14 +11,14 @@
 class PlayState;
 class Ability_Druid : public Ability {
 public:
-	Ability_Druid(PlayState* p, int e) : dest(SDL_Rect()), equip(e), pSt(p) {}
+	Ability_Druid(PlayState* p, int e) : Ability(selector), dest(SDL_Rect()), equip(e), pSt(p) {}
 	virtual ~Ability_Druid() {}
 
 	void update() override;
-	void finTurno() override;	
+	void finTurno() override;
 	void generateCreeper(int x, int y);
 
-private:	
+private:
 	PlayState* pSt;
 	SDL_Rect dest;
 	Vector2D posDruid;

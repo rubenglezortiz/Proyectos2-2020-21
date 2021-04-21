@@ -1,14 +1,30 @@
 #include "./Ability.h"
-
+#include "../game/PlayState.h"
 
 void Ability::init() {
 	map = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
+	assert(map != nullptr);
 	cellWidth = map->getCellWidth();
 	cellHeight = map->getCellHeight();
-	tex = &sdlutils().images().at("selector");
+	string s;
+	switch (sel)
+	{
+	case selector:
+		s = "selector";
+		break;
+	case selectorA:
+		s = "selectorA";
+		break;
+	case selectorH:
+		s = "selectorH";
+		break;
+	default:
+		break;
+	}
+	tex = &sdlutils().images().at(s);
 }
 
-void Ability::AbilityShader(ShaderType st, ShaderForm sf, int d) {
+void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 	Vector2D posCh = entity_->getComponent<Transform>()->getPos();
 	if (sf == Cross) {
 		posCh = entity_->getComponent<Transform>()->getPos();
@@ -23,6 +39,12 @@ void Ability::AbilityShader(ShaderType st, ShaderForm sf, int d) {
 			if (map->ataquePosible(posRight)) abilityCells.push_back(posRight);
 			if (map->ataquePosible(posLeft)) abilityCells.push_back(posLeft);
 			if (map->ataquePosible(posDown)) abilityCells.push_back(posDown);
+		}
+		else if (st == KirinSh) {
+			if (map->movimientoPosible(posUp) && !map->movimientoPosible(posUp + Vector2D(0, -1))) abilityCells.push_back(posUp);
+			if (map->movimientoPosible(posRight) && !map->movimientoPosible(posRight + Vector2D(-1, 0))) abilityCells.push_back(posRight);
+			if (map->movimientoPosible(posLeft) && !map->movimientoPosible(posLeft + Vector2D(1, 0))) abilityCells.push_back(posLeft);
+			if (map->movimientoPosible(posDown) && !map->movimientoPosible(posDown + Vector2D(0, 1))) abilityCells.push_back(posDown);
 		}
 		else {
 			if (map->movimientoPosible(posUp)) abilityCells.push_back(posUp);
@@ -48,17 +70,24 @@ void Ability::AbilityShader(ShaderType st, ShaderForm sf, int d) {
 		if (map->getTipoCasilla(posDownLeft) != NoPintable) abilityCells.push_back(posDownLeft);
 		Vector2D posDownRight = Vector2D(1, 1) + posCh;
 		if (map->getTipoCasilla(posDownRight) != NoPintable) abilityCells.push_back(posDownRight);
-
 	}
 	else {
 		bool findObj = false;
+
+		Vector2D atDir; //HCER ESTA PUTA MIERDA EN EL UPDATE DE LOS COJONES CUANDO SE PUTOREFACTORICE
+		if (map->getPlayState()->getTurno() == Primero) atDir = Vector2D(-1, 0);
+		else atDir = Vector2D(1, 0);
+
+		posCh = map->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos()) + atDir;
+
 		while (!findObj && map->casillaValida(posCh)) {
 			if (map->ataquePosible(posCh))
 				findObj = true;
 			abilityCells.push_back(posCh);
-			posCh = posCh + Vector2D(1, 0);
+			posCh = posCh + atDir;
 		}
 		if (!findObj)freeAbilityShader();
+
 	}
 }
 
@@ -67,7 +96,7 @@ void Ability::freeAbilityShader() { abilityCells.clear(); }
 bool Ability::abilityCheck(const Vector2D& pos) {
 	bool check = false;
 	int cont = 0;
-	while (!check && cont<abilityCells.size()) {
+	while (!check && cont < abilityCells.size()) {
 		if (pos == abilityCells[cont])check = true;
 		cont++;
 	}
