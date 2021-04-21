@@ -7,7 +7,7 @@
 #include <functional>
 
 //typedef void (*AbilityFunction)(int x, int y);
-using AbilityFunction = void(int x, int y);
+using AbilityFunction = void(int x, int y, GameMap* map, Manager* manager);
 //typedef std::function<void(int, int)> AbilityFunction;
 
 enum ShaderType { AttackSh, DefenseSh };

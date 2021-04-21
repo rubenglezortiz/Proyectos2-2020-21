@@ -86,7 +86,7 @@ void Ability::update() {
 			if (abilityCheck(posMovimiento)) {
 				pos.setX(posMovimiento.getX() * cellWidth);
 				pos.setY(posMovimiento.getY() * cellHeight);
-				abilityFunction(posMovimiento.getX(), posMovimiento.getY());
+				abilityFunction(posMovimiento.getX(), posMovimiento.getY(), map, this->getEntity()->getMngr());
 			}
 			selected = false;
 			freeAbilityShader();

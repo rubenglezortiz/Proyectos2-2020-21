@@ -1,7 +1,7 @@
 #include "Ability_Architect.h"
 
 
-Ability_Architect::Ability_Architect() : Ability([this](int x, int y) {generateWall;}) {
+Ability_Architect::Ability_Architect() : Ability(generateWall) {
 	dest = SDL_Rect();
 	posArc = Vector2D();
 	resultado = 0;
@@ -23,7 +23,7 @@ void Ability_Architect::update() {
 			if (abilityCheck(posMovimiento)) {
 				pos.setX(posMovimiento.getX() * cellWidth);
 				pos.setY(posMovimiento.getY() * cellHeight);
-				generateWall(posMovimiento.getX(), posMovimiento.getY());
+				generateWall(posMovimiento.getX(), posMovimiento.getY(), map , this->getEntity()->getMngr());
 			}
 			selected = false;
 			freeAbilityShader();
@@ -44,10 +44,10 @@ void Ability_Architect::update() {
 	}
 }
 
-void Ability_Architect::generateWall(int x, int y) {
+void Ability_Architect::generateWall(int x, int y, GameMap* map, Manager* manager) {
 	// x e y
 	//Crea imagen
-	auto* e = entity_->getMngr()->addEntity(RenderLayer::Tablero3);
+	Entity* e = manager->addEntity(RenderLayer::Tablero3);
 
 	e->addComponent<Transform>(
 		Vector2D(x, y), //Posicion
