@@ -1,42 +1,42 @@
 #include "Ability_Architect.h"
 
-void Ability_Architect::update() {
-	auto pos = entity_->getComponent<Transform>()->getPos();
-	if (ih().getMouseButtonState(ih().RIGHT)) {
-		int mX = ih().getMousePos().first;
-		int mY = ih().getMousePos().second;
-		if (selected) {
-			//esto se debe hacer en movementshader
-			Vector2D posMovimiento = map->SDLPointToMapCoords(Vector2D(mX, mY));
+//void Ability_Architect::update() {
+//	auto pos = entity_->getComponent<Transform>()->getPos();
+//	if (ih().getMouseButtonState(ih().RIGHT)) {
+//		int mX = ih().getMousePos().first;
+//		int mY = ih().getMousePos().second;
+//		if (selected) {
+//			//esto se debe hacer en movementshader
+//			Vector2D posMovimiento = map->SDLPointToMapCoords(Vector2D(mX, mY));
+//
+//			if (abilityCheck(posMovimiento)) {
+//				pos.setX(posMovimiento.getX() * cellWidth);
+//				pos.setY(posMovimiento.getY() * cellHeight);
+//				generateWall(posMovimiento.getX(), posMovimiento.getY());
+//			}
+//			selected = false;
+//			freeAbilityShader();
+//
+//		}
+//		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
+//			//si la casilla está fuera del mapa no hago nada
+//			//if (nextPos.getX() < 0 || nextPos.getX() >= mapa->getColumns() ||
+//			//	nextPos.getY() < 0 || nextPos.getY() >= mapa->getRows()) return;
+//			selected = true;
+//			AbilityShader(Cross, DefenseSh);
+//			//movShader->casillasPosiblesRecu(mov->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked);
+//		}
+//	}
+//	if (ih().getMouseButtonState(ih().LEFT)) {
+//		selected = false;
+//		freeAbilityShader();
+//	}
+//}
 
-			if (abilityCheck(posMovimiento)) {
-				pos.setX(posMovimiento.getX() * cellWidth);
-				pos.setY(posMovimiento.getY() * cellHeight);
-				generateWall(posMovimiento.getX(), posMovimiento.getY());
-			}
-			selected = false;
-			freeAbilityShader();
-
-		}
-		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
-			//si la casilla está fuera del mapa no hago nada
-			//if (nextPos.getX() < 0 || nextPos.getX() >= mapa->getColumns() ||
-			//	nextPos.getY() < 0 || nextPos.getY() >= mapa->getRows()) return;
-			selected = true;
-			AbilityShader(Cross, DefenseSh);
-			//movShader->casillasPosiblesRecu(mov->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked);
-		}
-	}
-	if (ih().getMouseButtonState(ih().LEFT)) {
-		selected = false;
-		freeAbilityShader();
-	}
-}
-
-void Ability_Architect::generateWall(int x, int y) {
+void Ability_Architect::generateWall(int x, int y, GameMap* map, Manager* manager) {
 	// x e y
 	//Crea imagen
-	auto* e = entity_->getMngr()->addEntity(RenderLayer::Tablero3);
+	Entity* e = manager->addEntity(RenderLayer::Tablero3);
 
 	e->addComponent<Transform>(
 		Vector2D(x, y), //Posicion

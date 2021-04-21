@@ -11,7 +11,7 @@
 class PlayState;
 class Ability_Druid : public Ability {
 public:
-	Ability_Druid(PlayState* p, int e) : Ability(selector), dest(SDL_Rect()), equip(e), pSt(p) {}
+	Ability_Druid(PlayState* p, int e) : Ability(selector, nullptr), dest(SDL_Rect()), equip(e), pSt(p) {}
 	virtual ~Ability_Druid() {}
 
 	void update() override;

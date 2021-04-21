@@ -11,7 +11,7 @@
 
 class Ability_Priest : public Ability {
 public:
-	Ability_Priest():Ability(selectorH) {}
+	Ability_Priest():Ability(selectorH, nullptr) {}
 	virtual ~Ability_Priest() {}
 	void update() override;
 	void heal();

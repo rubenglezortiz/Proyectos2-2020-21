@@ -10,7 +10,7 @@
 
 class Ability_Viking : public Ability {
 public:
-	Ability_Viking() : Ability(selectorA) {}
+	Ability_Viking() : Ability(selectorA, nullptr) {}
 	virtual ~Ability_Viking() {}
 	void update() override;
 

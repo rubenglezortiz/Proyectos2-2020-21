@@ -3,8 +3,10 @@
 #include "../utils/Vector2D.h"
 #include "./Transform.h"
 #include<vector>
+#include "../sdlutils/InputHandler.h"
 
-typedef void (*ShaderFunc)();
+
+using AbilityFunction = void(int x, int y, GameMap* map, Manager* manager);
 
 enum ShaderType { nullSh,AttackSh, DefenseSh, HealingSh, KirinSh };
 enum ShaderForm { Cross, TxT, VikingForm };
@@ -13,13 +15,13 @@ enum selectorColor { selector, selectorA, selectorH };
 
 class Ability : public Component {
 public:
-	Ability(selectorColor s) : characterTr(nullptr), tex(nullptr), map(nullptr),
+	Ability(selectorColor s, AbilityFunction* a) : abilityFunct(a), characterTr(nullptr), tex(nullptr), map(nullptr),
 		sel(s), selected(false), cellWidth(0), cellHeight(0) {}
 	virtual ~Ability() {}
 
 	virtual void init();
 	virtual void render();
-	virtual void update() = 0;
+	virtual void update() ;
 
 	void AbilityShader(ShaderForm sf, ShaderType st=nullSh, int d = 1);
 	void freeAbilityShader();
@@ -34,4 +36,6 @@ protected:
 	selectorColor sel;
 	bool selected;
 	int cellWidth, cellHeight;
+
+	AbilityFunction* abilityFunct;
 };

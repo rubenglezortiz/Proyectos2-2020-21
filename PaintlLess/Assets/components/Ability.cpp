@@ -103,6 +103,8 @@ bool Ability::abilityCheck(const Vector2D& pos) {
 	return check;
 }
 
+
+
 void Ability::render() {
 	SDL_Rect dest;
 	if (abilityCells.size() > 0) {
@@ -113,5 +115,34 @@ void Ability::render() {
 			dest.w = cellWidth;
 			tex->render(dest);
 		}
+	}
+}
+
+void Ability::update() {
+	auto pos = entity_->getComponent<Transform>()->getPos();
+	if (ih().getMouseButtonState(ih().RIGHT)) {
+		int mX = ih().getMousePos().first;
+		int mY = ih().getMousePos().second;
+		if (selected) {
+			//esto se debe hacer en movementshader
+			Vector2D posMovimiento = map->SDLPointToMapCoords(Vector2D(mX, mY));
+
+			if (abilityCheck(posMovimiento)) {
+				pos.setX(posMovimiento.getX() * cellWidth);
+				pos.setY(posMovimiento.getY() * cellHeight);
+				if(abilityFunct != nullptr)abilityFunct(posMovimiento.getX(), posMovimiento.getY(), map, this->getEntity()->getMngr());
+			}
+			selected = false;
+			freeAbilityShader();
+
+		}
+		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
+			selected = true;
+			AbilityShader(Cross, DefenseSh);
+		}
+	}
+	if (ih().getMouseButtonState(ih().LEFT)) {
+		selected = false;
+		freeAbilityShader();
 	}
 }
