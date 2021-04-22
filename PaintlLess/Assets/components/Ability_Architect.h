@@ -7,14 +7,14 @@
 
 class Ability_Architect : public Ability {
 public:
-	Ability_Architect() : Ability(selector, generateWall), dest(SDL_Rect()),
+	Ability_Architect() : Ability(selector, ShaderForm::Cross, ShaderType::DefenseSh), dest(SDL_Rect()),
 		posArc(Vector2D()), resultado(0), selected(false) {}
-	virtual ~Ability_Architect() {}
+	virtual ~Ability_Architect() {  }
 
 	//void init() override; //no soy capaz de meter el init en la superclase
 	/*void update() override;*/
 
-	static void generateWall(int x, int y, GameMap* map, Manager* manager);
+	void AbilityExecute(int x, int y);
 private:
 	SDL_Rect dest;
 	Vector2D posArc;

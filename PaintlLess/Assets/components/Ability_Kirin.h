@@ -7,11 +7,7 @@
 
 class Ability_Kirin : public Ability {
 public:
-	Ability_Kirin() : Ability(selector, nullptr) {}
+	Ability_Kirin() : Ability(selector, ShaderForm::Cross, ShaderType::KirinSh) { SetShaderDistance(2); }
 	virtual ~Ability_Kirin() {}
-
-	void update() override;
-
-private:
-	Vector2D posKir;
+	virtual void AbilityExecute(int x, int y);
 };

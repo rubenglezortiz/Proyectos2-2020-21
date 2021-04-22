@@ -10,10 +10,7 @@
 
 class Ability_Viking : public Ability {
 public:
-	Ability_Viking() : Ability(selectorA, nullptr) {}
+	Ability_Viking() : Ability(selectorA, ShaderForm::VikingForm, ShaderType::nullSh) {}
 	virtual ~Ability_Viking() {}
-	void update() override;
-
-private:
-	Vector2D posVik;	
+	void AbilityExecute(int x, int y);
 };

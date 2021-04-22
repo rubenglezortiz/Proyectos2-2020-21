@@ -2,46 +2,13 @@
 #include "Ability_Creeper.h"
 #include "../game/PlayState.h"
 
-void Ability_Druid::update() {
-	auto pos = entity_->getComponent<Transform>()->getPos();
-	if (ih().getMouseButtonState(ih().RIGHT)) {
-		int mX = ih().getMousePos().first;
-		int mY = ih().getMousePos().second;
-		if (selected) {
-			//esto se debe hacer en movementshader
-			Vector2D posMovimiento = map->SDLPointToMapCoords(Vector2D(mX, mY));
-
-			if (abilityCheck(posMovimiento)) {
-				habilidad = false;
-				pos.setX(posMovimiento.getX() * cellWidth);
-				pos.setY(posMovimiento.getY() * cellHeight);
-				generateCreeper(posMovimiento.getX(), posMovimiento.getY());
-			}
-			selected = false;
-			freeAbilityShader();
-
-		}
-		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && pSt->getAcciones() > 0 && habilidad) {
-			//si la casilla está fuera del mapa no hago nada
-			//if (nextPos.getX() < 0 || nextPos.getX() >= mapa->getColumns() ||
-			//	nextPos.getY() < 0 || nextPos.getY() >= mapa->getRows()) return;
-			selected = true;
-			AbilityShader(Cross, DefenseSh);
-			//movShader->casillasPosiblesRecu(mov->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked);
-		}
-	}
-	if (ih().getMouseButtonState(ih().LEFT)) {
-		selected = false;
-		freeAbilityShader();
-	}
-}
 
 void Ability_Druid::finTurno()
 {
 	habilidad = true;
 }
 
-void Ability_Druid::generateCreeper(int x, int y) {
+void Ability_Druid::AbilityExecute(int x, int y) {
 
 	posDruid = entity_->getComponent<Transform>()->getPos();
 

@@ -15,8 +15,9 @@ enum selectorColor { selector, selectorA, selectorH };
 
 class Ability : public Component {
 public:
-	Ability(selectorColor s, AbilityFunction* a) : abilityFunct(a), characterTr(nullptr), tex(nullptr), map(nullptr),
-		sel(s), selected(false), cellWidth(0), cellHeight(0) {}
+	Ability(selectorColor s, ShaderForm form, ShaderType type) : characterTr(nullptr), tex(nullptr), map(nullptr),
+		sel(s), selected(false), cellWidth(0), cellHeight(0), form(form), type(type), shaderDistance(1) { }
+	
 	virtual ~Ability() {}
 
 	virtual void init();
@@ -29,13 +30,17 @@ public:
 											//en una casilla donde se puede colocar la habilidad
 
 protected:
+	ShaderForm form;
+	ShaderType type;
 	std::vector<Vector2D> abilityCells;
 	Transform* characterTr; //¿lo necesitan todas las habilidades?
 	Texture* tex;
-	GameMap* map; //NULL
+	GameMap* map;
 	selectorColor sel;
 	bool selected;
 	int cellWidth, cellHeight;
+	int shaderDistance;
+	virtual void AbilityExecute(int x, int y) {};
 
-	AbilityFunction* abilityFunct;
+	void SetShaderDistance(int distance) { shaderDistance = distance; };
 };

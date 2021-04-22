@@ -11,11 +11,7 @@
 
 class Ability_Priest : public Ability {
 public:
-	Ability_Priest():Ability(selectorH, nullptr) {}
+	Ability_Priest():Ability(selectorH, ShaderForm::TxT, ShaderType::nullSh) {}
 	virtual ~Ability_Priest() {}
-	void update() override;
-	void heal();
-
-private:
-	Vector2D posPriest;
+	void AbilityExecute(int x, int y);
 };

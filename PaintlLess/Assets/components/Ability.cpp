@@ -41,10 +41,11 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 			if (map->ataquePosible(posDown)) abilityCells.push_back(posDown);
 		}
 		else if (st == KirinSh) {
-			if (map->movimientoPosible(posUp) && !map->movimientoPosible(posUp + Vector2D(0, -1))) abilityCells.push_back(posUp);
-			if (map->movimientoPosible(posRight) && !map->movimientoPosible(posRight + Vector2D(-1, 0))) abilityCells.push_back(posRight);
-			if (map->movimientoPosible(posLeft) && !map->movimientoPosible(posLeft + Vector2D(1, 0))) abilityCells.push_back(posLeft);
-			if (map->movimientoPosible(posDown) && !map->movimientoPosible(posDown + Vector2D(0, 1))) abilityCells.push_back(posDown);
+			cout << "Mi Posicion: " << map->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos()) << "Pos que miro: " << posUp;
+			if (map->movimientoPosible(posUp)    && map->getCharacter(posUp + Vector2D(0, -1)) != nullptr)abilityCells.push_back(posUp);
+			if (map->movimientoPosible(posRight) && map->getCharacter(posRight + Vector2D(-1, 0)) != nullptr) abilityCells.push_back(posRight);
+			if (map->movimientoPosible(posLeft) && map->getCharacter(posLeft + Vector2D(1, 0)) != nullptr  ) abilityCells.push_back(posLeft);
+			if (map->movimientoPosible(posDown) && map->getCharacter(posDown + Vector2D(0, 1)) != nullptr  ) abilityCells.push_back(posDown);
 		}
 		else {
 			if (map->movimientoPosible(posUp)) abilityCells.push_back(posUp);
@@ -130,7 +131,7 @@ void Ability::update() {
 			if (abilityCheck(posMovimiento)) {
 				pos.setX(posMovimiento.getX() * cellWidth);
 				pos.setY(posMovimiento.getY() * cellHeight);
-				if(abilityFunct != nullptr)abilityFunct(posMovimiento.getX(), posMovimiento.getY(), map, this->getEntity()->getMngr());
+				AbilityExecute(posMovimiento.getX(), posMovimiento.getY());
 			}
 			selected = false;
 			freeAbilityShader();
@@ -138,7 +139,7 @@ void Ability::update() {
 		}
 		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
 			selected = true;
-			AbilityShader(Cross, DefenseSh);
+			AbilityShader(form, type, shaderDistance);
 		}
 	}
 	if (ih().getMouseButtonState(ih().LEFT)) {
