@@ -6,6 +6,7 @@
 void Ability_Druid::finTurno()
 {
 	habilidad = true;
+	freeAbilityShader();
 }
 
 void Ability_Druid::AbilityExecute(int x, int y) {

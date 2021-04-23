@@ -10,4 +10,5 @@ public:
 	Ability_Kirin() : Ability(selector, ShaderForm::Cross, ShaderType::KirinSh) { SetShaderDistance(2); }
 	virtual ~Ability_Kirin() {}
 	virtual void AbilityExecute(int x, int y);
+	void finTurno() override { freeAbilityShader(); }
 };
