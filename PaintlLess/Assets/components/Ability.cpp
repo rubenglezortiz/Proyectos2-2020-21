@@ -26,9 +26,9 @@ void Ability::init() {
 
 void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 	Vector2D posCh = entity_->getComponent<Transform>()->getPos();
+	posCh = entity_->getComponent<Transform>()->getPos();
+	posCh = map->SDLPointToMapCoords(posCh);
 	if (sf == Cross) {
-		posCh = entity_->getComponent<Transform>()->getPos();
-		posCh = map->SDLPointToMapCoords(posCh);
 		Vector2D posUp = Vector2D(0, d) + posCh;
 		Vector2D posRight = Vector2D(d, 0) + posCh;
 		Vector2D posLeft = Vector2D(-d, 0) + posCh;
@@ -120,7 +120,7 @@ void Ability::render() {
 }
 
 void Ability::update() {
-	if (map->getPlayState()->getTurno() == Primero && entity_->hasGroup<Equipo_Rojo>()) 
+	if (map->getPlayState()->getTurno() == Primero && entity_->hasGroup<Equipo_Rojo>())
 		return;
 	if (map->getPlayState()->getTurno() == Segundo && entity_->hasGroup<Equipo_Azul>())
 		return;
