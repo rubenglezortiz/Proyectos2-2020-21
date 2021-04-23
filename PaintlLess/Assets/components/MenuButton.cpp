@@ -4,6 +4,11 @@ MenuButton::MenuButton(GameStateMachine* gsm, CallBackOnClick* cb) {
 	gsm_ = gsm;
 	cbOnClick = cb;
 }
+MenuButton::MenuButton(GameStateMachine* gsm, CallBackOnClick* cb, string sonido) {
+	gsm_ = gsm;
+	cbOnClick = cb;
+	SONIDO = sonido;
+}
 
 void MenuButton::init()  {
 	tr_ = entity_->getComponent<Transform>();	
@@ -18,6 +23,10 @@ void  MenuButton::update() {	//Falta sombreado hover
 		if (ih().getMouseButtonState(ih().LEFT) && mX > pos.getX() && mX < pos.getX() + tr_->getW() && mY > pos.getY() && mY < pos.getY() + tr_->getH()) {
 			cbOnClick(gsm_);
 			selected = !selected;
+			if (selected) { 
+				sdlutils().soundEffects().at(SONIDO).play(); 
+			}
+			//sdlutils().soundEffects().at(FIRE_SOUND).play();
 		}
 	}
 }

@@ -77,8 +77,40 @@
   ],
   
   "sounds" : [
-    { "id" : "gunshot", "file" : "resources/sound/gunshot.wav" },
+    {
+      "id": "gunshot",
+      "file": "resources/sound/gunshot.wav"
+    },
+    { "id" : "alquimistaSound", "file" : "resources/sound/alquimista.wav" },
+    { "id" : "arqueroSound", "file" : "resources/sound/arquero.wav" },
+    { "id" : "ataqueSound", "file" : "resources/sound/ataquebasico.wav" },
+    { "id" : "bangLarge", "file" : "resources/sound/bangLarge.wav" },
+    {"id"  : "bangSmall","file"  : "resources/sound/bangSmall.wav"},
+    { "id" : "beatSound", "file" : "resources/sound/beat.wav" },
+    { "id" : "bombaSound", "file" : "resources/sound/bomba.wav" },
+    { "id" : "caeraguaSound", "file" : "resources/sound/caeragua.wav" },
+    { "id" : "continueSound", "file" : "resources/sound/continue.mp3" },
+    {"id": "crearEnredaderasSound","file": "resources/sound/crearEnredaderas.wav"},
+    { "id" : "enredaderasSound", "file" : "resources/sound/enredaderas.wav" },
+    { "id" : "kirinSound", "file" : "resources/sound/kirin.wav" },
+    { "id" : "loboSound", "file" : "resources/sound/lobo.wav" },
+    { "id" : "monaguilloSound", "file" : "resources/sound/monaguillo.wav" },
+    { "id" : "moveSound", "file" : "resources/sound/movimiento.wav" },    
+    { "id" : "muerteSound", "file" : "resources/sound/muerte.wav" },
+    { "id" : "seleccionSound", "file" : "resources/sound/seleccion.mp3" },
+    { "id" : "vikingoSound", "file" : "resources/sound/vikingo.wav" },
+    { "id" : "wall_hitSound", "file" : "resources/sound/wall_hit.wav" },
     { "id" : "explosion", "file" : "resources/sound/explosion.wav" }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   ],
 
   "musics" : [
