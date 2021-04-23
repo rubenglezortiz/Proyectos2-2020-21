@@ -22,17 +22,17 @@ MainMenuState::MainMenuState(GameStateMachine* gsm) : GameState(gsm) { //Poner l
 	auto* bOnline = mngr_->addEntity(RenderLayer::Fondo);
 	bOnline->addComponent<Transform>(Vector2D(300,150),w, h);
 	bOnline->addComponent<Image>(&sdlutils().images().at("start"));
-	bOnline->addComponent<MenuButton>(gsm, newGame);
+	bOnline->addComponent<MenuButton>(gsm, newGame, "menuInicioSound");
 
 	auto* bLocal = mngr_->addEntity(RenderLayer::Fondo);
 	bLocal->addComponent<Transform>(Vector2D(300, 225), w, h);
 	bLocal->addComponent<Image>(&sdlutils().images().at("start"));
-	bLocal->addComponent<MenuButton>(gsm, newGame);
+	bLocal->addComponent<MenuButton>(gsm, newGame, "menuInicioSound");
 
 	auto* bOpc = mngr_->addEntity(RenderLayer::Fondo);
 	bOpc->addComponent<Transform>(Vector2D(300, 300), w, h);
 	bOpc->addComponent<Image>(&sdlutils().images().at("start"));
-	bOpc->addComponent<MenuButton>(gsm, newGame);
+	bOpc->addComponent<MenuButton>(gsm, newGame, "menuInicioSound");
 
 	auto* bSalir = mngr_->addEntity(RenderLayer::Fondo);
 	bSalir->addComponent<Transform>(Vector2D(300, 400), w, h);

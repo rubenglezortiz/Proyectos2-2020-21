@@ -144,6 +144,7 @@ bool DeckSpawn::spawneableCell(Vector2D p) {
 void DeckSpawn::update() {
 	auto pos = entity_->getComponent<Transform>()->getPos();
 	if (ih().getMouseButtonState(ih().RIGHT)) {
+		
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
 		if (selected) {
@@ -158,6 +159,7 @@ void DeckSpawn::update() {
 		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
 			selected = true;
 			spawnShader(playState->getCurrentPlayer());
+			sdlutils().soundEffects().at("seleccionSound").play(); //---------------------------------------------------------------------------------------------
 		}
 	}
 	if (ih().getMouseButtonState(ih().LEFT)) {
