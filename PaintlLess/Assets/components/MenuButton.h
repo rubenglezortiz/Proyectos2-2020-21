@@ -16,7 +16,7 @@ private:
 	GameStateMachine* gsm_;
 	Transform* tr_;
 	bool selected = false;
-	string SONIDO = "seleccionSound";//"menuInicioSound";//"seleccionSound"; //"continueSound";//
+	string SONIDO = "menuButtonSound";//"menuInicioSound";//"seleccionSound"; //"continueSound";//
 	
 protected:
 	CallBackOnClick* cbOnClick;
