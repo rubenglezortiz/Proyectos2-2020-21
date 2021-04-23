@@ -1,29 +1,13 @@
 ﻿#pragma once
 
-#include "../ecs/Component.h"
+#include "./Ability.h"
 #include "../ecs/Entity.h"
 #include "Transform.h"
 #include "Movimiento.h"
 
-class Ability_Kirin : public Component {
+class Ability_Kirin : public Ability {
 public:
-    Ability_Kirin() : tr(nullptr), mapa(nullptr) {}
-    virtual ~Ability_Kirin() {}
-
-    void init() override;
-    void render() override;
-    void update() override;
-
-    void AbilityShader();
-    void freeAbilityShader() { casillas.clear(); }
-    bool posibleMov(Vector2D pos);
-
-private:
-    Transform* tr;
-    Texture* tex;
-    GameMap* mapa;
-    Vector2D posKir;
-    std::vector<Vector2D> casillas;
-    int cellWidth = 0, cellHeight = 0;
-    bool selected;
+	Ability_Kirin() : Ability(selector, ShaderForm::Cross, ShaderType::KirinSh) { SetShaderDistance(2); }
+	virtual ~Ability_Kirin() {}
+	virtual void AbilityExecute(int x, int y);
 };

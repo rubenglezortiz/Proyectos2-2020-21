@@ -52,6 +52,12 @@
     <Filter Include="Archivos de origen\tmxlite">
       <UniqueIdentifier>{533ca5cf-627d-43f7-812c-93cab7770579}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\components\abilities">
+      <UniqueIdentifier>{a87ff4ce-4ba5-4b55-bec5-39e16b274705}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\components\abilities">
+      <UniqueIdentifier>{52790520-c9ca-42ca-bfbc-86859afe6a0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Assets\game\Game.cpp">
@@ -162,12 +168,6 @@
     <ClCompile Include="Assets\components\Health.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\components\Ability_Architect.cpp">
-      <Filter>Archivos de origen\components</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\components\Ability_Rogue.cpp">
-      <Filter>Archivos de origen\components</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\components\Attack.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
@@ -180,35 +180,44 @@
     <ClCompile Include="Assets\game\CardInfo.cpp">
       <Filter>Archivos de origen\game</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\components\Ability_Viking.cpp">
-      <Filter>Archivos de origen\components</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\components\PointOnImage.cpp">
-      <Filter>Archivos de origen\components</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\components\Ability_Bomb.cpp">
-      <Filter>Archivos de origen\components</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\components\Ability_Kirin.cpp">
-      <Filter>Archivos de origen\components</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\components\Ability_Golem.cpp">
-      <Filter>Archivos de origen\components</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\components\Ability_Druid.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
     <ClCompile Include="Assets\components\DeckSpawn.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Architect.cpp">
+      <Filter>Archivos de origen\components\abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Bomb.cpp">
+      <Filter>Archivos de origen\components\abilities</Filter>
+    </ClCompile>
     <ClCompile Include="Assets\components\Ability_Creeper.cpp">
-      <Filter>Archivos de origen\components</Filter>
+      <Filter>Archivos de origen\components\abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Druid.cpp">
+      <Filter>Archivos de origen\components\abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Golem.cpp">
+      <Filter>Archivos de origen\components\abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Kirin.cpp">
+      <Filter>Archivos de origen\components\abilities</Filter>
     </ClCompile>
     <ClCompile Include="Assets\components\Ability_Priest.cpp">
-      <Filter>Archivos de origen\components</Filter>
+      <Filter>Archivos de origen\components\abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Rogue.cpp">
+      <Filter>Archivos de origen\components\abilities</Filter>
     </ClCompile>
     <ClCompile Include="Assets\components\Ability_Tank.cpp">
-      <Filter>Archivos de origen\components</Filter>
+      <Filter>Archivos de origen\components\abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Viking.cpp">
+      <Filter>Archivos de origen\components\abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\Ability.cpp">
+      <Filter>Archivos de origen\components\abilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -320,9 +329,6 @@
     <ClInclude Include="Assets\game\Values.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\components\Ability_Architect.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
     <ClInclude Include="Assets\game\CharacterSelectionState.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
@@ -338,41 +344,47 @@
     <ClInclude Include="Assets\components\Health.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\components\Ability_Rogue.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
     <ClInclude Include="Assets\components\Attack.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
     <ClInclude Include="Assets\game\CardInfo.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\components\Ability_Viking.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\Ability_Bomb.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\Ability_Kirin.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\Ability_Golem.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\Ability_Druid.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
     <ClInclude Include="Assets\components\DeckSpawn.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Architect.h">
+      <Filter>Archivos de encabezado\components\abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Bomb.h">
+      <Filter>Archivos de encabezado\components\abilities</Filter>
+    </ClInclude>
     <ClInclude Include="Assets\components\Ability_Creeper.h">
-      <Filter>Archivos de encabezado\components</Filter>
+      <Filter>Archivos de encabezado\components\abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Druid.h">
+      <Filter>Archivos de encabezado\components\abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Golem.h">
+      <Filter>Archivos de encabezado\components\abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Kirin.h">
+      <Filter>Archivos de encabezado\components\abilities</Filter>
     </ClInclude>
     <ClInclude Include="Assets\components\Ability_Priest.h">
-      <Filter>Archivos de encabezado\components</Filter>
+      <Filter>Archivos de encabezado\components\abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Rogue.h">
+      <Filter>Archivos de encabezado\components\abilities</Filter>
     </ClInclude>
     <ClInclude Include="Assets\components\Ability_Tank.h">
-      <Filter>Archivos de encabezado\components</Filter>
+      <Filter>Archivos de encabezado\components\abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Viking.h">
+      <Filter>Archivos de encabezado\components\abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability.h">
+      <Filter>Archivos de encabezado\components\abilities</Filter>
     </ClInclude>
     <ClInclude Include="Assets\components\ButtonSelected.h">
       <Filter>Archivos de encabezado\components</Filter>

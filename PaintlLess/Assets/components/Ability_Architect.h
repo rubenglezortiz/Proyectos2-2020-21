@@ -1,31 +1,22 @@
 #pragma once
 
-#include "../ecs/Component.h"
-#include "../sdlutils/Texture.h"
-#include "../ecs/Entity.h"
-#include "./Transform.h"
+#include "./Ability.h"
 #include "../sdlutils/InputHandler.h"
 #include "../game/OffsetInfo.h"
 #include "Movimiento.h"
 #include "Health.h"
 
-class Ability_Architect : public Component {
+class Ability_Architect : public Ability {
 public:
-	Ability_Architect() :mov(nullptr), tex(nullptr), mapa(nullptr), dest(SDL_Rect()),
+	Ability_Architect() : Ability(selector, ShaderForm::Cross, ShaderType::DefenseSh), dest(SDL_Rect()),
 		posArc(Vector2D()), resultado(0), selected(false) {}
-	virtual ~Ability_Architect() {}
+	virtual ~Ability_Architect() {  }
 
-	void init() override;
-	void render() override;
-	void update() override;
-	void AbilityShader();
-	void freeAbilityShader();
-	void generateWall(int x, int y);
-	bool esConstruible(const Vector2D& cas);
+	//void init() override; //no soy capaz de meter el init en la superclase
+	/*void update() override;*/
+
+	void AbilityExecute(int x, int y);
 private:
-	Movimiento* mov;
-	Texture* tex;
-	GameMap* mapa;
 	SDL_Rect dest;
 	Vector2D posArc;
 	int resultado;
@@ -33,5 +24,4 @@ private:
 	std::vector<Vector2D> casillasHabilidad;
 
 	//cuando se metan margenes hay que tener cuidadd y sumarlos
-	int cellWidth = 0, cellHeight = 0;
 };

@@ -53,9 +53,9 @@ public:
 	void removeCharacter(const Vector2D& cas);
 	void removeObstaculo(const Vector2D& cas);
 	bool casillaValida(const Vector2D& cas);
-	bool movimientoPosible(Vector2D cas);
-	bool movimientoPosibleEnredadera(Vector2D cas);
-	bool ataquePosible(Vector2D cas);
+	bool movimientoPosible(const Vector2D& cas);
+	bool movimientoPosibleEnredadera(const Vector2D& cas);
+	bool ataquePosible(const Vector2D& cas);
 	Color getColor(Vector2D cas);
 	void render();
 	int getRows() const { return rows; };
