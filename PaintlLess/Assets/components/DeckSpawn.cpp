@@ -20,6 +20,7 @@ void DeckSpawn::init() {
 	cellWidth = mapa->getCellWidth();
 	cellHeight = mapa->getCellHeight();
 	playState = mapa->getPlayState();
+	turno = playState->getTurno();
 }
 
 void DeckSpawn::health(Entity* c, int l) {
@@ -74,7 +75,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 		ctr->addComponent<Ability_Golem>();
 		break;
 	case Kirin:	
-		image(ctr, "kirin"); movement(ctr); health(ctr, 2); attack(ctr);
+		image(ctr, "kirin");	  movement(ctr); health(ctr, 2); attack(ctr);
 		ctr->addComponent<Ability_Kirin>();
 		break;
 	case Lobo:
@@ -162,6 +163,11 @@ void DeckSpawn::update() {
 	if (ih().getMouseButtonState(ih().LEFT)) {
 		selected = false;
 		freeShader();
+	}
+	if (turno != playState->getTurno()) {
+		selected = false;
+		freeShader();
+		turno = playState->getTurno();
 	}
 }
 

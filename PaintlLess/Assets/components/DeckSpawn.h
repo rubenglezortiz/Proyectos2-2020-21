@@ -17,6 +17,7 @@ private:
 	int cellWidth, cellHeight;
 	int personaje;
 	bool selected = false;
+	Equipo turno;
 public:
 	DeckSpawn(int pj) :
 	personaje(pj)
