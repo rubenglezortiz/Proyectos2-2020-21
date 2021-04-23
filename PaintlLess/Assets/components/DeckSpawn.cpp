@@ -149,7 +149,7 @@ void DeckSpawn::update() {
 			//esto se debe hacer en movementshader
 			Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
 			if (spawneableCell(posMovimiento) && playState->getCurrentPlayer() == 1) createCharacter(personaje, 0, posMovimiento);
-			else if (playState->getCurrentPlayer() == 0) createCharacter(personaje, 1, posMovimiento);
+			else if (spawneableCell(posMovimiento) && playState->getCurrentPlayer() == 0) createCharacter(personaje, 1, posMovimiento);
 			else cout << "Esa casilla no figura en los spawns.";
 			selected = false;
 			freeShader();

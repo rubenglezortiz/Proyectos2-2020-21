@@ -68,7 +68,7 @@ void GameMap::loadMap(const string levelName) {
 							cells[i][j].color = Color::Ninguno;
 							cells[i][j].tipoCasilla = TipoCasilla::Pintable;
 							break;
-						case 4: // Cesped
+						case 4: // Debería ser base también.
 							cells[i][j].color = Color::Ninguno;
 							cells[i][j].tipoCasilla = TipoCasilla::Pintable;
 							break;
