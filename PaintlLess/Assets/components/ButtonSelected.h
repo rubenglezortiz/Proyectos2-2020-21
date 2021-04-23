@@ -38,6 +38,7 @@ public:
 	}
 
 	void update() override {
+		cont = bt_->getGSM()->getCharSel()->getCont();
 		if (selection() && bt_->select()){
 			img_->setTexture(tex_);
 			selected = true;

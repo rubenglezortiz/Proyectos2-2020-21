@@ -258,6 +258,9 @@
   <ItemGroup>
     <None Include="resources\config\resources.json" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="resources\sound\menuinicio.wav" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
