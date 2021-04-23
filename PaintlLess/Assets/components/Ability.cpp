@@ -42,10 +42,10 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 		}
 		else if (st == KirinSh) {
 			cout << "Mi Posicion: " << map->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos()) << "Pos que miro: " << posUp;
-			if (map->movimientoPosible(posUp)    && map->getCharacter(posUp + Vector2D(0, -1)) != nullptr)abilityCells.push_back(posUp);
+			if (map->movimientoPosible(posUp) && map->getCharacter(posUp + Vector2D(0, -1)) != nullptr)abilityCells.push_back(posUp);
 			if (map->movimientoPosible(posRight) && map->getCharacter(posRight + Vector2D(-1, 0)) != nullptr) abilityCells.push_back(posRight);
-			if (map->movimientoPosible(posLeft) && map->getCharacter(posLeft + Vector2D(1, 0)) != nullptr  ) abilityCells.push_back(posLeft);
-			if (map->movimientoPosible(posDown) && map->getCharacter(posDown + Vector2D(0, 1)) != nullptr  ) abilityCells.push_back(posDown);
+			if (map->movimientoPosible(posLeft) && map->getCharacter(posLeft + Vector2D(1, 0)) != nullptr) abilityCells.push_back(posLeft);
+			if (map->movimientoPosible(posDown) && map->getCharacter(posDown + Vector2D(0, 1)) != nullptr) abilityCells.push_back(posDown);
 		}
 		else {
 			if (map->movimientoPosible(posUp)) abilityCells.push_back(posUp);
@@ -75,7 +75,7 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 	else {
 		bool findObj = false;
 
-		Vector2D atDir; //HCER ESTA PUTA MIERDA EN EL UPDATE DE LOS COJONES CUANDO SE PUTOREFACTORICE
+		Vector2D atDir;
 		if (map->getPlayState()->getTurno() == Primero) atDir = Vector2D(-1, 0);
 		else atDir = Vector2D(1, 0);
 
@@ -111,7 +111,7 @@ void Ability::render() {
 	if (abilityCells.size() > 0) {
 		for (Vector2D casilla : abilityCells) {
 			dest.x = casilla.getX() * cellWidth /*+ offset*/;
-			dest.y = casilla.getY() * cellHeight /*+ offset*/;
+			dest.y = casilla.getY() * cellHeight + OFFSET_Y;
 			dest.h = cellHeight;
 			dest.w = cellWidth;
 			tex->render(dest);
@@ -120,10 +120,16 @@ void Ability::render() {
 }
 
 void Ability::update() {
+	if (map->getPlayState()->getTurno() == Primero && entity_->hasGroup<Equipo_Rojo>()) 
+		return;
+	if (map->getPlayState()->getTurno() == Segundo && entity_->hasGroup<Equipo_Azul>())
+		return;
+
 	auto pos = entity_->getComponent<Transform>()->getPos();
 	if (ih().getMouseButtonState(ih().RIGHT)) {
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
+
 		if (selected) {
 			//esto se debe hacer en movementshader
 			Vector2D posMovimiento = map->SDLPointToMapCoords(Vector2D(mX, mY));
