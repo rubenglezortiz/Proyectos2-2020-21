@@ -4,6 +4,8 @@
 void Ability::init() {
 	map = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
 	assert(map != nullptr);
+	characterTr = entity_->getComponent<Transform>();
+	assert(characterTr != nullptr);
 	cellWidth = map->getCellWidth();
 	cellHeight = map->getCellHeight();
 	string s;

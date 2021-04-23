@@ -71,6 +71,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 		break;
 	case Golem:
 		image(ctr, "golem");					 health(ctr, 4); attack(ctr);
+		ctr->addComponent<Ability_Golem>();
 		break;
 	case Kirin:	
 		image(ctr, "kirin"); movement(ctr); health(ctr, 2); attack(ctr);

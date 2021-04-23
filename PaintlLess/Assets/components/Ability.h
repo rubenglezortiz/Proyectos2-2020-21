@@ -15,6 +15,7 @@ enum selectorColor { selector, selectorA, selectorH };
 
 class Ability : public Component {
 public:
+	Ability() : characterTr(nullptr), tex(nullptr), map(nullptr), selected(false), cellWidth(0), cellHeight(0), form(form), type(type), shaderDistance(1){}
 	Ability(selectorColor s, ShaderForm form, ShaderType type) : characterTr(nullptr), tex(nullptr), map(nullptr),
 		sel(s), selected(false), cellWidth(0), cellHeight(0), form(form), type(type), shaderDistance(1) { }
 	
