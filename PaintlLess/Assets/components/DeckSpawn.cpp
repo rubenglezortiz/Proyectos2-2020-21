@@ -36,8 +36,8 @@ void DeckSpawn::image(Entity* c, string t) {
 	c->addComponent<Image>(&sdlutils().images().at(t));
 }
 
-void DeckSpawn::attack(Entity* c, int dmg = 1) {
-	c->addComponent<Attack>(playState, dmg);
+void DeckSpawn::attack(Entity* c, int dmg = 1, string s = "ataqueSound") {
+	c->addComponent<Attack>(playState, dmg, s);
 }
 
 void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
@@ -62,7 +62,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 		ctr->addComponent<Ability_Bomb>();
 		break;
 	case Cazador:
-		image(ctr, "cazador");    movement(ctr); health(ctr, 1); attack(ctr, 2);
+		image(ctr, "cazador");    movement(ctr); health(ctr, 1); attack(ctr, 2, "arqueroSound");
 		break;
 	case Druida:	
 		image(ctr, "druida");     movement(ctr); health(ctr, 2);
@@ -96,7 +96,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 		ctr->addComponent<Ability_Tank>();
 		break;
 	case Vikingo:
-		image(ctr, "vikingo");    movement(ctr); health(ctr, 1); attack(ctr);
+		image(ctr, "vikingo");    movement(ctr); health(ctr, 1);
 		ctr->addComponent<Ability_Viking>();
 		break;
 	}

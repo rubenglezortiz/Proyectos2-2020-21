@@ -8,4 +8,6 @@ void Ability_Kirin::AbilityExecute(int x, int y)
 	pos.setX(x * cellWidth);
 	pos.setY(y * cellHeight+OFFSET_Y);
 	map->setCharacter(map->SDLPointToMapCoords(pos), entity_);
+	sdlutils().soundEffects().at("kirinSound").setChunkVolume(5);
+	sdlutils().soundEffects().at("kirinSound").play(); //-----------------------------------------------------------		
 }

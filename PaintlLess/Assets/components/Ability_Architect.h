@@ -16,7 +16,7 @@ public:
 	/*void update() override;*/
 
 	void AbilityExecute(int x, int y);
-	void finTurno() override { freeAbilityShader(); }
+	void finTurno() override { ability_usable = true; freeAbilityShader(); }
 private:
 	SDL_Rect dest;
 	Vector2D posArc;

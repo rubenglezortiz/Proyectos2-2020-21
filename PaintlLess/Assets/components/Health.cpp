@@ -9,14 +9,19 @@ void Health::init() {
 
 void Health::hit(int damage) {
 	lives -= damage;
-	if (lives <= 0) {
+	if (lives <= 0) {		
 		mapa->removeCharacter(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos())); //Quitar la entidad muerta		
 		mapa->removeObstaculo(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos()));
+			
 		if (entity_->getComponent<Ability_Golem>() != nullptr) {    //Deja muro si es el golem
 			entity_->getComponent<Ability_Golem>()->generateWall();
 		}
 		if (entity_->getComponent<Ability_Bomb>() != nullptr) {
 			entity_->getComponent<Ability_Bomb>()->explode();
+		}
+		else {
+			sdlutils().soundEffects().at("muerteSound").setChunkVolume(50);
+			sdlutils().soundEffects().at("muerteSound").play(); //-----------------------------------------------------------	
 		}
 		entity_->setActive(false);
 	}

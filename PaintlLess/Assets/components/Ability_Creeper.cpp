@@ -16,6 +16,8 @@ void Ability_Creeper::finTurno()
 		auto* e = mapa->getCharacter(mapa->SDLPointToMapCoords(tr_->getPos()));			// E.Rojo == 0 - E.Azul == 1
 		if (e != nullptr && (equip == 0 && e->hasGroup<Equipo_Azul>()) || (equip == 1 && e->hasGroup<Equipo_Rojo>())) {
 			e->getComponent<Health>()->hit(1);
+			sdlutils().soundEffects().at("enredaderasSound").setChunkVolume(5);
+			sdlutils().soundEffects().at("enredaderasSound").play(); //-----------------------------------------------------------		
 		}
 	}
 }

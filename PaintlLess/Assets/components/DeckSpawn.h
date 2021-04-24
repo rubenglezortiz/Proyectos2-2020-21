@@ -32,7 +32,7 @@ public:
 	void freeShader();
 
 	void health(Entity* character, int lives);
-	void attack(Entity* character, int damage);
+	void attack(Entity* character, int damage, string s);
 	void movement(Entity* character);
 	void image(Entity* character, string tex);
 

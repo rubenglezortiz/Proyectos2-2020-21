@@ -12,4 +12,5 @@ void Ability_Golem::generateWall() {
         0.0f);
     e->addComponent<Image>(&sdlutils().images().at("wall"));
     e->addComponent<Health>(2);
+	map->setCharacter(pos, e);
 }

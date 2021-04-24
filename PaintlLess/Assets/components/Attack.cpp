@@ -35,7 +35,7 @@ void Attack::attack() {
 			// Se tendría que hacer diferenciación entre el equipo del personaje.
 			if (canAttack(cas)) {
 				if (entity_->getComponent<Ability_Rogue>() != nullptr)
-					mapa->getCharacter(cas)->getComponent<Health>()->hit(entity_->getComponent<Ability_Rogue>()->ataqueCritico());
+					mapa->getCharacter(cas)->getComponent<Health>()->hit(entity_->getComponent<Ability_Rogue>()->ataqueCritico());								
 				else {
 					auto* mCha = mapa->getCharacter(cas);
 					if(mCha != nullptr)
@@ -44,6 +44,8 @@ void Attack::attack() {
 					if(mObs != nullptr)
 						mapa->getObstaculo(cas)->getComponent<Health>()->hit(1);
 				}				
+				sdlutils().soundEffects().at(sound).setChunkVolume(15);
+				sdlutils().soundEffects().at(sound).play(); //-----------------------------------------------------------			
 				ability_usable = false;
 				playState->aumentarAcciones(); //en realidad se restan acciones 
 			}

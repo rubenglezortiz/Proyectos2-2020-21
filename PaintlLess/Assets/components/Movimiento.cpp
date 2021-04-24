@@ -39,12 +39,14 @@ void Movimiento::update() {
 						cout << pos;
 					}
 					selected = false;
+					sdlutils().soundEffects().at("moveSound").setChunkVolume(5);
+					sdlutils().soundEffects().at("moveSound").play(); //-----------------------------------------------------------		
 
 					if(entity_->hasGroup<Equipo_Azul>())
 						mapa->setColor(mapa->SDLPointToMapCoords(pos), Amarillo);
 					else
-						mapa->setColor(mapa->SDLPointToMapCoords(pos), Rojo); 
-
+						mapa->setColor(mapa->SDLPointToMapCoords(pos), Rojo); 					
+					
 					//estos métodos son para cuando se deselcciona yuna casilla para restablecer los valores de los vectores...
 					movShader->freeCasillasAPintar();
 					resetCasillasChecked();

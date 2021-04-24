@@ -78,7 +78,7 @@
   
   "sounds" : [
     { "id" : "alquimistaSound", "file" : "resources/sound/alquimista.wav" },
-    { "id" : "arqueroSound", "file" : "resources/sound/arquero.wav" },
+    { "id" : "arqueroSound", "file" : "resources/sound/arquero.wav" },  
     { "id" : "ataqueSound", "file" : "resources/sound/ataquebasico.wav" },
     { "id" : "bangLarge", "file" : "resources/sound/bangLarge.wav" },
     { "id"  : "bangSmall","file"  : "resources/sound/bangSmall.wav"},
@@ -100,14 +100,7 @@
     { "id" : "seleccionSound", "file" : "resources/sound/seleccion.mp3" },
     { "id" : "vikingoSound", "file" : "resources/sound/vikingo.wav" },
     { "id" : "wall_hitSound", "file" : "resources/sound/wall_hit.wav" },
-    { "id" : "explosion", "file" : "resources/sound/explosion.wav" }
-  
-  
-  
-  
-  
-  
-  
+    { "id" : "explosion", "file" : "resources/sound/explosion.wav" }  
   
   
   

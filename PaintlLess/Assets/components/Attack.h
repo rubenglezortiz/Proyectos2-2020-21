@@ -24,11 +24,11 @@ private:
 	vector<Vector2D> casillasAtaque;
 
 	PlayState* playState;
-
+	string sound;
 
 public:
-	Attack(PlayState* playState, int r = 1) :
-		range(r), selected(false), cellWidth(0), cellHeight(0), tr_(nullptr), mapa(nullptr), tex_(nullptr), playState(playState)
+	Attack(PlayState* playState, int r = 1, string s = "ataqueSound") :
+		range(r), selected(false), cellWidth(0), cellHeight(0), tr_(nullptr), mapa(nullptr), tex_(nullptr), playState(playState), sound(s)
 	{}
 	~Attack() {}
 

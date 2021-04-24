@@ -14,5 +14,5 @@ public:
 	Ability_Priest():Ability(selectorH, ShaderForm::TxT, ShaderType::nullSh) {}
 	virtual ~Ability_Priest() {}
 	void AbilityExecute(int x, int y);
-	void finTurno() override { freeAbilityShader(); }
+	void finTurno() override { ability_usable = true; freeAbilityShader(); }
 };

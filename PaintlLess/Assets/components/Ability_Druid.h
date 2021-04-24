@@ -20,8 +20,7 @@ public:
 private:
 	PlayState* pSt;
 	SDL_Rect dest;
-	Vector2D posDruid;
-	bool habilidad = true;
+	Vector2D posDruid;	
 	int equip;
 
 	//cuando se metan margenes hay que tener cuidadd y sumarlos

@@ -13,5 +13,5 @@ public:
 	Ability_Viking() : Ability(selectorA, ShaderForm::VikingForm, ShaderType::nullSh) {}
 	virtual ~Ability_Viking() {}
 	void AbilityExecute(int x, int y);
-	void finTurno() override { freeAbilityShader(); }
+	void finTurno() override { ability_usable = true; freeAbilityShader(); }
 };
