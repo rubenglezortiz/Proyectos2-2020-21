@@ -16,6 +16,10 @@ class PlayState : public GameState
 private:
 	const int MAX_TURNOS = 10;
 	const int MAX_ACCIONES = 3;
+	const int MAX_MANA = 10;
+	const int INCREMENTO_MANA = 3;
+	int mana_1 = 10;
+	int mana_2 = 10;
 	int accionesPorTurno = MAX_ACCIONES, turnosActuales = 0;
 	int mana;
 	Equipo jugadorActual = Segundo;
@@ -54,5 +58,9 @@ public:
 
 	void aumentarAcciones() { accionesPorTurno--; };
 	int getAcciones() const { return accionesPorTurno; }	
+	int getMana1() const { return mana_1; } //Para interfaz
+	int getMana2() const { return mana_2; }
 
+	bool restaMana1(int m);
+	bool restaMana2(int m);
 };

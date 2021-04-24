@@ -113,7 +113,6 @@ bool Ability::abilityCheck(const Vector2D& pos) {
 }
 
 
-
 void Ability::render() {
 	SDL_Rect dest;
 	if (abilityCells.size() > 0) {
@@ -143,6 +142,7 @@ void Ability::update() {
 			Vector2D posMovimiento = map->SDLPointToMapCoords(Vector2D(mX, mY));
 
 			if (abilityCheck(posMovimiento)) {
+				ability_usable = false;
 				pos.setX(posMovimiento.getX() * cellWidth);
 				pos.setY(posMovimiento.getY() * cellHeight);
 				AbilityExecute(posMovimiento.getX(), posMovimiento.getY());
@@ -151,7 +151,7 @@ void Ability::update() {
 			freeAbilityShader();
 
 		}
-		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
+		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && ability_usable) {
 			selected = true;
 			AbilityShader(form, type, shaderDistance);
 		}
@@ -160,4 +160,9 @@ void Ability::update() {
 		selected = false;
 		freeAbilityShader();
 	}
+}
+
+void Ability::finTurno()
+{
+	ability_usable = true;
 }

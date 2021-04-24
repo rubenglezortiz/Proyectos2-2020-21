@@ -8,7 +8,10 @@ typedef unsigned int uint;
 namespace UnitInfo {
 enum TipoCarta {Ataque, Defensa, Utilidad};
 
-	const uint Movimiento[2] = { 4, 2 };
+	const uint numUnidades = 13;
+
+	const uint Movimiento[2] = { 4, 2 };	
+	const uint mana[numUnidades] = { 3, 3, 3, 2, 3, 1, 4, 3, 3, 3, 2, 4, 2 };
 
 	//const uint numUnidades = 13;
 	//const uint Ataque = {1};
@@ -18,13 +21,12 @@ enum TipoCarta {Ataque, Defensa, Utilidad};
 	//const uint Vida = {2};
 	//const TipoCarta tipoCarta = {TipoCarta::Ataque};
 
-	/*    const uint numUnidades = 13;
+	/*  
     const uint health[numUnidades] = { 2, 2, 3, 1, 2, 1, 4, 2, 2, 1, 2, 4, 1 };
-    const uint cooldown[numUnidades] = { 3, 3, 3, 2, 3, 1, 3, 2, 2, 2, 3, 2, 2 };
-    const uint mana[numUnidades] = { 3, 3, 3, 2, 3, 1, 4, 3, 3, 3, 2, 4, 2 };
+    const uint cooldown[numUnidades] = { 3, 3, 3, 2, 3, 1, 3, 2, 2, 2, 3, 2, 2 };   
     const uint damage[numUnidades] = { 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 2, 0, 1 };
     //const TipoCarta tiposCartas[numUnidades] = { Utilidad, Utilidad, Utilidad, Ataque, Utilidad, Ataque, Defensa, Ataque, Utilidad, Defensa, Ataque, Defensa, Ataque };
-}*/
+	}*/
 
 	/*Ataque[Arquitecta] =1;
 	Ataque[Bomba] = 0;
@@ -38,11 +40,4 @@ enum TipoCarta {Ataque, Defensa, Utilidad};
 	Ataque[Picara] = ;
 	Ataque[Tanque] = ;
 	Ataque[Vikingo] = ;*/
-
-
-
-			
-		
-
-
 }

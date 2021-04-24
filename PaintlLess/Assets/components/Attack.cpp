@@ -20,6 +20,7 @@ void Attack::update() {
 void Attack::finTurno()
 {
 	casillasAtaque.clear();
+	ability_usable = true;
 }
 
 void Attack::attack() {
@@ -43,13 +44,13 @@ void Attack::attack() {
 					if(mObs != nullptr)
 						mapa->getObstaculo(cas)->getComponent<Health>()->hit(1);
 				}				
-
-				playState->aumentarAcciones();
+				ability_usable = false;
+				playState->aumentarAcciones(); //en realidad se restan acciones 
 			}
 			selected = false;
 			casillasAtaque.clear();
 		}
-		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && playState->getAcciones() > 0) {
+		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && playState->getAcciones() > 0 && ability_usable) {
 			selected = true;
 			attackShader();
 		}

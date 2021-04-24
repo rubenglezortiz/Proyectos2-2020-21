@@ -16,6 +16,7 @@ class PlayState;
 class Attack : public Component {
 private:
 	bool selected;
+	bool ability_usable = true;
 	int cellWidth, cellHeight, range;
 	Transform* tr_;
 	GameMap* mapa;

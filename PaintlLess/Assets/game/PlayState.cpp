@@ -21,7 +21,9 @@
 #include "../components/Attack.h"
 #include "../components/DeckSpawn.h"
 
+
 #include "../components/MovementShader.h"
+#include "../game/Values.h"
 #include "GameStateMachine.h"
 
 PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm) {
@@ -181,20 +183,52 @@ void PlayState::createMazo(int n, int i) {
 			boton->addComponent<Image>(&sdlutils().images().at("vikingoSP"));
 			boton->addComponent<DeckSpawn>(Vikingo);
 			break;
-		}
-	
+		}	
 }
 
 
 void PlayState::pasaTurno() {
 	accionesPorTurno = MAX_ACCIONES;
-	if (jugadorActual == Primero) jugadorActual = Segundo;
-	else jugadorActual = Primero;
 
+	if (jugadorActual == Primero) {
+		jugadorActual = Segundo;
+		if (mana_1 + INCREMENTO_MANA >= MAX_MANA)
+			mana_1 = MAX_MANA;
+		else
+			mana_1 += INCREMENTO_MANA;
+	}
+	else {
+		jugadorActual = Primero;
+		if (mana_2 + INCREMENTO_MANA >= MAX_MANA)
+			mana_2 = MAX_MANA;
+		else
+			mana_2 += INCREMENTO_MANA;
+	} 
+	cout << endl << "MANA_1: " << mana_1 << endl << "MANA_2: " << mana_2 << endl;
 	turnosActuales++;
 	if (turnosActuales > MAX_TURNOS * 2) cout << "fin de partida\n";
 
 	mngr_->finTurno();
 	cout << "Turno pasado\n";
 
+}
+
+bool PlayState::restaMana1(int m)
+{
+	if (mana_1 - m >= 0) {
+		mana_1 -= m;
+		return true;
+	}
+	else
+		return false;		
+}
+
+bool PlayState::restaMana2(int m)
+{
+	if (mana_2 - m >= 0) {
+		mana_2 -= m;
+		return true;
+	}
+	else
+		return false;
 }
