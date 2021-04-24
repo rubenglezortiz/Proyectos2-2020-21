@@ -9,14 +9,12 @@
 
 class Ability_Bomb : public Component { //lleva este componente la destrucci�n del objeto??
 public:
-    Ability_Bomb() : tr(nullptr), mapa(nullptr) {}
+    Ability_Bomb() : mapa(nullptr) {}
     virtual ~Ability_Bomb() {}
     void init() override;
     void explode();
 
 private:
-    Transform* tr;
     GameMap* mapa;
-    Vector2D posBomb;
-    std::vector<Vector2D> casillas;
+    std::vector<Vector2D> casillas{ {0, -1}, {-1, -1}, {1, -1}, {1, 0}, {-1, 0}, {0, 1}, {-1, 1}, {1, 1} };
 };

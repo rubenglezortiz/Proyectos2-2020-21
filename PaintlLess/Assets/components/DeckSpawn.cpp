@@ -8,6 +8,7 @@
 #include "Ability_Rogue.h"
 #include "Ability_Tank.h"
 #include "Ability_Viking.h"
+#include "Ability_Wolf.h"
 #include "Attack.h"
 #include "GameMap.h"
 #include "Health.h"
@@ -80,7 +81,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 		break;
 	case Lobo:
 		image(ctr, "lobo");		  movement(ctr); health(ctr, 2);
-		// Habilidad del lobo.
+		ctr->addComponent<Ability_Wolf>();
 		break;
 	case Monaguillo:
 		image(ctr, "monaguillo"); movement(ctr); health(ctr, 1); attack(ctr);

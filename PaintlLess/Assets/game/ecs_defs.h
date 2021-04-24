@@ -13,6 +13,7 @@ class Ability_Kirin;
 class Ability_Priest;
 class Ability_Rogue;
 class Ability_Viking;
+class Ability_Wolf;
 class Ability_Tank;
 class Attack;
 class ButtonSelected;
@@ -36,6 +37,7 @@ class Transform;
 	Ability_Priest	    ,  \
 	Ability_Rogue	    ,  \
 	Ability_Viking      ,  \
+	Ability_Wolf        ,  \
 	Ability_Tank        ,  \
 	Attack				,  \
 	ButtonSelected		,  \

@@ -219,6 +219,9 @@
     <ClCompile Include="Assets\components\Ability.cpp">
       <Filter>Archivos de origen\components\abilities</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\components\Ability_Wolf.cpp">
+      <Filter>Archivos de origen\components\abilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\game\ecs_defs.h">
@@ -391,6 +394,9 @@
     </ClInclude>
     <ClInclude Include="Assets\game\OffsetInfo.h">
       <Filter>Archivos de encabezado\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Ability_Wolf.h">
+      <Filter>Archivos de encabezado\components\abilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

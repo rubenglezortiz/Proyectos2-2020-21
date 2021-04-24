@@ -152,6 +152,7 @@
     <ClCompile Include="Assets\components\Ability_Rogue.cpp" />
     <ClCompile Include="Assets\components\Ability_Tank.cpp" />
     <ClCompile Include="Assets\components\Ability_Viking.cpp" />
+    <ClCompile Include="Assets\components\Ability_Wolf.cpp" />
     <ClCompile Include="Assets\components\Attack.cpp" />
     <ClCompile Include="Assets\components\DeckSpawn.cpp" />
     <ClCompile Include="Assets\components\GameMap.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="Assets\components\Ability_Rogue.h" />
     <ClInclude Include="Assets\components\Ability_Tank.h" />
     <ClInclude Include="Assets\components\Ability_Viking.h" />
+    <ClInclude Include="Assets\components\Ability_Wolf.h" />
     <ClInclude Include="Assets\components\Attack.h" />
     <ClInclude Include="Assets\components\ButtonSelected.h" />
     <ClInclude Include="Assets\components\DeckSpawn.h" />
