@@ -56,16 +56,17 @@ void Ability_Wolf::shaderAttack()
 	posWolf = mapa->SDLPointToMapCoords(posWolf);
 
 	for (int i = 0; i < casillas.size(); i++) { // 12, 2 por cada lao
-		//Hay personaje en el 1
-		if (mapa->getCharacter(casillas[i] + posWolf) != nullptr) {
-			shader.push_back(casillas[i] + posWolf);
-		}
-		//Hay personaje en el 2
-		else if (mapa->getCharacter(casillas[i + 1] + posWolf) != nullptr)
-		{
-			shader.push_back(casillas[i + 1] + posWolf);
-		}
-
+		if (mapa->casillaValida(casillas[i] + posWolf)) {
+			//Hay personaje en el 1
+			if (mapa->getCharacter(casillas[i] + posWolf) != nullptr) {
+				shader.push_back(casillas[i] + posWolf);
+			}
+			//Hay personaje en el 2
+			else if (mapa->getCharacter(casillas[i + 1] + posWolf) != nullptr)
+			{
+				shader.push_back(casillas[i + 1] + posWolf);
+			}	
+		}	
 		i++;
 	}
 }
