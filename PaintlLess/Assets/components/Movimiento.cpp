@@ -52,7 +52,8 @@ void Movimiento::update() {
 				else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
 					selected = true;
 					movShader->casillasPosiblesRecu(mapa->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked);
-					sdlutils().soundEffects().at("click").play(); //-----------------------------------------------------------
+					sdlutils().soundEffects().at("click").setChunkVolume(5);
+					sdlutils().soundEffects().at("click").play(); //-----------------------------------------------------------					
 				}
 			}
 			if (ih().getMouseButtonState(ih().RIGHT)) {

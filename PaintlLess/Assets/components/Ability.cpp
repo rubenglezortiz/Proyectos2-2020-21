@@ -49,6 +49,12 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 			if (map->movimientoPosible(posLeft) && map->getCharacter(posLeft + Vector2D(1, 0)) != nullptr) abilityCells.push_back(posLeft);
 			if (map->movimientoPosible(posDown) && map->getCharacter(posDown + Vector2D(0, 1)) != nullptr) abilityCells.push_back(posDown);
 		}
+		else if (st == DruidaSh) {
+			if (map->movimientoPosibleEnredadera(posUp)) abilityCells.push_back(posUp);
+			if (map->movimientoPosibleEnredadera(posRight)) abilityCells.push_back(posRight);
+			if (map->movimientoPosibleEnredadera(posLeft)) abilityCells.push_back(posLeft);
+			if (map->movimientoPosibleEnredadera(posDown)) abilityCells.push_back(posDown);
+		}
 		else {
 			if (map->movimientoPosible(posUp)) abilityCells.push_back(posUp);
 			if (map->movimientoPosible(posRight)) abilityCells.push_back(posRight);

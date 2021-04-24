@@ -152,11 +152,11 @@ bool GameMap::movimientoPosible(const Vector2D& cas) {
 
 bool GameMap::movimientoPosibleEnredadera(const Vector2D& cas) {
 	if (!casillaValida(cas))return false;
-	int x = cas.getX(); int y = cas.getY();
-	if (cells[y][x].obstaculo == nullptr)
-		return cells[y][x].tipoCasilla != NoPintable;
-	else if (cells[y][x].character != nullptr && cells[y][x].obstaculo == nullptr)
-		return (cells[y][x].character->hasComponent<Movimiento>() || cells[y][x].character->hasComponent<Attack>() && cells[y][x].tipoCasilla != NoPintable);
+	int x = cas.getX(); int y = cas.getY();	
+	 if (cells[y][x].character != nullptr && cells[y][x].obstaculo == nullptr)
+		return ((cells[y][x].character->hasComponent<Movimiento>() || cells[y][x].character->hasComponent<Attack>()) && cells[y][x].tipoCasilla != NoPintable);
+	 else if (cells[y][x].obstaculo == nullptr)
+		 return cells[y][x].tipoCasilla != NoPintable;
 	else return false;
 }
 
