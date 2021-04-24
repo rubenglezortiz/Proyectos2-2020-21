@@ -154,6 +154,8 @@
     <ClCompile Include="Assets\components\Ability_Viking.cpp" />
     <ClCompile Include="Assets\components\Ability_Wolf.cpp" />
     <ClCompile Include="Assets\components\Attack.cpp" />
+    <ClCompile Include="Assets\components\ButtonHovered.cpp" />
+    <ClCompile Include="Assets\components\ButtonSelected.cpp" />
     <ClCompile Include="Assets\components\DeckSpawn.cpp" />
     <ClCompile Include="Assets\components\GameMap.cpp" />
     <ClCompile Include="Assets\components\Health.cpp" />
@@ -211,6 +213,7 @@
     <ClInclude Include="Assets\components\Ability_Viking.h" />
     <ClInclude Include="Assets\components\Ability_Wolf.h" />
     <ClInclude Include="Assets\components\Attack.h" />
+    <ClInclude Include="Assets\components\ButtonHovered.h" />
     <ClInclude Include="Assets\components\ButtonSelected.h" />
     <ClInclude Include="Assets\components\DeckSpawn.h" />
     <ClInclude Include="Assets\components\GameMap.h" />

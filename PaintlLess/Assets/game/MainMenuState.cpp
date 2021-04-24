@@ -9,6 +9,7 @@
 #include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
 #include "../components/MenuButton.h"
+#include "../components/ButtonHovered.h"
 #include "GameStateMachine.h"
 
 MainMenuState::MainMenuState(GameStateMachine* gsm) : GameState(gsm) { //Poner las imagenes y posiciones correctamente
@@ -20,24 +21,28 @@ MainMenuState::MainMenuState(GameStateMachine* gsm) : GameState(gsm) { //Poner l
 	menuFondo->addComponent<Image>(&sdlutils().images().at("menu"));
 
 	auto* bOnline = mngr_->addEntity(RenderLayer::Fondo);
-	bOnline->addComponent<Transform>(Vector2D(300,150),w, h);
-	bOnline->addComponent<Image>(&sdlutils().images().at("start"));
+	bOnline->addComponent<Transform>(Vector2D(325, 200), w, h);
+	bOnline->addComponent<Image>(&sdlutils().images().at("online1"));
 	bOnline->addComponent<MenuButton>(gsm, newGame, "menuInicioSound");
+	bOnline->addComponent<ButtonHovered>(&sdlutils().images().at("online2"));
 
 	auto* bLocal = mngr_->addEntity(RenderLayer::Fondo);
-	bLocal->addComponent<Transform>(Vector2D(300, 225), w, h);
-	bLocal->addComponent<Image>(&sdlutils().images().at("start"));
+	bLocal->addComponent<Transform>(Vector2D(325, 300), w, h);
+	bLocal->addComponent<Image>(&sdlutils().images().at("local1"));
 	bLocal->addComponent<MenuButton>(gsm, newGame, "menuInicioSound");
+	bLocal->addComponent<ButtonHovered>(&sdlutils().images().at("local2"));
 
 	auto* bOpc = mngr_->addEntity(RenderLayer::Fondo);
-	bOpc->addComponent<Transform>(Vector2D(300, 300), w, h);
-	bOpc->addComponent<Image>(&sdlutils().images().at("start"));
+	bOpc->addComponent<Transform>(Vector2D(325, 400), w + 45, h);
+	bOpc->addComponent<Image>(&sdlutils().images().at("opciones1"));
 	bOpc->addComponent<MenuButton>(gsm, newGame, "menuInicioSound");
+	bOpc->addComponent<ButtonHovered>(&sdlutils().images().at("opciones2"));
 
 	auto* bSalir = mngr_->addEntity(RenderLayer::Fondo);
-	bSalir->addComponent<Transform>(Vector2D(300, 400), w, h);
-	bSalir->addComponent<Image>(&sdlutils().images().at("star"));
+	bSalir->addComponent<Transform>(Vector2D(325, 500), w, h);
+	bSalir->addComponent<Image>(&sdlutils().images().at("salir1"));
 	bSalir->addComponent<MenuButton>(gsm, exitApp);
+	bSalir->addComponent<ButtonHovered>(&sdlutils().images().at("salir2"));
 }
 
 void MainMenuState::newGame(GameStateMachine* gsm) { //Nuevo partida

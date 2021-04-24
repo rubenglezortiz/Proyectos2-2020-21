@@ -222,6 +222,12 @@
     <ClCompile Include="Assets\components\Ability_Wolf.cpp">
       <Filter>Archivos de origen\components\abilities</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\components\ButtonSelected.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\ButtonHovered.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\game\ecs_defs.h">
@@ -397,6 +403,9 @@
     </ClInclude>
     <ClInclude Include="Assets\components\Ability_Wolf.h">
       <Filter>Archivos de encabezado\components\abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\ButtonHovered.h">
+      <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

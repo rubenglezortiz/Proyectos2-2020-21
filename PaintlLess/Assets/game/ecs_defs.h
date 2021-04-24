@@ -16,6 +16,7 @@ class Ability_Viking;
 class Ability_Wolf;
 class Ability_Tank;
 class Attack;
+class ButtonHovered;
 class ButtonSelected;
 class DeckSpawn;
 class GameMap;
@@ -40,6 +41,7 @@ class Transform;
 	Ability_Wolf        ,  \
 	Ability_Tank        ,  \
 	Attack				,  \
+	ButtonHovered		,  \
 	ButtonSelected		,  \
 	DeckSpawn		    ,  \
 	GameMap				,  \

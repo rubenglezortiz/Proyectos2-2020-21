@@ -67,7 +67,15 @@
     { "id" : "botonUt",     "file" : "resources/images/menus/SP/utilidadSP.png"},
     { "id" : "menuSP",      "file" : "resources/images/menus/SP/menu.jpeg"},
 
-    { "id" : "menu",       "file" : "resources/images/menus/menu.png"}
+    { "id" : "menu",         "file": "resources/images/menus/menu.png" },
+    { "id" : "local1",       "file" : "resources/images/menus/Local_0.png"},
+    { "id" : "local2",       "file" : "resources/images/menus/Local_1.png"},
+    { "id" : "online1",      "file" : "resources/images/menus/Online_0.png"},
+    { "id" : "online2",      "file" : "resources/images/menus/Online_1.png"},
+    { "id" : "opciones1",    "file" : "resources/images/menus/Opciones_0.png"},
+    { "id" : "opciones2",    "file" : "resources/images/menus/Opciones_1.png"},
+    { "id" : "salir1",       "file" : "resources/images/menus/Salir_0.png"},
+    { "id" : "salir2",       "file" : "resources/images/menus/Salir_1.png"}
  ],
 
   
