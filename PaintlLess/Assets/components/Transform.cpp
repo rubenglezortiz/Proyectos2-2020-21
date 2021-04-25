@@ -13,6 +13,6 @@ void Transform::init() {
 	width_ = cellWidth;
 	height_ = cellHeight;
 
-	pos_.setX(pos_.getX() * cellWidth);
-	pos_.setY((pos_.getY() * cellHeight) + OFFSET_Y);
+	pos_.setX((pos_.getX() * cellWidth) + OFFSET_X);
+	pos_.setY((pos_.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP);
 }

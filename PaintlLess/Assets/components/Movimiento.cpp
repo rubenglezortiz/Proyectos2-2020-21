@@ -32,8 +32,8 @@ void Movimiento::update() {
 					Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
 					if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible) {
 						mapa->removeCharacter(mapa->SDLPointToMapCoords(pos));
-						pos.setX(posMovimiento.getX() * cellWidth);
-						pos.setY((posMovimiento.getY() * cellHeight)+ OFFSET_Y);
+						pos.setX((posMovimiento.getX() * cellWidth) + OFFSET_X);
+						pos.setY((posMovimiento.getY() * cellHeight)+ OFFSET_Y + OFFSET_TOP);
 						mapa->setCharacter(mapa->SDLPointToMapCoords(pos), entity_);
 						playState->aumentarAcciones();
 						cout << pos;

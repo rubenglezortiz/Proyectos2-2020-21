@@ -6,6 +6,7 @@
 #include "../sdlutils/Texture.h"
 #include "../ecs/Entity.h"
 #include "./Transform.h"
+#include "./Transform2.h"
 
 class Image : public Component {
 public:
@@ -20,6 +21,7 @@ public:
 
 	Image(Texture* tex, SDL_Rect src) :
 		tr_(nullptr), //
+		tr2_(nullptr),
 		tex_(tex), //
 		src_(src)
 
@@ -28,7 +30,7 @@ public:
 	}
 
 	Image(Texture* tex, int rows, int cols, int r, int c) :
-		tr_(nullptr), //
+		tr_(nullptr), tr2_(nullptr),
 		tex_(tex) //
 	{
 		auto w = tex->width() / cols;
@@ -43,7 +45,11 @@ public:
 
 	void init() override {
 		tr_ = entity_->getComponent<Transform>();
-		assert(tr_ != nullptr);
+		if (tr_ == nullptr) {
+			tr2_ = entity_->getComponent<Transform2>();
+			assert(tr2_ != nullptr);
+		} else
+			assert(tr_ != nullptr);
 	}
 
 	void render() override;
@@ -58,6 +64,7 @@ public:
 
 private:
 	Transform* tr_;
+	Transform2* tr2_;
 	Texture* tex_;
 	SDL_Rect src_;
 	int currFrame;

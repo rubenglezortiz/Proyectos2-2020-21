@@ -90,8 +90,8 @@ void MovementShader::casillasPosiblesRecuAux(int casillasAMover, const Vector2D&
 void MovementShader::render() {
 	SDL_Rect dest;
 	for (Vector2D casilla : casillasAPintar) {
-		dest.x = casilla.getX() * cellWidth /*+ offset*/;
-		dest.y = (casilla.getY() * cellHeight) + OFFSET_Y/*+ offset*/;
+		dest.x = casilla.getX() * cellWidth + OFFSET_X;
+		dest.y = (casilla.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP;
 		dest.h = cellHeight;
 		dest.w = cellWidth;
 

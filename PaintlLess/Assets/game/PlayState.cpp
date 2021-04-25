@@ -20,6 +20,8 @@
 #include "../components/Ability_Druid.h"
 #include "../components/Attack.h"
 #include "../components/DeckSpawn.h"
+#include "../components/Interfaz.h"
+#include "../components/Transform2.h"
 
 
 #include "../components/MovementShader.h"
@@ -28,14 +30,20 @@
 
 PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm) {
 
-	//Creación gamemap
-	auto* m = mngr_->addEntity(RenderLayer::Fondo);		
+	// Creación imagen fondo.
+	auto* fondo = mngr_->addEntity(RenderLayer::Fondo);
+	fondo->addComponent<Transform>(Vector2D(), sdlutils().width(), sdlutils().height());
+	fondo->addComponent<Image>(&sdlutils().images().at("tablero"));
+
+	// Creación gamemap
+	auto* m = mngr_->addEntity(RenderLayer::Tablero);		
 	m->addComponent<GameMap>("Assets/level1.txt", this);
 	mapa = m->getComponent<GameMap>();
 	mngr_.get()->setHandler<Mapa>(m);
+	m->addComponent<Interfaz>();
 
 
-	//cración boardManager
+	// Creación boardManager
 	Entity* boardManager = mngr_->addEntity(RenderLayer::Tablero2);
 	boardManager->addComponent<PointOnImage>(&sdlutils().images().at("selector"));
 	boardManager->addComponent<MovementShader>(&sdlutils().images().at("selector"));
@@ -44,7 +52,7 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 
 	//boardManager->getComponent<MovementShader>()->getValues();
 
-	int x = 2;
+	int x = 0;
 	// Crea a los personajes según el vector de personajes que ha recibido.
 	for (int i = 0; i < charss.size(); ++i) {
 		if (charss[i]) {
@@ -128,59 +136,59 @@ PlayState::~PlayState() {}
 
 void PlayState::createMazo(int n, int i) {
 		auto* boton = mngr_->addEntity(RenderLayer::Interfaz);
-		boton->addComponent<Transform>(Vector2D(i, 9), mapa->getCellWidth(), mapa->getCellHeight());
+		boton->addComponent<Transform2>(Vector2D( i * sdlutils().width() / 9, sdlutils().height() - 100), sdlutils().width() / 9, 70);
 		
 		switch (n) {
 		case Alquimista: 
-			boton->addComponent<Image>(&sdlutils().images().at("alquimistaSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("alquimistaMazoA"));
 			boton->addComponent<DeckSpawn>(Alquimista);
 			break;
 		case Arquitecta:
-			boton->addComponent<Image>(&sdlutils().images().at("arquitectaSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("arquitectaMazoA"));
 			boton->addComponent<DeckSpawn>(Arquitecta);
 			break;
 		case Bomba:
-			boton->addComponent<Image>(&sdlutils().images().at("bombaSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("bombaMazoA"));
 			boton->addComponent<DeckSpawn>(Bomba);
 			break;
 		case Cazador:
-			boton->addComponent<Image>(&sdlutils().images().at("cazadorSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("cazadorMazoA"));
 			boton->addComponent<DeckSpawn>(Cazador);
 			break;
 		case Druida:
-			boton->addComponent<Image>(&sdlutils().images().at("druidaSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("druidaMazoA"));
 			boton->addComponent<DeckSpawn>(Druida);
 			break;
 		case Esqueleto:
-			boton->addComponent<Image>(&sdlutils().images().at("esqueletoSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("esqueletoMazoA"));
 			boton->addComponent<DeckSpawn>(Esqueleto);
 			break;
 		case Golem:
-			boton->addComponent<Image>(&sdlutils().images().at("golemSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("golemMazoA"));
 			boton->addComponent<DeckSpawn>(Golem);
 			break;
 		case Kirin:
-			boton->addComponent<Image>(&sdlutils().images().at("kirinSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("kirinMazoA"));
 			boton->addComponent<DeckSpawn>(Kirin);
 			break;
 		case Lobo:
-			boton->addComponent<Image>(&sdlutils().images().at("loboSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("loboMazoA"));
 			boton->addComponent<DeckSpawn>(Lobo);
 			break;
 		case Monaguillo:
-			boton->addComponent<Image>(&sdlutils().images().at("monaguilloSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("monaguilloMazoA"));
 			boton->addComponent<DeckSpawn>(Monaguillo);
 			break;
 		case Picara:
-			boton->addComponent<Image>(&sdlutils().images().at("picaraSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("picaraMazoA"));
 			boton->addComponent<DeckSpawn>(Picara);
 			break;
 		case Tanque:
-			boton->addComponent<Image>(&sdlutils().images().at("tanqueSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("tanqueMazoA"));
 			boton->addComponent<DeckSpawn>(Tanque);
 			break;
 		case Vikingo:
-			boton->addComponent<Image>(&sdlutils().images().at("vikingoSP"));
+			boton->addComponent<Image>(&sdlutils().images().at("vikingoMazoA"));
 			boton->addComponent<DeckSpawn>(Vikingo);
 			break;
 		}	
@@ -213,22 +221,16 @@ void PlayState::pasaTurno() {
 
 }
 
-bool PlayState::restaMana1(int m)
+bool PlayState::restaMana(int m, int& mana)
 {
-	if (mana_1 - m >= 0) {
-		mana_1 -= m;
+	if (mana - m >= 0) {
+		mana -= m;
 		return true;
 	}
 	else
 		return false;		
 }
 
-bool PlayState::restaMana2(int m)
-{
-	if (mana_2 - m >= 0) {
-		mana_2 -= m;
-		return true;
-	}
-	else
-		return false;
+bool PlayState::manaSuficiente(int m, int mana) const {
+	return (mana - m >= 0);
 }

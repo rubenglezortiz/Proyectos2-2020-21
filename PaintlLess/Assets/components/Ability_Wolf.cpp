@@ -41,8 +41,8 @@ void Ability_Wolf::render()
 {
 	SDL_Rect dest;
 	for (Vector2D casilla : shader) {
-		dest.x = casilla.getX() * cellWidth /*+ offset*/;
-		dest.y = casilla.getY() * cellHeight + OFFSET_Y/*+ offset*/;
+		dest.x = casilla.getX() * cellWidth + OFFSET_X;
+		dest.y = casilla.getY() * cellHeight + OFFSET_Y + OFFSET_TOP;
 		dest.h = cellHeight;
 		dest.w = cellWidth;
 		tex->render(dest);
@@ -100,8 +100,8 @@ void Ability_Wolf::blow()
 			auto* entit = mapa->getCharacter(shader[i]);
 
 			mapa->removeCharacter(mapa->SDLPointToMapCoords(pos));
-			pos.setX(newPos.getX() * cellWidth);
-			pos.setY((newPos.getY() * cellHeight) + OFFSET_Y);
+			pos.setX((newPos.getX() * cellWidth) + OFFSET_X);
+			pos.setY((newPos.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP);
 			mapa->setCharacter(mapa->SDLPointToMapCoords(pos), entit);
 
 			sdlutils().soundEffects().at("loboSound").setChunkVolume(5);

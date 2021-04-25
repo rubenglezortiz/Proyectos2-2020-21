@@ -21,7 +21,7 @@
 
 Game::Game() {
 	//mngr_.reset(new Manager());
-	SDLUtils::init("PaintLess", 800, 700, "resources/config/resources.json");
+	SDLUtils::init("PaintLess", 1920, 1080, "resources/config/resources.json");
 	stateMachine = new GameStateMachine();
 	stateMachine->pushState(new MainMenuState(stateMachine)); 
 	//stateMachine->pushState(new PlayState(stateMachine)); para que inicie el juego sin el menu

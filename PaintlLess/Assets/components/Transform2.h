@@ -5,22 +5,22 @@
 #include "GameMap.h"
 
 
-class Transform : public Component {
+class Transform2 : public Component {
 public:
-	Transform() :
+	Transform2() :
 		pos_(), vel_(), width_(), height_(), rotation_(), mapa(nullptr) {
 	}
 
-	Transform(Vector2D pos, float width, float height) :
+	Transform2(Vector2D pos, float width, float height) :
 		pos_(pos),
 		width_(width),
 		height_(height),
 		vel_(Vector2D()),
 		rotation_(0.0),
-		mapa(nullptr) 
+		mapa(nullptr)
 	{
 	}
-	Transform(Vector2D pos, Vector2D vel, float width, float height,
+	Transform2(Vector2D pos, Vector2D vel, float width, float height,
 		float rotation, bool foo = false) :
 		pos_(pos), //
 		vel_(vel), //
@@ -29,7 +29,7 @@ public:
 		rotation_(rotation),
 		mapa(nullptr) {}
 
-	virtual ~Transform() {
+	virtual ~Transform2() {
 	}
 
 	Vector2D& getPos() {
@@ -64,14 +64,8 @@ public:
 		rotation_ = rot;
 	}
 
-	void update() override {
-	}
-
-
-	void init() override;
-
 private:
-	
+
 	Entity* mapa;
 	Vector2D pos_;
 	Vector2D vel_;

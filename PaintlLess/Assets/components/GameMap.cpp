@@ -42,8 +42,9 @@ void GameMap::loadMap(const string levelName) {
 					}
 				}
 
-				int alto = sdlutils().height() - OFFSET_Y*2;
-				cellWidth = sdlutils().width() / cols;
+				int alto = sdlutils().height() - OFFSET_Y * 2;
+				int ancho = sdlutils().width() - OFFSET_X * 2;
+				cellWidth = ancho / cols;
 				cellHeight = (alto / rows);
 
 				auto tiles = tileLayer.getTiles();
@@ -51,7 +52,7 @@ void GameMap::loadMap(const string levelName) {
 					for (int j = 0; j < cols; ++j) {
 						auto* casilla = entity_->getMngr()->addEntity();
 
-						casilla->addComponent<Transform>(Vector2D(j * cellWidth, (i * cellHeight) + OFFSET_Y), cellWidth, cellHeight);
+						casilla->addComponent<Transform2>(Vector2D(j * cellWidth + OFFSET_X, (i * cellHeight) + OFFSET_Y + OFFSET_TOP), cellWidth, cellHeight);
 
 						casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, tiles[i * cols + j].ID - 1);
 

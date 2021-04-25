@@ -117,8 +117,8 @@ void Ability::render() {
 	SDL_Rect dest;
 	if (abilityCells.size() > 0) {
 		for (Vector2D casilla : abilityCells) {
-			dest.x = casilla.getX() * cellWidth /*+ offset*/;
-			dest.y = casilla.getY() * cellHeight + OFFSET_Y;
+			dest.x = casilla.getX() * cellWidth + OFFSET_X;
+			dest.y = casilla.getY() * cellHeight + OFFSET_Y + OFFSET_TOP;
 			dest.h = cellHeight;
 			dest.w = cellWidth;
 			tex->render(dest);

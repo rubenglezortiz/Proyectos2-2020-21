@@ -22,11 +22,13 @@ class DeckSpawn;
 class GameMap;
 class Health;
 class Image;
+class Interfaz;
 class MenuButton;
 class MovementShader;
 class Movimiento;
 class PointOnImage;
 class Transform;
+class Transform2;
 
 #define _CMPS_LIST_  \
 	Ability_Architect   ,  \
@@ -47,11 +49,13 @@ class Transform;
 	GameMap				,  \
 	Health              ,  \
 	Image				,  \
+	Interfaz			,  \
 	MenuButton          ,  \
 	MovementShader      ,  \
 	Movimiento			,  \
 	PointOnImage	    ,  \
-	Transform
+	Transform			,  \
+	Transform2
 
 	// groups
 

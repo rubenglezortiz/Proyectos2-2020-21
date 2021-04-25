@@ -124,8 +124,8 @@ void DeckSpawn::spawnShader(int e) {
 void DeckSpawn::render() {
 	SDL_Rect dest;
 	for (Vector2D casilla : casillasSpawn) {
-		dest.x = casilla.getX() * cellWidth/*+ offset*/;
-		dest.y = casilla.getY() * cellHeight + OFFSET_Y /*+ offset*/;
+		dest.x = casilla.getX() * cellWidth + OFFSET_X;
+		dest.y = casilla.getY() * cellHeight + OFFSET_Y + OFFSET_TOP;
 		dest.h = cellHeight;
 		dest.w = cellWidth;
 		tex->render(dest);
@@ -143,7 +143,7 @@ bool DeckSpawn::spawneableCell(Vector2D p) {
 }
 
 void DeckSpawn::update() {
-	auto pos = entity_->getComponent<Transform>()->getPos();
+	auto pos = entity_->getComponent<Transform2>()->getPos();
 	if (ih().getMouseButtonState(ih().RIGHT)) {
 		
 		int mX = ih().getMousePos().first;
@@ -151,16 +151,20 @@ void DeckSpawn::update() {
 		if (selected) {
 			//esto se debe hacer en movementshader
 			Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
-			if (spawneableCell(posMovimiento) && playState->getCurrentPlayer() == 1 && playState->restaMana1(UnitInfo::mana[personaje])) createCharacter(personaje, 0, posMovimiento);
-			else if (spawneableCell(posMovimiento) && playState->getCurrentPlayer() == 0 && playState->restaMana2(UnitInfo::mana[personaje])) createCharacter(personaje, 1, posMovimiento);
+			if (spawneableCell(posMovimiento) && playState->getCurrentPlayer() == 1 && playState->restaMana(UnitInfo::mana[personaje], playState->getMana1())) createCharacter(personaje, 0, posMovimiento);
+			else if (spawneableCell(posMovimiento) && playState->getCurrentPlayer() == 0 && playState->restaMana(UnitInfo::mana[personaje], playState->getMana2())) createCharacter(personaje, 1, posMovimiento);
 			else cout << "Esa casilla no figura en los spawns.";
 			selected = false;
 			freeShader();
 		}
 		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
-			selected = true;
-			spawnShader(playState->getCurrentPlayer());
-			sdlutils().soundEffects().at("seleccionSound").play(); //---------------------------------------------------------------------------------------------
+			if (playState->getCurrentPlayer() == 1 && playState->manaSuficiente(UnitInfo::mana[personaje], playState->getMana1()) ||
+				playState->getCurrentPlayer() == 0 && playState->manaSuficiente(UnitInfo::mana[personaje], playState->getMana2())) {
+
+				selected = true;
+				spawnShader(playState->getCurrentPlayer());
+				sdlutils().soundEffects().at("seleccionSound").play();
+			}
 		}
 	}
 	if (ih().getMouseButtonState(ih().LEFT)) {

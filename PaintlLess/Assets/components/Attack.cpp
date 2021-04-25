@@ -87,8 +87,8 @@ void Attack::attackShader() {
 void Attack::render() {
 	SDL_Rect dest;
 	for (Vector2D casilla : casillasAtaque) {
-		dest.x = casilla.getX() * cellWidth /*+ offset*/;
-		dest.y = casilla.getY() * cellHeight + OFFSET_Y/*+ offset*/;
+		dest.x = casilla.getX() * cellWidth + OFFSET_X;
+		dest.y = casilla.getY() * cellHeight + OFFSET_Y + OFFSET_TOP;
 		dest.h = cellHeight;
 		dest.w = cellWidth;
 
