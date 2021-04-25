@@ -133,7 +133,7 @@ void Ability::update() {
 		return;
 
 	auto pos = entity_->getComponent<Transform>()->getPos();
-	if (ih().getMouseButtonState(ih().RIGHT)) {
+	if (ih().getMouseButtonState(ih().RIGHT) && entity_->getComponent<Movimiento>()->getStun() == 0) {
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
 

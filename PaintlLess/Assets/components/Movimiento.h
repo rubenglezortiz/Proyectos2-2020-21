@@ -18,6 +18,9 @@ public:
 	void update() override;
 	void finTurno() override;
 
+	void setStun(int x) { stun = x * 2; }
+	int getStun() const { return stun; }
+
 	//Vector2D MapCoordsToSDLPoint(Vector2D coords) const { //Pasar de coordenadas del mapa a pixeles
 	//	Vector2D p{ (coords.getX() * cellWidth) , (coords.getY() * cellHeight)/* + DESPL*/ };
 	//	cout << p.getX() << " " << p.getY() << endl;
@@ -45,6 +48,8 @@ private:
 	void initializeCasillasChecked();
 	void resetCasillasChecked();
 	PlayState* playState = nullptr;
+
+	int stun = false;
 
 
 };

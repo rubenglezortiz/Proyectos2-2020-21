@@ -1,4 +1,5 @@
 #include "DeckSpawn.h"
+#include "Ability_Alchemist.h"
 #include "Ability_Architect.h"
 #include "Ability_Bomb.h"
 #include "Ability_Druid.h"
@@ -51,7 +52,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 	switch (character) {
 	case Alquimista:
 		image(ctr, "alquimista"); movement(ctr); health(ctr, 2);
-		// Habilidad Alquimista.
+		ctr->addComponent<Ability_Alchemist>();
 		break;
 	case Arquitecta:
 		image(ctr, "arquitecta"); movement(ctr); health(ctr, 2); attack(ctr);

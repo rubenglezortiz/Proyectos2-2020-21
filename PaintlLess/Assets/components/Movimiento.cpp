@@ -16,7 +16,7 @@ void Movimiento::init() {
 
 void Movimiento::update() {
 
-	if (entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero || entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) {
+	if ((entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero || entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) && stun == 0) {
 
 		if (playState->getAcciones() > 0) {
 
@@ -33,7 +33,7 @@ void Movimiento::update() {
 					if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible) {
 						mapa->removeCharacter(mapa->SDLPointToMapCoords(pos));
 						pos.setX((posMovimiento.getX() * cellWidth) + OFFSET_X);
-						pos.setY((posMovimiento.getY() * cellHeight)+ OFFSET_Y + OFFSET_TOP);
+						pos.setY((posMovimiento.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP);
 						mapa->setCharacter(mapa->SDLPointToMapCoords(pos), entity_);
 						playState->aumentarAcciones();
 						cout << pos;
@@ -42,11 +42,11 @@ void Movimiento::update() {
 					sdlutils().soundEffects().at("moveSound").setChunkVolume(5);
 					sdlutils().soundEffects().at("moveSound").play(); //-----------------------------------------------------------		
 
-					if(entity_->hasGroup<Equipo_Azul>())
+					if (entity_->hasGroup<Equipo_Azul>())
 						mapa->setColor(mapa->SDLPointToMapCoords(pos), Amarillo);
 					else
-						mapa->setColor(mapa->SDLPointToMapCoords(pos), Rojo); 					
-					
+						mapa->setColor(mapa->SDLPointToMapCoords(pos), Rojo);
+
 					//estos métodos son para cuando se deselcciona yuna casilla para restablecer los valores de los vectores...
 					movShader->freeCasillasAPintar();
 					resetCasillasChecked();
@@ -67,14 +67,17 @@ void Movimiento::update() {
 		/*else {
 			cout << "sin acciones";
 		}*/
-		
+
 	}
-	
 }
 
 void Movimiento::finTurno()
 {
 	movShader->freeCasillasAPintar();
+	if (stun > 0)
+	{
+		stun--;
+	}
 }
 
 void Movimiento::initializeCasillasChecked() { //AAAAAAAAAAAAAA

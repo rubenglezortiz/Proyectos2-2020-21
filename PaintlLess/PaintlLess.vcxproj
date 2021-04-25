@@ -143,6 +143,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Assets\components\Ability.cpp" />
+    <ClCompile Include="Assets\components\Ability_Alchemist.cpp" />
     <ClCompile Include="Assets\components\Ability_Bomb.cpp" />
     <ClCompile Include="Assets\components\Ability_Creeper.cpp" />
     <ClCompile Include="Assets\components\Ability_Druid.cpp" />
@@ -203,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\components\Ability.h" />
+    <ClInclude Include="Assets\components\Ability_Alchemist.h" />
     <ClInclude Include="Assets\components\Ability_Architect.h" />
     <ClInclude Include="Assets\components\Ability_Bomb.h" />
     <ClInclude Include="Assets\components\Ability_Creeper.h" />

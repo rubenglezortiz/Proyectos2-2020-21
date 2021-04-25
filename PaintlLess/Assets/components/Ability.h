@@ -4,6 +4,7 @@
 #include "./Transform.h"
 #include<vector>
 #include "../sdlutils/InputHandler.h"
+#include "Movimiento.h"
 
 
 using AbilityFunction = void(int x, int y, GameMap* map, Manager* manager);

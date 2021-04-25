@@ -4,6 +4,7 @@
 
 // components -- forward declaration, i.e., assume they are defined somewhere
 
+class Ability_Alchemist;
 class Ability_Architect;
 class Ability_Bomb;
 class Ability_Creeper;
@@ -31,6 +32,7 @@ class Transform;
 class Transform2;
 
 #define _CMPS_LIST_  \
+	Ability_Alchemist   ,  \
 	Ability_Architect   ,  \
 	Ability_Bomb		,  \
 	Ability_Creeper     ,  \
