@@ -18,9 +18,13 @@ private:
 	int personaje;
 	bool selected = false;
 	Equipo turno;
+	int cool0, cool1;
+
+	bool isSpawnable()const;
 public:
 	DeckSpawn(int pj) :
-	personaje(pj)
+		personaje(pj), mapa(nullptr), tex(nullptr), playState(nullptr), cellWidth(0), cellHeight(0),
+		selected(false), turno(Equipo()), cool0(0), cool1(0)
 	{}
 	virtual ~DeckSpawn() {}
 
@@ -38,4 +42,7 @@ public:
 
 	void createCharacter(int character, int equipo, Vector2D posClick);
 	bool spawneableCell(Vector2D pos);
+
+	virtual void finTurno();
+
 };

@@ -64,7 +64,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 	case Cazador:
 		image(ctr, "cazador");    movement(ctr); health(ctr, 1); attack(ctr, 2, "arqueroSound");
 		break;
-	case Druida:	
+	case Druida:
 		image(ctr, "druida");     movement(ctr); health(ctr, 2);
 		ctr->addComponent<Ability_Druid>(playState, (int)equipo);
 		break;
@@ -75,7 +75,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 		image(ctr, "golem");					 health(ctr, 4); attack(ctr);
 		ctr->addComponent<Ability_Golem>();
 		break;
-	case Kirin:	
+	case Kirin:
 		image(ctr, "kirin");	  movement(ctr); health(ctr, 2); attack(ctr);
 		ctr->addComponent<Ability_Kirin>();
 		break;
@@ -145,22 +145,26 @@ bool DeckSpawn::spawneableCell(Vector2D p) {
 void DeckSpawn::update() {
 	auto pos = entity_->getComponent<Transform2>()->getPos();
 	if (ih().getMouseButtonState(ih().RIGHT)) {
-		
+
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
 		if (selected) {
 			//esto se debe hacer en movementshader
 			Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
-			if (spawneableCell(posMovimiento) && playState->getCurrentPlayer() == 1 && playState->restaMana(UnitInfo::mana[personaje], playState->getMana1())) createCharacter(personaje, 0, posMovimiento);
-			else if (spawneableCell(posMovimiento) && playState->getCurrentPlayer() == 0 && playState->restaMana(UnitInfo::mana[personaje], playState->getMana2())) createCharacter(personaje, 1, posMovimiento);
+			if (spawneableCell(posMovimiento) && playState->getCurrentPlayer() == 1 && playState->restaMana(UnitInfo::mana[personaje], playState->getMana1())) {
+				createCharacter(personaje, 0, posMovimiento);
+				cool1 += UnitInfo::cooldown[personaje];
+			}
+			else if (spawneableCell(posMovimiento) && playState->getCurrentPlayer() == 0 && playState->restaMana(UnitInfo::mana[personaje], playState->getMana2())) {
+				createCharacter(personaje, 1, posMovimiento);
+				cool0 += UnitInfo::cooldown[personaje];
+			}
 			else cout << "Esa casilla no figura en los spawns.";
 			selected = false;
 			freeShader();
 		}
 		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
-			if (playState->getCurrentPlayer() == 1 && playState->manaSuficiente(UnitInfo::mana[personaje], playState->getMana1()) ||
-				playState->getCurrentPlayer() == 0 && playState->manaSuficiente(UnitInfo::mana[personaje], playState->getMana2())) {
-
+			if (isSpawnable()) {
 				selected = true;
 				spawnShader(playState->getCurrentPlayer());
 				sdlutils().soundEffects().at("seleccionSound").play();
@@ -180,4 +184,18 @@ void DeckSpawn::update() {
 
 void DeckSpawn::freeShader() {
 	casillasSpawn.clear();
+}
+
+void DeckSpawn::finTurno() {
+	if (cool0 > 0 && playState->getCurrentPlayer() == 0) cool0--;
+	if (cool1 > 0 && playState->getCurrentPlayer() == 1) cool1--;
+}
+
+bool DeckSpawn::isSpawnable() const {
+	return
+		playState->getCurrentPlayer() == 1 &&
+		playState->manaSuficiente(UnitInfo::mana[personaje], playState->getMana1()) && cool1 == 0
+		||
+		playState->getCurrentPlayer() == 0 &&
+		playState->manaSuficiente(UnitInfo::mana[personaje], playState->getMana2()) && cool0 == 0;
 }
