@@ -80,6 +80,30 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 		Vector2D posDownRight = Vector2D(1, 1) + posCh;
 		if (map->getTipoCasilla(posDownRight) != NoPintable) abilityCells.push_back(posDownRight);
 	}
+	else if (sf == ShaderWolf) {
+		std::vector<Vector2D> casillas;
+		if (entity_->hasGroup<Equipo_Rojo>())
+			casillas = { {1, 0}, {2, 0}, { 1, 1}, {2, 1}, {1, -1}, {2, -1} }; //Izquierda ==> Derecha
+		else
+			casillas = { {-1, 0}, {-2, 0}, {-1, 1}, {-2, 1}, {-1, -1}, {-2, -1} }; //Derecha ==> Izquierda
+
+		Vector2D posWolf = map->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos());
+
+		for (int i = 0; i < casillas.size(); i++) { // 12, 2 por cada lao
+			if (map->casillaValida(casillas[i] + posWolf)) {
+				//Hay personaje en el 1
+				if (map->getCharacter(casillas[i] + posWolf) != nullptr) {
+					abilityCells.push_back(casillas[i] + posWolf);
+				}
+				//Hay personaje en el 2
+				else if (map->getCharacter(casillas[i + 1] + posWolf) != nullptr)
+				{
+					abilityCells.push_back(casillas[i + 1] + posWolf);
+				}
+			}
+			i++;
+		}
+	}
 	else {
 		bool findObj = false;
 

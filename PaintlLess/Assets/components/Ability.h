@@ -10,7 +10,7 @@
 using AbilityFunction = void(int x, int y, GameMap* map, Manager* manager);
 
 enum ShaderType { nullSh,AttackSh, DefenseSh, HealingSh, KirinSh, DruidaSh };
-enum ShaderForm { Cross, TxT, VikingForm };
+enum ShaderForm { Cross, TxT, VikingForm, ShaderWolf };
 
 enum selectorColor { selector, selectorA, selectorH };
 

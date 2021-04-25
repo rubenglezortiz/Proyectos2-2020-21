@@ -9,25 +9,12 @@
 #include "Movimiento.h"
 #include "Health.h"
 
-class Ability_Wolf : public Component {
+class Ability_Wolf : public Ability {
 public:
-	Ability_Wolf() {}
+	Ability_Wolf(): Ability(selectorA, ShaderForm::ShaderWolf, ShaderType::nullSh) {}
 	virtual ~Ability_Wolf() {}
+	void AbilityExecute(int x, int y);
 
-	void init() override;
-	void render() override;
-	void update() override;
-	void shaderAttack();
-	void freeShader() { shader.clear(); }
-	void blow();
 
-private:
-	Vector2D posWolf;
-	GameMap* mapa;
-	Texture* tex;
-	std::vector<Vector2D> casillas;
-	std::vector<Vector2D> shader;
-
-	bool selected = false;
-	int cellWidth, cellHeight;
 };
+
