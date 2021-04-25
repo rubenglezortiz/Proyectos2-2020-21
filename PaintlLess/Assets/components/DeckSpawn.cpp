@@ -45,7 +45,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 	Entity* ctr = entity_->getMngr()->addEntity(RenderLayer::Personajes);
 
 	ctr->addComponent<Transform>(pos, Vector2D(), 50.0f, 50.0f, 0.0f);
-
+	ctr->setGroup<Personajes>(ctr);
 	if (equipo == Primero) ctr->setGroup<Equipo_Rojo>(ctr);
 	else ctr->setGroup<Equipo_Azul>(ctr);
 

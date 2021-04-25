@@ -15,11 +15,11 @@
     { "id" : "selectorSp", "file" : "resources/images/interfaz/selectorSpawn.png" },
     { "id" : "selectorH",  "file" : "resources/images/interfaz/selectorHeal.png" },
     { "id" : "selector",   "file" : "resources/images/interfaz/selector.png" },
-    { "id" : "tablero",   "file" : "resources/images/interfaz/tablerito.png" },
+    { "id" : "tablero",   "file" : "resources/images/interfaz/tableritomedieval.png" },
     { "id" : "mana",   "file" : "resources/images/interfaz/mana.png" },
 
 	{ "id" : "life",       "file" : "resources/images/sprites/life.png" },
-    { "id" : "tileset",    "file" : "resources/images/sprites/tileset.png" },
+    { "id" : "tileset",    "file" : "resources/images/sprites/tileset2.png" },
 	{ "id" : "wall",       "file" : "resources/images/sprites/wall.png" },
 	{ "id" : "enredadera", "file" : "resources/images/sprites/enredaderas.png" },
 

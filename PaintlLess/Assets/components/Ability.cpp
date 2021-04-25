@@ -155,34 +155,38 @@ void Ability::update() {
 		return;
 	if (map->getPlayState()->getTurno() == Segundo && entity_->hasGroup<Equipo_Azul>())
 		return;
-
+	
 	auto pos = entity_->getComponent<Transform>()->getPos();
-	if (ih().getMouseButtonState(ih().RIGHT) && entity_->getComponent<Movimiento>()->getStun() == 0) {
-		int mX = ih().getMousePos().first;
-		int mY = ih().getMousePos().second;
+	if (ih().getMouseButtonState(ih().RIGHT) && entity_->hasComponent<Movimiento>()) {
+		if (entity_->getComponent<Movimiento>()->getStun() == 0) {
 
-		if (selected) {
-			//esto se debe hacer en movementshader
-			Vector2D posMovimiento = map->SDLPointToMapCoords(Vector2D(mX, mY));
 
-			if (abilityCheck(posMovimiento)) {
-				ability_usable = false;
-				pos.setX(posMovimiento.getX() * cellWidth);
-				pos.setY(posMovimiento.getY() * cellHeight);
-				AbilityExecute(posMovimiento.getX(), posMovimiento.getY());
+			int mX = ih().getMousePos().first;
+			int mY = ih().getMousePos().second;
+
+			if (selected) {
+				//esto se debe hacer en movementshader
+				Vector2D posMovimiento = map->SDLPointToMapCoords(Vector2D(mX, mY));
+
+				if (abilityCheck(posMovimiento)) {
+					ability_usable = false;
+					pos.setX(posMovimiento.getX() * cellWidth);
+					pos.setY(posMovimiento.getY() * cellHeight);
+					AbilityExecute(posMovimiento.getX(), posMovimiento.getY());
+				}
+				selected = false;
+				freeAbilityShader();
+
 			}
+			else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && ability_usable) {
+				selected = true;
+				AbilityShader(form, type, shaderDistance);
+			}
+		}
+		if (ih().getMouseButtonState(ih().LEFT)) {
 			selected = false;
 			freeAbilityShader();
-
 		}
-		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && ability_usable) {
-			selected = true;
-			AbilityShader(form, type, shaderDistance);
-		}
-	}
-	if (ih().getMouseButtonState(ih().LEFT)) {
-		selected = false;
-		freeAbilityShader();
 	}
 }
 

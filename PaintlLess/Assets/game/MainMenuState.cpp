@@ -21,33 +21,33 @@ MainMenuState::MainMenuState(GameStateMachine* gsm) : GameState(gsm) { //Poner l
 	menuFondo->addComponent<Image>(&sdlutils().images().at("menu"));
 
 	auto* bOnline = mngr_->addEntity(RenderLayer::Fondo);
-	bOnline->addComponent<Transform>(Vector2D(325, 200), w, h);
+	bOnline->addComponent<Transform>(Vector2D((sdlutils().width() / 2) - w / 2, sdlutils().height() - 5 * h), w, h);
 	bOnline->addComponent<Image>(&sdlutils().images().at("online1"));
 	bOnline->addComponent<MenuButton>(gsm, newGame, "menuInicioSound");
 	bOnline->addComponent<ButtonHovered>(&sdlutils().images().at("online2"));
 
 	auto* bLocal = mngr_->addEntity(RenderLayer::Fondo);
-	bLocal->addComponent<Transform>(Vector2D(325, 300), w, h);
+	bLocal->addComponent<Transform>(Vector2D((sdlutils().width() / 2) - w / 2, sdlutils().height() - 4 * h), w, h);
 	bLocal->addComponent<Image>(&sdlutils().images().at("local1"));
 	bLocal->addComponent<MenuButton>(gsm, newGame, "menuInicioSound");
 	bLocal->addComponent<ButtonHovered>(&sdlutils().images().at("local2"));
 
 	auto* bOpc = mngr_->addEntity(RenderLayer::Fondo);
-	bOpc->addComponent<Transform>(Vector2D(325, 400), w + 45, h);
+	bOpc->addComponent<Transform>(Vector2D((sdlutils().width() / 2) - w / 2 - 45 / 2, sdlutils().height() - 3 * h), w + 45, h);
 	bOpc->addComponent<Image>(&sdlutils().images().at("opciones1"));
 	bOpc->addComponent<MenuButton>(gsm, newGame, "menuInicioSound");
 	bOpc->addComponent<ButtonHovered>(&sdlutils().images().at("opciones2"));
 
 	auto* bSalir = mngr_->addEntity(RenderLayer::Fondo);
-	bSalir->addComponent<Transform>(Vector2D(325, 500), w, h);
+	bSalir->addComponent<Transform>(Vector2D((sdlutils().width() / 2) - w / 2, sdlutils().height() - 2 * h), w, h);
 	bSalir->addComponent<Image>(&sdlutils().images().at("salir1"));
 	bSalir->addComponent<MenuButton>(gsm, exitApp);
 	bSalir->addComponent<ButtonHovered>(&sdlutils().images().at("salir2"));
 }
 
 void MainMenuState::newGame(GameStateMachine* gsm) { //Nuevo partida
-	
-	gsm->pushState(new CharacterSelectionState(gsm));	
+
+	gsm->pushState(new CharacterSelectionState(gsm));
 }
 
 void MainMenuState::loadGame(GameStateMachine* gsm) { //Cargar partida

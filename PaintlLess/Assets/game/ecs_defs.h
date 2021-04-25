@@ -61,10 +61,12 @@ class Transform2;
 
 	// groups
 
+struct Personajes;
 struct Equipo_Rojo;
 struct Equipo_Azul;
 
 #define _GRPS_LIST_ \
+	Personajes, \
 	Equipo_Rojo, \
 	Equipo_Azul 
 

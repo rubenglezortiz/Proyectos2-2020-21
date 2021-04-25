@@ -3,27 +3,35 @@
 void ButtonSelected::init() {
 	tr_ = entity_->getComponent<Transform>();
 	assert(tr_ != nullptr);
-	bt_ = entity_->getComponent<MenuButton>();
-	assert(bt_ != nullptr);
 	img_ = entity_->getComponent<Image>();
 	assert(img_ != nullptr);
 	tex2_ = img_->getTexture();
-	max = bt_->getGSM()->getCharSel()->getMax();
+	max = gsm_->getCharSel()->getMax();
 }
 
 void ButtonSelected::update() {
-	cont = bt_->getGSM()->getCharSel()->getCont();
-	if (selection() && bt_->select()) {
-		img_->setTexture(tex_);
-		selected = true;
-	}
-	else if (!bt_->select()) {
-		img_->setTexture(tex2_);
-		selected = false;
-	}
-}
+	int mX = ih().getMousePos().first;
+	int mY = ih().getMousePos().second;
+	contador = gsm_->getCharSel()->getCont();
+	if (!selected &&
+		mX >= tr_->getPos().getX() && mX <= tr_->getW() + tr_->getPos().getX() && mY >= tr_->getPos().getY() && mY <= tr_->getH() + tr_->getPos().getY() &&
+		ih().getMouseButtonState(ih().LEFT) &&
+		contador < max) {
 
-bool ButtonSelected::selection() {
-	if (cont < max && !selected) return true;
-	else return false;
+		img_->setTexture(tex1_);
+		contador++;
+		cbOnClick(gsm_);
+		selected = true;
+		sdlutils().soundEffects().at(SONIDO).play();
+	}
+	else if (selected &&
+		mX >= tr_->getPos().getX() && mX <= tr_->getW() + tr_->getPos().getX() && mY >= tr_->getPos().getY() && mY <= tr_->getH() + tr_->getPos().getY() &&
+		ih().getMouseButtonState(ih().LEFT)) {
+
+		img_->setTexture(tex2_);
+		contador--;
+		cbOnClick(gsm_);
+		selected = false;
+		sdlutils().soundEffects().at(SONIDO).play();
+	}
 }
