@@ -13,6 +13,7 @@
     { "id" : "star2",           "file" : "resources/images/interfaz/star2.png"},
     { "id" : "start",           "file" : "resources/images/interfaz/start.png" },
     { "id" : "selectorA",       "file" : "resources/images/interfaz/selectorAt.png"},
+    { "id" : "selectorAb",       "file" : "resources/images/interfaz/selectorAb.png"},
     { "id" : "selectorS",       "file" : "resources/images/menus/SP/seleccionado.png"},
     { "id" : "selectorSp",      "file" : "resources/images/interfaz/selectorSpawn.png" },
     { "id" : "selectorH",       "file" : "resources/images/interfaz/selectorHeal.png" },
@@ -28,6 +29,8 @@
     { "id" : "porcAzul",        "file" : "resources/images/interfaz/porcentajeAzul.png" },
     { "id" : "porcRojo",        "file" : "resources/images/interfaz/porcentajeRojo.png" },
     { "id" : "opciones",        "file" : "resources/images/interfaz/botonOpciones.png" },
+    { "id" : "azul",        "file" : "resources/images/interfaz/azul.png" },
+    { "id" : "rojo",        "file" : "resources/images/interfaz/rojo.png" },
 
 	{ "id" : "life",       "file" : "resources/images/sprites/life.png" },
     { "id" : "tileset",    "file" : "resources/images/sprites/tileset2.png" },

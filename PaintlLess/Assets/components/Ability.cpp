@@ -12,7 +12,7 @@ void Ability::init() {
 	switch (sel)
 	{
 	case selector:
-		s = "selector";
+		s = "selectorAb";
 		break;
 	case selectorA:
 		s = "selectorA";
