@@ -218,8 +218,10 @@ void PlayState::pasaTurno() {
 			mana_2 += INCREMENTO_MANA;
 	}
 	cout << endl << "MANA_1: " << mana_1 << endl << "MANA_2: " << mana_2 << endl;
-	turnosActuales++;
-	if (turnosActuales > MAX_TURNOS * 2) cout << "fin de partida\n";
+	
+	if (turnosActuales + 1 > MAX_TURNOS * 2) cout << "fin de partida\n";
+	else turnosActuales++;
+	
 
 	mngr_->finTurno();
 	cout << "Turno pasado\n";

@@ -15,13 +15,14 @@ class PlayState : public GameState
 
 private:
 	const int MAX_TURNOS = 10;
-	const int MAX_ACCIONES = 3;
+	const int MAX_ACCIONES = 4;
 	const int MAX_MANA = 10;
 	const int INCREMENTO_MANA = 3;
 	int mana_1 = 10;
 	int mana_2 = 10;
 	int accionesPorTurno = MAX_ACCIONES, turnosActuales = 0;
 	int mana;
+	int pintado_1, pintado_2;
 	Equipo jugadorActual = Segundo;
 	GameMap* mapa;
 public:
@@ -45,6 +46,14 @@ public:
 	int& getMana1()  { return mana_1; } //Para interfaz
 	int& getMana2()  { return mana_2; }
 
+	int getTurnosActuales()  { return turnosActuales; }
+
 	bool restaMana(int m, int& mana);
 	bool manaSuficiente(int m, int mana) const;
+
+	int getPintado1() { return pintado_1; };
+	int getPintado2() { return pintado_2; };
+
+	void aumentaPintado1(int n) { pintado_1 += n ; };
+	void aumentaPintado2(int n) { pintado_2 += n ; };
 };

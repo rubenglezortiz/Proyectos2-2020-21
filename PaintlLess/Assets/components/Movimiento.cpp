@@ -158,14 +158,14 @@ void Movimiento::colorea(Vector2D posIni, Vector2D posFin, Color color)
 	desplY = posCoor.getY() - posIniCoor.getY();
 
 	if (desplX != 0) {
-		if (desplX > 0) {
+		if (desplX > 0) {  //mirar el alquimista si pinta de mas
 			for (int a = posIniCoor.getX(); a <= posCoor.getX(); a++) {
-				mapa->setColor((Vector2D(a, posCoor.getY())), color);
+				mapa->setColor((Vector2D(a, posCoor.getY())), color);				
 			}
 		}
 		else {
 			for (int a = posIniCoor.getX(); a >= posCoor.getX(); a--) {
-				mapa->setColor((Vector2D(a, posCoor.getY())), color);
+				mapa->setColor((Vector2D(a, posCoor.getY())), color);				
 			}
 		}
 	}

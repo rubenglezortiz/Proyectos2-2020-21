@@ -40,6 +40,7 @@ private:
 	int rows, cols;
 	int cellWidth, cellHeight;
 	int tileSet, level;
+	int nCasPintables;
 	PlayState* playState;
 
 public:
@@ -63,6 +64,7 @@ public:
 	int getColumns() const { return cols; }
 	int getCellWidth() const { return cellWidth; };
 	int getCellHeight() const { return cellHeight; };
+	int getNumCasPintables() const { return nCasPintables; };
 	Entity* getCharacter(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].character; }
 	Entity* getObstaculo(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].obstaculo; }
 	TipoCasilla getTipoCasilla(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].tipoCasilla; }

@@ -42,6 +42,7 @@ void GameMap::loadMap() {
 				int ancho = sdlutils().width() - OFFSET_X * 2;
 				cellWidth = ancho / cols;
 				cellHeight = (alto / rows);
+				nCasPintables = 0;
 
 				auto tiles = tileLayer.getTiles();
 				for (int i = 0; i < rows; ++i) {
@@ -67,6 +68,7 @@ void GameMap::loadMap() {
 								// Roca
 								cells[i][j].color = Color::Ninguno;
 								cells[i][j].tipoCasilla = TipoCasilla::Pintable;
+								nCasPintables++;
 							}
 						}
 						else {
@@ -84,6 +86,7 @@ void GameMap::loadMap() {
 								// Roca
 								cells[i][j].color = Color::Ninguno;
 								cells[i][j].tipoCasilla = TipoCasilla::Pintable;
+								nCasPintables++;
 							}
 						}
 						cells[i][j].character = nullptr;
@@ -113,10 +116,15 @@ void GameMap::setColor(const Vector2D& cas, Color color) {
 		auto* pintar = entity_->getMngr()->addEntity();
 		cout << cas.getX() << " " << cas.getY() << endl;
 		pintar->addComponent<Transform>(Vector2D(cas.getX(), cas.getY()), cellWidth, cellHeight);
-		if (color == Amarillo)
+		if (color == Amarillo) {
 			pintar->addComponent<Image>(&sdlutils().images().at("star"));
-		else if (color == Rojo)
+			playState->aumentaPintado1(1);
+
+		}			
+		else if (color == Rojo) {
 			pintar->addComponent<Image>(&sdlutils().images().at("star2"));
+			playState->aumentaPintado2(1);
+		}		
 
 		cells[(int)cas.getY()][(int)cas.getX()].color = color;
 		cout << "Color: " << getColor(cas) << endl;
