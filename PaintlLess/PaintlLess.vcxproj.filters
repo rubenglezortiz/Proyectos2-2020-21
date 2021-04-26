@@ -437,9 +437,4 @@
       <Filter>Archivos de recursos</Filter>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Media Include="resources\sound\menuinicio.wav">
-      <Filter>Archivos de recursos</Filter>
-    </Media>
-  </ItemGroup>
 </Project>

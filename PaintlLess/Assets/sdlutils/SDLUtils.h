@@ -120,7 +120,7 @@ public:
 		return musics_;
 	}
 
-	inline std::string& tiled() {
+	inline sdl_resource_table<std::string>& tiled() {
 		return tiled_;
 	}
 
@@ -166,7 +166,7 @@ private:
 	sdl_resource_table<Texture> msgs_; // textures map (string -> texture)
 	sdl_resource_table<SoundEffect> sounds_; // sounds map (string -> sound)
 	sdl_resource_table<Music> musics_; // musics map (string -> music)
-	std::string tiled_;
+	sdl_resource_table <std::string> tiled_; // tiled map (string -> string)
 
 	RandomNumberGenerator random_; // (pseudo) random numbers generator
 	VirtualTimer timer_; // virtual timer

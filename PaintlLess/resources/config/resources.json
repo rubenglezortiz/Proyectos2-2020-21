@@ -15,7 +15,9 @@
     { "id" : "selectorSp", "file" : "resources/images/interfaz/selectorSpawn.png" },
     { "id" : "selectorH",  "file" : "resources/images/interfaz/selectorHeal.png" },
     { "id" : "selector",   "file" : "resources/images/interfaz/selector.png" },
-    { "id" : "tablero",    "file" : "resources/images/interfaz/tableritomedieval.png" },
+    { "id" : "tablero1",    "file" : "resources/images/interfaz/tablerito.png" },
+    { "id" : "tablero2",    "file" : "resources/images/interfaz/tableritosnow.png" },
+    { "id" : "tablero3",    "file" : "resources/images/interfaz/tableritomedieval.png" },
     { "id" : "mana",       "file" : "resources/images/interfaz/mana.png" },
 
 	{ "id" : "life",       "file" : "resources/images/sprites/life.png" },
@@ -151,6 +153,19 @@
   ],
 
   "tiled": [
-    { "file" : "resources/tiled/mapa.tmx" }
+    { "id" : "mapa0", "file" : "resources/tiled/mapa0.tmx" },
+    { "id" : "mapa1", "file" : "resources/tiled/mapa1.tmx" },
+    { "id" : "mapa2", "file" : "resources/tiled/mapa2.tmx" },
+    { "id" : "mapa3", "file" : "resources/tiled/mapa3.tmx" },
+    { "id" : "mapa4", "file" : "resources/tiled/mapa4.tmx" },
+    { "id" : "mapa5", "file" : "resources/tiled/mapa5.tmx" },
+    { "id" : "mapa6", "file" : "resources/tiled/mapa6.tmx" },
+    { "id" : "mapa7", "file" : "resources/tiled/mapa7.tmx" }
+  ],
+
+  "tileset": [
+    { "id" : "tileset1", "file" : "resources/images/sprites/tileset1.png" },
+    { "id" : "tileset2", "file" : "resources/images/sprites/tileset2.png" },
+    { "id" : "tileset3", "file" : "resources/images/sprites/tileset3.png" }
   ]
 }

@@ -216,22 +216,38 @@ void SDLUtils::loadReasources(std::string filename) {
 		}
 	}
 
+	jValue = root["tileset"];
+	if (jValue != nullptr) {
+		if (jValue->IsArray()) {
+			for (auto& v : jValue->AsArray()) {
+				if (v->IsObject()) {
+					JSONObject vObj = v->AsObject();
+					std::string key = vObj["id"]->AsString();
+					std::string file = vObj["file"]->AsString();
+					//read out tile set properties, load textures etc...
+					images_.emplace(key, Texture(renderer(), file));
+				}
+				else {
+					throw "'tileset' string in '" + filename
+						+ "' includes and invalid value";
+				}
+			}
+		}
+		else {
+			throw "'tileset' is not an array";
+		}
+	}
+
 	jValue = root["tiled"];
 	if (jValue != nullptr) {
 		if (jValue->IsArray()) {
 			for (auto& v : jValue->AsArray()) {
 				if (v->IsObject()) {
 					JSONObject vObj = v->AsObject();
-					tiled_ = vObj["file"]->AsString();
-					tmx::Map map; map.load(tiled_);
-					const auto& tilesets = map.getTilesets();
-					int i = 0;
-					for (const auto& tileset : tilesets)
-					{
-						//read out tile set properties, load textures etc...
-						images_.emplace("tileset" + std::to_string(i), Texture(renderer(), tileset.getImagePath()));
-						i++;
-					}
+					std::string key = vObj["id"]->AsString();
+					std::string file = vObj["file"]->AsString();
+					//read out tile set properties, load textures etc...
+					tiled_.emplace(key, file);
 				}
 				else {
 					throw "'tiled' string in '" + filename

@@ -11,9 +11,7 @@
 
 using namespace std;
 
-GameMap::GameMap(const string levelN, PlayState* playState) : playState(playState) {
-	level = levelN;
-}
+GameMap::GameMap(int level, int tileSet, PlayState* playState) : playState(playState), level(level), tileSet(tileSet) {}
 
 GameMap::~GameMap() {
 	for (int r = 0; r < rows; ++r)
@@ -22,17 +20,15 @@ GameMap::~GameMap() {
 }
 
 void GameMap::init() {
-	loadMap(level);
+	loadMap();
 }
-void GameMap::loadMap(const string levelName) {
-
+void GameMap::loadMap() {
 	tmx::Map map;
-	if (map.load(sdlutils().tiled())) {
+	if (map.load(sdlutils().tiled().at("mapa" + to_string(level)))) {
 		const auto& layers = map.getLayers();
 		for (const auto& layer : layers) {
 			if (layer->getType() == tmx::Layer::Type::Tile) {
 				const auto& tileLayer = layer->getLayerAs<tmx::TileLayer>();
-				//read out tile layer properties etc...
 
 				cols = tileLayer.getSize().x; rows = tileLayer.getSize().y;
 				cells = new Casilla * [rows];
@@ -53,26 +49,42 @@ void GameMap::loadMap(const string levelName) {
 						auto* casilla = entity_->getMngr()->addEntity();
 
 						casilla->addComponent<Transform2>(Vector2D(j * cellWidth + OFFSET_X, (i * cellHeight) + OFFSET_Y + OFFSET_TOP), cellWidth, cellHeight);
-
-						casilla->addComponent<Image>(&sdlutils().images().at("tileset0"), 1, 4, 0, tiles[i * cols + j].ID - 1);
-
-						switch (tiles[i * cols + j].ID) {
-						case 1: // Base
-							cells[i][j].color = Color::Ninguno;
-							cells[i][j].tipoCasilla = TipoCasilla::Base;
-							break;
-						case 2: // Agua
-							cells[i][j].color = Color::Ninguno;
-							cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
-							break;
-						case 3: // Roca
-							cells[i][j].color = Color::Ninguno;
-							cells[i][j].tipoCasilla = TipoCasilla::Pintable;
-							break;
-						case 4: // Debería ser base también.
-							cells[i][j].color = Color::Ninguno;
-							cells[i][j].tipoCasilla = TipoCasilla::Pintable;
-							break;
+						string tileset = "tileset" + to_string(tileSet);
+						int casTiled = tiles[i * cols + j].ID - 1;
+						casilla->addComponent<Image>(&sdlutils().images().at(tileset), 4, 3, casTiled / 3, casTiled % 3);
+						if (tileSet < 3) {
+							if (casTiled < 8) {
+								// Agua
+								cells[i][j].color = Color::Ninguno;
+								cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
+							}
+							else if (casTiled < 10) {
+								// Base
+								cells[i][j].color = Color::Ninguno;
+								cells[i][j].tipoCasilla = TipoCasilla::Base;
+							}
+							else {
+								// Roca
+								cells[i][j].color = Color::Ninguno;
+								cells[i][j].tipoCasilla = TipoCasilla::Pintable;
+							}
+						}
+						else {
+							if (casTiled == 11) {
+								// Agua
+								cells[i][j].color = Color::Ninguno;
+								cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
+							}
+							else if(casTiled == 9){
+								// Base
+								cells[i][j].color = Color::Ninguno;
+								cells[i][j].tipoCasilla = TipoCasilla::Base;
+							}
+							else {
+								// Roca
+								cells[i][j].color = Color::Ninguno;
+								cells[i][j].tipoCasilla = TipoCasilla::Pintable;
+							}
 						}
 						cells[i][j].character = nullptr;
 						cells[i][j].obstaculo = nullptr;
@@ -101,7 +113,7 @@ void GameMap::setColor(const Vector2D& cas, Color color) {
 		auto* pintar = entity_->getMngr()->addEntity();
 		cout << cas.getX() << " " << cas.getY() << endl;
 		pintar->addComponent<Transform>(Vector2D(cas.getX(), cas.getY()), cellWidth, cellHeight);
-		if(color == Amarillo)
+		if (color == Amarillo)
 			pintar->addComponent<Image>(&sdlutils().images().at("star"));
 		else if (color == Rojo)
 			pintar->addComponent<Image>(&sdlutils().images().at("star2"));
@@ -153,11 +165,11 @@ bool GameMap::movimientoPosible(const Vector2D& cas) {
 
 bool GameMap::movimientoPosibleEnredadera(const Vector2D& cas) {
 	if (!casillaValida(cas))return false;
-	int x = cas.getX(); int y = cas.getY();	
-	 if (cells[y][x].character != nullptr && cells[y][x].obstaculo == nullptr)
+	int x = cas.getX(); int y = cas.getY();
+	if (cells[y][x].character != nullptr && cells[y][x].obstaculo == nullptr)
 		return ((cells[y][x].character->hasComponent<Movimiento>() || cells[y][x].character->hasComponent<Attack>()) && cells[y][x].tipoCasilla != NoPintable);
-	 else if (cells[y][x].obstaculo == nullptr)
-		 return cells[y][x].tipoCasilla != NoPintable;
+	else if (cells[y][x].obstaculo == nullptr)
+		return cells[y][x].tipoCasilla != NoPintable;
 	else return false;
 }
 

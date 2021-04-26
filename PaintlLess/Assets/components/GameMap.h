@@ -38,15 +38,15 @@ class GameMap : public Component {
 private:		
 	Casilla** cells;
 	int rows, cols;
-	int cellWidth, cellHeight; 
-	std::string level;
+	int cellWidth, cellHeight;
+	int tileSet, level;
 	PlayState* playState;
 
 public:
-	GameMap(const string levelN, PlayState* playState);
+	GameMap(int level, int tileSet, PlayState* playState);
 	virtual ~GameMap();
 	virtual void init();
-	void loadMap(const string levelName);
+	void loadMap();
 	void setColor(const Vector2D& cas, Color color);
 	void setEstado(const Vector2D& cas, TipoCasilla tipo);
 	void setCharacter(const Vector2D& cas, Entity* e);
