@@ -24,12 +24,18 @@ private:
 	int mana;
 	Equipo jugadorActual = Segundo;
 	GameMap* mapa;
+	vector<bool> ch1, ch2;
+
+	void mazoEquipo(vector<bool> chars);
+	void freeMazo();
 public:
 
 	// Constructora.
-	PlayState(GameStateMachine* gsm, vector<bool> charss);
+	PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> charss2);
 	// Destructora.
 	virtual ~PlayState();
+
+	void update() override;
 
 	// Método que crea el mazo.
 	void createMazo(int n, int i);

@@ -14,9 +14,10 @@
 
 #include "GameStateMachine.h"
 
-CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameState(gsm) {
+CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm, int n) : GameState(gsm) {
 	sdlutils().showCursor();
 
+	cout << n;
 	// FONDO --------------------------------------------------------------
 	auto* menuFondo = mngr_->addEntity(RenderLayer::Fondo);
 	menuFondo->addComponent<Transform>(Vector2D(), sdlutils().width(), sdlutils().height());
@@ -113,7 +114,11 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 }
 
 void CharacterSelectionState::play(GameStateMachine* gsm) {
-	gsm->getCharSel()->play(gsm);
+	if (gsm->getCharSel()->getEquipo() == 0) {
+		gsm->getCharSel()->siguienteEquipo();
+		gsm->pushState(new CharacterSelectionState(gsm, gsm->getCharSel()->getEquipo()));
+	}
+	else gsm->getCharSel()->play(gsm);
 }
 
 void CharacterSelectionState::personajesAtaque(GameStateMachine* gsm) {

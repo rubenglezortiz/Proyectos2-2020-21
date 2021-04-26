@@ -13,7 +13,7 @@ void Image::render()  {
 		SDL_Rect dest = build_sdlrect(tr2_->getPos(), tr2_->getW(), tr2_->getH());
 		if (entity_->hasGroup<Personajes>()) {
 			dest.y -= 50;
-			dest.w -= 20;
+			dest.w = dest.w -  2 * tr2_->getW();
 		}
 		tex_->render(src_, dest, tr2_->getRot());
 	}

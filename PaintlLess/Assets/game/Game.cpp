@@ -52,11 +52,7 @@ void Game::start() {
 			exit = true;
 			continue;
 		}
-		if (ih().isKeyDown(SDLK_0)) {
-			PlayState* p = dynamic_cast<PlayState*>(stateMachine->currentState());
-			if (p != nullptr)
-				p->pasaTurno();
-		}
+		
 		stateMachine->currentState()->update(); //update del GameState
 		
 		Uint32 frameTime = sdlutils().currRealTime() - startTime;

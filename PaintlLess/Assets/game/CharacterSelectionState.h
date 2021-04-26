@@ -20,11 +20,11 @@ private:
 	// Constantes para el ancho y alto de los sprites de los personajes.
 	 const int w = 160;
 	 const int h = 160;
-	 const int offset = 100;	
+	 const int offset = 100;
 
 public:
 	// Cargamos los botones de los personajes.
-	 CharacterSelectionState(GameStateMachine* gsm);
+	 CharacterSelectionState(GameStateMachine* gsm, int n);
 	 ~CharacterSelectionState() {};
 
 	// Método que carga la partida.
