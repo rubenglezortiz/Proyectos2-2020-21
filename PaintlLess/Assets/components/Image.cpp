@@ -6,8 +6,12 @@ void Image::render()  {
 		if (entity_->hasGroup<Personajes>()) {
 			dest.y -= 30;
 			dest.w -= 20;
+
 		}
-		tex_->render(src_, dest, tr_->getRot());
+		if (entity_->hasGroup<Equipo_Azul>())
+			tex_->render(src_, dest, tr_->getRot(), nullptr, SDL_FLIP_HORIZONTAL);
+		else
+			tex_->render(src_, dest, tr_->getRot());
 	}
 	else {
 		SDL_Rect dest = build_sdlrect(tr2_->getPos(), tr2_->getW(), tr2_->getH());
