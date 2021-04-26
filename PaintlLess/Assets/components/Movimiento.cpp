@@ -27,29 +27,37 @@ void Movimiento::update() {
 			if (ih().getMouseButtonState(ih().LEFT)) {
 				int mX = ih().getMousePos().first;
 				int mY = ih().getMousePos().second;
+				
 				if (selected) {
 					//esto se debe hacer en movementshader
-					Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
-					if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible) {
-						mapa->removeCharacter(mapa->SDLPointToMapCoords(pos));
-						pos.setX((posMovimiento.getX() * cellWidth) + OFFSET_X);
-						pos.setY((posMovimiento.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP);
-						mapa->setCharacter(mapa->SDLPointToMapCoords(pos), entity_);
-						playState->aumentarAcciones();
-						cout << pos;
+					Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX , mY ));
+
+					//si está dentro de los margenes del tablero
+					if (posMovimiento.getX() >= 0 && posMovimiento.getY() > 0 &&
+						posMovimiento.getX() < mapa->getColumns() && posMovimiento.getY() < mapa->getRows()) {
+
+						if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible) {
+							mapa->removeCharacter(mapa->SDLPointToMapCoords(pos));
+							pos.setX((posMovimiento.getX() * cellWidth) + OFFSET_X);
+							pos.setY((posMovimiento.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP);
+							mapa->setCharacter(mapa->SDLPointToMapCoords(pos), entity_);
+							playState->aumentarAcciones();
+							cout << pos;
+						}
+						selected = false;
+						sdlutils().soundEffects().at("moveSound").setChunkVolume(5);
+						sdlutils().soundEffects().at("moveSound").play(); //-----------------------------------------------------------		
+
+						if (entity_->hasGroup<Equipo_Azul>())
+							mapa->setColor(mapa->SDLPointToMapCoords(pos), Amarillo);
+						else
+							mapa->setColor(mapa->SDLPointToMapCoords(pos), Rojo);
+
+						//estos métodos son para cuando se deselcciona yuna casilla para restablecer los valores de los vectores...
+						movShader->freeCasillasAPintar();
+						resetCasillasChecked();
 					}
-					selected = false;
-					sdlutils().soundEffects().at("moveSound").setChunkVolume(5);
-					sdlutils().soundEffects().at("moveSound").play(); //-----------------------------------------------------------		
-
-					if (entity_->hasGroup<Equipo_Azul>())
-						mapa->setColor(mapa->SDLPointToMapCoords(pos), Amarillo);
-					else
-						mapa->setColor(mapa->SDLPointToMapCoords(pos), Rojo);
-
-					//estos métodos son para cuando se deselcciona yuna casilla para restablecer los valores de los vectores...
-					movShader->freeCasillasAPintar();
-					resetCasillasChecked();
+					
 				}
 				else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
 					selected = true;

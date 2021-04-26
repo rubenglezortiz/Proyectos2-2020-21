@@ -38,15 +38,16 @@ void MovementShader::casillasPosiblesRecu(const Vector2D& cSelected, vector<vect
 		uint casillasAMover = UnitInfo::Movimiento[Alquimista];
 		//matriz igual que el tablero inicializada a false
 
-		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() + 1), casillasChecked, false);
-		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX() + 1, cSelected.getY()), casillasChecked, false);
 		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() - 1), casillasChecked, false);
+		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX() + 1, cSelected.getY()), casillasChecked, false);
+		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() + 1), casillasChecked, false);
 		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX() - 1, cSelected.getY()), casillasChecked, false);
 
 		//para no volver a acceder a la inicial
 		casillasChecked[cSelected.getX()][cSelected.getY()].checked = true;
 	
-	
+		casillasBaseRecorridas.clear();
+
 
 	//if (!(cSelected.getX() == 0 && cActual.getX() != 0))
 
@@ -67,22 +68,39 @@ void MovementShader::casillasPosiblesRecuAux(int casillasAMover, const Vector2D&
 	if (cSelected.getX() == 0) {
 
 		if (base && cActual.getX() == 0) {
+			for (auto casillaBase : casillasBaseRecorridas) {
+				if (cActual.getX() == casillaBase.first.getX() && cActual.getY() == casillaBase.first.getY()) {
+					if (casillasAMover > casillaBase.second) {
+						casillaBase.second = casillasAMover;
+					}
+					else {
+						return;
+					}
+				}
+			}
 			suma = 0;
+			casillasBaseRecorridas.push_back(pair<Vector2D, int>(cActual, casillasAMover));
 		}
 		estaEnBase = true;
 	}
+
+
+	int a = cActual.getX();
+	int b = cActual.getY();
 	//si la casilla a la que accedo no ha sido visitada
-	if (!casillasChecked[cActual.getX()][cActual.getY()].checked &&
+	if (/*!casillasChecked[cActual.getX()][cActual.getY()].checked &&*/
 		mapa->movimientoPosible(Vector2D(cActual.getX(), cActual.getY()))) {
 
 		if (!(cSelected.getX() == 0 && cActual.getX() != 0)) casillasChecked[cActual.getX()][cActual.getY()].checked = true;
 
-		casillasAPintar.push_back(Vector2D(cActual.getX(), cActual.getY()));
-		casillasChecked[cActual.getX()][cActual.getY()].movPosible = true;
+		if (!casillasChecked[cActual.getX()][cActual.getY()].movPosible) {
+			casillasAPintar.push_back(Vector2D(cActual.getX(), cActual.getY()));
+			casillasChecked[cActual.getX()][cActual.getY()].movPosible = true;
+		}
 
-		casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX(), cActual.getY() + 1), casillasChecked, estaEnBase);
-		casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX() + 1, cActual.getY()), casillasChecked, estaEnBase);
 		casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX(), cActual.getY() - 1), casillasChecked, estaEnBase);
+		casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX() + 1, cActual.getY()), casillasChecked, estaEnBase);
+		casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX(), cActual.getY() + 1), casillasChecked, estaEnBase);
 		casillasPosiblesRecuAux(casillasAMover + suma, cSelected, Vector2D(cActual.getX() - 1, cActual.getY()), casillasChecked, estaEnBase);
 	}
 }
