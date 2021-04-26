@@ -135,7 +135,7 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 PlayState::~PlayState() {}
 
 void PlayState::createMazo(int n, int i) {
-		auto* boton = mngr_->addEntity(RenderLayer::Interfaz);
+		auto* boton = mngr_->addEntity(RenderLayer::Personajes);
 		boton->addComponent<Transform2>(Vector2D( i * sdlutils().width() / 9, sdlutils().height() - 100), sdlutils().width() / 9, 70);
 		
 		switch (n) {
