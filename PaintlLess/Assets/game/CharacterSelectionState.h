@@ -18,9 +18,9 @@ class CharacterSelectionState : public GameState
 {
 private:
 	// Constantes para el ancho y alto de los sprites de los personajes.
-	 const int w = 160;
-	 const int h = 160;
-	 const int offset = 100;	
+	 const int w = 300;
+	 const int h = 300;
+	 const int offsetY = 180;
 
 public:
 	// Cargamos los botones de los personajes.
