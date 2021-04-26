@@ -10,6 +10,7 @@
 #include "../utils/Vector2D.h"
 #include "../components/MenuButton.h"
 #include "../components/ButtonSelected.h"
+#include "../components/ButtonPlay.h"
 
 #include "GameStateMachine.h"
 
@@ -107,7 +108,8 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	auto* Boton = mngr_->addEntity(RenderLayer::Fondo);
 	Boton->addComponent<Transform>(Vector2D(4 * w, h + offset), w, h);
 	Boton->addComponent<Image>(&sdlutils().images().at("star"));
-	Boton->addComponent<MenuButton>(gsm, play);
+	Boton->getComponent<Image>()->setTexture(&sdlutils().images().at("vacio"));
+	Boton->addComponent<ButtonPlay>(gsm, &sdlutils().images().at("play"), play);
 }
 
 void CharacterSelectionState::play(GameStateMachine* gsm) {

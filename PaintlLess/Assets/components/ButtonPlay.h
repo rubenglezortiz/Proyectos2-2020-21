@@ -1,19 +1,16 @@
-#pragma once
-
 #include "../ecs/Component.h"
+#include "Transform.h"
+#include "Image.h"
 #include "../sdlutils/Texture.h"
 #include "../sdlutils/InputHandler.h"
 #include "../game/GameStateMachine.h"
-#include "Transform.h"
-#include "Image.h"
-#include "../utils/Collisions.h"
 
 using CallBackOnClick = void(GameStateMachine* gsm);
 
-class ButtonSelected : public Component {
-
+class ButtonPlay : public Component {
 private:
 	Transform* tr_;
+	MenuButton* bt_;
 	Texture* tex1_;
 	Texture* tex2_;
 	Image* img_;
@@ -27,8 +24,8 @@ protected:
 	CallBackOnClick* cbOnClick;
 
 public:
-	ButtonSelected(GameStateMachine* gsm, Texture* tex, CallBackOnClick* cb) : gsm_(gsm), cbOnClick(cb), tex1_(tex), tex2_(nullptr), tr_(nullptr), img_(nullptr) {}
-	virtual ~ButtonSelected() {}
+	ButtonPlay(GameStateMachine* gsm, Texture* tex, CallBackOnClick* cb) : gsm_(gsm), cbOnClick(cb), tex1_(tex), tex2_(nullptr), tr_(nullptr), bt_(nullptr), img_(nullptr) {}
+	virtual ~ButtonPlay() {}
 	void init() override;
 	void update() override;
 };

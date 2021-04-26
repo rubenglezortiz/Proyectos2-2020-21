@@ -237,6 +237,9 @@
     <ClCompile Include="Assets\components\Ability_Alchemist.cpp">
       <Filter>Archivos de origen\components\abilities</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\components\ButtonPlay.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\game\ecs_defs.h">
@@ -424,6 +427,9 @@
     </ClInclude>
     <ClInclude Include="Assets\components\Ability_Alchemist.h">
       <Filter>Archivos de encabezado\components\abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\ButtonPlay.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

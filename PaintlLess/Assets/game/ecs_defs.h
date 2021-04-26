@@ -19,6 +19,7 @@ class Ability_Tank;
 class Attack;
 class ButtonHovered;
 class ButtonSelected;
+class ButtonPlay;
 class DeckSpawn;
 class GameMap;
 class Health;
@@ -47,6 +48,7 @@ class Transform2;
 	Attack				,  \
 	ButtonHovered		,  \
 	ButtonSelected		,  \
+	ButtonPlay			,  \
 	DeckSpawn		    ,  \
 	GameMap				,  \
 	Health              ,  \
