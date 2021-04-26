@@ -48,6 +48,7 @@ private:
 	void initializeCasillasChecked();
 	void resetCasillasChecked();
 	PlayState* playState = nullptr;
+	void colorea(Vector2D posIni, Vector2D posFin, Color color);
 
 	int stun = false;
 

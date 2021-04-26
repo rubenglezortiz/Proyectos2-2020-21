@@ -22,6 +22,7 @@ void Movimiento::update() {
 
 
 			auto& pos = tr_->getPos();
+			Vector2D posIni = pos;
 			//poner el puntero de entidad de la casilla del mapa a NULL
 
 			if (ih().getMouseButtonState(ih().LEFT)) {
@@ -33,7 +34,7 @@ void Movimiento::update() {
 					Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX , mY ));
 
 					//si está dentro de los margenes del tablero
-					if (posMovimiento.getX() >= 0 && posMovimiento.getY() > 0 &&
+					if (posMovimiento.getX() >= 0 && posMovimiento.getY() >= 0 &&
 						posMovimiento.getX() < mapa->getColumns() && posMovimiento.getY() < mapa->getRows()) {
 
 						if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible) {
@@ -48,10 +49,52 @@ void Movimiento::update() {
 						sdlutils().soundEffects().at("moveSound").setChunkVolume(5);
 						sdlutils().soundEffects().at("moveSound").play(); //-----------------------------------------------------------		
 
-						if (entity_->hasGroup<Equipo_Azul>())
-							mapa->setColor(mapa->SDLPointToMapCoords(pos), Amarillo);
-						else
-							mapa->setColor(mapa->SDLPointToMapCoords(pos), Rojo);
+						if (entity_->hasGroup<Equipo_Azul>()) {
+							
+							colorea(posIni, pos, Amarillo);
+
+						}
+						else {
+							
+
+							colorea(posIni, pos, Rojo);
+							//float  desplX, desplY;
+							////solo se pueden mover en linea recta en un eje, no hay diagonal, por lo que el que de != 0 de estos es el eje en el que
+							////Se mueve
+							//Vector2D posCoor = mapa->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY()));
+							//Vector2D posIniCoor = mapa->SDLPointToMapCoords(Vector2D(posIni.getX(), posIni.getY()));
+
+							//desplX = posCoor.getX() - posIniCoor.getX();
+							//desplY = posCoor.getY() - posIniCoor.getY();
+
+							//if (desplX != 0) {
+							//	if (desplX > 0) {
+							//		for (int a = posIniCoor.getX(); a <= posCoor.getX(); a++) {
+							//			mapa->setColor((Vector2D(a, posCoor.getY())), Rojo);
+							//		}
+							//	}
+							//	else {
+							//		for (int a = posIniCoor.getX(); a >= posCoor.getX(); a--) {
+							//			mapa->setColor((Vector2D(a, posCoor.getY())), Rojo);
+							//		}
+							//	}
+							//}
+
+
+							//if (desplY != 0) {
+							//	if (desplY > 0) {
+							//		for (int a = posIniCoor.getY(); a <= posCoor.getY(); a++) {
+							//			mapa->setColor((Vector2D(posCoor.getX(), a)), Rojo);
+							//		}
+							//	}
+							//	else {
+							//		for (int a = posIniCoor.getY(); a >= posCoor.getY(); a-- ) {
+							//			mapa->setColor((Vector2D(posCoor.getX(), a)), Rojo);
+							//		}
+							//	}
+							//}
+						}
+						
 
 						//estos métodos son para cuando se deselcciona yuna casilla para restablecer los valores de los vectores...
 						movShader->freeCasillasAPintar();
@@ -99,6 +142,45 @@ void Movimiento::resetCasillasChecked() {
 		for (int y = 0; y < mapa->getRows(); y++) {
 			casillasChecked[x][y].checked = false;
 			casillasChecked[x][y].movPosible = false;
+		}
+	}
+}
+
+void Movimiento::colorea(Vector2D posIni, Vector2D posFin, Color color)
+{
+	float  desplX, desplY;
+	//solo se pueden mover en linea recta en un eje, no hay diagonal, por lo que el que de != 0 de estos es el eje en el que
+	//Se mueve
+	Vector2D posCoor = mapa->SDLPointToMapCoords(Vector2D(posFin.getX(), posFin.getY()));
+	Vector2D posIniCoor = mapa->SDLPointToMapCoords(Vector2D(posIni.getX(), posIni.getY()));
+
+	desplX = posCoor.getX() - posIniCoor.getX();
+	desplY = posCoor.getY() - posIniCoor.getY();
+
+	if (desplX != 0) {
+		if (desplX > 0) {
+			for (int a = posIniCoor.getX(); a <= posCoor.getX(); a++) {
+				mapa->setColor((Vector2D(a, posCoor.getY())), color);
+			}
+		}
+		else {
+			for (int a = posIniCoor.getX(); a >= posCoor.getX(); a--) {
+				mapa->setColor((Vector2D(a, posCoor.getY())), color);
+			}
+		}
+	}
+
+
+	if (desplY != 0) {
+		if (desplY > 0) {
+			for (int a = posIniCoor.getY(); a <= posCoor.getY(); a++) {
+				mapa->setColor((Vector2D(posCoor.getX(), a)), color);
+			}
+		}
+		else {
+			for (int a = posIniCoor.getY(); a >= posCoor.getY(); a--) {
+				mapa->setColor((Vector2D(posCoor.getX(), a)), color);
+			}
 		}
 	}
 }
