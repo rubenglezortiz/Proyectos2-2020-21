@@ -419,17 +419,17 @@
     <ClInclude Include="Assets\components\ButtonHovered.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\components\Transform2.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\Interfaz.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Assets\components\Ability_Alchemist.h">
       <Filter>Archivos de encabezado\components\abilities</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\components\Transform2.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
     <ClInclude Include="Assets\components\ButtonPlay.h">
-      <Filter>Archivos de encabezado</Filter>
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\Interfaz.h">
+      <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

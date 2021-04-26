@@ -57,7 +57,7 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 
 	//boardManager->getComponent<MovementShader>()->getValues();
 
-	int x = 0;
+	int x = 1;
 	// Crea a los personajes según el vector de personajes que ha recibido.
 	for (int i = 0; i < charss.size(); ++i) {
 		if (charss[i]) {
@@ -141,7 +141,7 @@ PlayState::~PlayState() {}
 
 void PlayState::createMazo(int n, int i) {
 	auto* boton = mngr_->addEntity(RenderLayer::Personajes);
-	boton->addComponent<Transform2>(Vector2D(i * sdlutils().width() / 9, sdlutils().height() - 100), sdlutils().width() / 9, 70);
+	boton->addComponent<Transform2>(Vector2D(i * sdlutils().width() / 9, sdlutils().height() - 120), sdlutils().width() / 9, 100);
 
 	switch (n) {
 	case Alquimista:

@@ -10,7 +10,7 @@ class PlayState;
 class Interfaz : public Component {
 private:
 	PlayState* playState;
-	SDL_Rect destNum, destMana, destAcciones, destEnergy, destBarraTurnos, destTurnos, destPorcentaje1, destPorcentaje2;
+	SDL_Rect destNum, destMana, destAcciones, destEnergy, destBarraTurnos, destTurnos, destBarraPorcentajes, destPorcentaje1, destPorcentaje2, destOpciones;
 	Texture* texEnergy;
 	int numCasillasPintables, casAzul, casRojo;
 public:

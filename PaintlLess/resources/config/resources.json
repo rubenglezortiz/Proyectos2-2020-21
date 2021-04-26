@@ -3,7 +3,9 @@
   "fonts" : [
     { "id" : "ARIAL16", "file" : "resources/fonts/ARIAL.ttf", "size": 16 },
     { "id" : "ARIAL24", "file" : "resources/fonts/ARIAL.ttf", "size": 24 },
-    { "id" : "ARIAL48", "file" : "resources/fonts/ARIAL.ttf", "size": 48 }
+    { "id" : "ARIAL48", "file" : "resources/fonts/ARIAL.ttf", "size": 48 },
+    { "id" : "NES-CHIMERA24", "file" : "resources/fonts/NES-Chimera.ttf", "size": 24 },
+    { "id" : "PIXELLARI24", "file" : "../webAssets/Pixellari.ttf", "size": 24 }
   ],
   
  "images" : [
@@ -23,6 +25,9 @@
     { "id" : "barraAccion",     "file" : "resources/images/interfaz/barraAccion.png" },
     { "id" : "energia",         "file" : "resources/images/interfaz/energia.png" },
     { "id" : "barraPorcentajes","file" : "resources/images/interfaz/barraPorcentajes.png" },
+    { "id" : "porcAzul",        "file" : "resources/images/interfaz/porcentajeAzul.png" },
+    { "id" : "porcRojo",        "file" : "resources/images/interfaz/porcentajeRojo.png" },
+    { "id" : "opciones",        "file" : "resources/images/interfaz/botonOpciones.png" },
 
 	{ "id" : "life",       "file" : "resources/images/sprites/life.png" },
     { "id" : "tileset",    "file" : "resources/images/sprites/tileset2.png" },
