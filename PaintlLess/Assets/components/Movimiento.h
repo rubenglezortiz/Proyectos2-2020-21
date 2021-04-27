@@ -10,7 +10,7 @@
 
 class Movimiento : public Component {
 public:
-	Movimiento(PlayState* playState) : tr_(nullptr), mapa(nullptr), selected(false), movShader(nullptr), cellWidth(0), cellHeight(0), playState(playState) {}
+	Movimiento(PlayState* playState, uint casillasAMover = 1) : tr_(nullptr), mapa(nullptr), selected(false), movShader(nullptr), cellWidth(0), cellHeight(0), playState(playState), casillasAMover(casillasAMover) {}
 	virtual ~Movimiento() {};
 
 
@@ -49,6 +49,7 @@ private:
 	void resetCasillasChecked();
 	PlayState* playState = nullptr;
 	void colorea(Vector2D posIni, Vector2D posFin, Color color);
+	uint casillasAMover;
 
 	int stun = false;
 

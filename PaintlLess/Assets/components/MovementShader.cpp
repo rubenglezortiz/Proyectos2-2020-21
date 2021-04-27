@@ -32,16 +32,47 @@ void MovementShader::update() {
 }
 
 //método recursivo que se llama en movimiento cuando se selecciona una casilla para comprobar a que casillas se puede mover
-void MovementShader::casillasPosiblesRecu(const Vector2D& cSelected, vector<vector<CasillaMov>>& casillasChecked) {
-
-
-		uint casillasAMover = UnitInfo::Movimiento[Alquimista];
+void MovementShader::casillasPosiblesRecu(const Vector2D& cSelected, vector<vector<CasillaMov>>& casillasChecked, uint casillasAMover) {
 		//matriz igual que el tablero inicializada a false
 
-		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() - 1), casillasChecked, false);
-		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX() + 1, cSelected.getY()), casillasChecked, false);
-		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() + 1), casillasChecked, false);
-		casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX() - 1, cSelected.getY()), casillasChecked, false);
+		//Movimiento en cruz temporal hito
+		Vector2D casillaAMirar;
+		for (int i = 1; i <= casillasAMover; i++)
+		{
+			casillaAMirar = new Vector2D(cSelected.getX() + i, cSelected.getY());
+			if (mapa->movimientoPosible(casillaAMirar))
+			{
+				casillasAPintar.push_back(casillaAMirar);
+				casillasChecked[casillaAMirar.getX()][casillaAMirar.getY()].movPosible = true;
+			}
+
+			casillaAMirar = new Vector2D(cSelected.getX() - i, cSelected.getY());
+			if (mapa->movimientoPosible(casillaAMirar))
+			{
+				casillasAPintar.push_back(casillaAMirar);
+				casillasChecked[casillaAMirar.getX()][casillaAMirar.getY()].movPosible = true;
+			}
+
+			casillaAMirar = new Vector2D(cSelected.getX(), cSelected.getY() + i);
+			if (mapa->movimientoPosible(casillaAMirar))
+			{
+				casillasAPintar.push_back(casillaAMirar);
+				casillasChecked[casillaAMirar.getX()][casillaAMirar.getY()].movPosible = true;
+			}
+
+			casillaAMirar = new Vector2D(cSelected.getX(), cSelected.getY() - i);
+			if (mapa->movimientoPosible(casillaAMirar))
+			{
+				casillasAPintar.push_back(casillaAMirar);
+				casillasChecked[casillaAMirar.getX()][casillaAMirar.getY()].movPosible = true;
+			}
+
+		}
+
+		//casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() - 1), casillasChecked, false);
+		//casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX() + 1, cSelected.getY()), casillasChecked, false);
+		//casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() + 1), casillasChecked, false);
+		//casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX() - 1, cSelected.getY()), casillasChecked, false);
 
 		//para no volver a acceder a la inicial
 		casillasChecked[cSelected.getX()][cSelected.getY()].checked = true;

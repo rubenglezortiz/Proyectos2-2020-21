@@ -33,7 +33,7 @@ void ButtonSelected::update() {
 		contador--;
 		cbOnClick(gsm_);
 		selected = false;
-		sdlutils().soundEffects().at(SONIDO).setChunkVolume(10);
-		sdlutils().soundEffects().at(SONIDO).play();
+		sdlutils().soundEffects().at(DESELECTSONIDO).setChunkVolume(10);
+		sdlutils().soundEffects().at(DESELECTSONIDO).play();
 		 }
 }

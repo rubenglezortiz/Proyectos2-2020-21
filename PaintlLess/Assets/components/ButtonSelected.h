@@ -22,6 +22,7 @@ private:
 	int max = 0;
 	bool selected = false;
 	const std::string SONIDO = "seleccionSound";
+	const std::string DESELECTSONIDO = "menuButtonSound";
 
 protected:
 	CallBackOnClick* cbOnClick;
