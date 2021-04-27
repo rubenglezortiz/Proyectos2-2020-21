@@ -115,7 +115,12 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 }
 
 void CharacterSelectionState::play(GameStateMachine* gsm) {
-	gsm->getCharSel()->play(gsm);
+	if (gsm->getCharSel()->getEquipo() == 0) {
+		gsm->pushState(new CharacterSelectionState(gsm));
+		gsm->getCharSel()->siguienteEquipo(); 
+		gsm->getCharSel()->updateCont();
+	}
+	else gsm->getCharSel()->play(gsm);
 }
 
 void CharacterSelectionState::personajesAtaque(GameStateMachine* gsm) {

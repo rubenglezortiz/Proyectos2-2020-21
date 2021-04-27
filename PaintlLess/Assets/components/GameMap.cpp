@@ -113,25 +113,25 @@ void GameMap::render() {
 
 void GameMap::setColor(const Vector2D& cas, Color color) {
 	if (cells[(int)cas.getY()][(int)cas.getX()].tipoCasilla == Pintable) {
-		auto* pintar = entity_->getMngr()->addEntity();
+		auto* pintar = entity_->getMngr()->addEntity(RenderLayer::Tablero);
 		pintar->addComponent<Transform>(Vector2D(cas.getX(), cas.getY()), cellWidth, cellHeight);
 		if (getColor(cas) != color && getColor(cas) != Ninguno && color == Amarillo) {
-			pintar->addComponent<Image>(&sdlutils().images().at("azul"));
+			pintar->addComponent<Image>(&sdlutils().images().at("rojo"));
 			playState->aumentaPintado1(1);
 			playState->aumentaPintado2(-1);
 		}
 		else if (getColor(cas) != color && getColor(cas) != Ninguno && color == Rojo) {
-			pintar->addComponent<Image>(&sdlutils().images().at("rojo"));
+			pintar->addComponent<Image>(&sdlutils().images().at("azul"));
 			playState->aumentaPintado2(1);
 			playState->aumentaPintado1(-1);
 		}
 		else if (getColor(cas) == Ninguno) {
 			if (color == Amarillo) {
-				pintar->addComponent<Image>(&sdlutils().images().at("azul"));
+				pintar->addComponent<Image>(&sdlutils().images().at("rojo"));
 				playState->aumentaPintado1(1);
 			}
 			else {
-				pintar->addComponent<Image>(&sdlutils().images().at("rojo"));
+				pintar->addComponent<Image>(&sdlutils().images().at("azul"));
 				playState->aumentaPintado2(1);
 			}
 		}

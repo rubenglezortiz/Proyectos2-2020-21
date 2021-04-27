@@ -24,16 +24,19 @@ private:
 	int mana;
 	int pintado_1, pintado_2;
 	Equipo jugadorActual = Segundo;
+	vector<bool> ch1, ch2;
 	GameMap* mapa;
 public:
 
 	// Constructora.
-	PlayState(GameStateMachine* gsm, vector<bool> charss);
+	PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> charss2);
 	// Destructora.
 	virtual ~PlayState();
 
 	// Método que crea el mazo.
-	void createMazo(int n, int i);
+	void createMazo(int n, int x, int equipo);
+	void mazoEquipo();
+	void moveMazo();
 
 	void pasaTurno();
 	Equipo getTurno() const { return jugadorActual; }

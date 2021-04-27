@@ -28,7 +28,7 @@
 #include "../game/Values.h"
 #include "GameStateMachine.h"
 
-PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm) {
+PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> charss2) : GameState(gsm) {
 
 	// Creación interfaz
 	auto* fondo = mngr_->addEntity(RenderLayer::Fondo);
@@ -47,6 +47,12 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 	mngr_.get()->setHandler<Mapa>(m);
 	m->addComponent<Interfaz>();
 
+	for (int i = 0; i < charss.size(); ++i) {
+		if (charss[i]) ch1.push_back(true);
+		else ch1.push_back(false);
+		if (charss2[i]) ch2.push_back(true);
+		else ch2.push_back(false);
+	}
 
 	// Creación boardManager
 	Entity* boardManager = mngr_->addEntity(RenderLayer::Tablero2);
@@ -57,81 +63,7 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 
 	//boardManager->getComponent<MovementShader>()->getValues();
 
-	int x = 1;
-	// Crea a los personajes según el vector de personajes que ha recibido.
-	for (int i = 0; i < charss.size(); ++i) {
-		if (charss[i]) {
-			switch (i) {
-			case Alquimista:
-				//createAlquimista(Primero);
-				createMazo(Alquimista, x);
-				cout << "alquimista";
-				break;
-			case Arquitecta:
-				//createArquitecta(Primero);
-				createMazo(Arquitecta, x);
-				cout << "arquitecta";
-				break;
-			case Bomba:
-				//createBomba(Primero);
-				createMazo(Bomba, x);
-				cout << "bomba";
-				break;
-			case Cazador:
-				//createCazador(Primero);
-				createMazo(Cazador, x);
-				cout << "cazador";
-				break;
-			case Druida:
-				//createDruida(Primero);
-				createMazo(Druida, x);
-				cout << "druida";
-				break;
-			case Esqueleto:
-				//createEsqueleto(Primero);
-				createMazo(Esqueleto, x);
-				cout << "esqueleto";
-				break;
-			case Golem:
-				//createGolem(Primero);
-				createMazo(Golem, x);
-				cout << "golem";
-				break;
-			case Kirin:
-				//createKirin(Primero);
-				createMazo(Kirin, x);
-				cout << "kirin";
-				break;
-			case Lobo:
-				//createLobo(Primero);
-				createMazo(Lobo, x);
-				cout << "lobo";
-				break;
-			case Monaguillo:
-				//createMonaguillo(Primero);
-				createMazo(Monaguillo, x);
-				cout << "monaguillo";
-				break;
-			case Picara:
-				//createPicara(Primero);
-				createMazo(Picara, x);
-				cout << "picara";
-				break;
-			case Tanque:
-				//createTanque(Primero);
-				createMazo(Tanque, x);
-				cout << "tanque";
-				break;
-			case Vikingo:
-				//createVikingo(Primero);
-				createMazo(Vikingo, x);
-				cout << "vikingo";
-				break;
-			}
-			x++;
-		}
-		cout << i;
-	}
+	mazoEquipo();
 	//createTanque(Segundo);
 	sdlutils().showCursor();
 	//pasaTurno();
@@ -139,66 +71,119 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss) : GameState(gsm
 
 PlayState::~PlayState() {}
 
-void PlayState::createMazo(int n, int i) {
-	auto* boton = mngr_->addEntity(RenderLayer::Personajes);
-	boton->addComponent<Transform2>(Vector2D(i * sdlutils().width() / 9, sdlutils().height() - 120), sdlutils().width() / 9, 100);
-
-	switch (n) {
-	case Alquimista:
-		boton->addComponent<Image>(&sdlutils().images().at("alquimistaMazoA"));
-		boton->addComponent<DeckSpawn>(Alquimista);
-		break;
-	case Arquitecta:
-		boton->addComponent<Image>(&sdlutils().images().at("arquitectaMazoA"));
-		boton->addComponent<DeckSpawn>(Arquitecta);
-		break;
-	case Bomba:
-		boton->addComponent<Image>(&sdlutils().images().at("bombaMazoA"));
-		boton->addComponent<DeckSpawn>(Bomba);
-		break;
-	case Cazador:
-		boton->addComponent<Image>(&sdlutils().images().at("cazadorMazoA"));
-		boton->addComponent<DeckSpawn>(Cazador);
-		break;
-	case Druida:
-		boton->addComponent<Image>(&sdlutils().images().at("druidaMazoA"));
-		boton->addComponent<DeckSpawn>(Druida);
-		break;
-	case Esqueleto:
-		boton->addComponent<Image>(&sdlutils().images().at("esqueletoMazoA"));
-		boton->addComponent<DeckSpawn>(Esqueleto);
-		break;
-	case Golem:
-		boton->addComponent<Image>(&sdlutils().images().at("golemMazoA"));
-		boton->addComponent<DeckSpawn>(Golem);
-		break;
-	case Kirin:
-		boton->addComponent<Image>(&sdlutils().images().at("kirinMazoA"));
-		boton->addComponent<DeckSpawn>(Kirin);
-		break;
-	case Lobo:
-		boton->addComponent<Image>(&sdlutils().images().at("loboMazoA"));
-		boton->addComponent<DeckSpawn>(Lobo);
-		break;
-	case Monaguillo:
-		boton->addComponent<Image>(&sdlutils().images().at("monaguilloMazoA"));
-		boton->addComponent<DeckSpawn>(Monaguillo);
-		break;
-	case Picara:
-		boton->addComponent<Image>(&sdlutils().images().at("picaraMazoA"));
-		boton->addComponent<DeckSpawn>(Picara);
-		break;
-	case Tanque:
-		boton->addComponent<Image>(&sdlutils().images().at("tanqueMazoA"));
-		boton->addComponent<DeckSpawn>(Tanque);
-		break;
-	case Vikingo:
-		boton->addComponent<Image>(&sdlutils().images().at("vikingoMazoA"));
-		boton->addComponent<DeckSpawn>(Vikingo);
-		break;
+void PlayState::mazoEquipo() {
+	int x = 1;
+	for (int i = 0; i < ch1.size(); ++i) {
+		if (ch1[i]) {
+			createMazo(i, x, 0);
+			x++;
+		}
+	}
+	x = 1;
+	for (int i = 0; i < ch2.size(); ++i) {
+		if (ch2[i]) {
+			createMazo(i, x, 1);
+			x++;
+		}
 	}
 }
 
+void PlayState::createMazo(int n, int x, int equipo) {
+	if (equipo == 1)
+		x = -sdlutils().width();
+	auto* boton = mngr_->addEntity(RenderLayer::Personajes);
+	boton->addComponent<Transform2>(Vector2D(x * sdlutils().width() / 9, sdlutils().height() - 120), sdlutils().width() / 9, 100);
+
+	std::string imagen;
+	if (equipo == 1) imagen = "R";
+	else imagen = "A";
+
+	switch (n) {
+	case Alquimista:
+		boton->addComponent<Image>(&sdlutils().images().at("alquimistaMazo" + imagen));
+		boton->addComponent<DeckSpawn>(Alquimista);
+		break;
+	case Arquitecta:
+		boton->addComponent<Image>(&sdlutils().images().at("arquitectaMazo" + imagen));
+		boton->addComponent<DeckSpawn>(Arquitecta);
+		break;
+	case Bomba:
+		boton->addComponent<Image>(&sdlutils().images().at("bombaMazo" + imagen));
+		boton->addComponent<DeckSpawn>(Bomba);
+		break;
+	case Cazador:
+		boton->addComponent<Image>(&sdlutils().images().at("cazadorMazo" + imagen));
+		boton->addComponent<DeckSpawn>(Cazador);
+		break;
+	case Druida:
+		boton->addComponent<Image>(&sdlutils().images().at("druidaMazo" + imagen));
+		boton->addComponent<DeckSpawn>(Druida);
+		break;
+	case Esqueleto:
+		boton->addComponent<Image>(&sdlutils().images().at("esqueletoMazo" + imagen));
+		boton->addComponent<DeckSpawn>(Esqueleto);
+		break;
+	case Golem:
+		boton->addComponent<Image>(&sdlutils().images().at("golemMazo" + imagen));
+		boton->addComponent<DeckSpawn>(Golem);
+		break;
+	case Kirin:
+		boton->addComponent<Image>(&sdlutils().images().at("kirinMazo" + imagen));
+		boton->addComponent<DeckSpawn>(Kirin);
+		break;
+	case Lobo:
+		boton->addComponent<Image>(&sdlutils().images().at("loboMazo" + imagen));
+		boton->addComponent<DeckSpawn>(Lobo);
+		break;
+	case Monaguillo:
+		boton->addComponent<Image>(&sdlutils().images().at("monaguilloMazo" + imagen));
+		boton->addComponent<DeckSpawn>(Monaguillo);
+		break;
+	case Picara:
+		boton->addComponent<Image>(&sdlutils().images().at("picaraMazo" + imagen));
+		boton->addComponent<DeckSpawn>(Picara);
+		break;
+	case Tanque:
+		boton->addComponent<Image>(&sdlutils().images().at("tanqueMazo" + imagen));
+		boton->addComponent<DeckSpawn>(Tanque);
+		break;
+	case Vikingo:
+		boton->addComponent<Image>(&sdlutils().images().at("vikingoMazo" + imagen));
+		boton->addComponent<DeckSpawn>(Vikingo);
+		break;
+	}
+	if (equipo == 1) boton->setGroup<Mazo1>(true);
+	else boton->setGroup<Mazo2>(true);
+}
+
+void PlayState::moveMazo() {
+	int pos = -sdlutils().width();
+	int i = 1;
+	if (jugadorActual == Primero) {
+		for (Entity* e : mngr_->getEnteties()) {
+			if (e->hasGroup<Mazo2>()) {
+				e->getComponent<Transform2>()->getPos().setX(pos);
+				pos -= e->getComponent<Transform2>()->getW();
+			}
+			if (e->hasGroup<Mazo1>()) {
+				e->getComponent<Transform2>()->getPos().setX(i * sdlutils().width() / 9);
+				i++;
+			}
+		}
+	}
+	else {
+		for (Entity* e : mngr_->getEnteties()) {
+			if (e->hasGroup<Mazo2>()) {
+				e->getComponent<Transform2>()->getPos().setX(i * sdlutils().width() / 9);
+				i++;
+			}
+			if (e->hasGroup<Mazo1>()) {
+				e->getComponent<Transform2>()->getPos().setX(pos);
+				pos -= e->getComponent<Transform2>()->getW();
+			}
+		}
+	}
+}
 
 void PlayState::pasaTurno() {
 	accionesPorTurno = MAX_ACCIONES;
@@ -209,6 +194,7 @@ void PlayState::pasaTurno() {
 			mana_1 = MAX_MANA;
 		else
 			mana_1 += INCREMENTO_MANA;
+		moveMazo();
 	}
 	else {
 		jugadorActual = Primero;
@@ -216,12 +202,13 @@ void PlayState::pasaTurno() {
 			mana_2 = MAX_MANA;
 		else
 			mana_2 += INCREMENTO_MANA;
+		moveMazo();
 	}
 	cout << endl << "MANA_1: " << mana_1 << endl << "MANA_2: " << mana_2 << endl;
-	
+
 	if (turnosActuales + 1 > MAX_TURNOS * 2) cout << "fin de partida\n";
 	else turnosActuales++;
-	
+
 
 	mngr_->finTurno();
 	cout << "Turno pasado\n";

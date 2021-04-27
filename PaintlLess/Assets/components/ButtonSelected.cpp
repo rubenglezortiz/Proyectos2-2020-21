@@ -35,5 +35,5 @@ void ButtonSelected::update() {
 		selected = false;
 		sdlutils().soundEffects().at(SONIDO).setChunkVolume(10);
 		sdlutils().soundEffects().at(SONIDO).play();
-	}
+		 }
 }
