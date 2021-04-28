@@ -76,12 +76,12 @@ void Interfaz::render() {
 
 	int off = (destBarraPorcentajes.w - 40) / numCasillasPintables;
 	destPorcentaje2.w += playState->getPintado2() * off;
-	sdlutils().images().at("porcRojo").render(destPorcentaje2);
+	sdlutils().images().at("porcAzul").render(destPorcentaje2);
 
 
 	destPorcentaje1.x -= playState->getPintado1() * off;
 	destPorcentaje1.w += playState->getPintado1() * off;
-	sdlutils().images().at("porcAzul").render(destPorcentaje1);
+	sdlutils().images().at("porcRojo").render(destPorcentaje1);
 
 	destOpciones.x = sdlutils().width() - 275 + 40;
 	destOpciones.y = 10;

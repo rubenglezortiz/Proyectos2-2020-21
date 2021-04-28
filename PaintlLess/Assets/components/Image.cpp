@@ -5,7 +5,7 @@ void Image::render()  {
 		SDL_Rect dest = build_sdlrect(tr_->getPos(), tr_->getW(), tr_->getH());
 		if (entity_->hasGroup<Personajes>()) {
 			dest.y -= 30;
-			dest.w -= 20;
+			dest.w -= 50;
 
 		}
 		if (entity_->hasGroup<Equipo_Azul>())
