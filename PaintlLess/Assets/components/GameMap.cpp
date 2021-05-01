@@ -47,7 +47,7 @@ void GameMap::loadMap() {
 				auto tiles = tileLayer.getTiles();
 				for (int i = 0; i < rows; ++i) {
 					for (int j = 0; j < cols; ++j) {
-						auto* casilla = entity_->getMngr()->addEntity();
+						auto* casilla = entity_->getMngr()->addEntity(RenderLayer::Fondo);
 
 						casilla->addComponent<Transform2>(Vector2D(j * cellWidth + OFFSET_X, (i * cellHeight) + OFFSET_Y + OFFSET_TOP), cellWidth, cellHeight);
 						string tileset = "tileset" + to_string(tileSet);
@@ -113,7 +113,7 @@ void GameMap::render() {
 
 void GameMap::setColor(const Vector2D& cas, Color color) {
 	if (cells[(int)cas.getY()][(int)cas.getX()].tipoCasilla == Pintable) {
-		auto* pintar = entity_->getMngr()->addEntity(RenderLayer::Tablero);
+		auto* pintar = entity_->getMngr()->addEntity(RenderLayer::Fondo);
 		pintar->addComponent<Transform>(Vector2D(cas.getX(), cas.getY()), cellWidth, cellHeight);
 		if (getColor(cas) != color && getColor(cas) != Ninguno && color == Amarillo) {
 			pintar->addComponent<Image>(&sdlutils().images().at("rojo"));
