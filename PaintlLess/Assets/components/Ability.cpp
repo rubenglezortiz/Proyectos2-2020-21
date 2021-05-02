@@ -64,21 +64,21 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 	}
 	else if (sf == TxT) {
 		Vector2D posUp = Vector2D(0, -1) + posCh;
-		if (map->getTipoCasilla(posUp) != NoPintable) abilityCells.push_back(posUp);
+		if (map->casillaValida(posUp) && map->getTipoCasilla(posUp) != NoPintable) abilityCells.push_back(posUp);
 		Vector2D posUpLeft = Vector2D(-1, -1) + posCh;
-		if (map->getTipoCasilla(posUpLeft) != NoPintable) abilityCells.push_back(posUpLeft);
+		if (map->casillaValida(posUpLeft) && map->getTipoCasilla(posUpLeft) != NoPintable) abilityCells.push_back(posUpLeft);
 		Vector2D posUpRight = Vector2D(1, -1) + posCh;
-		if (map->getTipoCasilla(posUpRight) != NoPintable) abilityCells.push_back(posUpRight);
+		if (map->casillaValida(posUpRight) && map->getTipoCasilla(posUpRight) != NoPintable) abilityCells.push_back(posUpRight);
 		Vector2D posRight = Vector2D(1, 0) + posCh;
-		if (map->getTipoCasilla(posRight) != NoPintable) abilityCells.push_back(posRight);
+		if (map->casillaValida(posRight) && map->getTipoCasilla(posRight) != NoPintable) abilityCells.push_back(posRight);
 		Vector2D posLeft = Vector2D(-1, 0) + posCh;
-		if (map->getTipoCasilla(posLeft) != NoPintable) abilityCells.push_back(posLeft);
+		if (map->casillaValida(posLeft) && map->getTipoCasilla(posLeft) != NoPintable) abilityCells.push_back(posLeft);
 		Vector2D posDown = Vector2D(0, 1) + posCh;
-		if (map->getTipoCasilla(posDown) != NoPintable) abilityCells.push_back(posDown);
+		if (map->casillaValida(posDown) && map->getTipoCasilla(posDown) != NoPintable) abilityCells.push_back(posDown);
 		Vector2D posDownLeft = Vector2D(-1, 1) + posCh;
-		if (map->getTipoCasilla(posDownLeft) != NoPintable) abilityCells.push_back(posDownLeft);
+		if (map->casillaValida(posDownLeft) && map->getTipoCasilla(posDownLeft) != NoPintable) abilityCells.push_back(posDownLeft);
 		Vector2D posDownRight = Vector2D(1, 1) + posCh;
-		if (map->getTipoCasilla(posDownRight) != NoPintable) abilityCells.push_back(posDownRight);
+		if (map->casillaValida(posDownRight) && map->getTipoCasilla(posDownRight) != NoPintable) abilityCells.push_back(posDownRight);
 	}
 	else if (sf == ShaderWolf) {
 		std::vector<Vector2D> casillas;

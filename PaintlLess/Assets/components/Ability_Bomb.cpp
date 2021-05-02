@@ -16,7 +16,7 @@ void Ability_Bomb::explode() {
 
 	for (int i = 0; i < casillas.size(); i++){
 		//Hay personajes ==> Daño
-		if (mapa->getCharacter(casillas[i] + posBomb) != nullptr){
+		if (mapa->casillaValida(casillas[i] + posBomb) && mapa->getCharacter(casillas[i] + posBomb) != nullptr){
 			mapa->getCharacter(casillas[i] + posBomb)->getComponent<Health>()->hit(1);
 		}
 		//Es pintable ==> Pinta
