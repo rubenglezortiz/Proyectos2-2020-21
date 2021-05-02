@@ -65,7 +65,7 @@
     { "id" : "alquimista", "file" : "resources/images/sprites/personajes/alquimista.png"},  
     { "id" : "arquitecta", "file" : "resources/images/sprites/personajes/arquitecta.png"},  
     { "id" : "lobo",       "file" : "resources/images/sprites/personajes/lobo.png"}, 
-    { "id" : "vikingo",    "file" : "resources/images/sprites/personajes/vikingo.png"},
+    { "id" : "vikingo",    "file" : "resources/images/sprites/personajes/Vikingo/vikingo.png"},
     { "id" : "cazador",    "file" : "resources/images/sprites/personajes/cazador.png"},
     { "id" : "monaguillo", "file" : "resources/images/sprites/personajes/monaguillo.png"},
     { "id" : "kirin",      "file" : "resources/images/sprites/personajes/Kirim/kirin.png"},
