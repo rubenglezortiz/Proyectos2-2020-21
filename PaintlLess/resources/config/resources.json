@@ -35,6 +35,7 @@
     { "id" : "porcRojo",        "file" : "resources/images/interfaz/porcentajeRojo.png" },
     { "id" : "opciones",        "file" : "resources/images/interfaz/botonOpciones.png" },
     { "id" : "azul",            "file" : "resources/images/interfaz/azul.png" },
+    { "id" : "rojo",            "file" : "resources/images/interfaz/rojo.png" },
     { "id" : "alquimistaM",     "file" : "resources/images/interfaz/alquimistaMazo.png" },
     { "id" : "arquitectaM",     "file" : "resources/images/interfaz/arquitectaMazo.png" },
     { "id" : "bombaM",          "file" : "resources/images/interfaz/bombaMazo.png" },
