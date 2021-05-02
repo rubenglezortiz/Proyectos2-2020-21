@@ -111,6 +111,10 @@ void DeckSpawn::spawnShader(int e) {
 		k = mapa->getColumns() - 2;
 		l = mapa->getColumns();
 	}
+	if (personaje == 6) {
+		if (e == Primero) k -= 2;
+		else l += 2;
+	}
 	for (int i = k; i < l; ++i) {
 		for (int j = 0; j < mapa->getColumns(); ++j) {
 			Vector2D cas = Vector2D(i, j);

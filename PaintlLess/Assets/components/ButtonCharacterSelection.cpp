@@ -100,6 +100,7 @@ void ButtonCharacterSelection::update() {
 		}
 		chst_->setSelected(false);
 		chst_->setTipo(-1);
+		img_->setTexture(tex2_);
 	}
 	if (tipo != chst_->getTipo() && chst_->getSelected())
 	img_->setTexture(tex2_);
