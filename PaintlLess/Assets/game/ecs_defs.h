@@ -17,6 +17,7 @@ class Ability_Viking;
 class Ability_Wolf;
 class Ability_Tank;
 class Attack;
+class ButtonCharacterSelection;
 class ButtonHovered;
 class ButtonSelected;
 class ButtonPlay;
@@ -33,47 +34,54 @@ class Transform;
 class Transform2;
 
 #define _CMPS_LIST_  \
-	Ability_Alchemist   ,  \
-	Ability_Architect   ,  \
-	Ability_Bomb		,  \
-	Ability_Creeper     ,  \
-	Ability_Druid       ,  \
-	Ability_Golem		,  \
-	Ability_Kirin		,  \
-	Ability_Priest	    ,  \
-	Ability_Rogue	    ,  \
-	Ability_Viking      ,  \
-	Ability_Wolf        ,  \
-	Ability_Tank        ,  \
-	Attack				,  \
-	ButtonHovered		,  \
-	ButtonSelected		,  \
-	ButtonPlay			,  \
-	DeckSpawn		    ,  \
-	GameMap				,  \
-	Health              ,  \
-	Image				,  \
-	Interfaz			,  \
-	MenuButton          ,  \
-	MovementShader      ,  \
-	Movimiento			,  \
-	PointOnImage	    ,  \
-	Transform			,  \
+	Ability_Alchemist			    ,  \
+	Ability_Architect			    ,  \
+	Ability_Bomb				 	,  \
+	Ability_Creeper				    ,  \
+	Ability_Druid				    ,  \
+	Ability_Golem					,  \
+	Ability_Kirin					,  \
+	Ability_Priest				    ,  \
+	Ability_Rogue				    ,  \
+	Ability_Viking				    ,  \
+	Ability_Wolf		    	    ,  \
+	Ability_Tank				    ,  \
+	Attack							,  \
+	ButtonCharacterSelection		,  \
+	ButtonHovered					,  \
+	ButtonSelected					,  \
+	ButtonPlay						,  \
+	DeckSpawn					    ,  \
+	GameMap							,  \
+	Health						    ,  \
+	Image							,  \
+	Interfaz						,  \
+	MenuButton				   	    ,  \
+	MovementShader				    ,  \
+	Movimiento						,  \
+	PointOnImage					,  \
+	Transform						,  \
 	Transform2
 
 	// groups
 
 struct Personajes;
+struct Attack;
+struct Defense;
+struct Utility;
 struct Mazo1;
 struct Mazo2;
 struct Equipo_Rojo;
 struct Equipo_Azul;
 
 #define _GRPS_LIST_ \
-	Personajes , \
-	Mazo1      , \
-	Mazo2      , \
-	Equipo_Rojo, \
+	Personajes	, \
+	Attack , \
+	Defense , \
+	Utility , \
+	Mazo1       , \
+	Mazo2       , \
+	Equipo_Rojo , \
 	Equipo_Azul 
 
 

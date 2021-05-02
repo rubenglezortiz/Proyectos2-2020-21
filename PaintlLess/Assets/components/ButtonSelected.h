@@ -14,8 +14,7 @@ class ButtonSelected : public Component {
 
 private:
 	Transform* tr_;
-	Texture* tex1_;
-	Texture* tex2_;
+	Texture *tex1_, *tex2_, *texM_;
 	Image* img_;
 	GameStateMachine* gsm_;
 	int contador = 0;
@@ -28,7 +27,7 @@ protected:
 	CallBackOnClick* cbOnClick;
 
 public:
-	ButtonSelected(GameStateMachine* gsm, Texture* tex, CallBackOnClick* cb) : gsm_(gsm), cbOnClick(cb), tex1_(tex), tex2_(nullptr), tr_(nullptr), img_(nullptr) {}
+	ButtonSelected(GameStateMachine* gsm, Texture* tex, Texture* texM, CallBackOnClick* cb) : gsm_(gsm), cbOnClick(cb), tex1_(tex), tex2_(nullptr), texM_(texM), tr_(nullptr), img_(nullptr) {}
 	virtual ~ButtonSelected() {}
 	void init() override;
 	void update() override;

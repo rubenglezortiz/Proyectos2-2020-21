@@ -1,14 +1,13 @@
 #pragma once
 #include "GameState.h"
 #include "Values.h"
+#include "../sdlutils/Texture.h"
 #include "../../CharactersSelected.h"
 #include <vector>
 
 class GameStateMachine;
 class Manager;
 using namespace std;
-
-//enum Personajes {Kirin, Druida, Monaguillo, Arquitecto, Alquimista, Tanque, Cazador, Rogue, Lobo, Esqueleto, Vikingo, BombaHumana, Golem};
 
 /*
 * CharacterSelectionState maneja el menú de selección de personajes.
@@ -18,9 +17,16 @@ class CharacterSelectionState : public GameState
 {
 private:
 	// Constantes para el ancho y alto de los sprites de los personajes.
-	 const int w = 300;
-	 const int h = 300;
-	 const int offsetY = 180;
+	 const int w = 250;
+	 const int h = 250;
+	 const int offsetY = 150;
+	 bool selected = false;
+	 int tipo = -1;
+	 vector<Texture*> personajesSelected;
+	 std::string equipo;
+
+	// Método que renderiza los personajes seleccionados en el mazo.
+	 void renderSelected();
 
 public:
 	// Cargamos los botones de los personajes.
@@ -30,10 +36,13 @@ public:
 	// Método que carga la partida.
 	 static void play(GameStateMachine* gsm);
 
-	// Método para mostrar a los personajes seleccionables de cada tipo.
-	 static void personajesAtaque(GameStateMachine* gsm);
-	 static void personajesDefensa(GameStateMachine* gsm);
-	 static void personajesUtilidad(GameStateMachine* gsm);
+	// Update que renderiza el estado.
+	 void update() override;
+	
+	 void setTipo(int n) { tipo = n; }
+	 int getTipo() { return tipo; }
+	 void setSelected(bool t) { selected = t; }
+	 bool getSelected() { return selected;  }
 
 	// Métodos para seleccionar a los personajes.
 	 static void updateAlquimista(GameStateMachine* gsm);
@@ -49,4 +58,8 @@ public:
 	 static void updatePicara(GameStateMachine* gsm);
 	 static void updateTanque(GameStateMachine* gsm);
 	 static void updateVikingo(GameStateMachine* gsm);
+
+	// Métodos que añaden/restan personajes seleccionados del mazo.
+	 void addCharacterSelected(Texture* tex);
+	 void removeCharacterSelected(Texture* tex);
 };

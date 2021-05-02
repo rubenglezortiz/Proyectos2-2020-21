@@ -155,6 +155,7 @@
     <ClCompile Include="Assets\components\Ability_Viking.cpp" />
     <ClCompile Include="Assets\components\Ability_Wolf.cpp" />
     <ClCompile Include="Assets\components\Attack.cpp" />
+    <ClCompile Include="Assets\components\ButtonCharacterSelection.cpp" />
     <ClCompile Include="Assets\components\ButtonHovered.cpp" />
     <ClCompile Include="Assets\components\ButtonPlay.cpp" />
     <ClCompile Include="Assets\components\ButtonSelected.cpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="Assets\components\Ability_Viking.h" />
     <ClInclude Include="Assets\components\Ability_Wolf.h" />
     <ClInclude Include="Assets\components\Attack.h" />
+    <ClInclude Include="Assets\components\ButtonCharacterSelection.h" />
     <ClInclude Include="Assets\components\ButtonHovered.h" />
     <ClInclude Include="Assets\components\ButtonPlay.h" />
     <ClInclude Include="Assets\components\ButtonSelected.h" />
