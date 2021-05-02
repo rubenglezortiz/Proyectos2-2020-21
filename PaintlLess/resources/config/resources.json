@@ -40,7 +40,7 @@
 	{ "id" : "wall",       "file" : "resources/images/sprites/wall.png" },
 	{ "id" : "enredadera", "file" : "resources/images/sprites/enredaderas.png" },
 
-    { "id" : "tanque",     "file" : "resources/images/sprites/personajes/tanque.png"},
+    { "id" : "tanque",     "file" : "resources/images/sprites/personajes/Tanque/tanque.png"},
     { "id" : "esqueleto",  "file" : "resourceS/images/sprites/personajes/Esqueleto/esqueleto.png"},
     { "id" : "druida",     "file" : "resources/images/sprites/personajes/druida.png"},
     { "id" : "golem",      "file" : "resources/images/sprites/personajes/golem.png"},
