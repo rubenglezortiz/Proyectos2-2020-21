@@ -10,6 +10,7 @@ class PlayState;
 class DeckSpawn : public Component {
 
 private:
+	Transform2* tr_;
 	GameMap* mapa;
 	Texture* tex;
 	PlayState* playState;

@@ -133,6 +133,10 @@
     { "id" : "vikingoMazoA",    "file": "resources/images/interfaz/mazo/vikingoMazoAzul.png"},
     { "id" : "vikingoMazoR",    "file": "resources/images/interfaz/mazo/vikingoMazoRojo.png"},
     
+    { "id" : "cold1",           "file" : "resources/images/interfaz/mazo/cold1.png" },
+    { "id" : "cold2",           "file" : "resources/images/interfaz/mazo/cold2.png" },
+    { "id" : "cold3",           "file" : "resources/images/interfaz/mazo/cold3.png" },  
+
     { "id" : "menu",         "file": "resources/images/menus/menu.png" },
     { "id" : "local1",       "file" : "resources/images/menus/Local_0.png"},
     { "id" : "local2",       "file" : "resources/images/menus/Local_1.png"},

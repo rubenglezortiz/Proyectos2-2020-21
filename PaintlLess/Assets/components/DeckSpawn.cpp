@@ -13,10 +13,12 @@
 #include "Attack.h"
 #include "GameMap.h"
 #include "Health.h"
+#include "Transform2.h"
 #include "Image.h"
 #include "Movimiento.h"
 
 void DeckSpawn::init() {
+	tr_ = entity_->getComponent<Transform2>();
 	mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
 	tex = &sdlutils().images().at("selectorSp");
 	cellWidth = mapa->getCellWidth();
@@ -135,6 +137,15 @@ void DeckSpawn::render() {
 		dest.w = cellWidth;
 		tex->render(dest);
 	}
+	dest.x = tr_->getPos().getX();
+	dest.y = tr_->getPos().getY();
+	dest.h = tr_->getH();
+	dest.w = tr_->getW();
+
+	if (playState->getCurrentPlayer() == 1 && cool1 > 0)
+		sdlutils().images().at("cold" + to_string(cool1)).render(dest);
+	else if (playState->getCurrentPlayer() == 0 && cool0 > 0)
+		sdlutils().images().at("cold" + to_string(cool0)).render(dest);
 }
 
 bool DeckSpawn::spawneableCell(Vector2D p) {
