@@ -57,6 +57,6 @@ void Ability_Druid::AbilityExecute(int x, int y) {
 				else e->setGroup<Equipo_Azul>(e);
 			}
 		}
-	sdlutils().soundEffects().at("crearEnredaderasSound").setChunkVolume(40);
+	//sdlutils().soundEffects().at("crearEnredaderasSound").setChunkVolume(40);
 	sdlutils().soundEffects().at("crearEnredaderasSound").play(); //-----------------------------------------------------------		
 }

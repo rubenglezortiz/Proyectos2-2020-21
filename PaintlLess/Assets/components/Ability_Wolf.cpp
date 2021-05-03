@@ -22,7 +22,7 @@ void Ability_Wolf::AbilityExecute(int x, int y)
 		else if (!map->movimientoPosible(newPos)) //Muere instantaneo
 		{
 			map->getCharacter(abilityCells[i])->getComponent<Health>()->hit(10);
-			sdlutils().soundEffects().at("caeraguaSound").setChunkVolume(5);
+			//sdlutils().soundEffects().at("caeraguaSound").setChunkVolume(5);
 			sdlutils().soundEffects().at("caeraguaSound").play(); //-----------------------------------------------------------		
 		}
 		else //Se mueve
@@ -36,7 +36,7 @@ void Ability_Wolf::AbilityExecute(int x, int y)
 			pos.setY((newPos.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP);
 			map->setCharacter(map->SDLPointToMapCoords(pos), entit);
 
-			sdlutils().soundEffects().at("loboSound").setChunkVolume(5);
+			//sdlutils().soundEffects().at("loboSound").setChunkVolume(5);
 			sdlutils().soundEffects().at("loboSound").play(); //-----------------------------------------------------------					
 			//Pintar suelo
 			if (map->getColor(map->SDLPointToMapCoords(pos)) != Rojo && entit->hasGroup<Equipo_Rojo>())

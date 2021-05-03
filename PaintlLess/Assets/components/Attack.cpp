@@ -44,7 +44,7 @@ void Attack::attack() {
 					if(mObs != nullptr)
 						mapa->getObstaculo(cas)->getComponent<Health>()->hit(1);
 				}				
-				sdlutils().soundEffects().at(sound).setChunkVolume(15);
+				//sdlutils().soundEffects().at(sound).setChunkVolume(15);
 				sdlutils().soundEffects().at(sound).play(); //-----------------------------------------------------------			
 				ability_usable = false;
 				playState->aumentarAcciones(); //en realidad se restan acciones 

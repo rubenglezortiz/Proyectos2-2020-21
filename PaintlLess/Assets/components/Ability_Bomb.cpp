@@ -27,6 +27,6 @@ void Ability_Bomb::explode() {
 				mapa->setColor(casillas[i] + posBomb, Rojo);
 		} 
 	}
-	sdlutils().soundEffects().at("bombaSound").setChunkVolume(50);
+	//sdlutils().soundEffects().at("bombaSound").setChunkVolume(50);
 	sdlutils().soundEffects().at("bombaSound").play(); //-----------------------------------------------------------		
 }

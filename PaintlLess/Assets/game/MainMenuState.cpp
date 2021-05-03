@@ -10,6 +10,7 @@
 #include "../utils/Vector2D.h"
 #include "../components/MenuButton.h"
 #include "../components/ButtonHovered.h"
+#include "../components/ButtonVolume.h"
 #include "GameStateMachine.h"
 
 MainMenuState::MainMenuState(GameStateMachine* gsm) : GameState(gsm) { //Poner las imagenes y posiciones correctamente
@@ -43,6 +44,15 @@ MainMenuState::MainMenuState(GameStateMachine* gsm) : GameState(gsm) { //Poner l
 	bSalir->addComponent<Image>(&sdlutils().images().at("salir1"));
 	bSalir->addComponent<MenuButton>(gsm, exitApp);
 	bSalir->addComponent<ButtonHovered>(&sdlutils().images().at("salir2"));
+
+	auto* barra = mngr_->addEntity(RenderLayer::Fondo);
+	barra->addComponent<Transform>(Vector2D(sdlutils().width() / 2 - 450, sdlutils().height() - h), 900, 100);
+	barra->addComponent<Image>(&sdlutils().images().at("barraVolumen"));
+	auto* volumen = mngr_->addEntity(RenderLayer::Fondo);
+	volumen->addComponent<Transform>(Vector2D(sdlutils().width() / 2 - w / 2, sdlutils().height() - h), 100, 100);
+	volumen->addComponent<Image>(&sdlutils().images().at("botonVolumen"));
+	volumen->addComponent<ButtonVolume>();
+
 }
 
 void MainMenuState::newGame(GameStateMachine* gsm) { //Nuevo partida

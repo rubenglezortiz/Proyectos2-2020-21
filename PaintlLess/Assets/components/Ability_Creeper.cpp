@@ -17,7 +17,7 @@ void Ability_Creeper::finTurno()
 		if (e == nullptr) return;
 		if ((equip == 0 && e->hasGroup<Equipo_Azul>()) || (equip == 1 && e->hasGroup<Equipo_Rojo>())) {
 			e->getComponent<Health>()->hit(1);
-			sdlutils().soundEffects().at("enredaderasSound").setChunkVolume(5);
+			//sdlutils().soundEffects().at("enredaderasSound").setChunkVolume(5);
 			sdlutils().soundEffects().at("enredaderasSound").play(); //-----------------------------------------------------------		
 		}
 	}

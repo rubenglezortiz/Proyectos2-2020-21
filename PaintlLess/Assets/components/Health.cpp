@@ -20,7 +20,6 @@ void Health::hit(int damage) {
 			entity_->getComponent<Ability_Bomb>()->explode();
 		}
 		else {
-			sdlutils().soundEffects().at("muerteSound").setChunkVolume(50);
 			sdlutils().soundEffects().at("muerteSound").play(); //-----------------------------------------------------------	
 		}
 		entity_->setActive(false);

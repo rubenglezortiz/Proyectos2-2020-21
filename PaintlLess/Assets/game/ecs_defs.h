@@ -21,6 +21,7 @@ class ButtonCharacterSelection;
 class ButtonHovered;
 class ButtonSelected;
 class ButtonPlay;
+class ButtonVolume;
 class DeckSpawn;
 class GameMap;
 class Health;
@@ -51,6 +52,7 @@ class Transform2;
 	ButtonHovered					,  \
 	ButtonSelected					,  \
 	ButtonPlay						,  \
+	ButtonVolume					,  \
 	DeckSpawn					    ,  \
 	GameMap							,  \
 	Health						    ,  \
