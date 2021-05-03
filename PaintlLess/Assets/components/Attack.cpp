@@ -68,20 +68,51 @@ void Attack::attackShader() {
 
 	pos = mapa->SDLPointToMapCoords(pos);
 
-	for (int i = 1; i <= range; ++i) {
+	int i = 1; bool canAt = true;
+
+	while (i <= range && canAt) {
 		Vector2D posUp = Vector2D(0, i) + pos;
-		Vector2D posRight = Vector2D(i, 0) + pos;
-		Vector2D posLeft = Vector2D(-i, 0) + pos;
-		Vector2D posDown = Vector2D(0, -i) + pos;
-		if (mapa->ataquePosible(posUp))
-			casillasAtaque.push_back(posUp);
-		if (mapa->ataquePosible(posRight))
-			casillasAtaque.push_back(posRight);
-		if (mapa->ataquePosible(posLeft))
-			casillasAtaque.push_back(posLeft);
-		if (mapa->ataquePosible(posDown))
-			casillasAtaque.push_back(posDown);
+		if (mapa->casillaValida(posUp)) {
+			if (mapa->ataquePosible(posUp))
+				casillasAtaque.push_back(posUp);
+			else if (mapa->getObstaculo(posUp) != nullptr) canAt = false;
+		}
+		i++;
 	}
+	i = 1; canAt = true;
+
+	while (i <= range && canAt) {
+		Vector2D posRight = Vector2D(i, 0) + pos;
+		if (mapa->casillaValida(posRight)) {
+			if (mapa->ataquePosible(posRight))
+				casillasAtaque.push_back(posRight);
+			else if (mapa->getObstaculo(posRight) != nullptr) canAt = false;
+		}
+		i++;
+	}
+	i = 1; canAt = true;
+
+	while (i <= range && canAt) {
+		Vector2D posLeft = Vector2D(-i, 0) + pos;
+		if (mapa->casillaValida(posLeft)) {
+			if (mapa->ataquePosible(posLeft))
+				casillasAtaque.push_back(posLeft);
+			else if (mapa->getObstaculo(posLeft) != nullptr) canAt = false;
+		}
+		i++;
+	}
+	i = 1; canAt = true;
+
+	while (i <= range && canAt) {
+		Vector2D posDown = Vector2D(0, -i) + pos;
+		if (mapa->casillaValida(posDown)) {
+			if (mapa->ataquePosible(posDown))
+				casillasAtaque.push_back(posDown);
+			else if (mapa->getObstaculo(posDown) != nullptr) canAt = false;
+		}
+		i++;
+	}
+	i = 1; canAt = true;
 }
 
 void Attack::render() {
