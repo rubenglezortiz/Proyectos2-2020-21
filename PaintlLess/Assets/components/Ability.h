@@ -29,7 +29,7 @@ public:
 
 	void AbilityShader(ShaderForm sf, ShaderType st=nullSh, int d = 1);
 	void freeAbilityShader();
-	bool abilityCheck(const Vector2D& pos); //comprueba si en el segundo clic se está clicando 
+	virtual bool abilityCheck(const Vector2D& pos); //comprueba si en el segundo clic se está clicando 
 											//en una casilla donde se puede colocar la habilidad
 	bool ability_usable = true;
 

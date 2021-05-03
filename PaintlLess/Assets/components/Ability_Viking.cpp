@@ -6,3 +6,14 @@ void Ability_Viking::AbilityExecute(int x, int y)
 	sdlutils().soundEffects().at("vikingoSound").setChunkVolume(30);
 	sdlutils().soundEffects().at("vikingoSound").play(); //-----------------------------------------------------------	
 }
+
+bool Ability_Viking::abilityCheck(const Vector2D& pos)
+{
+	bool check = false;
+	int cont = 0;
+	while (!check && cont < abilityCells.size()) {
+		if (pos == abilityCells[cont] && this->map->getCharacter(abilityCells[cont]) != nullptr)check = true;
+		cont++;
+	}
+	return check;
+}
