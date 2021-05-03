@@ -15,5 +15,5 @@ void Ability_Architect::AbilityExecute(int x, int y) {
 
 	e->addComponent<Image>(&sdlutils().images().at("wall"));
 	e->addComponent<Health>(2);
-	map->setCharacter(Vector2D(x, y), e);
+	map->setObstaculo(Vector2D(x, y), e);
 }

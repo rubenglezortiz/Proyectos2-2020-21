@@ -77,7 +77,7 @@ void GameMap::loadMap() {
 								cells[i][j].color = Color::Ninguno;
 								cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
 							}
-							else if(casTiled == 9){
+							else if (casTiled == 9) {
 								// Base
 								cells[i][j].color = Color::Ninguno;
 								cells[i][j].tipoCasilla = TipoCasilla::Base;
@@ -194,6 +194,10 @@ bool GameMap::movimientoPosibleEnredadera(const Vector2D& cas) {
 bool GameMap::ataquePosible(const Vector2D& cas) {
 	if (!casillaValida(cas)) return false;
 	int x = cas.getX(); int y = cas.getY();
+	if (cells[y][x].obstaculo != nullptr) {
+		return false;
+	}
+
 	// Ha de hacer distinción entre personaje amigo y enemigo.
 	if (cells[y][x].character != nullptr) {
 		if (playState->getTurno() == Primero)
