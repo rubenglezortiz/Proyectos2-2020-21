@@ -45,6 +45,6 @@ protected:
 	int cellWidth, cellHeight;
 	int shaderDistance;
 	virtual void AbilityExecute(int x, int y) {};
-
+	PlayState* playState = nullptr;
 	void SetShaderDistance(int distance) { shaderDistance = distance; };
 };

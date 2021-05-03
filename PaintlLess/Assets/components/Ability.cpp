@@ -24,6 +24,8 @@ void Ability::init() {
 		break;
 	}
 	tex = &sdlutils().images().at(s);
+	auto mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
+	playState = mapa->getPlayState();
 }
 
 void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
@@ -173,6 +175,7 @@ void Ability::update() {
 					pos.setX(posMovimiento.getX() * cellWidth);
 					pos.setY(posMovimiento.getY() * cellHeight);
 					AbilityExecute(posMovimiento.getX(), posMovimiento.getY());
+					playState->aumentarAcciones();
 				}
 				selected = false;
 				freeAbilityShader();
