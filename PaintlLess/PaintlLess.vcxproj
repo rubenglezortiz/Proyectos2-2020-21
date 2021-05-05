@@ -156,6 +156,7 @@
     <ClCompile Include="Assets\components\Ability_Wolf.cpp" />
     <ClCompile Include="Assets\components\Attack.cpp" />
     <ClCompile Include="Assets\components\ButtonCharacterSelection.cpp" />
+    <ClCompile Include="Assets\components\ButtonDescription.cpp" />
     <ClCompile Include="Assets\components\ButtonHovered.cpp" />
     <ClCompile Include="Assets\components\ButtonPlay.cpp" />
     <ClCompile Include="Assets\components\ButtonSelected.cpp" />
@@ -176,6 +177,7 @@
     <ClCompile Include="Assets\ecs\Manager.cpp" />
     <ClCompile Include="Assets\game\CardInfo.cpp" />
     <ClCompile Include="Assets\game\CharacterSelectionState.cpp" />
+    <ClCompile Include="Assets\game\DescriptionState.cpp" />
     <ClCompile Include="Assets\game\Game.cpp" />
     <ClCompile Include="Assets\game\GameState.cpp" />
     <ClCompile Include="Assets\game\GameStateMachine.cpp" />
@@ -222,6 +224,7 @@
     <ClInclude Include="Assets\components\Ability_Wolf.h" />
     <ClInclude Include="Assets\components\Attack.h" />
     <ClInclude Include="Assets\components\ButtonCharacterSelection.h" />
+    <ClInclude Include="Assets\components\ButtonDescription.h" />
     <ClInclude Include="Assets\components\ButtonHovered.h" />
     <ClInclude Include="Assets\components\ButtonPlay.h" />
     <ClInclude Include="Assets\components\ButtonSelected.h" />
@@ -245,6 +248,7 @@
     <ClInclude Include="Assets\ecs\mpl.h" />
     <ClInclude Include="Assets\game\CardInfo.h" />
     <ClInclude Include="Assets\game\CharacterSelectionState.h" />
+    <ClInclude Include="Assets\game\DescriptionState.h" />
     <ClInclude Include="Assets\game\ecs_defs.h" />
     <ClInclude Include="Assets\game\Game.h" />
     <ClInclude Include="Assets\game\GameState.h" />
@@ -282,7 +286,7 @@
   </ImportGroup>
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties resources_4config_4resources_1json__JsonSchema="https://bitbucket.org/atlassianlabs/atlascode/raw/main/resources/schemas/pipelines-schema.json" />
+      <UserProperties />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

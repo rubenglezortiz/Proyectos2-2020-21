@@ -9,9 +9,10 @@
 #include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
 #include "../components/MenuButton.h"
-#include "../components/ButtonSelected.h"
 #include "../components/ButtonCharacterSelection.h"
+#include "../components/ButtonDescription.h"
 #include "../components/ButtonPlay.h"
+#include "../components/ButtonSelected.h"
 
 #include "GameStateMachine.h"
 
@@ -46,6 +47,7 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Alquimista->addComponent<Transform>(Vector2D(posX - 5 * w / 2, offsetY), w, h);
 	Alquimista->addComponent<Image>(&sdlutils().images().at("alquimistaSP"));
 	Alquimista->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("alquimistaSP2"), &sdlutils().images().at("alquimistaM"),  updateAlquimista);
+	Alquimista->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("star"));
 	Alquimista->setGroup<Utility>(true);
 
 	auto* Arquitecta = mngr_->addEntity(RenderLayer::Fondo);

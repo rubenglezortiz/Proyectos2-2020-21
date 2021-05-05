@@ -104,7 +104,7 @@
     { "id" : "botonDef2",    "file" : "resources/images/menus/SP/defensaSP2.png"},
     { "id" : "botonUt",      "file" : "resources/images/menus/SP/utilidadSP.png"},
     { "id" : "botonUt2",     "file" : "resources/images/menus/SP/utilidadSP2.png"},
-    { "id" : "menuSP",       "file" : "resources/images/menus/SP/menu.jpeg"},
+    { "id" : "menuSP",       "file" : "resources/images/menus/SP/menu.png"},
     { "id" : "vacio",        "file" : "resources/images/menus/SP/vacio.png"},
     { "id" : "play",         "file" : "resources/images/menus/SP/playbutton.png"},
 

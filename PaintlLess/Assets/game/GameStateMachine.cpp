@@ -14,6 +14,7 @@ void GameStateMachine::popState() {
 
 void GameStateMachine::pushState(GameState* state) {
     states.push(state);
+    state->init();
 }
 
 void GameStateMachine::changeState(GameState* state) {
