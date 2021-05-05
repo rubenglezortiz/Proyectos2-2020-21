@@ -107,6 +107,7 @@
     { "id" : "menuSP",       "file" : "resources/images/menus/SP/menu.jpeg"},
     { "id" : "vacio",        "file" : "resources/images/menus/SP/vacio.png"},
     { "id" : "play",         "file" : "resources/images/menus/SP/playbutton.png"},
+    { "id" : "vikingoD",     "file" : "resources/images/menus/SP/descripcion/vikingoDescripcion.png"},
 
     { "id" : "alquimistaMazoA", "file": "resources/images/interfaz/mazo/alquimistaMazoAzul.png"},
     { "id" : "alquimistaMazoR", "file": "resources/images/interfaz/mazo/alquimistaMazoRojo.png"},

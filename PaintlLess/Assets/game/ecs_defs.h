@@ -18,6 +18,7 @@ class Ability_Wolf;
 class Ability_Tank;
 class Attack;
 class ButtonCharacterSelection;
+class ButtonDescription;
 class ButtonHovered;
 class ButtonSelected;
 class ButtonPlay;
@@ -50,6 +51,7 @@ class Transform2;
 	Ability_Tank				    ,  \
 	Attack							,  \
 	ButtonCharacterSelection		,  \
+	ButtonDescription               ,  \
 	ButtonHovered					,  \
 	ButtonSelected					,  \
 	ButtonPlay						,  \

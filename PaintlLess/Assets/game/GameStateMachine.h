@@ -11,12 +11,17 @@ class GameStateMachine {
 private:
     stack<GameState*> states;    // Pila de estados.
     CharactersSelected* charSel; // Vector de personajes.
+    bool initChangedState;
 
 public:
     // Constructora.
      GameStateMachine() { charSel = new CharactersSelected(); }; 
     // Destructora.
      ~GameStateMachine();
+
+     bool initChanged() { return initChangedState; };
+
+     void initState();
 
     // Devuelve el estado actual.
     GameState* currentState() { return states.top(); };
