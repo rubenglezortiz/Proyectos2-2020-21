@@ -44,7 +44,10 @@ void FramedImage::render() {
 		else c_++;
 
 		src_ = { w_ * c_, h_ * r_, w_, h_ };
-		tex_->render(src_, dest, rot);
+		if (entity_->hasGroup<Equipo_Azul>())
+			tex_->render(src_, dest, rot,nullptr,SDL_FLIP_HORIZONTAL);
+		else
+			tex_->render(src_, dest, rot);
 	}
 	else {
 		SDL_Rect dest = build_sdlrect(pos, w, h);
@@ -52,6 +55,9 @@ void FramedImage::render() {
 		dest.x += 30;
 		dest.w -= 60;
 		src_ = { w_ * c_, h_ * r_, w_, h_ };
-		tex_->render(src_, dest, rot);
+		if (entity_->hasGroup<Equipo_Azul>())
+			tex_->render(src_, dest, rot, nullptr, SDL_FLIP_HORIZONTAL);
+		else
+			tex_->render(src_, dest, rot);
 	}
 }

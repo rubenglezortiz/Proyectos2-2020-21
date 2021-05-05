@@ -4,8 +4,9 @@
 #include "../sdlutils/Texture.h"
 #include "../sdlutils/SDLUtils.h"
 #include "../ecs/Entity.h"
-#include "Transform.h"
+#include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
+#include "Transform.h"
 
 class FramedImage : public Component {
 public:
