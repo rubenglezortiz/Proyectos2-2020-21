@@ -11,6 +11,7 @@
 #include "Ability_Viking.h"
 #include "Ability_Wolf.h"
 #include "Attack.h"
+#include "FramedImage.h"
 #include "GameMap.h"
 #include "Health.h"
 #include "Transform2.h"
@@ -37,6 +38,10 @@ void DeckSpawn::movement(Entity* c) {
 
 void DeckSpawn::image(Entity* c, string t) {
 	c->addComponent<Image>(&sdlutils().images().at(t));
+}
+
+void DeckSpawn::animation(Entity* c, string tex, int rows, int cols, int d, Vector2D iniFrame_, Vector2D endFrame_) {
+	c->addComponent<FramedImage>(&sdlutils().images().at(tex), rows,  cols,  d, iniFrame_,  endFrame_);
 }
 
 void DeckSpawn::attack(Entity* c, int dmg = 1, string s = "ataqueSound") {
@@ -99,7 +104,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 		ctr->addComponent<Ability_Tank>();
 		break;
 	case Vikingo:
-		image(ctr, "vikingo");    movement(ctr); health(ctr, 1);
+		animation(ctr, "vikingoSheet",  3,  6,  150,  Vector2D(0,0), Vector2D(1,4));  movement(ctr); health(ctr, 1);
 		ctr->addComponent<Ability_Viking>();
 		break;
 	}

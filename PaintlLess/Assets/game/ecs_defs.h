@@ -23,6 +23,7 @@ class ButtonSelected;
 class ButtonPlay;
 class ButtonVolume;
 class DeckSpawn;
+class FramedImage;
 class GameMap;
 class Health;
 class Image;
@@ -54,6 +55,7 @@ class Transform2;
 	ButtonPlay						,  \
 	ButtonVolume					,  \
 	DeckSpawn					    ,  \
+	FramedImage					    ,  \
 	GameMap							,  \
 	Health						    ,  \
 	Image							,  \
