@@ -1,9 +1,9 @@
 #include "GameMap.h"
 #include <iostream>
 #include <fstream>
-#include <tmxlite/Map.hpp>
-#include <tmxlite/Layer.hpp>
-#include <tmxlite/TileLayer.hpp>
+#include <./tmxlite/Map.hpp>
+#include <./tmxlite/Layer.hpp>
+#include <./tmxlite/TileLayer.hpp>
 #include "../game/Game.h"
 #include "./PointOnImage.h"
 #include "../game/PlayState.h"
