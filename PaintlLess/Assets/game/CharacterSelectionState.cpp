@@ -191,7 +191,7 @@ void CharacterSelectionState::play(GameStateMachine* gsm) {
 	if (gsm->getCharSel()->getEquipo() == 0) {
 		gsm->getCharSel()->siguienteEquipo();
 		gsm->getCharSel()->updateCont();
-		gsm->pushState(new CharacterSelectionState(gsm));
+		gsm->changeState(new CharacterSelectionState(gsm));
 	}
 	else gsm->getCharSel()->play(gsm);
 }

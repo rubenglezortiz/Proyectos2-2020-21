@@ -58,7 +58,9 @@ void Game::start() {
 				p->pasaTurno();
 		}
 		if (stateMachine->initChanged()) stateMachine->initState();
+
 		stateMachine->currentState()->update(); //update del GameState
+		stateMachine->refresh();
 		
 		Uint32 frameTime = sdlutils().currRealTime() - startTime;
 

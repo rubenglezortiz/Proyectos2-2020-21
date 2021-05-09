@@ -19,7 +19,7 @@ void CharactersSelected::updatePersonaje(Unit pj) {
 }
 
 void CharactersSelected::play(GameStateMachine* gsm) {
-    if (cont == max) gsm->pushState(new PlayState(gsm, chars, chars2));
+    if (cont == max) gsm->changeState(new PlayState(gsm, chars, chars2));
     else cout << "Play";
 }
 
