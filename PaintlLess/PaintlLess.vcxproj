@@ -179,6 +179,7 @@
     <ClCompile Include="Assets\game\CardInfo.cpp" />
     <ClCompile Include="Assets\game\CharacterSelectionState.cpp" />
     <ClCompile Include="Assets\game\DescriptionState.cpp" />
+    <ClCompile Include="Assets\game\FinState.cpp" />
     <ClCompile Include="Assets\game\Game.cpp" />
     <ClCompile Include="Assets\game\GameState.cpp" />
     <ClCompile Include="Assets\game\GameStateMachine.cpp" />
@@ -252,6 +253,7 @@
     <ClInclude Include="Assets\game\CharacterSelectionState.h" />
     <ClInclude Include="Assets\game\DescriptionState.h" />
     <ClInclude Include="Assets\game\ecs_defs.h" />
+    <ClInclude Include="Assets\game\FinState.h" />
     <ClInclude Include="Assets\game\Game.h" />
     <ClInclude Include="Assets\game\GameState.h" />
     <ClInclude Include="Assets\game\GameStateMachine.h" />

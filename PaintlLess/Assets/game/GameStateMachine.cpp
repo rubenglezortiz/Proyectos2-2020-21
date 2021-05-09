@@ -33,7 +33,7 @@ void GameStateMachine::pushState(GameState* state) {
 }
 
 void GameStateMachine::changeState(GameState* state) {
-    if (lastChanged != nullptr)
+    if (lastChanged == nullptr)
         popState();
     else
         delete lastChanged;

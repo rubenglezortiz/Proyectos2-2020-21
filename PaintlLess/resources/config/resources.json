@@ -142,6 +142,8 @@
     { "id" : "cold2",           "file" : "resources/images/interfaz/mazo/cold2.png" },
     { "id" : "cold3",           "file" : "resources/images/interfaz/mazo/cold3.png" },  
 
+    { "id" : "finpartida",   "file": "resources/images/menus/finpartida.png" },
+    { "id" : "finpartidaempate",   "file": "resources/images/menus/finpartidaempate.png" },
     { "id" : "menu",         "file": "resources/images/menus/menu.png" },
     { "id" : "local1",       "file" : "resources/images/menus/Local_0.png"},
     { "id" : "local2",       "file" : "resources/images/menus/Local_1.png"},

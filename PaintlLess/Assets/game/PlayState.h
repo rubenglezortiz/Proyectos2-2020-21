@@ -25,7 +25,7 @@ private:
 	int pintado_1, pintado_2;
 	Equipo jugadorActual = Segundo;
 	vector<bool> ch1, ch2;
-	GameMap* mapa;
+	GameMap* mapa_;
 public:
 
 	// Constructora.
