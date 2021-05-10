@@ -17,6 +17,7 @@
 #include "Transform2.h"
 #include "Image.h"
 #include "Movimiento.h"
+#include "../game/Values.h"
 
 void DeckSpawn::init() {
 	tr_ = entity_->getComponent<Transform2>();
@@ -40,8 +41,8 @@ void DeckSpawn::image(Entity* c, string t) {
 	c->addComponent<Image>(&sdlutils().images().at(t));
 }
 
-void DeckSpawn::animation(Entity* c, string tex, int rows, int cols, int d, Vector2D iniFrame_, Vector2D endFrame_) {
-	c->addComponent<FramedImage>(&sdlutils().images().at(tex), rows,  cols,  d, iniFrame_,  endFrame_);
+void DeckSpawn::animation(Entity* c, string tex, int d, Unit p) {
+	c->addComponent<FramedImage>(&sdlutils().images().at(tex), d, p);
 }
 
 void DeckSpawn::attack(Entity* c, int dmg = 1, string s = "ataqueSound") {
@@ -104,7 +105,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 		ctr->addComponent<Ability_Tank>();
 		break;
 	case Vikingo:
-		animation(ctr, "vikingoSheet",  3,  6,  150,  Vector2D(0,0), Vector2D(1,4));  movement(ctr); health(ctr, 1);
+		animation(ctr, "vikingoSheet",   150,  Vikingo);  movement(ctr); health(ctr, 1);
 		ctr->addComponent<Ability_Viking>();
 		break;
 	}

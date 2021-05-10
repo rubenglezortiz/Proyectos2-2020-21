@@ -40,7 +40,7 @@ public:
 	void attack(Entity* character, int damage, string s);
 	void movement(Entity* character);
 	void image(Entity* character, string tex);
-	void animation(Entity* character, string tex, int rows, int cols, int d, Vector2D iniFrame_, Vector2D endFrame_);
+	void animation(Entity* character, string tex, int d, Unit p);
 
 	void createCharacter(int character, int equipo, Vector2D posClick);
 	bool spawneableCell(Vector2D pos);

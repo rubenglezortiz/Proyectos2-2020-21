@@ -2,6 +2,19 @@
 
 
 enum Unit { Alquimista, Arquitecta, Bomba, Cazador, Druida, Esqueleto, Golem, Kirin, Lobo, Monaguillo, Picara, Tanque, Vikingo};
+enum UnitAnim {Idle, Death, Attack, Ability};
+
+
+
+struct AnimInfo {
+	int finCol;
+};
+
+struct SpriteSheetInfo {
+	int animInfo[4];
+	int rows, cols;
+};
+
 
 typedef unsigned int uint;
 
@@ -13,6 +26,23 @@ enum TipoCarta {Ataque, Defensa, Utilidad};
 	const uint Movimiento[2] = { 4, 2 };	
 	const uint mana[numUnidades] = { 3, 3, 3, 2, 3, 1, 4, 3, 3, 3, 2, 4, 2 };
 	const uint cooldown[numUnidades] = { 3, 3, 3, 2, 3, 1, 3, 2, 2, 2, 3, 2, 2 };
+
+	const SpriteSheetInfo spriteSheetInfo[numUnidades] = { {{0,0,0,0}, 0, 0},   //Alquimista
+														  {{0,0,0,0}, 0, 0},   //Arquitecta
+														  {{0,0,0,0}, 0, 0},   //Bomba
+														  {{0,0,0,0}, 0, 0},   //Cazador
+														  {{0,0,0,0}, 0, 0},   //Druida
+														  {{0,0,0,0}, 0, 0},   //Esqueleto
+														  {{0,0,0,0}, 0, 0},   //Golem
+														  {{0,0,0,0}, 0, 0},   //Kirin
+														  {{0,0,0,0}, 0, 0},   //Lobo
+														  {{0,0,0,0}, 0, 0},   //Monaguillo
+														  {{0,0,0,0}, 0, 0},   //Picara
+														  {{0,0,0,0}, 0, 0},   //Tanque
+														  {{3,4,0,5}, 3, 6}  //Vikingo
+	};
+
+	
 
 	//const uint numUnidades = 13;
 	//const uint Ataque = {1};

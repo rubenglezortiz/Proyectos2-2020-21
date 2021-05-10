@@ -1,22 +1,25 @@
 #include "FramedImage.h"
 
-FramedImage::FramedImage(Texture* tex, int rows, int cols, int d , Vector2D iniFrame_, Vector2D endFrame_) 
+
+FramedImage::FramedImage(Texture* tex, int d, Unit p) 
 {
+	personaje = p;
 	tr_ = nullptr;
 	tex_ = tex;
 	delay = d;
 	time = 0;
-	iniFrame = iniFrame_;
-	endFrame = endFrame_;
+	iniFrame = Vector2D(currentAnim, 0);
+
+	endFrame = Vector2D(currentAnim, UnitInfo::spriteSheetInfo[personaje].animInfo[currentAnim]);
 	r_ = iniFrame.getX();
 	c_ = iniFrame.getY();
 
-	auto w = tex_->width() / cols;
-	auto h = tex_->height() / rows;
+	auto w = tex_->width() / UnitInfo::spriteSheetInfo[personaje].cols;
+	auto h = tex_->height() / UnitInfo::spriteSheetInfo[personaje].rows;
 	src_ = { w * c_, h * r_, w, h };
 
-	rows_ = rows;
-	cols_ = cols;
+	rows_ = UnitInfo::spriteSheetInfo[personaje].rows;
+	cols_ = UnitInfo::spriteSheetInfo[personaje].cols;
 	w_ = w;
 	h_ = h;
 }
