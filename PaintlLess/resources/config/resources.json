@@ -5,7 +5,7 @@
     { "id" : "ARIAL24",       "file" : "resources/fonts/ARIAL.ttf",      "size": 24 },
     { "id" : "ARIAL48",       "file" : "resources/fonts/ARIAL.ttf",      "size": 48 },
     { "id" : "NES-CHIMERA24", "file" : "resources/fonts/NES-Chimera.ttf","size": 24 },
-    { "id" : "PIXELLARI24",   "file" : "../webAssets/Pixellari.ttf",     "size": 24 }
+    { "id" : "PIXELLARI24",   "file" : "resources/fonts/Pixellari.ttf",     "size": 24 }
   ],
   
  "images" : [
