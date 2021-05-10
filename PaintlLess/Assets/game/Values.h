@@ -39,7 +39,7 @@ enum TipoCarta {Ataque, Defensa, Utilidad};
 														  {{0,0,0,0}, 0, 0},   //Monaguillo
 														  {{0,0,0,0}, 0, 0},   //Picara
 														  {{0,0,0,0}, 0, 0},   //Tanque
-														  {{3,4,0,5}, 3, 6}  //Vikingo
+														  {{4,5,0,6}, 3, 6}  //Vikingo
 	};
 
 	
