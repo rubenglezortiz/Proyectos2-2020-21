@@ -25,7 +25,7 @@ private:
 	SDL_Rect src_;
 	Vector2D iniFrame, endFrame;
 	Uint32 time;
-	UnitAnim currentAnim = Idle;
+	UnitAnim currentAnim = IdleA;
 	int delay;
 	int rows_, cols_;	 // number of rows & cols in the texture
 	int w_, h_;			 // width & height of the texture

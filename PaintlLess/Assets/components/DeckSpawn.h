@@ -5,6 +5,7 @@
 #include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
 #include "../game/PlayState.h"
+#include "../game/values.h"
 
 class PlayState;
 class DeckSpawn : public Component {

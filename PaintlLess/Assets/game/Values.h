@@ -2,7 +2,7 @@
 
 
 enum Unit { Alquimista, Arquitecta, Bomba, Cazador, Druida, Esqueleto, Golem, Kirin, Lobo, Monaguillo, Picara, Tanque, Vikingo};
-enum UnitAnim {Idle, Death, Attack, Ability};
+enum UnitAnim {IdleA, DeathA, AttackA, AbilityA};
 
 
 
