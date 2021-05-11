@@ -49,9 +49,6 @@ void FramedImage::render() {
 			if (currentAnim != IdleA) {
 				if (currentAnim == DeathA)
 					entity_->setActive(false);
-				else if (currentAnim == A_A_A) {
-
-				}
 				else setAnim(IdleA);
 			}
 			else c_ = 0; //se reinicia la columna s�lo en la animaci�n Idle		 
@@ -86,6 +83,7 @@ void FramedImage::setAnim(UnitAnim ua) {
 	endFrame = Vector2D(currentAnim, UnitInfo::spriteSheetInfo[personaje].animInfo[currentAnim]);
 	r_ = iniFrame.getX();
 	c_ = iniFrame.getY();
+}
 	
 void FramedImage::update()
 {
