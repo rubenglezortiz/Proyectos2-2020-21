@@ -7,6 +7,7 @@
 #include "./Transform.h"
 #include "./Health.h"
 #include "./Movimiento.h"
+#include "./FramedImage.h"
 
 class Ability_Viking : public Ability {
 public:

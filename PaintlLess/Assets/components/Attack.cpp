@@ -48,6 +48,7 @@ void Attack::attack() {
 				sdlutils().soundEffects().at(sound).play(); //-----------------------------------------------------------			
 				ability_usable = false;
 				playState->aumentarAcciones(); //en realidad se restan acciones 
+				entity_->getComponent<FramedImage>()->setAnim(A_A_A);
 			}
 			selected = false;
 			casillasAtaque.clear();

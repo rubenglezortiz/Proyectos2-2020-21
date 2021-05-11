@@ -7,23 +7,33 @@
 #include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
 #include "Transform.h"
+#include "../game/values.h"
+
 
 class FramedImage : public Component {
 public:
 	
-	FramedImage(Texture* tex, int rows, int cols, int d, Vector2D initFrame, Vector2D endFrame);
+	FramedImage(Texture* tex,  int d, Unit personaje);
 	virtual ~FramedImage() {}
 	void init() override;
 	void render() override;
+	void setAnim(UnitAnim ua);
+	void update() override;
 
 private:
+	Unit personaje;
 	Transform* tr_;
 	Texture* tex_;
 	SDL_Rect src_;
 	Vector2D iniFrame, endFrame;
 	Uint32 time;
+	UnitAnim currentAnim = IdleA;
 	int delay;
 	int rows_, cols_;	 // number of rows & cols in the texture
 	int w_, h_;			 // width & height of the texture
 	int r_, c_;			 // row & col to render
+
+	Vector2D lastPosition = { 0, 0 };
+	Vector2D interpolatedTf;
+	float lerpTime = 1;
 };

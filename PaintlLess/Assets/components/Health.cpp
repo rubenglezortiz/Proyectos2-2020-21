@@ -9,10 +9,10 @@ void Health::init() {
 
 void Health::hit(int damage) {
 	lives -= damage;
-	if (lives <= 0) {		
+	if (lives <= 0) {
 		mapa->removeCharacter(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos())); //Quitar la entidad muerta		
 		mapa->removeObstaculo(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos()));
-			
+
 		if (entity_->getComponent<Ability_Golem>() != nullptr) {    //Deja muro si es el golem
 			entity_->getComponent<Ability_Golem>()->generateWall();
 		}
@@ -22,7 +22,11 @@ void Health::hit(int damage) {
 		else {
 			sdlutils().soundEffects().at("muerteSound").play(); //-----------------------------------------------------------	
 		}
-		entity_->setActive(false);
+		if (entity_->getComponent<FramedImage>() != nullptr)
+			entity_->getComponent<FramedImage>()->setAnim(DeathA);
+		else entity_->setActive(false); //ESTO HABRÍA QUE QUITARLO CUANDO SE METAN TODAS LAS ANIM
+		
+
 	}
 	std::cout << "Ataca";
 }
