@@ -1,7 +1,7 @@
 #include "FramedImage.h"
 
 
-FramedImage::FramedImage(Texture* tex, int d, Unit p) 
+FramedImage::FramedImage(Texture* tex, int d, Unit p)
 {
 	personaje = p;
 	tr_ = nullptr;
@@ -41,16 +41,25 @@ void FramedImage::render() {
 		dest.y -= 40;
 		dest.x += 30;
 		dest.w -= 60;
-		if (c_ + 1 > endFrame.getY() - 1) {	// Si se ha llegado a la ult col
-			c_ = 0;
+		if (c_ + 1 > endFrame.getY() - 1) {	// Si se ha llegado a la ult col			
+			if (currentAnim != IdleA) {
+				if (currentAnim == DeathA)
+					entity_->setActive(false);
+				else if (currentAnim == A_A_A) {
+
+				}
+				else setAnim(IdleA);
+			}
+			else c_ = 0; //se reinicia la columna sólo en la animación Idle		 
 		}
 		else c_++;
 
 		src_ = { w_ * c_, h_ * r_, w_, h_ };
 		if (entity_->hasGroup<Equipo_Azul>())
-			tex_->render(src_, dest, rot,nullptr,SDL_FLIP_HORIZONTAL);
+			tex_->render(src_, dest, rot, nullptr, SDL_FLIP_HORIZONTAL);
 		else
 			tex_->render(src_, dest, rot);
+		if (delay > 250) delay = 250; //está chapucero
 	}
 	else {
 		SDL_Rect dest = build_sdlrect(pos, w, h);
@@ -63,4 +72,14 @@ void FramedImage::render() {
 		else
 			tex_->render(src_, dest, rot);
 	}
+}
+
+void FramedImage::setAnim(UnitAnim ua) {
+	if (ua == DeathA)
+		delay = 1000;
+	currentAnim = ua;
+	iniFrame = Vector2D(currentAnim, 0);
+	endFrame = Vector2D(currentAnim, UnitInfo::spriteSheetInfo[personaje].animInfo[currentAnim]);
+	r_ = iniFrame.getX();
+	c_ = iniFrame.getY();
 }

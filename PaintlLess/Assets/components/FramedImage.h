@@ -17,6 +17,7 @@ public:
 	virtual ~FramedImage() {}
 	void init() override;
 	void render() override;
+	void setAnim(UnitAnim ua);
 
 private:
 	Unit personaje;

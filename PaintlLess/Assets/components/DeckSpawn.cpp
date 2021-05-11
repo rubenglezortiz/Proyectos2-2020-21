@@ -85,7 +85,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 		ctr->addComponent<Ability_Golem>();
 		break;
 	case Kirin:
-		image(ctr, "kirin");	  movement(ctr); health(ctr, 2); attack(ctr);
+		animation(ctr, "kirinSheetA", 150, Kirin);	  movement(ctr); health(ctr, 2); attack(ctr);
 		ctr->addComponent<Ability_Kirin>();
 		break;
 	case Lobo:
@@ -105,7 +105,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 		ctr->addComponent<Ability_Tank>();
 		break;
 	case Vikingo:
-		animation(ctr, "vikingoSheet",   150,  Vikingo);  movement(ctr); health(ctr, 1);
+		animation(ctr, "vikingoSheetA",   150,  Vikingo);  movement(ctr); health(ctr, 1);
 		ctr->addComponent<Ability_Viking>();
 		break;
 	}

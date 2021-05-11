@@ -22,7 +22,8 @@ void Health::hit(int damage) {
 		else {
 			sdlutils().soundEffects().at("muerteSound").play(); //-----------------------------------------------------------	
 		}
-		entity_->setActive(false);
+		entity_->getComponent<FramedImage>()->setAnim(DeathA);
+		
 	}
 	std::cout << "Ataca";
 }

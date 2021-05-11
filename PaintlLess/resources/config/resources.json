@@ -136,7 +136,8 @@
     { "id" : "vikingoMazoA",    "file": "resources/images/interfaz/mazo/vikingoMazoAzul.png"},
     { "id" : "vikingoMazoR",    "file": "resources/images/interfaz/mazo/vikingoMazoRojo.png"},
     
-    { "id" : "vikingoSheet",    "file": "resources/images/sprites/personajes/Vikingo/SpriteSheetVikingoAzul.png"},
+    { "id" : "vikingoSheetA",    "file": "resources/images/sprites/personajes/Vikingo/SpriteSheetVikingoAzul.png"},
+	{ "id" : "kirinSheetA",    "file": "resources/images/sprites/personajes/Kirim/KirimAzulAnimsSheet.png"},
     
     { "id" : "cold1",           "file" : "resources/images/interfaz/mazo/cold1.png" },
     { "id" : "cold2",           "file" : "resources/images/interfaz/mazo/cold2.png" },

@@ -3,8 +3,9 @@
 #include "../ecs/Component.h"
 #include "./Image.h"
 #include "../ecs/Entity.h"
-#include "../components/Ability_Bomb.h"
-#include "../components//Ability_Golem.h"
+#include "./Ability_Bomb.h"
+#include "./Ability_Golem.h"
+#include "./FramedImage.h"
 
 
 class Health : public Component { //lleva este componente la destrucci�n del objeto??
