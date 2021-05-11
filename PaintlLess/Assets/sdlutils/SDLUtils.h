@@ -92,6 +92,34 @@ public:
 		SDL_ShowCursor(0);
 	}
 
+	inline void changeSFXvolume(int volume) {
+		// Habilidades.
+		sounds_.at("alquimistaSound").setChunkVolume(volume);
+		sounds_.at("ataqueSound").setChunkVolume(volume);
+		sounds_.at("bombaSound").setChunkVolume(volume);
+		sounds_.at("caeraguaSound").setChunkVolume(volume);
+		sounds_.at("click").setChunkVolume(volume);
+		sounds_.at("crearEnredaderasSound").setChunkVolume(volume);
+		sounds_.at("enredaderasSound").setChunkVolume(volume);
+		sounds_.at("kirinSound").setChunkVolume(volume);
+		sounds_.at("loboSound").setChunkVolume(volume);
+		sounds_.at("monaguilloSound").setChunkVolume(volume);
+		sounds_.at("moveSound").setChunkVolume(volume);
+		sounds_.at("muerteSound").setChunkVolume(volume);
+		sounds_.at("vikingoSound").setChunkVolume(volume);
+
+		// Botones.
+		sounds_.at("menuButtonSound").setChunkVolume(volume);
+		sounds_.at("menuInicioSound").setChunkVolume(volume);
+		sounds_.at("moveSound").setChunkVolume(volume);
+		sounds_.at("seleccionSound").setChunkVolume(volume);
+
+		volume_ = volume;
+	}
+
+	inline void restoreAllVolume() {
+		changeSFXvolume(64);
+	}
 	// All resource maps can be modified from outside, this way you can store
 	// your own dynamically. Be careful when modifying them!
 
@@ -124,6 +152,7 @@ public:
 		return tiled_;
 	}
 
+	inline int volume() { return volume_; }
 	// Access to the random number generator. It is important to always
 	// use this generator, this way you can regenerate the same sequence
 	// if you start from the same seed
@@ -157,6 +186,7 @@ private:
 	std::string windowTitle_; // window title
 	int width_; // window width
 	int height_; // window height
+	int volume_ = 64; // volume
 
 	SDL_Window *window_; // the window
 	SDL_Renderer *renderer_; // the renderer

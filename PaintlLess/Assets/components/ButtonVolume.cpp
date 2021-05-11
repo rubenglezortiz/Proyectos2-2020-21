@@ -1,13 +1,16 @@
 #include "ButtonVolume.h"
-#include "Transform.h"
+#include "Transform2.h"
 #include "../sdlutils/InputHandler.h"
 
 void ButtonVolume::init() {
-	tr_ = entity_->getComponent<Transform>();
+	tr_ = entity_->getComponent<Transform2>();
 	assert(tr_ != nullptr);
+	volume_ = tr_->getPos().getX() * 8;
 }
 
 void ButtonVolume::update() {
+	volume_ = sdlutils().volume();
+	tr_->getPos().setX(sdlutils().volume() * 8 + (sdlutils().width() / 2 - 400));
 	int mX = ih().getMousePos().first;
 	int borde = sdlutils().width() / 2 - 400;
 	// Si ha clicado el botón, lo selecciona o deja de seleccionar.
@@ -22,6 +25,6 @@ void ButtonVolume::update() {
 	// Si el botón está muy a la izquierda, directamente no hay volumen.
 	if (tr_->getPos().getX() < borde + 100) volume_ = 0;
 	// Cambia el volumen de los sonidos.
-	sM_->changeSFXvolume(volume_);
+	sdlutils().changeSFXvolume(volume_);
 }
 	

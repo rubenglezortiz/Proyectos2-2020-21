@@ -243,12 +243,6 @@
     <ClCompile Include="Assets\components\Transform2.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\game\SoundManager.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\components\ButtonVolume.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\components\FramedImage.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
@@ -260,6 +254,24 @@
     </ClCompile>
     <ClCompile Include="Assets\game\FinState.cpp">
       <Filter>Archivos de origen\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\ButtonVolume.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\game\SoundManager.cpp">
+      <Filter>Archivos de origen\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\game\SettingsState.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\ButtonSettings.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\ButtonTick.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\ButtonSurrender.cpp">
+      <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -455,9 +467,6 @@
     <ClInclude Include="Assets\components\ButtonCharacterSelection.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\game\SoundManager.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Assets\components\ButtonVolume.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
@@ -472,6 +481,21 @@
     </ClInclude>
     <ClInclude Include="Assets\game\FinState.h">
       <Filter>Archivos de encabezado\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\game\SoundManager.h">
+      <Filter>Archivos de encabezado\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\game\SettingsState.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\ButtonSettings.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\ButtonTick.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\ButtonSurrender.h">
+      <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

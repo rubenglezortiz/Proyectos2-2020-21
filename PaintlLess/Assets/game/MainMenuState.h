@@ -18,5 +18,6 @@ public:
 	//Callbacks
 	static void newGame(GameStateMachine* gsm);
 	static void loadGame(GameStateMachine* gsm);
+	static void menuOpciones(GameStateMachine* gsm);
 	static void exitApp(GameStateMachine* gsm);
 };

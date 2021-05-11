@@ -231,10 +231,16 @@ void PlayState::pasaTurno() {
 	
 	else turnosActuales++;
 
-
 	mngr_->finTurno();
 	cout << "Turno pasado\n";
 
+}
+
+int PlayState::getPorcentaje() {
+	if (jugadorActual == Primero)
+		return (pintado_1 * 100) / mapa_->getNumCasPintables();
+	else
+		return (pintado_2 * 100) / mapa_->getNumCasPintables();
 }
 
 bool PlayState::restaMana(int m, int& mana)

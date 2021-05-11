@@ -43,6 +43,7 @@ public:
 
 	PlayState* getPlayState() { return this; }
 	Equipo getCurrentPlayer() { return jugadorActual; }
+	GameStateMachine* getGSM() { return gameStateMachine; }
 
 	void aumentarAcciones() { accionesPorTurno--; };
 	int getAcciones() const { return accionesPorTurno; }	
@@ -53,6 +54,8 @@ public:
 
 	bool restaMana(int m, int& mana);
 	bool manaSuficiente(int m, int mana) const;
+
+	int getPorcentaje();
 
 	int getPintado1() { return pintado_1; };
 	int getPintado2() { return pintado_2; };

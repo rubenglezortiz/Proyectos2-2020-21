@@ -1,11 +1,19 @@
 ﻿#include "Interfaz.h"
 #include "../game/PlayState.h"
+#include "../game/GameStateMachine.h"
+#include "../game/SettingsState.h"
+#include "ButtonSettings.h"
 
 void Interfaz::init() {
 	playState = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>()->getPlayState();
 	texEnergy = &sdlutils().images().at("energia");
 	texTurno = &sdlutils().images().at("turno");
 	numCasillasPintables = entity_->getComponent<GameMap>()->getNumCasPintables();
+	gsm_ = playState->getGSM();
+	auto* opciones = entity_->getMngr()->addEntity(RenderLayer::Interfaz);
+	opciones->addComponent<Transform2>(Vector2D(sdlutils().width() - 275 + 40, 10), 78, 78);
+	opciones->addComponent<Image>(&sdlutils().images().at("opciones"));
+	opciones->addComponent<ButtonSettings>(gsm_, menuOpciones);
 }
 
 void Interfaz::render() {
@@ -107,11 +115,6 @@ void Interfaz::render() {
 	destPorcentaje1.w += playState->getPintado1() * off;
 	sdlutils().images().at("porcRojo").render(destPorcentaje1);
 
-	destOpciones.x = sdlutils().width() - 275 + 40;
-	destOpciones.y = 10;
-	destOpciones.w = 78;
-	destOpciones.h = 78;
-	sdlutils().images().at("opciones").render(destOpciones);
 
 	casRojo = playState->getPintado1() * 100 / numCasillasPintables;
 	casAzul = playState->getPintado2() * 100 / numCasillasPintables;
@@ -135,4 +138,8 @@ void Interfaz::render() {
 	}
 	Texture(sdlutils().renderer(), to_string(casAzul), sdlutils().fonts().at("NES-CHIMERA24"), build_sdlcolor(0x7ce5fbff)).render(numPorcA);
 	Texture(sdlutils().renderer(), to_string(casRojo), sdlutils().fonts().at("NES-CHIMERA24"), build_sdlcolor(0xff00dcff)).render(numPorcR);
+}
+
+void Interfaz::menuOpciones(GameStateMachine* gsm) {
+	gsm->pushState(new SettingsState(gsm, static_cast<PlayState*>(gsm->currentState())));
 }

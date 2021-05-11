@@ -21,7 +21,10 @@ class ButtonCharacterSelection;
 class ButtonDescription;
 class ButtonHovered;
 class ButtonSelected;
+class ButtonSettings;
+class ButtonSurrender;
 class ButtonPlay;
+class ButtonTick;
 class ButtonVolume;
 class DeckSpawn;
 class FramedImage;
@@ -54,7 +57,10 @@ class Transform2;
 	ButtonDescription               ,  \
 	ButtonHovered					,  \
 	ButtonSelected					,  \
+	ButtonSettings					,  \
+	ButtonSurrender					,  \
 	ButtonPlay						,  \
+	ButtonTick						,  \
 	ButtonVolume					,  \
 	DeckSpawn					    ,  \
 	FramedImage					    ,  \
