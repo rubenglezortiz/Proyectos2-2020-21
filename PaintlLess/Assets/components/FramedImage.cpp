@@ -1,4 +1,5 @@
 #include "FramedImage.h"
+#include "../game/LerpingFunctions.h"
 
 
 FramedImage::FramedImage(Texture* tex, int d, Unit p)
@@ -26,11 +27,14 @@ FramedImage::FramedImage(Texture* tex, int d, Unit p)
 
 void FramedImage::init() {
 	tr_ = entity_->getComponent<Transform>();
+	lastPosition = tr_->getPos();
+	interpolatedTf = tr_->getPos();
+	lerpTime = 1;
 	assert(tr_ != nullptr);
 }
 
 void FramedImage::render() {
-	auto& pos = tr_->getPos();
+	auto& pos = interpolatedTf;
 	auto h = tr_->getH();
 	auto w = tr_->getW();
 	auto rot = tr_->getRot();
@@ -50,7 +54,7 @@ void FramedImage::render() {
 				}
 				else setAnim(IdleA);
 			}
-			else c_ = 0; //se reinicia la columna sólo en la animación Idle		 
+			else c_ = 0; //se reinicia la columna sï¿½lo en la animaciï¿½n Idle		 
 		}
 		else c_++;
 
@@ -59,7 +63,7 @@ void FramedImage::render() {
 			tex_->render(src_, dest, rot, nullptr, SDL_FLIP_HORIZONTAL);
 		else
 			tex_->render(src_, dest, rot);
-		if (delay > 250) delay = 250; //está chapucero
+		if (delay > 250) delay = 250; //estï¿½ chapucero
 	}
 	else {
 		SDL_Rect dest = build_sdlrect(pos, w, h);
@@ -82,4 +86,15 @@ void FramedImage::setAnim(UnitAnim ua) {
 	endFrame = Vector2D(currentAnim, UnitInfo::spriteSheetInfo[personaje].animInfo[currentAnim]);
 	r_ = iniFrame.getX();
 	c_ = iniFrame.getY();
+	
+void FramedImage::update()
+{
+	Vector2D currentPos = tr_->getPos();
+	if (!(lastPosition == currentPos) && lerpTime >= 1) lerpTime = 0;
+
+	if (lerpTime < 1) lerpTime += 0.1;
+
+	interpolatedTf.setX(LerpFuncts::Lerp(lastPosition.getX(), currentPos.getX(), lerpTime));
+	interpolatedTf.setY(LerpFuncts::Lerp(lastPosition.getY(), currentPos.getY(), lerpTime));
+	if(lerpTime >= 1)lastPosition = tr_->getPos();
 }

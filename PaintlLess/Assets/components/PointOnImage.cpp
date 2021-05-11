@@ -23,14 +23,10 @@ void PointOnImage::update() {
 
 	if (lerpTime < 1) lerpTime += 0.1; //Aumentar el lerp
 
-	if (sdlutils().currRealTime() > cont + 10) {
-
 		//Convertir posiciones de mapa a SDL
-		Vector2D lastPosSDL = mapa->MapCoordsToSDLPoint(lastPosition);
-		Vector2D currentPosSDL = mapa->MapCoordsToSDLPoint(currentPosition);
+	Vector2D lastPosSDL = mapa->MapCoordsToSDLPoint(lastPosition);
+	Vector2D currentPosSDL = mapa->MapCoordsToSDLPoint(currentPosition);
 
-		dest.x = LerpFuncts::Lerp(lastPosSDL.getX(), currentPosSDL.getX(), lerpTime);
-		dest.y = LerpFuncts::Lerp(lastPosSDL.getY(), currentPosSDL.getY(), lerpTime);
-		cont = sdlutils().currRealTime();
-	}
+	dest.x = LerpFuncts::Lerp(lastPosSDL.getX(), currentPosSDL.getX(), lerpTime);
+	dest.y = LerpFuncts::Lerp(lastPosSDL.getY(), currentPosSDL.getY(), lerpTime);
 }

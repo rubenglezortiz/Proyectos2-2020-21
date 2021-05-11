@@ -10,7 +10,6 @@
 class PointOnImage : public Component {
 public:
 	PointOnImage(Texture* tex) : tex_(tex), mapa(nullptr), resultado(0), src_(SDL_Rect())  {
-		cont = 0;
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
 		dest.x = mX + OFFSET_X;
@@ -28,7 +27,6 @@ public:
 
 
 private:
-	int cont;
 	SDL_Rect dest;
 	GameMap* mapa;
 	int resultado;
