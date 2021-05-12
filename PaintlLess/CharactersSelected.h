@@ -27,7 +27,7 @@ private:
 
     // Contador de personajes
     int cont = 0;
-    int equipo = 0;
+    int equipo_ = 0;
 
 public:
     // Constructora.
@@ -39,10 +39,10 @@ public:
     // Método que pasa a la partida cuando se han seleccionado max personajes.
     void play(GameStateMachine* gsm);
 
-    void siguienteEquipo() { equipo++; }
+    void setEquipo(int equipo) { equipo_ = equipo; }
     void updateCont() { cont = 0; }
     int getCont() { return cont; }
-    int getEquipo() { return equipo; }
+    int getEquipo() { return equipo_; }
     int getMax() { return max; }
 
 private:

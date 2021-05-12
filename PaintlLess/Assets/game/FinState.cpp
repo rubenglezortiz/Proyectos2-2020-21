@@ -70,6 +70,8 @@ void FinState::update() {
 }
 
 void FinState::exitMenu(GameStateMachine* gsm) { //Volver al menu
+	delete gsm->getCharSel();
+	gsm->getCharSel() = new CharactersSelected();
 	gsm->popState();
 	gsm->popState();	
 }

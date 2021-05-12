@@ -10,7 +10,7 @@ CharactersSelected::CharactersSelected() {
 }
 
 void CharactersSelected::updatePersonaje(Unit pj) {
-    if (equipo == 0) {
+    if (equipo_ == 0) {
         selectPersonaje(chars, pj);
     }
     else {

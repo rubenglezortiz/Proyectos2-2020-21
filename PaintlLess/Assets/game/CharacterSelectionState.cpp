@@ -189,7 +189,7 @@ void CharacterSelectionState::removeCharacterSelected(Texture* tex) {
 
 void CharacterSelectionState::play(GameStateMachine* gsm) {
 	if (gsm->getCharSel()->getEquipo() == 0) {
-		gsm->getCharSel()->siguienteEquipo();
+		gsm->getCharSel()->setEquipo(1);
 		gsm->getCharSel()->updateCont();
 		gsm->changeState(new CharacterSelectionState(gsm));
 	}

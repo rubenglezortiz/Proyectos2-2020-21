@@ -35,5 +35,5 @@ public:
 	// Cambio de estado.
 	void changeState(GameState* state);
 	// Devuelve el puntero a CharactersSelected.
-	CharactersSelected* getCharSel() { return charSel; };
+	CharactersSelected* &getCharSel() { return charSel; };
 };
