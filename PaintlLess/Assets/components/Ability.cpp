@@ -159,6 +159,11 @@ void Ability::update() {
 		return;
 	
 	auto pos = entity_->getComponent<Transform>()->getPos();
+	if (selected && ih().getMouseButtonState(ih().LEFT))
+	{
+		freeAbilityShader();
+		selected = false;
+	}
 	if (ih().getMouseButtonState(ih().RIGHT) && entity_->hasComponent<Movimiento>()&&playState->getAcciones()>0) {
 		if (entity_->getComponent<Movimiento>()->getStun() == 0) {
 
