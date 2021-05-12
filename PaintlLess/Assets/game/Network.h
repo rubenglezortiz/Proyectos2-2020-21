@@ -6,17 +6,19 @@
 #include <SDL_stdinc.h>
 #include <array>
 
-#include "../ecs/Component.h"
-#include "../game/network_message.h"
+#include "GameState.h"
+#include "network_message.h"
 
 class Vector2D;
 
-class Network : public Component {
+class Network {
 public:
-	Network(const char* host, Uint16 port, std::string playerName);
+	Network(const char* host, Uint16 port);
 	virtual ~Network();
-	void init() override;
-	void update() override;
+	void init();
+	void update();
+
+	inline void updateManager(std::unique_ptr<Manager*> mngr) { managerState_ = &mngr; };
 
 	inline Uint8 getId() {
 		return id_;
@@ -29,11 +31,6 @@ public:
 	inline bool isGameReady() {
 		return isGameReday_;
 	}
-
-	void sendPaddlePosition(Vector2D pos);
-	void sendStartGameRequest();
-	void sendStateChanged(Uint8 state, Uint8 left_score, Uint8 right_score);
-	void sendBallInfo(Vector2D pos, Vector2D vel);
 
 	auto& getNames() {
 		return names_;
@@ -60,5 +57,7 @@ private:
 	std::string remotePlayerName_;
 	std::array<std::string, 2> names_;
 	Uint32 lastTimeActive_;
+
+	std::unique_ptr<Manager*>* managerState_;
 };
 

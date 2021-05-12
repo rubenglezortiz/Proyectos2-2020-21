@@ -179,7 +179,6 @@
     <ClCompile Include="Assets\components\MovementShader.cpp" />
     <ClCompile Include="Assets\components\Movimiento.cpp" />
     <ClCompile Include="Assets\components\Ability_Architect.cpp" />
-    <ClCompile Include="Assets\components\Network.cpp" />
     <ClCompile Include="Assets\components\PointOnImage.cpp" />
     <ClCompile Include="Assets\components\Transform.cpp" />
     <ClCompile Include="Assets\components\Transform2.cpp" />
@@ -193,6 +192,7 @@
     <ClCompile Include="Assets\game\GameState.cpp" />
     <ClCompile Include="Assets\game\GameStateMachine.cpp" />
     <ClCompile Include="Assets\game\MainMenuState.cpp" />
+    <ClCompile Include="Assets\game\Network.cpp" />
     <ClCompile Include="Assets\game\PlayState.cpp" />
     <ClCompile Include="Assets\game\SettingsState.cpp" />
     <ClCompile Include="Assets\game\SoundManager.cpp" />
@@ -253,7 +253,6 @@
     <ClInclude Include="Assets\components\MenuButton.h" />
     <ClInclude Include="Assets\components\MovementShader.h" />
     <ClInclude Include="Assets\components\Movimiento.h" />
-    <ClInclude Include="Assets\components\Network.h" />
     <ClInclude Include="Assets\components\PointOnImage.h" />
     <ClInclude Include="Assets\components\Transform.h" />
     <ClInclude Include="Assets\components\Transform2.h" />
@@ -272,6 +271,7 @@
     <ClInclude Include="Assets\game\GameState.h" />
     <ClInclude Include="Assets\game\GameStateMachine.h" />
     <ClInclude Include="Assets\game\MainMenuState.h" />
+    <ClInclude Include="Assets\game\Network.h" />
     <ClInclude Include="Assets\game\network_message.h" />
     <ClInclude Include="Assets\game\network_types.h" />
     <ClInclude Include="Assets\game\OffsetInfo.h" />

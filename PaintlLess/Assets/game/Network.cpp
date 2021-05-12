@@ -8,25 +8,13 @@
 
 
 
-Network::Network(const char* host, Uint16 port,
-	std::string playerName) :
-	host_(host), //
-	port_(port), //
-	isMaster_(false), //
-	isGameReday_(false), //
-	id_(0), //
-	conn_(), //
-	p_(nullptr), //
-	m_(nullptr), //
-	otherPlayerAddress_(), //
-	localPlayerName_(playerName), //
-	remotePlayerName_("N/A"), //
-	lastTimeActive_(0) {
-}
+Network::Network(const char* host, Uint16 port) : host_(host), port_(port),
+	isMaster_(false), isGameReday_(false), id_(0), conn_(), p_(nullptr), otherPlayerAddress_(), localPlayerName_("a"), remotePlayerName_("N/A"),
+	lastTimeActive_(0), managerState_(nullptr) { }
+
 
 Network::~Network() {
 
-	//
 	if (conn_) {
 		DissConnectMsg* m = static_cast<DissConnectMsg*>(m_);
 		m->_type = _DISCONNECTED_;
