@@ -31,7 +31,7 @@ Game::~Game() { //revisar
 	delete stateMachine;
 }
 
-void Game::init() {
+void Game::init(const char* host, Uint16 port) {
 	
 }
 

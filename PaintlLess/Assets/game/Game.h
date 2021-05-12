@@ -12,7 +12,7 @@ class Game {
 public:
 	Game();
 	virtual ~Game();
-	void init();
+	void init(const char* host, Uint16 port);
 	void start();
 private:
 	//std::unique_ptr<Manager> mngr_;
