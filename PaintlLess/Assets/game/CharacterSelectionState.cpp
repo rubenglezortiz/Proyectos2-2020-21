@@ -46,7 +46,7 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	auto* Alquimista = mngr_->addEntity(RenderLayer::Fondo);
 	Alquimista->addComponent<Transform>(Vector2D(posX - 5 * w / 2, offsetY), w, h);
 	Alquimista->addComponent<Image>(&sdlutils().images().at("alquimistaSP"));
-	Alquimista->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("alquimistaSP2"), &sdlutils().images().at("alquimistaM"),  updateAlquimista);
+	Alquimista->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("alquimistaSP2"), &sdlutils().images().at("alquimistaM"), updateAlquimista);
 	Alquimista->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("menu"));
 	Alquimista->setGroup<Utility>(true);
 
@@ -141,8 +141,22 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Boton->getComponent<Image>()->setTexture(&sdlutils().images().at("vacio"));
 	Boton->addComponent<ButtonPlay>(gsm, &sdlutils().images().at("play"), play);
 
-	if (gsm->getCharSel()->getEquipo() == 0) equipo = "circuloA";
-	else equipo = "circuloR";
+	auto* p1 = mngr_->addEntity(RenderLayer::Interfaz);
+	p1->addComponent<Transform>(Vector2D(85, sdlutils().height() / 2 - 250), 150, 150);
+	auto* img1 = p1->addComponent<Image>(&sdlutils().images().at("p1v"));
+	auto* p2 = mngr_->addEntity(RenderLayer::Interfaz);
+	p2->addComponent<Transform>(Vector2D(85, sdlutils().height() / 2 + 75), 150, 150);
+	auto* img2 = p2->addComponent<Image>(&sdlutils().images().at("p2v"));
+	if (gsm->getCharSel()->getEquipo() == 0) {
+		equipo = "circuloA";
+		img1->setTexture(&sdlutils().images().at("p1v"));
+		img2->setTexture(&sdlutils().images().at("p2nv"));
+	}
+	else  { 
+		equipo = "circuloR";
+		img1->setTexture(&sdlutils().images().at("p1nv"));
+		img2->setTexture(&sdlutils().images().at("p2v"));
+	}
 }
 
 void CharacterSelectionState::update() {
