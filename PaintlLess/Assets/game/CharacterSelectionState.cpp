@@ -54,7 +54,7 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Arquitecta->addComponent<Transform>(Vector2D(posX - 3 * w / 2, offsetY), w, h);
 	Arquitecta->addComponent<Image>(&sdlutils().images().at("arquitectaSP"));
 	Arquitecta->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("arquitectaSP2"), &sdlutils().images().at("arquitectaM"), updateArquitecta);
-	Arquitecta->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("star"));
+	Arquitecta->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("arquitectaD"));
 	Arquitecta->setGroup<Utility>(true);
 
 	auto* Bomba = mngr_->addEntity(RenderLayer::Fondo);
@@ -89,7 +89,7 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Golem->addComponent<Transform>(Vector2D(posX - w / 2, h + offsetY), w, h);
 	Golem->addComponent<Image>(&sdlutils().images().at("golemSP"));
 	Golem->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("golemSP2"), &sdlutils().images().at("golemM"), updateGolem);
-	Golem->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("star"));
+	Golem->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("golemD"));
 	Golem->setGroup<Defense>(true);
 
 	auto* Kirin = mngr_->addEntity(RenderLayer::Fondo);
@@ -103,7 +103,7 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Lobo->addComponent<Transform>(Vector2D(posX - 5 * w / 2, 2 * h + offsetY), w, h);
 	Lobo->addComponent<Image>(&sdlutils().images().at("loboSP"));
 	Lobo->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("loboSP2"), &sdlutils().images().at("loboM"), updateLobo);
-	Lobo->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("star"));
+	Lobo->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("loboD"));
 	Lobo->setGroup<Utility>(true);
 
 	auto* Monaguillo = mngr_->addEntity(RenderLayer::Fondo);
@@ -124,7 +124,7 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Tanque->addComponent<Transform>(Vector2D(posX + w / 2, 2 * h + offsetY), w, h);
 	Tanque->addComponent<Image>(&sdlutils().images().at("tanqueSP"));
 	Tanque->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("tanqueSP2"), &sdlutils().images().at("tanqueM"), updateTanque);
-	Tanque->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("star"));
+	Tanque->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("tanqueD"));
 	Tanque->setGroup<Defense>(true);
 
 	auto* Vikingo = mngr_->addEntity(RenderLayer::Fondo);

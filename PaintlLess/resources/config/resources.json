@@ -5,7 +5,7 @@
     { "id" : "ARIAL24",       "file" : "resources/fonts/ARIAL.ttf",      "size": 24 },
     { "id" : "ARIAL48",       "file" : "resources/fonts/ARIAL.ttf",      "size": 48 },
     { "id" : "NES-CHIMERA24", "file" : "resources/fonts/NES-Chimera.ttf","size": 24 },
-    { "id" : "PIXELLARI24",   "file" : "resources/fonts/Pixellari.ttf",     "size": 24 }
+    { "id" : "PIXELLARI24",   "file" : "resources/fonts/Pixellari.ttf",  "size": 24 }
   ],
   
  "images" : [
@@ -52,20 +52,20 @@
     { "id" : "tanqueM",         "file" : "resources/images/interfaz/tanqueMazo.png" },
     { "id" : "vikingoM",        "file" : "resources/images/interfaz/vikingoMazo.png" },
 
-	{ "id" : "life",         "file" : "resources/images/sprites/life.png" },
-  { "id" : "tileset",      "file" : "resources/images/sprites/tileset2.png" },
-	{ "id" : "wall",         "file" : "resources/images/sprites/wall.png" },
-	{ "id" : "enredadera",   "file" : "resources/images/sprites/enredaderas.png" },
+	  { "id" : "life",         "file" : "resources/images/sprites/life.png" },
+    { "id" : "tileset",      "file" : "resources/images/sprites/tileset2.png" },
+	  { "id" : "wall",         "file" : "resources/images/sprites/wall.png" },
+	  { "id" : "enredadera",   "file" : "resources/images/sprites/enredaderas.png" },
 
     { "id" : "tanque",     "file" : "resources/images/sprites/personajes/Tanque/tanque.png"},
     { "id" : "esqueleto",  "file" : "resourceS/images/sprites/personajes/Esqueleto/esqueleto.png"},
     { "id" : "druida",     "file" : "resources/images/sprites/personajes/druida.png"},
     { "id" : "golem",      "file" : "resources/images/sprites/personajes/golem.png"},
-    { "id" : "bomba",      "file" : "resources/images/sprites/personajes/bombahumana.png"},
+	  { "id" : "bomba",      "file":  "resources/images/sprites/personajes/BombaHumana/bombahumana.png"},
     { "id" : "picara",     "file" : "resources/images/sprites/personajes/picara.png"},
     { "id" : "cazador",    "file" : "resources/images/sprites/personajes/cazador.png"},
     { "id" : "alquimista", "file" : "resources/images/sprites/personajes/alquimista.png"},  
-    { "id" : "arquitecta", "file" : "resources/images/sprites/personajes/arquitecta.png"},  
+    { "id" : "arquitecta", "file" : "resources/images/sprites/personajes/Arquitecta/arquitecta.png"},  
     { "id" : "lobo",       "file" : "resources/images/sprites/personajes/lobo.png"}, 
     { "id" : "vikingo",    "file" : "resources/images/sprites/personajes/Vikingo/vikingo.png"},
     { "id" : "cazador",    "file" : "resources/images/sprites/personajes/cazador.png"},
@@ -108,6 +108,10 @@
     { "id" : "vacio",        "file" : "resources/images/menus/SP/vacio.png"},
     { "id" : "play",         "file" : "resources/images/menus/SP/playbutton.png"},
     { "id" : "vikingoD",     "file" : "resources/images/menus/SP/descripcion/vikingoDescripcion.png"},
+    { "id" : "tanqueD",      "file" : "resources/images/menus/SP/descripcion/descripcionTanque.png"},
+    { "id" : "golemD",       "file" : "resources/images/menus/SP/descripcion/descripcionGolem.png"},
+    { "id" : "arquitectaD",  "file" : "resources/images/menus/SP/descripcion/descripcionArquitecta.png"},
+    { "id" : "loboD",        "file" : "resources/images/menus/SP/descripcion/descripcionLobo.png"},
 
     { "id" : "botonAtras",     "file" : "resources/images/menus/opciones/botonAtras.png"},
     { "id" : "tick1",          "file" : "resources/images/menus/opciones/botonTick1.png"},
@@ -141,8 +145,18 @@
     { "id" : "vikingoMazoA",    "file": "resources/images/interfaz/mazo/vikingoMazoAzul.png"},
     { "id" : "vikingoMazoR",    "file": "resources/images/interfaz/mazo/vikingoMazoRojo.png"},
     
-    { "id" : "vikingoSheetA",    "file": "resources/images/sprites/personajes/Vikingo/SpriteSheetVikingoAzul.png"},
-	{ "id" : "kirinSheetA",    "file": "resources/images/sprites/personajes/Kirim/KirimAzulAnimsSheet.png"},
+    { "id" : "arquitectaSheetA",  "file": "resources/images/sprites/personajes/Arquitecta/ArquitectaAzulAnimsSheet.png"},
+    { "id" : "arquitectaSheetA",  "file": "resources/images/sprites/personajes/Arquitecta/ArquitectaRojoAnimsSheet.png"},
+    { "id" : "esqueletoSheetA",   "file": "resources/images/sprites/personajes/Esqueleto/EsqueletoAzulAnimsSheet.png"},
+    { "id" : "esqueletoSheetR",   "file": "resources/images/sprites/personajes/Esqueleto/EsqueletoRojoAnimsSheet.png"},
+    { "id" : "vikingoSheetA",     "file": "resources/images/sprites/personajes/Vikingo/SpriteSheetVikingoAzul.png"},
+    { "id" : "vikingoSheetR",     "file": "resources/images/sprites/personajes/Vikingo/SpriteSheetVikingoRojo.png"},
+	  { "id" : "kirinSheetA",       "file": "resources/images/sprites/personajes/Kirim/KirimAzulAnimsSheet.png"},
+	  { "id" : "kirinSheetR",       "file": "resources/images/sprites/personajes/Kirim/KirimRojoAnimsSheet.png"},
+	  { "id" : "bombaSheetA",       "file": "resources/images/sprites/personajes/BombaHumana/BombaAzulAnimSheet.png"},
+	  { "id" : "bombaSheetR",       "file": "resources/images/sprites/personajes/BombaHumana/BombaRojaAnimSheet.png"},
+	  { "id" : "tanqueSheetA",      "file": "resources/images/sprites/personajes/Tanque/TanqueAzulAnimsSheet.png"},
+	  { "id" : "tanqueSheetR",      "file": "resources/images/sprites/personajes/Tanque/TanqueRojoAnimsSheet.png"},
     
     { "id" : "cold1",           "file" : "resources/images/interfaz/mazo/cold1.png" },
     { "id" : "cold2",           "file" : "resources/images/interfaz/mazo/cold2.png" },
