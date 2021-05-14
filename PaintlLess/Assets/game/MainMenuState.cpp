@@ -31,7 +31,7 @@ MainMenuState::MainMenuState(GameStateMachine* gsm) : GameState(gsm) { //Poner l
 	auto* bLocal = mngr_->addEntity(RenderLayer::Fondo);
 	bLocal->addComponent<Transform>(Vector2D((sdlutils().width() / 2) - w / 2, sdlutils().height() - 4 * h), w, h);
 	bLocal->addComponent<Image>(&sdlutils().images().at("local1"));
-	bLocal->addComponent<MenuButton>(gsm, newGame, "menuInicioSound");
+	bLocal->addComponent<MenuButton>(gsm, loadGame, "menuInicioSound");
 	bLocal->addComponent<ButtonHovered>(&sdlutils().images().at("local2"));
 
 	auto* bOpc = mngr_->addEntity(RenderLayer::Fondo);
@@ -54,7 +54,9 @@ void MainMenuState::newGame(GameStateMachine* gsm) { //Nuevo partida
 }
 
 void MainMenuState::loadGame(GameStateMachine* gsm) { //Cargar partida
-
+	
+	gsm->initOnline();
+	gsm->pushState(new CharacterSelectionState(gsm));
 }
 
 void MainMenuState::menuOpciones(GameStateMachine* gsm) {

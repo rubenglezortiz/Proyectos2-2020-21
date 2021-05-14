@@ -13,7 +13,7 @@ class Vector2D;
 
 class Network {
 public:
-	Network(const char* host, Uint16 port);
+	Network();
 	virtual ~Network();
 	void init();
 	void update();

@@ -3,7 +3,6 @@
 #pragma once
 #include <memory>
 #include "GameStateMachine.h"
-#include "Network.h"
 
 
 // when you are not using the methods of a class, just
@@ -14,10 +13,9 @@ class Game {
 public:
 	Game();
 	virtual ~Game();
-	void init(const char* host, Uint16 port);
+	void init();
 	void start();
 private:
-	Network* net;
 	//std::unique_ptr<Manager> mngr_;
 	GameStateMachine* stateMachine;
 };

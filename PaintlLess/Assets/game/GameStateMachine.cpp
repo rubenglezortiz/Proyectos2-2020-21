@@ -5,9 +5,21 @@ GameStateMachine::~GameStateMachine() {
     refresh();
 }
 
+void GameStateMachine::initOnline()
+{
+    net->init();
+    setOnline(true);
+}
+
 void GameStateMachine::initState() {
     initChangedState = false;
     states.top()->init();
+}
+
+void GameStateMachine::update()
+{
+    currentState()->update(); //update del GameState
+    if(online) net->update();
 }
 
 void GameStateMachine::refresh() {

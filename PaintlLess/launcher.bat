@@ -5,4 +5,4 @@ cd C:\Users\manue\Desktop\Uni\2Ano\2Cuatri\Proy2\Proyectos2-2020-21\PaintlLess
  
 :: ejecutar el program
 
-x64\Release\PaintlLess.exe 127.0.0.1 2000
+x64\Release\PaintlLess.exe 

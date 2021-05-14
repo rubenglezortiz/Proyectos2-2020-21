@@ -8,13 +8,13 @@
 
 
 
-Network::Network(const char* host, Uint16 port) : host_(host), port_(port),
+Network::Network(): host_(nullptr), port_(2000),
 	isMaster_(false), isGameReday_(false), id_(0), conn_(), p_(nullptr), otherPlayerAddress_(), localPlayerName_("a"), remotePlayerName_("N/A"),
 	lastTimeActive_(0), managerState_(nullptr) { }
 
 
 Network::~Network() {
-
+	
 	if (conn_) {
 		DissConnectMsg* m = static_cast<DissConnectMsg*>(m_);
 		m->_type = _DISCONNECTED_;
@@ -54,73 +54,77 @@ void Network::init() {
 		isMaster_ = true;
 		id_ = 0;
 		conn_ = SDLNet_UDP_Open(port_);
-		if (!conn_)
-			throw SDLNet_GetError();
+		if (!conn_) {
+			isMaster_ = false;
+			host_ = "localhost";
 
-		names_[0] = localPlayerName_;
-		names_[1] = remotePlayerName_;
+			//		id_ = 1;
+			conn_ = SDLNet_UDP_Open(0);
+			if (!conn_)
+				throw SDLNet_GetError();
+
+			std::cout << "Trying to connect to other player at " << host_ << ":"
+				<< port_ << std::endl;
+
+			// resolve the host name into an IPAdrress
+			if (SDLNet_ResolveHost(&otherPlayerAddress_, host_, port_) < 0) {
+				throw SDLNet_GetError();
+
+			}
+
+
+			// send a message asking to play
+			PlayRequestMsg* m = static_cast<PlayRequestMsg*>(m_);
+			m->_type = _I_WANT_TO_PLAY_;
+			memset(m->name, 0, 10);
+			auto size =
+				localPlayerName_.length() > 9 ? 9 : localPlayerName_.length();
+			memcpy(m->name, localPlayerName_.c_str(), size);
+			p_->len = sizeof(PlayRequestMsg);
+			p_->address = otherPlayerAddress_;
+			SDLNet_UDP_Send(conn_, -1, p_);
+
+			// we use socket set to allow waiting for response instead of just looping
+			SDLNet_SocketSet socketSet = SDLNet_AllocSocketSet(1);
+			SDLNet_UDP_AddSocket(socketSet, conn_);
+
+			// wait for response
+			if (SDLNet_CheckSockets(socketSet, 3000)) {
+				if (SDLNet_SocketReady(conn_)) {
+					if (SDLNet_UDP_Recv(conn_, p_) > 0) {
+
+						if (m_->_type == _WELCOME_) {
+							isGameReday_ = true;
+							WelcomeMsg* m = static_cast<WelcomeMsg*>(m_);
+							remotePlayerName_ = std::string(
+								reinterpret_cast<char*>(m->name));
+							id_ = m->id;
+							names_[id_] = localPlayerName_;
+							names_[1 - id_] = remotePlayerName_;
+
+						}
+					}
+				}
+			}
+
+			// free the socket set, won't be used anymore
+			SDLNet_FreeSocketSet(socketSet);
+
+			// if did not succeed to connect, throw an exception
+			if (!isGameReday_)
+				throw "Failed to connect!";
+		}
+		else {
+			names_[0] = localPlayerName_;
+			names_[1] = remotePlayerName_;
+		}
+		
 
 	}
 	else { // if started as  other player
 
 	 // we use id 1, and open a socket to send/receive messages
-		isMaster_ = false;
-
-		//		id_ = 1;
-		conn_ = SDLNet_UDP_Open(0);
-		if (!conn_)
-			throw SDLNet_GetError();
-
-		std::cout << "Trying to connect to other player at " << host_ << ":"
-			<< port_ << std::endl;
-
-		// resolve the host name into an IPAdrress
-		if (SDLNet_ResolveHost(&otherPlayerAddress_, host_, port_) < 0) {
-			throw SDLNet_GetError();
-			
-		}
-
 		
-		// send a message asking to play
-		PlayRequestMsg* m = static_cast<PlayRequestMsg*>(m_);
-		m->_type = _I_WANT_TO_PLAY_;
-		memset(m->name, 0, 10);
-		auto size =
-			localPlayerName_.length() > 9 ? 9 : localPlayerName_.length();
-		memcpy(m->name, localPlayerName_.c_str(), size);
-		p_->len = sizeof(PlayRequestMsg);
-		p_->address = otherPlayerAddress_;
-		SDLNet_UDP_Send(conn_, -1, p_);
-
-		// we use socket set to allow waiting for response instead of just looping
-		SDLNet_SocketSet socketSet = SDLNet_AllocSocketSet(1);
-		SDLNet_UDP_AddSocket(socketSet, conn_);
-
-		// wait for response
-		if (SDLNet_CheckSockets(socketSet, 3000)) {
-			if (SDLNet_SocketReady(conn_)) {
-				if (SDLNet_UDP_Recv(conn_, p_) > 0) {
-
-					if (m_->_type == _WELCOME_) {
-						isGameReday_ = true;
-						WelcomeMsg* m = static_cast<WelcomeMsg*>(m_);
-						remotePlayerName_ = std::string(
-							reinterpret_cast<char*>(m->name));
-						id_ = m->id;
-						names_[id_] = localPlayerName_;
-						names_[1 - id_] = remotePlayerName_;
-
-					}
-				}
-			}
-		}
-
-		// free the socket set, won't be used anymore
-		SDLNet_FreeSocketSet(socketSet);
-
-		// if did not succeed to connect, throw an exception
-		if (!isGameReday_)
-			throw "Failed to connect!";
 
 	}
 

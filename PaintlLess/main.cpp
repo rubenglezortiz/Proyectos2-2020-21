@@ -5,29 +5,16 @@
 #include "..\PaintlLess\Assets\game\Game.h"
 #include <SDL_stdinc.h>
 
-void start(int argc, char** argv) {
+void start() {
 	Game g;
-	Uint16 port;
-	const char* host = nullptr;
-	if (argc == 2) {
-		atoi(argv[1]);
-		port = static_cast<Uint16>(atoi(argv[1]));
-	}
-	else if (argc == 3) {
-		host = argv[1];
-		port = static_cast<Uint16>(atoi(argv[2]));
-	}
-	else {
-		throw "Unknown mode";
-	}
 
-	g.init(host, port);
+	g.init();
 	g.start();
 }
 
 int main(int argc, char** argv) {
 	try {
-		start(argc, argv);
+		start();
 	}
 	catch (const std::string& e) { // catch exceptions thrown as strings
 		std::cerr << e << std::endl;
