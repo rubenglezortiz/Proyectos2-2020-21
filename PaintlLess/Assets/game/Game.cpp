@@ -29,9 +29,11 @@ Game::~Game() { //revisar
 void Game::init(const char* host, Uint16 port) {
 
 	//mngr_.reset(new Manager());
-	SDLUtils::init("PaintLess", 1920, 1080, "resources/config/resources.json");
-	stateMachine = new GameStateMachine(host, port);
+	SDLUtils::init("PaintLess", 800, 600, "resources/config/resources.json");
+	stateMachine = new GameStateMachine();
 	stateMachine->pushState(new MainMenuState(stateMachine));
+	net = new Network(host, port);
+	net->init();
 	//stateMachine->pushState(new PlayState(stateMachine)); para que inicie el juego sin el menu
 }
 
@@ -59,6 +61,7 @@ void Game::start() {
 		}
 		if (stateMachine->initChanged()) stateMachine->initState();
 
+		net->update();
 		stateMachine->currentState()->update(); //update del GameState
 		stateMachine->refresh();
 		
@@ -66,5 +69,7 @@ void Game::start() {
 
 		if (frameTime < 20)
 			SDL_Delay(20 - frameTime);
+
+
 	}
 }

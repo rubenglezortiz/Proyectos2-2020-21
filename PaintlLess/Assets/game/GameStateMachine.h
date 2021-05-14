@@ -3,7 +3,6 @@
 #include <stack>
 #include "GameState.h"
 #include "../../CharactersSelected.h"
-#include "Network.h"
 //#include "checkML.h"
 
 using namespace std;
@@ -12,13 +11,13 @@ class GameStateMachine {
 private:
 	stack<GameState*> states;    // Pila de estados.
 	CharactersSelected* charSel; // Vector de personajes.
-	Network* net;
+	
 	bool initChangedState;
 	GameState* lastChanged;
 	uint popState_ = 0;
 public:
 	// Constructora.
-	GameStateMachine(const char* host, Uint16 port) : lastChanged(nullptr), initChangedState(false) { charSel = new CharactersSelected(); net = new Network(host, port); };
+	GameStateMachine() : lastChanged(nullptr), initChangedState(false) { charSel = new CharactersSelected(); };
 	// Destructora.
 	~GameStateMachine();
 

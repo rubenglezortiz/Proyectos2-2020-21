@@ -77,8 +77,10 @@ void Network::init() {
 		// resolve the host name into an IPAdrress
 		if (SDLNet_ResolveHost(&otherPlayerAddress_, host_, port_) < 0) {
 			throw SDLNet_GetError();
+			
 		}
 
+		
 		// send a message asking to play
 		PlayRequestMsg* m = static_cast<PlayRequestMsg*>(m_);
 		m->_type = _I_WANT_TO_PLAY_;
@@ -98,6 +100,7 @@ void Network::init() {
 		if (SDLNet_CheckSockets(socketSet, 3000)) {
 			if (SDLNet_SocketReady(conn_)) {
 				if (SDLNet_UDP_Recv(conn_, p_) > 0) {
+
 					if (m_->_type == _WELCOME_) {
 						isGameReday_ = true;
 						WelcomeMsg* m = static_cast<WelcomeMsg*>(m_);
@@ -106,6 +109,7 @@ void Network::init() {
 						id_ = m->id;
 						names_[id_] = localPlayerName_;
 						names_[1 - id_] = remotePlayerName_;
+
 					}
 				}
 			}
