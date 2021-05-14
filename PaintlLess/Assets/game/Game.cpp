@@ -20,11 +20,6 @@
 #include "../game/PlayState.h"
 
 Game::Game() {
-	//mngr_.reset(new Manager());
-	SDLUtils::init("PaintLess", 1920, 1080, "resources/config/resources.json");
-	stateMachine = new GameStateMachine();
-	stateMachine->pushState(new MainMenuState(stateMachine)); 
-	//stateMachine->pushState(new PlayState(stateMachine)); para que inicie el juego sin el menu
 }
 
 Game::~Game() { //revisar
@@ -32,7 +27,13 @@ Game::~Game() { //revisar
 }
 
 void Game::init() {
+
+	//mngr_.reset(new Manager());
+	SDLUtils::init("PaintLess", 1440, 810, "resources/config/resources.json");
+	stateMachine = new GameStateMachine();
+	stateMachine->pushState(new MainMenuState(stateMachine));
 	
+	//stateMachine->pushState(new PlayState(stateMachine)); para que inicie el juego sin el menu
 }
 
 void Game::start() {
@@ -59,12 +60,14 @@ void Game::start() {
 		}
 		if (stateMachine->initChanged()) stateMachine->initState();
 
-		stateMachine->currentState()->update(); //update del GameState
+		stateMachine->update();
 		stateMachine->refresh();
 		
 		Uint32 frameTime = sdlutils().currRealTime() - startTime;
 
 		if (frameTime < 20)
 			SDL_Delay(20 - frameTime);
+
+
 	}
 }
