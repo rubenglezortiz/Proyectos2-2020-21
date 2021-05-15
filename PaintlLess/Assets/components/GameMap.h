@@ -83,7 +83,7 @@ public:
 		int X = (p.getX() - OFFSET_X) / cellWidth ;
 		int Y = (p.getY() - OFFSET_Y - OFFSET_TOP) / cellHeight;
 		//como vector2D es float se hace el casteo pero el valor va a ser .0000
-		Vector2D coords{ (float)X,(float)Y };
+		Vector2D coords{ std::min(std::max((float)X, 0.0f), (float)cols-1), std::min(std::max((float)Y, 0.0f), (float)rows-1) };
 		//cout << coords.getX() << " " << coords.getY() << endl;
 		return coords;
 	}		
