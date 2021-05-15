@@ -85,10 +85,15 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 	}
 	else if (sf == ShaderWolf) {
 		std::vector<Vector2D> casillas;
-		if (entity_->hasGroup<Equipo_Rojo>())
+		Vector2D detras;
+		if (entity_->hasGroup<Equipo_Rojo>()) {
 			casillas = { {1, 0}, {2, 0}, { 1, 1}, {2, 1}, {1, -1}, {2, -1} }; //Izquierda ==> Derecha
-		else
+			detras = Vector2D(1, 0);
+		}
+		else {
 			casillas = { {-1, 0}, {-2, 0}, {-1, 1}, {-2, 1}, {-1, -1}, {-2, -1} }; //Derecha ==> Izquierda
+			detras = Vector2D(-1, 0);
+		}
 
 		Vector2D posWolf = map->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos());
 
@@ -96,12 +101,12 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 			if (map->casillaValida(casillas[i] + posWolf)) {
 				//Hay personaje en el 1
 				if (map->getCharacter(casillas[i] + posWolf) != nullptr) {
-					abilityCells.push_back(casillas[i] + posWolf);
+					if (map->casillaValida(casillas[i] + posWolf + detras)) abilityCells.push_back(casillas[i] + posWolf);
 				}
 				//Hay personaje en el 2
 				else if (map->getCharacter(casillas[i + 1] + posWolf) != nullptr)
 				{
-					abilityCells.push_back(casillas[i + 1] + posWolf);
+					if (map->casillaValida(casillas[i] + posWolf + detras)) abilityCells.push_back(casillas[i + 1] + posWolf);
 				}
 			}
 			i++;
