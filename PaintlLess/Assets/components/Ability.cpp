@@ -124,7 +124,12 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 		while (!findObj && map->casillaValida(posCh)) {
 			if (map->ataquePosible(posCh))
 				findObj = true;
-			abilityCells.push_back(posCh);
+			if (map->getCharacter(posCh) != nullptr) {
+				if (map->ataquePosible(posCh)) 
+					abilityCells.push_back(posCh);
+			}
+			else 
+				abilityCells.push_back(posCh);
 			posCh = posCh + atDir;
 		}
 		if (!findObj)freeAbilityShader();
