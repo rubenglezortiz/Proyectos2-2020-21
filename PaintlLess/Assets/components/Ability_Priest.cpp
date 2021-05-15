@@ -5,6 +5,7 @@ void Ability_Priest::AbilityExecute(int x, int y) {
 		if (map->getCharacter(abilityCells[i]) != nullptr) {
 			if ((map->getCharacter(abilityCells[i])->hasGroup<Equipo_Azul>() && entity_->hasGroup<Equipo_Azul>()) || (map->getCharacter(abilityCells[i])->hasGroup<Equipo_Rojo>() && entity_->hasGroup<Equipo_Rojo>())) {
 				map->getCharacter(abilityCells[i])->getComponent<Health>()->healMonaguillo(1);
+				entity_->getComponent<FramedImage>()->setAnim(A_A_A);
 				sdlutils().soundEffects().at("monaguilloSound").play(); //-----------------------------------------------------------						
 				//sdlutils().soundEffects().at("monaguilloSound").setChunkVolume(127);
 			}				

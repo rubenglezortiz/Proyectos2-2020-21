@@ -24,8 +24,7 @@ void Health::hit(int damage) {
 		}
 		if (entity_->getComponent<FramedImage>() != nullptr)
 			entity_->getComponent<FramedImage>()->setAnim(DeathA);
-		else entity_->setActive(false); //ESTO HABRÍA QUE QUITARLO CUANDO SE METAN TODAS LAS ANIM
-		
+		else entity_->setActive(false); //ESTO HABRÍA QUE QUITARLO CUANDO SE METAN TODAS LAS ANIM		
 
 	}
 	std::cout << "Ataca";

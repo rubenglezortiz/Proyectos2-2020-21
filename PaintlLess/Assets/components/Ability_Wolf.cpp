@@ -13,6 +13,7 @@ void Ability_Wolf::AbilityExecute(int x, int y)
 		else
 			newPos = Vector2D(abilityCells[i].getX() - 1, abilityCells[i].getY());
 
+		entity_->getComponent<FramedImage>()->setAnim(A_A_A);
 
 		if (map->getCharacter(newPos) != nullptr) //Choca con character
 		{

@@ -11,7 +11,7 @@ void Attack::init() {
 
 void Attack::update() {
 	if ((entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero ||
-		entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) && entity_->hasComponent<Movimiento>()) {
+		entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) && entity_->hasComponent<Movimiento>()) { 
 		if (entity_->getComponent<Movimiento>()->getStun() == 0)
 		attack();
 	}

@@ -41,8 +41,11 @@ void DeckSpawn::image(Entity* c, string t) {
 	c->addComponent<Image>(&sdlutils().images().at(t));
 }
 
-void DeckSpawn::animation(Entity* c, string tex, int d, Unit p) {
-	c->addComponent<FramedImage>(&sdlutils().images().at(tex), d, p);
+void DeckSpawn::animation(Entity* c, string tex, int d, Unit p) {	
+	if(c->hasGroup<Equipo_Azul>())
+		c->addComponent<FramedImage>(&sdlutils().images().at(tex+"R"), d, p);
+	else	
+		c->addComponent<FramedImage>(&sdlutils().images().at(tex+"A"), d, p);
 }
 
 void DeckSpawn::attack(Entity* c, int dmg = 1, string s = "ataqueSound") {
@@ -59,53 +62,53 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 
 	switch (character) {
 	case Alquimista:
-		image(ctr, "alquimista"); movement(ctr); health(ctr, 2);
+		animation(ctr, "alquimistaSheet", 150, Alquimista);	 movement(ctr); health(ctr, 2);
 		ctr->addComponent<Ability_Alchemist>();
 		break;
 	case Arquitecta:
-		image(ctr, "arquitecta"); movement(ctr); health(ctr, 2); attack(ctr);
+		animation(ctr, "arquitectaSheet", 150, Arquitecta);	 movement(ctr); health(ctr, 2);
 		ctr->addComponent<Ability_Architect>();
 		break;
 	case Bomba:
-		image(ctr, "bomba");      movement(ctr); health(ctr, 3); attack(ctr);
+		animation(ctr, "bombaSheet", 150, Bomba);   movement(ctr); health(ctr, 3); 
 		ctr->addComponent<Ability_Bomb>();
 		break;
 	case Cazador:
-		image(ctr, "cazador");    movement(ctr); health(ctr, 1); attack(ctr, 2, "arqueroSound");
+		image(ctr, "cazador");  movement(ctr); health(ctr, 1); attack(ctr, 2, "arqueroSound");
 		break;
 	case Druida:
-		image(ctr, "druida");     movement(ctr); health(ctr, 2);
+		animation(ctr, "druidaSheet", 125, Druida);   movement(ctr); health(ctr, 2);
 		ctr->addComponent<Ability_Druid>(playState, (int)equipo);
 		break;
 	case Esqueleto:
-		image(ctr, "esqueleto");  movement(ctr); health(ctr, 1); attack(ctr);
+		animation(ctr, "esqueletoSheet", 150, Esqueleto);  movement(ctr); health(ctr, 1); attack(ctr);
 		break;
 	case Golem:
-		image(ctr, "golem");					 health(ctr, 4); attack(ctr);
+		animation(ctr, "golemSheet", 120, Golem);	health(ctr, 4); attack(ctr); ctr->addComponent<Movimiento>(playState, 0);
 		ctr->addComponent<Ability_Golem>();
 		break;
 	case Kirin:
-		animation(ctr, "kirinSheetA", 150, Kirin);	  movement(ctr); health(ctr, 2); attack(ctr);
+		animation(ctr, "kirinSheet", 150, Kirin);	movement(ctr); health(ctr, 2); attack(ctr);
 		ctr->addComponent<Ability_Kirin>();
 		break;
 	case Lobo:
-		image(ctr, "lobo");		  movement(ctr); health(ctr, 2);
+		animation(ctr, "loboSheet", 150, Lobo);	  movement(ctr); health(ctr, 2);
 		ctr->addComponent<Ability_Wolf>();
 		break;
 	case Monaguillo:
-		image(ctr, "monaguillo"); movement(ctr); health(ctr, 1); attack(ctr);
+		animation(ctr, "monaguilloSheet", 150, Monaguillo); movement(ctr); health(ctr, 1); attack(ctr);
 		ctr->addComponent<Ability_Priest>();
 		break;
 	case Picara:
-		image(ctr, "picara");	  movement(ctr); health(ctr, 2); attack(ctr);
+		animation(ctr, "picaraSheet", 150, Picara);	  movement(ctr); health(ctr, 2); attack(ctr);
 		ctr->addComponent<Ability_Rogue>();
 		break;
 	case Tanque:
-		image(ctr, "tanque");     movement(ctr); health(ctr, 4); attack(ctr);
+		animation(ctr, "tanqueSheet", 150, Tanque);    movement(ctr); health(ctr, 4); attack(ctr);
 		ctr->addComponent<Ability_Tank>();
 		break;
 	case Vikingo:
-		animation(ctr, "vikingoSheetA",   150,  Vikingo);  movement(ctr); health(ctr, 1);
+		animation(ctr, "vikingoSheet", 150,  Vikingo);  movement(ctr); health(ctr, 1);
 		ctr->addComponent<Ability_Viking>();
 		break;
 	}

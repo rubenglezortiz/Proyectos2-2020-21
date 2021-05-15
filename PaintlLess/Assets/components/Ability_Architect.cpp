@@ -15,5 +15,6 @@ void Ability_Architect::AbilityExecute(int x, int y) {
 
 	e->addComponent<Image>(&sdlutils().images().at("wall"));
 	e->addComponent<Health>(2);
+	entity_->getComponent<FramedImage>()->setAnim(A_A_A);
 	map->setObstaculo(Vector2D(x, y), e);
 }

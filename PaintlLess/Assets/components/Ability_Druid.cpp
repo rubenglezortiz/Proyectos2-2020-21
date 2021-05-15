@@ -38,7 +38,7 @@ void Ability_Druid::AbilityExecute(int x, int y) {
 			}
 		}
 	}
-	else
+	else {
 		for (int i = -1; i < 2; i++) {
 			if (map->movimientoPosibleEnredadera(Vector2D(x, y + i))) {
 				auto* e = entity_->getMngr()->addEntity(RenderLayer::Tablero3);
@@ -57,6 +57,8 @@ void Ability_Druid::AbilityExecute(int x, int y) {
 				else e->setGroup<Equipo_Azul>(e);
 			}
 		}
+	}
+	entity_->getComponent<FramedImage>()->setAnim(A_A_A);
 	//sdlutils().soundEffects().at("crearEnredaderasSound").setChunkVolume(40);
 	sdlutils().soundEffects().at("crearEnredaderasSound").play(); //-----------------------------------------------------------		
 }

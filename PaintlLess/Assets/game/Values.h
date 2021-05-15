@@ -27,19 +27,20 @@ namespace UnitInfo {
 	const uint mana[numUnidades] = { 3, 3, 3, 2, 3, 1, 4, 3, 3, 3, 2, 4, 2 };
 	const uint cooldown[numUnidades] = { 3, 3, 3, 2, 3, 1, 3, 2, 2, 2, 3, 2, 2 };
 
-	const SpriteSheetInfo spriteSheetInfo[numUnidades] = { {{0,0,0}, 0, 0},   //Alquimista
-														  {{0,0,0}, 0, 0},   //Arquitecta
-														  {{0,0,0}, 0, 0},   //Bomba
+										//Nº sprites por fila , nº filas nª columnas
+	const SpriteSheetInfo spriteSheetInfo[numUnidades] = {{{4,5,6}, 3, 6},   //Alquimista
+														  {{4,5,6}, 3, 6},   //Arquitecta
+														  {{4,6,0}, 2, 6},   //Bomba
 														  {{0,0,0}, 0, 0},   //Cazador
-														  {{0,0,0}, 0, 0},   //Druida
-														  {{0,0,0}, 0, 0},   //Esqueleto
-														  {{0,0,0}, 0, 0},   //Golem
+														  {{5,6,6}, 3, 6},   //Druida
+														  {{4,5,4}, 3, 5},   //Esqueleto
+														  {{7,8,7}, 3, 8},   //Golem
 														  {{4,6,4}, 3, 6},   //Kirin
-														  {{0,0,0}, 0, 0},   //Lobo
-														  {{0,0,0}, 0, 0},   //Monaguillo
-														  {{0,0,0}, 0, 0},   //Picara
-														  {{0,0,0}, 0, 0},   //Tanque
-														  {{4,5,6}, 3, 6}  //Vikingo
+														  {{5,8,6}, 3, 8},   //Lobo
+														  {{4,6,8}, 3, 8},   //Monaguillo
+														  {{7,8,6}, 3, 8},   //Picara
+														  {{4,4,4}, 3, 4},   //Tanque
+														  {{4,5,6}, 3, 6}    //Vikingo
 	};
 
 
