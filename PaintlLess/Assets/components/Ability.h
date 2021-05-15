@@ -47,4 +47,8 @@ protected:
 	virtual void AbilityExecute(int x, int y) {};
 	PlayState* playState = nullptr;
 	void SetShaderDistance(int distance) { shaderDistance = distance; };
+
+	float lerpTime = 0;
+	int casillasRendered = 0;
+	float delayTime = 0;
 };

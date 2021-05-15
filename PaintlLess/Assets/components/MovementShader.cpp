@@ -18,25 +18,14 @@ void MovementShader::init() {
 	cellHeight = mapa->getCellHeight();
 }
 
-void MovementShader::update() {
-	int mX = ih().getMousePos().first;
-	int mY = ih().getMousePos().second;
-
-	if (sdlutils().currRealTime() > cont + 10) {
-		resultado = mX / mapa->getCellWidth();
-		dest.x = resultado * mapa->getCellWidth();
-		resultado = mY / mapa->getCellHeight();
-		dest.y = resultado * mapa->getCellHeight();
-		cont = sdlutils().currRealTime();
-	}
-}
-
 //método recursivo que se llama en movimiento cuando se selecciona una casilla para comprobar a que casillas se puede mover
 void MovementShader::casillasPosiblesRecu(const Vector2D& cSelected, vector<vector<CasillaMov>>& casillasChecked, uint casillasAMover) {
 		//matriz igual que el tablero inicializada a false
 
 		//Movimiento en cruz temporal hito
 		Vector2D casillaAMirar;
+		lerpTime = 0;
+		numCasillasPintadas = 0;
 		for (int i = 1; i <= casillasAMover; i++)
 		{
 			casillaAMirar = new Vector2D(cSelected.getX() + i, cSelected.getY());
@@ -136,13 +125,17 @@ void MovementShader::casillasPosiblesRecuAux(int casillasAMover, const Vector2D&
 	}
 }
 
+void MovementShader::update() {
+	if (lerpTime < 1) lerpTime += 0.2;
+}
+
 void MovementShader::render() {
 	SDL_Rect dest;
 	for (Vector2D casilla : casillasAPintar) {
 		dest.x = casilla.getX() * cellWidth + OFFSET_X;
 		dest.y = (casilla.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP;
-		dest.h = cellHeight;
-		dest.w = cellWidth;
+		dest.h = cellHeight * lerpTime;
+		dest.w = cellWidth * lerpTime;
 
 		tex_->render(dest);
 	}

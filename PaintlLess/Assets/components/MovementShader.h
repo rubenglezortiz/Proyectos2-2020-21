@@ -42,4 +42,7 @@ private:
 	Vector2D position;
 	Texture* tex_;
 	SDL_Rect src_;
+
+	float lerpTime = 1;
+	float numCasillasPintadas = 0;
 };

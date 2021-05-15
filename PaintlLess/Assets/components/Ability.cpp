@@ -32,6 +32,7 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 	Vector2D posCh = entity_->getComponent<Transform>()->getPos();
 	posCh = entity_->getComponent<Transform>()->getPos();
 	posCh = map->SDLPointToMapCoords(posCh);
+	lerpTime = 0;
 	if (sf == Cross) {
 		Vector2D posUp = Vector2D(0, d) + posCh;
 		Vector2D posRight = Vector2D(d, 0) + posCh;
@@ -122,8 +123,8 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 			posCh = posCh + atDir;
 		}
 		if (!findObj)freeAbilityShader();
-
 	}
+	casillasRendered = 0;
 }
 
 void Ability::freeAbilityShader() { abilityCells.clear(); }
@@ -142,12 +143,23 @@ bool Ability::abilityCheck(const Vector2D& pos) {
 void Ability::render() {
 	SDL_Rect dest;
 	if (abilityCells.size() > 0) {
+		delayTime += 0.65;
+		if (delayTime > 1)
+		{
+			casillasRendered++;
+			delayTime = 0;
+		}
+		int aux = casillasRendered;
 		for (Vector2D casilla : abilityCells) {
+			
 			dest.x = casilla.getX() * cellWidth + OFFSET_X;
 			dest.y = casilla.getY() * cellHeight + OFFSET_Y + OFFSET_TOP;
-			dest.h = cellHeight;
-			dest.w = cellWidth;
+			dest.h = cellHeight * lerpTime;
+			dest.w = cellWidth * lerpTime;
+
 			tex->render(dest);
+			if (aux <= 0) break;
+			aux--;
 		}
 	}
 }
@@ -158,6 +170,8 @@ void Ability::update() {
 	if (map->getPlayState()->getTurno() == Segundo && entity_->hasGroup<Equipo_Azul>())
 		return;
 	
+	if (lerpTime < 1) lerpTime += 0.2;
+
 	auto pos = entity_->getComponent<Transform>()->getPos();
 	if (selected && ih().getMouseButtonState(ih().LEFT))
 	{
