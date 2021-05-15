@@ -106,7 +106,7 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 				//Hay personaje en el 2
 				else if (map->getCharacter(casillas[i + 1] + posWolf) != nullptr)
 				{
-					if (map->casillaValida(casillas[i] + posWolf + detras)) abilityCells.push_back(casillas[i + 1] + posWolf);
+					if (map->casillaValida(casillas[i] + posWolf + detras * 2)) abilityCells.push_back(casillas[i + 1] + posWolf);
 				}
 			}
 			i++;
@@ -188,8 +188,6 @@ void Ability::update() {
 	}
 	if (ih().getMouseButtonState(ih().RIGHT) && entity_->hasComponent<Movimiento>()&&playState->getAcciones()>0) {
 		if (entity_->getComponent<Movimiento>()->getStun() == 0) {
-
-
 			int mX = ih().getMousePos().first;
 			int mY = ih().getMousePos().second;
 
