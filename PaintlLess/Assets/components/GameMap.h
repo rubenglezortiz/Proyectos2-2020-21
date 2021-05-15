@@ -14,6 +14,7 @@
 #include <string>
 #include <fstream>
 #include <array>
+#include <vector>
 
 //#include "Game.h"
 class Game;
@@ -42,6 +43,7 @@ private:
 	int tileSet, level;
 	int nCasPintables;
 	PlayState* playState;
+	vector<Entity*> casillas;
 
 public:
 	GameMap(int level, int tileSet, PlayState* playState);

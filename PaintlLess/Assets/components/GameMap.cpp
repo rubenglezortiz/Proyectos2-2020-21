@@ -69,6 +69,10 @@ void GameMap::loadMap() {
 								cells[i][j].color = Color::Ninguno;
 								cells[i][j].tipoCasilla = TipoCasilla::Pintable;
 								nCasPintables++;
+								auto* casilla = entity_->getMngr()->addEntity();
+								Vector2D pos = MapCoordsToSDLPoint(Vector2D(j, i));
+								casilla->addComponent<Transform>(pos, cellWidth, cellHeight);
+								casillas.push_back(casilla);
 							}
 						}
 						else {
@@ -87,6 +91,10 @@ void GameMap::loadMap() {
 								cells[i][j].color = Color::Ninguno;
 								cells[i][j].tipoCasilla = TipoCasilla::Pintable;
 								nCasPintables++;
+								auto* casilla = entity_->getMngr()->addEntity();
+								Vector2D pos = MapCoordsToSDLPoint(Vector2D(j, i));
+								casilla->addComponent<Transform>(pos, cellWidth, cellHeight);
+								casillas.push_back(casilla);
 							}
 						}
 						cells[i][j].character = nullptr;
@@ -112,26 +120,34 @@ void GameMap::render() {
 }
 
 void GameMap::setColor(const Vector2D& cas, Color color) {
+	Vector2D cas2 = MapCoordsToSDLPoint(cas);
+	int i = 0; 
+	bool busqueda = false;
+
+	while (i < casillas.size() && !busqueda) {
+		if (casillas[i]->getComponent<Transform>()->getPos() == cas2)
+			busqueda = true;
+		else i++;
+	}
+
 	if (cells[(int)cas.getY()][(int)cas.getX()].tipoCasilla == Pintable) {
-		auto* pintar = entity_->getMngr()->addEntity(RenderLayer::Fondo);
-		pintar->addComponent<Transform>(Vector2D(cas.getX(), cas.getY()), cellWidth, cellHeight);
 		if (getColor(cas) != color && getColor(cas) != Ninguno && color == Amarillo) {
-			pintar->addComponent<Image>(&sdlutils().images().at("rojo"));
+			casillas[i]->getComponent<Image>()->setTexture(&sdlutils().images().at("rojo"));
 			playState->aumentaPintado1(1);
 			playState->aumentaPintado2(-1);
 		}
 		else if (getColor(cas) != color && getColor(cas) != Ninguno && color == Rojo) {
-			pintar->addComponent<Image>(&sdlutils().images().at("azul"));
+			casillas[i]->getComponent<Image>()->setTexture(&sdlutils().images().at("azul"));
 			playState->aumentaPintado2(1);
 			playState->aumentaPintado1(-1);
 		}
 		else if (getColor(cas) == Ninguno) {
 			if (color == Amarillo) {
-				pintar->addComponent<Image>(&sdlutils().images().at("rojo"));
+				casillas[i]->addComponent<Image>(&sdlutils().images().at("rojo"));
 				playState->aumentaPintado1(1);
 			}
 			else {
-				pintar->addComponent<Image>(&sdlutils().images().at("azul"));
+				casillas[i]->addComponent<Image>(&sdlutils().images().at("azul"));
 				playState->aumentaPintado2(1);
 			}
 		}
