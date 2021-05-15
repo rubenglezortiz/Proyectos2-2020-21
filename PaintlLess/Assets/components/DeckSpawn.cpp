@@ -169,7 +169,7 @@ bool DeckSpawn::spawneableCell(Vector2D p) {
 
 void DeckSpawn::update() {
 	auto pos = entity_->getComponent<Transform2>()->getPos();
-	if (ih().getMouseButtonState(ih().RIGHT)) {
+	if (ih().getMouseButtonState(ih().LEFT)) {
 
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
@@ -196,7 +196,7 @@ void DeckSpawn::update() {
 			}
 		}
 	}
-	if (ih().getMouseButtonState(ih().LEFT)) {
+	if (ih().getMouseButtonState(ih().RIGHT)) {
 		selected = false;
 		freeShader();
 	}

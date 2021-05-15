@@ -47,7 +47,7 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Alquimista->addComponent<Transform>(Vector2D(posX - 5 * w / 2, offsetY), w, h);
 	Alquimista->addComponent<Image>(&sdlutils().images().at("alquimistaSP"));
 	Alquimista->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("alquimistaSP2"), &sdlutils().images().at("alquimistaM"), updateAlquimista);
-	Alquimista->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("menu"));
+	Alquimista->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("alquimistaD"));
 	Alquimista->setGroup<Utility>(true);
 
 	auto* Arquitecta = mngr_->addEntity(RenderLayer::Fondo);
@@ -61,7 +61,7 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Bomba->addComponent<Transform>(Vector2D(posX - w / 2, offsetY), w, h);
 	Bomba->addComponent<Image>(&sdlutils().images().at("bombaSP"));
 	Bomba->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("bombaSP2"), &sdlutils().images().at("bombaM"), updateBomba);
-	Bomba->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("star"));
+	Bomba->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("bombaD"));
 	Bomba->setGroup<Utility>(true);
 
 	auto* Cazador = mngr_->addEntity(RenderLayer::Fondo);
@@ -82,7 +82,7 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Esqueleto->addComponent<Transform>(Vector2D(posX - 3 * w / 2, h + offsetY), w, h);
 	Esqueleto->addComponent<Image>(&sdlutils().images().at("esqueletoSP"));
 	Esqueleto->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("esqueletoSP2"), &sdlutils().images().at("esqueletoM"), updateEsqueleto);
-	Esqueleto->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("star"));
+	Esqueleto->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("esqueletoD"));
 	Esqueleto->setGroup<Attack>(true);
 
 	auto* Golem = mngr_->addEntity(RenderLayer::Fondo);
