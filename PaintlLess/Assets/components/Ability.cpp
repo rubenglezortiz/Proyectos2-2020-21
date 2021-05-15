@@ -59,10 +59,10 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 			if (map->movimientoPosibleEnredadera(posDown)) abilityCells.push_back(posDown);
 		}
 		else {
-		/*	if (map->movimientoPosible(posUp)) abilityCells.push_back(posUp);
+			if (map->movimientoPosible(posUp)) abilityCells.push_back(posUp);
 			if (map->movimientoPosible(posRight)) abilityCells.push_back(posRight);
 			if (map->movimientoPosible(posLeft)) abilityCells.push_back(posLeft);
-			if (map->movimientoPosible(posDown)) abilityCells.push_back(posDown);*/
+			if (map->movimientoPosible(posDown)) abilityCells.push_back(posDown);
 		}
 	}
 	else if (sf == TxT) {
