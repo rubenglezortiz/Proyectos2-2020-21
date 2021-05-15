@@ -132,10 +132,10 @@ void MovementShader::update() {
 void MovementShader::render() {
 	SDL_Rect dest;
 	for (Vector2D casilla : casillasAPintar) {
-		dest.x = casilla.getX() * cellWidth + OFFSET_X;
-		dest.y = (casilla.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP;
-		dest.h = cellHeight * lerpTime;
 		dest.w = cellWidth * lerpTime;
+		dest.h = cellHeight * lerpTime;
+		dest.x = (casilla.getX() * cellWidth + OFFSET_X) + cellWidth/2 - dest.w/2;
+		dest.y = ((casilla.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP) + cellHeight/2 - dest.h/2;
 
 		tex_->render(dest);
 	}
