@@ -125,10 +125,10 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 			if (map->ataquePosible(posCh))
 				findObj = true;
 			if (map->getCharacter(posCh) != nullptr) {
-				if (map->ataquePosible(posCh)) 
+				if (map->ataquePosible(posCh))
 					abilityCells.push_back(posCh);
 			}
-			else 
+			else
 				abilityCells.push_back(posCh);
 			posCh = posCh + atDir;
 		}
@@ -182,21 +182,25 @@ void Ability::update() {
 		return;
 	if (map->getPlayState()->getTurno() == Segundo && entity_->hasGroup<Equipo_Azul>())
 		return;
-	
+
 	if (lerpTime < 1) lerpTime += 0.25;
 
 	auto pos = entity_->getComponent<Transform>()->getPos();
-	if (selected && ih().getMouseButtonState(ih().RIGHT)) {
-		freeAbilityShader();
-		selected = false;
-	}
 
 	int mX = ih().getMousePos().first;
 	int mY = ih().getMousePos().second;
-	if (ih().getMouseButtonState(ih().RIGHT) && entity_->hasComponent<Movimiento>() && playState->getAcciones() > 0 && entity_->getComponent<Movimiento>()->getStun() == 0) {
-		if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && ability_usable) {
-			selected = true;
-			AbilityShader(form, type, shaderDistance);
+	if (ih().getMouseButtonState(ih().RIGHT)) {
+		if (!selected && entity_->hasComponent<Movimiento>() && playState->getAcciones() > 0 && entity_->getComponent<Movimiento>()->getStun() == 0)
+		{
+			if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && ability_usable) {
+				selected = true;
+				AbilityShader(form, type, shaderDistance);
+			}
+		}
+		else
+		{
+			selected = false;
+			freeAbilityShader();
 		}
 	}
 	if (ih().getMouseButtonState(ih().LEFT)) {
