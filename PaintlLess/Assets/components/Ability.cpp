@@ -143,23 +143,26 @@ bool Ability::abilityCheck(const Vector2D& pos) {
 void Ability::render() {
 	SDL_Rect dest;
 	if (abilityCells.size() > 0) {
-		delayTime += 0.65;
-		if (delayTime > 1)
-		{
-			casillasRendered++;
-			delayTime = 0;
-		}
 		int aux = casillasRendered;
 		for (Vector2D casilla : abilityCells) {
-			
-			dest.x = casilla.getX() * cellWidth + OFFSET_X;
-			dest.y = casilla.getY() * cellHeight + OFFSET_Y + OFFSET_TOP;
-			dest.h = cellHeight * lerpTime;
-			dest.w = cellWidth * lerpTime;
+			float lerp = 0;
+
+			if (aux > 0) lerp = 1;
+			else if (aux == 0) lerp = lerpTime;
+
+			dest.w = cellWidth * lerp;
+			dest.h = cellHeight * lerp;
+			dest.x = (casilla.getX() * cellWidth + OFFSET_X) + cellWidth / 2 - dest.w / 2;
+			dest.y = ((casilla.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP) + cellHeight / 2 - dest.h / 2;
 
 			tex->render(dest);
-			if (aux <= 0) break;
-			aux--;
+			if (aux <= 0 && lerpTime >= 1)
+			{
+				lerpTime = 0;
+				casillasRendered++;
+				break;
+			}
+			else aux--;
 		}
 	}
 }
@@ -170,7 +173,7 @@ void Ability::update() {
 	if (map->getPlayState()->getTurno() == Segundo && entity_->hasGroup<Equipo_Azul>())
 		return;
 	
-	if (lerpTime < 1) lerpTime += 0.2;
+	if (lerpTime < 1) lerpTime += 0.25;
 
 	auto pos = entity_->getComponent<Transform>()->getPos();
 	if (selected && ih().getMouseButtonState(ih().LEFT))
