@@ -119,11 +119,13 @@
     { "id" : "esqueletoD",   "file" : "resources/images/menus/SP/descripcion/descripcionEsqueleto.png"},
     { "id" : "golemD",       "file" : "resources/images/menus/SP/descripcion/descripcionGolem.png"},
     { "id" : "arquitectaD",  "file" : "resources/images/menus/SP/descripcion/descripcionArquitecta.png"},
+    { "id" : "picaraD",      "file" : "resources/images/menus/SP/descripcion/descripcionPicara.png"},
     { "id" : "loboD",        "file" : "resources/images/menus/SP/descripcion/descripcionLobo.png"},
 
     { "id" : "botonAtras",     "file" : "resources/images/menus/opciones/botonAtras.png"},
     { "id" : "tick1",          "file" : "resources/images/menus/opciones/botonTick1.png"},
     { "id" : "tick2",          "file" : "resources/images/menus/opciones/botonTick2.png"},
+    { "id" : "fondo",          "file" : "resources/images/menus/opciones/fondo.png"},
     
 
     { "id" : "alquimistaMazoA", "file": "resources/images/interfaz/mazo/alquimistaMazoAzul.png"},

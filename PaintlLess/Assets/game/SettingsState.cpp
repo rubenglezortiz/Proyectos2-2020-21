@@ -14,7 +14,7 @@
 SettingsState::SettingsState(GameStateMachine* gsm, PlayState* pS) : GameState(gsm) {
 	auto* fondo = mngr_->addEntity(RenderLayer::Fondo);
 	fondo->addComponent<Transform2>(Vector2D(0, 0), sdlutils().width(), sdlutils().height());
-	fondo->addComponent<Image>(&sdlutils().images().at("menuSP"));
+	fondo->addComponent<Image>(&sdlutils().images().at("fondo"));
 
 	auto* barra = mngr_->addEntity(RenderLayer::Interfaz);
 	barra->addComponent<Transform2>(Vector2D(sdlutils().width() / 2 - 450, sdlutils().height() - 150), 900, 100);
@@ -26,7 +26,7 @@ SettingsState::SettingsState(GameStateMachine* gsm, PlayState* pS) : GameState(g
 	volumen->addComponent<ButtonVolume>();
 
 	auto* botonX = mngr_->addEntity(RenderLayer::Interfaz);
-	botonX->addComponent<Transform>(Vector2D(sdlutils().width() - 150, 150), 100, 100);
+	botonX->addComponent<Transform>(Vector2D(sdlutils().width() - 150, 0), 150, 150);
 	botonX->addComponent<Image>(&sdlutils().images().at("botonAtras"));
 	botonX->addComponent<MenuButton>(gsm, goBack);
 

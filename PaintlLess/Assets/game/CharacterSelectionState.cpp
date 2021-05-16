@@ -117,7 +117,7 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Picara->addComponent<Transform>(Vector2D(posX - w / 2, 2 * h + offsetY), w, h);
 	Picara->addComponent<Image>(&sdlutils().images().at("picaraSP"));
 	Picara->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("picaraSP2"), &sdlutils().images().at("picaraM"), updatePicara);
-	Picara->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("star"));
+	Picara->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("picaraD"));
 	Picara->setGroup<Attack>(true);
 
 	auto* Tanque = mngr_->addEntity(RenderLayer::Fondo);
