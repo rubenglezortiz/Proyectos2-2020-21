@@ -110,8 +110,9 @@ void Movimiento::update() {
 						sdlutils().soundEffects().at("click").play(); //-----------------------------------------------------------					
 					}
 				}
-				if (ih().getMouseButtonState(ih().RIGHT)) {
+				if (ih().getMouseButtonState(ih().RIGHT) || focused) {
 					selected = false;
+					focused = false;
 					resetCasillasChecked();
 					movShader->freeCasillasAPintar();
 				}

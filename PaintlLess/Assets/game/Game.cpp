@@ -53,7 +53,7 @@ void Game::start() {
 			exit = true;
 			continue;
 		}
-		if (ih().isKeyDown(SDLK_0)) {
+		if (ih().isKeyDown(SDLK_SPACE)) {
 			PlayState* p = dynamic_cast<PlayState*>(stateMachine->currentState());
 			if (p != nullptr)
 				p->pasaTurno();

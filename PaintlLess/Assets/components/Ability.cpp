@@ -212,7 +212,15 @@ void Ability::update() {
 				ability_usable = false;
 				pos.setX(posMovimiento.getX() * cellWidth);
 				pos.setY(posMovimiento.getY() * cellHeight);
-				AbilityExecute(posMovimiento.getX(), posMovimiento.getY());
+				int x = posMovimiento.getX();
+				int y = posMovimiento.getY();
+				auto character = this->map->getCharacter(Vector2D(x, y));
+				if (character != nullptr)
+				{
+					auto mov = character->getComponent<Movimiento>();
+					if (mov != nullptr) mov->focus();
+				}
+				AbilityExecute(x, y);
 				playState->aumentarAcciones();
 			}
 			selected = false;
