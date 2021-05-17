@@ -50,18 +50,18 @@ void Interfaz::render() {
 	}	
 
 	int turnos = playState->getTurnosActuales();
-	destNumTurnos.x = (sdlutils().width() / 2) - 270;
+	destNumTurnos.x = (sdlutils().width() / 2) - 240;
 	destNumTurnos.y = 35;
-	if (turnos < 10) destNumTurnos.w = 30;
+	if (turnos < 10) destNumTurnos.w = 25;
 	else {
-		destNumTurnos.x -= 30;
-		destNumTurnos.w = 60;
+		destNumTurnos.x -= 25;
+		destNumTurnos.w = 50;
 	}
 	destNumTurnos.h = 30;
 	Texture(sdlutils().renderer(), to_string(turnos), sdlutils().fonts().at("NES-CHIMERA24"), build_sdlcolor(0xfff0bcff)).render(destNumTurnos);
 	
-	destNumTurnos.x = (sdlutils().width() / 2) - 235;
-	destNumTurnos.w = 95;
+	destNumTurnos.x = (sdlutils().width() / 2) - 210;
+	destNumTurnos.w = 80;
 	Texture(sdlutils().renderer(), "/20", sdlutils().fonts().at("NES-CHIMERA24"), build_sdlcolor(0xfff0bcff)).render(destNumTurnos);
 
 	
@@ -119,22 +119,22 @@ void Interfaz::render() {
 	casRojo = playState->getPintado1() * 100 / numCasillasPintables;
 	casAzul = playState->getPintado2() * 100 / numCasillasPintables;
 
-	numPorcA.y = numPorcR.y = 32;
-	numPorcA.h = numPorcR.h = 35;
+	numPorcA.y = numPorcR.y = 35;
+	numPorcA.h = numPorcR.h = 30;
 	if (casAzul >= 10) {
-		numPorcA.w = 70;
-		numPorcA.x = 105;
+		numPorcA.w = 50;
+		numPorcA.x = 115;
 	}
 	else {
-		numPorcA.w = 35;
+		numPorcA.w = 25;
 		numPorcA.x = 140;
 	}
 	if (casRojo >= 10) {
-		numPorcR.w = 70;
+		numPorcR.w = 50;
 	}
 	else {
-		numPorcR.w = 35;
-		numPorcR.x = 614;
+		numPorcR.w = 25;
+		numPorcR.x = 620;
 	}
 	Texture(sdlutils().renderer(), to_string(casAzul), sdlutils().fonts().at("NES-CHIMERA24"), build_sdlcolor(0x7ce5fbff)).render(numPorcA);
 	Texture(sdlutils().renderer(), to_string(casRojo), sdlutils().fonts().at("NES-CHIMERA24"), build_sdlcolor(0xff00dcff)).render(numPorcR);
