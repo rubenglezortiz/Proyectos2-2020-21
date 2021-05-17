@@ -169,6 +169,7 @@ void Network::update() {
 		}
 
 		case _DECK_RECEIVED_: {
+			std::cout << "He recibido que estas listo";
 			CharacterSelectionState* characterSelectionState = dynamic_cast<CharacterSelectionState*>(gsm->currentState());
 			if (characterSelectionState == nullptr) return;
 
