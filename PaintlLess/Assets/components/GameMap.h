@@ -22,8 +22,8 @@ using namespace std;
 
 typedef unsigned int uint;
 
-enum Color { Azul, Verde, Rojo, Amarillo, Ninguno};
-enum TipoCasilla { Pintable, NoPintable, Base};
+enum Color { Azul, Verde, Rojo, Amarillo, Ninguno };
+enum TipoCasilla { Pintable, NoPintable, Base };
 
 class PlayState;
 
@@ -33,10 +33,11 @@ struct Casilla
 	TipoCasilla tipoCasilla;
 	Entity* character;
 	Entity* obstaculo;
+	bool enredadera;
 };
 
 class GameMap : public Component {
-private:		
+private:
 	Casilla** cells;
 	int rows, cols;
 	int cellWidth, cellHeight;
@@ -54,6 +55,7 @@ public:
 	void setEstado(const Vector2D& cas, TipoCasilla tipo);
 	void setCharacter(const Vector2D& cas, Entity* e);
 	void setObstaculo(const Vector2D& cas, Entity* e);
+	void setCreeper(const Vector2D& cas, bool e);
 	void removeCharacter(const Vector2D& cas);
 	void removeObstaculo(const Vector2D& cas);
 	bool casillaValida(const Vector2D& cas);
@@ -69,6 +71,7 @@ public:
 	int getNumCasPintables() const { return nCasPintables; };
 	Entity* getCharacter(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].character; }
 	Entity* getObstaculo(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].obstaculo; }
+	bool getCreeper(const Vector2D& pos) { return cells[(int)pos.getY()][(int)pos.getX()].enredadera; }
 	TipoCasilla getTipoCasilla(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].tipoCasilla; }
 	PlayState* getPlayState() { return playState; }
 
@@ -80,11 +83,11 @@ public:
 
 	Vector2D SDLPointToMapCoords(Vector2D p) { //Pasar de pixeles a coordenadas del mapa
 		//como las casillas neceitan int se hace aqui el casteo
-		int X = (p.getX() - OFFSET_X) / cellWidth ;
+		int X = (p.getX() - OFFSET_X) / cellWidth;
 		int Y = (p.getY() - OFFSET_Y - OFFSET_TOP) / cellHeight;
 		//como vector2D es float se hace el casteo pero el valor va a ser .0000
-		Vector2D coords{ std::min(std::max((float)X, 0.0f), (float)cols-1), std::min(std::max((float)Y, 0.0f), (float)rows-1) };
+		Vector2D coords{ std::min(std::max((float)X, 0.0f), (float)cols - 1), std::min(std::max((float)Y, 0.0f), (float)rows - 1) };
 		//cout << coords.getX() << " " << coords.getY() << endl;
 		return coords;
-	}		
+	}
 };

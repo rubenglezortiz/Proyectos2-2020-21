@@ -30,9 +30,8 @@ void Ability_Druid::AbilityExecute(int x, int y) {
 					0.0f);
 
 				e->addComponent<Image>(&sdlutils().images().at("enredadera"));
-				e->addComponent<Health>(1);
 				e->addComponent<Ability_Creeper>(equip);
-				map->setObstaculo(Vector2D(x + i, y), e);
+				map->setCreeper(Vector2D(x, y + i), true);
 				if (equip == 0) e->setGroup<Equipo_Rojo>(e);
 				else e->setGroup<Equipo_Azul>(e);
 			}
@@ -50,9 +49,8 @@ void Ability_Druid::AbilityExecute(int x, int y) {
 					0.0f);
 
 				e->addComponent<Image>(&sdlutils().images().at("enredadera"));
-				e->addComponent<Health>(1);
 				e->addComponent<Ability_Creeper>(equip);
-				map->setObstaculo(Vector2D(x, y + i), e);
+				map->setCreeper(Vector2D(x, y + i), true);
 				if (equip == 0) e->setGroup<Equipo_Rojo>(e);
 				else e->setGroup<Equipo_Azul>(e);
 			}

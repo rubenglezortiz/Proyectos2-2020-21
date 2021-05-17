@@ -9,7 +9,7 @@ void Ability_Creeper::finTurno()
 {
 	lifeCreeper -= 1;
 	if (lifeCreeper < 0) {
-		mapa->removeObstaculo(mapa->SDLPointToMapCoords(tr_->getPos()));
+		mapa->setCreeper(mapa->SDLPointToMapCoords(tr_->getPos()),false);
 		entity_->setActive(false);
 	}
 	else {

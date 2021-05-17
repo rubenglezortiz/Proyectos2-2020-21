@@ -47,10 +47,18 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 		}
 		else if (st == KirinSh) {
 			cout << "Mi Posicion: " << map->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos()) << "Pos que miro: " << posUp;
-			if (map->movimientoPosible(posUp) && map->getCharacter(posUp + Vector2D(0, -1)) != nullptr)abilityCells.push_back(posUp);
-			if (map->movimientoPosible(posRight) && map->getCharacter(posRight + Vector2D(-1, 0)) != nullptr) abilityCells.push_back(posRight);
-			if (map->movimientoPosible(posLeft) && map->getCharacter(posLeft + Vector2D(1, 0)) != nullptr) abilityCells.push_back(posLeft);
-			if (map->movimientoPosible(posDown) && map->getCharacter(posDown + Vector2D(0, 1)) != nullptr) abilityCells.push_back(posDown);
+			if (map->movimientoPosible(posUp) && (map->getCharacter(posUp + Vector2D(0, -1)) != nullptr ||
+				map->getCreeper(posUp + Vector2D(0, -1))))abilityCells.push_back(posUp);
+
+
+			if (map->movimientoPosible(posRight) && (map->getCharacter(posRight + Vector2D(-1, 0)) != nullptr ||
+				map->getCreeper(posRight + Vector2D(-1, 0)))) abilityCells.push_back(posRight);
+
+
+			if (map->movimientoPosible(posLeft) && (map->getCharacter(posLeft + Vector2D(1, 0)) != nullptr ||
+				map->getCreeper(posLeft + Vector2D(1, 0)))) abilityCells.push_back(posLeft);
+			if (map->movimientoPosible(posDown) && (map->getCharacter(posDown + Vector2D(0, 1)) != nullptr ||
+				map->getCreeper(posDown + Vector2D(0, 1)))) abilityCells.push_back(posDown);
 		}
 		else if (st == DruidaSh) {
 			if (map->movimientoPosibleEnredadera(posUp)) abilityCells.push_back(posUp);

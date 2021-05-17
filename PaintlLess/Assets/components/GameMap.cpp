@@ -24,86 +24,87 @@ void GameMap::init() {
 }
 void GameMap::loadMap() {
 	tmx::Map map;
-	if (map.load(sdlutils().tiled().at("mapa" + to_string(level)))) {
-		const auto& layers = map.getLayers();
-		for (const auto& layer : layers) {
-			if (layer->getType() == tmx::Layer::Type::Tile) {
-				const auto& tileLayer = layer->getLayerAs<tmx::TileLayer>();
+	if (!map.load(sdlutils().tiled().at("mapa" + to_string(level)))) return;
+		const auto & layers = map.getLayers();
+	for (const auto& layer : layers) {
+		if (layer->getType() == tmx::Layer::Type::Tile) {
+			const auto& tileLayer = layer->getLayerAs<tmx::TileLayer>();
 
-				cols = tileLayer.getSize().x; rows = tileLayer.getSize().y;
-				cells = new Casilla * [rows];
-				for (int r = 0; r < rows; ++r) {
-					for (int c = 0; c < cols; ++c) {
-						cells[r] = new Casilla[cols];
-					}
+			cols = tileLayer.getSize().x; rows = tileLayer.getSize().y;
+			cells = new Casilla * [rows];
+			for (int r = 0; r < rows; ++r) {
+				for (int c = 0; c < cols; ++c) {
+					cells[r] = new Casilla[cols];
 				}
+			}
 
-				int alto = sdlutils().height() - OFFSET_Y * 2;
-				int ancho = sdlutils().width() - OFFSET_X * 2;
-				cellWidth = ancho / cols;
-				cellHeight = (alto / rows);
-				nCasPintables = 0;
+			int alto = sdlutils().height() - OFFSET_Y * 2;
+			int ancho = sdlutils().width() - OFFSET_X * 2;
+			cellWidth = ancho / cols;
+			cellHeight = (alto / rows);
+			nCasPintables = 0;
 
-				auto tiles = tileLayer.getTiles();
-				for (int i = 0; i < rows; ++i) {
-					for (int j = 0; j < cols; ++j) {
-						auto* casilla = entity_->getMngr()->addEntity(RenderLayer::Fondo);
+			auto tiles = tileLayer.getTiles();
+			for (int i = 0; i < rows; ++i) {
+				for (int j = 0; j < cols; ++j) {
+					auto* casilla = entity_->getMngr()->addEntity(RenderLayer::Fondo);
 
-						casilla->addComponent<Transform2>(Vector2D(j * cellWidth + OFFSET_X, (i * cellHeight) + OFFSET_Y + OFFSET_TOP), cellWidth, cellHeight);
-						string tileset = "tileset" + to_string(tileSet);
-						int casTiled = tiles[i * cols + j].ID - 1;
-						casilla->addComponent<Image>(&sdlutils().images().at(tileset), 4, 3, casTiled / 3, casTiled % 3);
-						if (tileSet < 3) {
-							if (casTiled < 8) {
-								// Agua
-								cells[i][j].color = Color::Ninguno;
-								cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
-							}
-							else if (casTiled < 10) {
-								// Base
-								cells[i][j].color = Color::Ninguno;
-								cells[i][j].tipoCasilla = TipoCasilla::Base;
-							}
-							else {
-								// Roca
-								cells[i][j].color = Color::Ninguno;
-								cells[i][j].tipoCasilla = TipoCasilla::Pintable;
-								nCasPintables++;
-								auto* casilla = entity_->getMngr()->addEntity();
-								Vector2D pos = MapCoordsToSDLPoint(Vector2D(j, i));
-								casilla->addComponent<Transform>(pos, cellWidth, cellHeight);
-								casillas.push_back(casilla);
-							}
+					casilla->addComponent<Transform2>(Vector2D(j * cellWidth + OFFSET_X, (i * cellHeight) + OFFSET_Y + OFFSET_TOP), cellWidth, cellHeight);
+					string tileset = "tileset" + to_string(tileSet);
+					int casTiled = tiles[i * cols + j].ID - 1;
+					casilla->addComponent<Image>(&sdlutils().images().at(tileset), 4, 3, casTiled / 3, casTiled % 3);
+					if (tileSet < 3) {
+						if (casTiled < 8) {
+							// Agua
+							cells[i][j].color = Color::Ninguno;
+							cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
+						}
+						else if (casTiled < 10) {
+							// Base
+							cells[i][j].color = Color::Ninguno;
+							cells[i][j].tipoCasilla = TipoCasilla::Base;
 						}
 						else {
-							if (casTiled == 11) {
-								// Agua
-								cells[i][j].color = Color::Ninguno;
-								cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
-							}
-							else if (casTiled == 9) {
-								// Base
-								cells[i][j].color = Color::Ninguno;
-								cells[i][j].tipoCasilla = TipoCasilla::Base;
-							}
-							else {
-								// Roca
-								cells[i][j].color = Color::Ninguno;
-								cells[i][j].tipoCasilla = TipoCasilla::Pintable;
-								nCasPintables++;
-								auto* casilla = entity_->getMngr()->addEntity();
-								Vector2D pos = MapCoordsToSDLPoint(Vector2D(j, i));
-								casilla->addComponent<Transform>(pos, cellWidth, cellHeight);
-								casillas.push_back(casilla);
-							}
+							// Roca
+							cells[i][j].color = Color::Ninguno;
+							cells[i][j].tipoCasilla = TipoCasilla::Pintable;
+							nCasPintables++;
+							auto* casilla = entity_->getMngr()->addEntity();
+							Vector2D pos = MapCoordsToSDLPoint(Vector2D(j, i));
+							casilla->addComponent<Transform>(pos, cellWidth, cellHeight);
+							casillas.push_back(casilla);
 						}
-						cells[i][j].character = nullptr;
-						cells[i][j].obstaculo = nullptr;
 					}
+					else {
+						if (casTiled == 11) {
+							// Agua
+							cells[i][j].color = Color::Ninguno;
+							cells[i][j].tipoCasilla = TipoCasilla::NoPintable;
+						}
+						else if (casTiled == 9) {
+							// Base
+							cells[i][j].color = Color::Ninguno;
+							cells[i][j].tipoCasilla = TipoCasilla::Base;
+						}
+						else {
+							// Roca
+							cells[i][j].color = Color::Ninguno;
+							cells[i][j].tipoCasilla = TipoCasilla::Pintable;
+							nCasPintables++;
+							auto* casilla = entity_->getMngr()->addEntity();
+							Vector2D pos = MapCoordsToSDLPoint(Vector2D(j, i));
+							casilla->addComponent<Transform>(pos, cellWidth, cellHeight);
+							casillas.push_back(casilla);
+						}
+					}
+					cells[i][j].character = nullptr;
+					cells[i][j].obstaculo = nullptr;
+					cells[i][j].enredadera = false;
 				}
 			}
 		}
 	}
+
 }
 
 void GameMap::render() {
@@ -121,7 +122,7 @@ void GameMap::render() {
 
 void GameMap::setColor(const Vector2D& cas, Color color) {
 	Vector2D cas2 = MapCoordsToSDLPoint(cas);
-	int i = 0; 
+	int i = 0;
 	bool busqueda = false;
 
 	while (i < casillas.size() && !busqueda) {
@@ -168,6 +169,10 @@ void GameMap::setCharacter(const Vector2D& cas, Entity* e) {
 
 void GameMap::setObstaculo(const Vector2D& cas, Entity* e) {
 	cells[(int)cas.getY()][(int)cas.getX()].obstaculo = e;
+}
+
+void GameMap::setCreeper(const Vector2D& cas, bool e) {
+	cells[(int)cas.getY()][(int)cas.getX()].enredadera = e;
 }
 
 void GameMap::removeCharacter(const Vector2D& cas) {
