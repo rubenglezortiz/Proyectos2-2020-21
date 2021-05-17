@@ -211,7 +211,7 @@ bool GameMap::ataquePosible(const Vector2D& cas) {
 	if (!casillaValida(cas)) return false;
 	int x = cas.getX(); int y = cas.getY();
 	if (cells[y][x].obstaculo != nullptr) {
-		return false;
+		return true;
 	}
 
 	// Ha de hacer distinción entre personaje amigo y enemigo.
@@ -220,12 +220,6 @@ bool GameMap::ataquePosible(const Vector2D& cas) {
 			return !cells[y][x].character->hasGroup<Equipo_Azul>();
 		else
 			return !cells[y][x].character->hasGroup<Equipo_Rojo>();
-	}
-	else if (cells[y][x].obstaculo != nullptr) {
-		if (playState->getTurno() == Primero)
-			return !cells[y][x].obstaculo->hasGroup<Equipo_Azul>();
-		else
-			return !cells[y][x].obstaculo->hasGroup<Equipo_Rojo>();
 	}
 	else return false;
 }
