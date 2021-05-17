@@ -33,8 +33,8 @@ void DeckSpawn::health(Entity* c, int l) {
 	c->addComponent<Health>(l);
 }
 
-void DeckSpawn::movement(Entity* c) {
-	c->addComponent<Movimiento>(playState);
+void DeckSpawn::movement(Entity* c, Uint8 casillasAMover) {
+	c->addComponent<Movimiento>(playState, casillasAMover);
 }
 
 void DeckSpawn::image(Entity* c, string t) {
@@ -62,7 +62,7 @@ void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
 
 	switch (character) {
 	case Alquimista:
-		animation(ctr, "alquimistaSheet", 150, Alquimista);	 movement(ctr); health(ctr, 2);
+		animation(ctr, "alquimistaSheet", 150, Alquimista);	 movement(ctr,2); health(ctr, 2);
 		ctr->addComponent<Ability_Alchemist>();
 		break;
 	case Arquitecta:

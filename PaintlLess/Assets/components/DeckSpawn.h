@@ -39,7 +39,7 @@ public:
 
 	void health(Entity* character, int lives);
 	void attack(Entity* character, int damage, string s);
-	void movement(Entity* character);
+	void movement(Entity* character, Uint8 casillasAMover = 1);
 	void image(Entity* character, string tex);
 	void animation(Entity* character, string tex, int d, Unit p);
 
