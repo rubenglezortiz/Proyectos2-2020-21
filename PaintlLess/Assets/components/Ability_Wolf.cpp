@@ -42,8 +42,8 @@ void Ability_Wolf::AbilityExecute(int x, int y)
 			//Pintar suelo
 			if (map->getColor(map->SDLPointToMapCoords(pos)) != Rojo && entit->hasGroup<Equipo_Rojo>())
 				map->setColor(map->SDLPointToMapCoords(pos), Rojo);
-			else if (map->getColor(map->SDLPointToMapCoords(pos)) != Amarillo && entit->hasGroup<Equipo_Azul>())
-				map->setColor(map->SDLPointToMapCoords(pos), Amarillo);
+			else if (map->getColor(map->SDLPointToMapCoords(pos)) != Azul && entit->hasGroup<Equipo_Azul>())
+				map->setColor(map->SDLPointToMapCoords(pos), Azul);
 		}
 	}
 }

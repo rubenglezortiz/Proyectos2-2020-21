@@ -132,7 +132,7 @@ void GameMap::setColor(const Vector2D& cas, Color color) {
 	}
 
 	if (cells[(int)cas.getY()][(int)cas.getX()].tipoCasilla == Pintable) {
-		if (getColor(cas) != color && getColor(cas) != Ninguno && color == Amarillo) {
+		if (getColor(cas) != color && getColor(cas) != Ninguno && color == Azul) {
 			casillas[i]->getComponent<Image>()->setTexture(&sdlutils().images().at("rojo"));
 			playState->aumentaPintado1(1);
 			playState->aumentaPintado2(-1);
@@ -142,8 +142,13 @@ void GameMap::setColor(const Vector2D& cas, Color color) {
 			playState->aumentaPintado2(1);
 			playState->aumentaPintado1(-1);
 		}
+		else if (getColor(cas) != Ninguno && color == Ninguno) {
+			casillas[i]->removeComponent<Image>();
+			if (getColor(cas) == Azul)playState->aumentaPintado1(-1);
+			else playState->aumentaPintado2(-1);
+		}
 		else if (getColor(cas) == Ninguno) {
-			if (color == Amarillo) {
+			if (color == Azul) {
 				casillas[i]->addComponent<Image>(&sdlutils().images().at("rojo"));
 				playState->aumentaPintado1(1);
 			}

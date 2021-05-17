@@ -46,10 +46,10 @@ void Movimiento::update() {
 					//sdlutils().soundEffects().at("moveSound").setChunkVolume(5);
 					sdlutils().soundEffects().at("moveSound").play(); //-----------------------------------------------------------		
 
-					if (entity_->hasGroup<Equipo_Azul>()) colorea(posIni, pos, Amarillo);
+					if (entity_->hasGroup<Equipo_Azul>()) colorea(posIni, pos, Azul);
 
 					else colorea(posIni, pos, Rojo);
-
+					 
 					//estos métodos son para cuando se deselcciona yuna casilla para restablecer los valores de los vectores...
 					movShader->freeCasillasAPintar();
 					resetCasillasChecked();

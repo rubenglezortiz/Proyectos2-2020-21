@@ -22,7 +22,7 @@ void Ability_Bomb::explode() {
 		//Es pintable ==> Pinta
 		if (mapa->movimientoPosible(casillas[i] + posBomb)) {
 			if(entity_->hasGroup<Equipo_Azul>())
-				mapa->setColor(casillas[i] + posBomb, Amarillo);
+				mapa->setColor(casillas[i] + posBomb, Azul);
 			else
 				mapa->setColor(casillas[i] + posBomb, Rojo);
 		} 

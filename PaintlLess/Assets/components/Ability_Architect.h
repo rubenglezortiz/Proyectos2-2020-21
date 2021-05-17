@@ -12,9 +12,6 @@ public:
 		posArc(Vector2D()), resultado(0), selected(false) {}
 	virtual ~Ability_Architect() {  }
 
-	//void init() override; //no soy capaz de meter el init en la superclase
-	/*void update() override;*/
-
 	void AbilityExecute(int x, int y);
 	void finTurno() override { ability_usable = true; freeAbilityShader(); }
 private:

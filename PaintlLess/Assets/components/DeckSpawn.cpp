@@ -130,7 +130,7 @@ void DeckSpawn::spawnShader(int e) {
 		for (int j = 0; j < mapa->getColumns(); ++j) {
 			Vector2D cas = Vector2D(i, j);
 			if (mapa->casillaValida(cas))
-				if (mapa->getTipoCasilla(cas) == Base || (turno == Primero && mapa->getColor(cas) == Amarillo) || (turno == Segundo && mapa->getColor(cas) == Rojo))
+				if (mapa->getTipoCasilla(cas) == Base || (turno == Primero && mapa->getColor(cas) == Azul) || (turno == Segundo && mapa->getColor(cas) == Rojo))
 					if (mapa->getCharacter(cas) == nullptr && mapa->getObstaculo(cas) == nullptr)
 						casillasSpawn.push_back(cas);
 		}
