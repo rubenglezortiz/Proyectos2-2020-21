@@ -5,8 +5,8 @@
 #include <SDL_net.h>
 
 #include "../ecs/Manager.h"
-
-
+#include "../game/GameStateMachine.h"
+#include "../game/CharacterSelectionState.h"
 
 Network::Network(): host_(nullptr), port_(2000),
 	isMaster_(false), isGameReday_(false), id_(0), conn_(), p_(nullptr), otherPlayerAddress_(), localPlayerName_("a"), remotePlayerName_("N/A"),
@@ -37,8 +37,9 @@ Network::~Network() {
 	SDLNet_Quit();
 }
 
-void Network::init() {
+void Network::init(GameStateMachine* gameStateMachine) {
 
+	gsm = gameStateMachine;
 	// Initialise SDLNet
 	if (SDLNet_Init() < 0) {
 		throw SDLNet_GetError();
@@ -167,6 +168,16 @@ void Network::update() {
 			break;
 		}
 
+		case _DECK_RECEIVED_: {
+			CharacterSelectionState* characterSelectionState = dynamic_cast<CharacterSelectionState*>(gsm->currentState());
+			if (characterSelectionState == nullptr) return;
+
+			characterSelectionState->setEnemySelected();
+			characterSelectionState->checkGameReady(gsm);
+
+			break;
+		}
+
 		case _DISCONNECTED_: {
 			DissConnectMsg* m = static_cast<DissConnectMsg*>(m_);
 			isGameReday_ = false;
@@ -191,4 +202,22 @@ void Network::update() {
 
 	}
 
+}
+
+void Network::sendDeckReady()
+{
+	// if the other player is not connected do nothing
+	if (!isGameReday_)
+		return;
+
+	// we prepare a message that includes all information
+	DeckMessage* m = static_cast<DeckMessage*>(m_);
+	m->_type = _DECK_RECEIVED_;
+
+	// set the message length and the address of the other player
+	p_->len = sizeof(DeckMessage);
+	p_->address = otherPlayerAddress_;
+
+	// send the message
+	SDLNet_UDP_Send(conn_, -1, p_);
 }

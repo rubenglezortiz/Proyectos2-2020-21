@@ -276,6 +276,9 @@
     <ClCompile Include="Assets\game\Network.cpp">
       <Filter>Archivos de origen\game</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\game\WaitForCharacterSelectionState.cpp">
+      <Filter>Archivos de origen\game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\game\ecs_defs.h">
@@ -507,6 +510,9 @@
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
     <ClInclude Include="Assets\game\Network.h">
+      <Filter>Archivos de encabezado\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\game\WaitForCharacterSelectionState.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
   </ItemGroup>

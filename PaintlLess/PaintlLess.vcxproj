@@ -196,6 +196,7 @@
     <ClCompile Include="Assets\game\PlayState.cpp" />
     <ClCompile Include="Assets\game\SettingsState.cpp" />
     <ClCompile Include="Assets\game\SoundManager.cpp" />
+    <ClCompile Include="Assets\game\WaitForCharacterSelectionState.cpp" />
     <ClCompile Include="Assets\json\JSON.cpp" />
     <ClCompile Include="Assets\json\JSONValue.cpp" />
     <ClCompile Include="Assets\json\json_demo.cpp" />
@@ -279,6 +280,7 @@
     <ClInclude Include="Assets\game\SettingsState.h" />
     <ClInclude Include="Assets\game\SoundManager.h" />
     <ClInclude Include="Assets\game\Values.h" />
+    <ClInclude Include="Assets\game\WaitForCharacterSelectionState.h" />
     <ClInclude Include="Assets\json\JSON.h" />
     <ClInclude Include="Assets\json\JSONValue.h" />
     <ClInclude Include="Assets\json\json_demo.h" />
