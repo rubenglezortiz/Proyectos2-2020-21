@@ -24,7 +24,7 @@ public:
 	void update() override;
 	//método recursivo que se llama en movimiento cuando se selecciona una casilla para comprobar a que casillas se puede mover
 
-	void casillasPosiblesRecu(const Vector2D& cSelected, vector<vector<CasillaMov>>& casillasChecked, uint casillasAMover, bool alq);
+	void casillasPosiblesRecu(const Vector2D& cSelected, vector<vector<CasillaMov>>& casillasChecked, uint casillasAMover);
 	void casillasPosiblesRecuAux(int casillasAMover, const Vector2D& cSelected, const Vector2D& cActual, vector<vector<CasillaMov>>& casillasChecked, bool base);
 	void render() override;
 	void freeCasillasAPintar();

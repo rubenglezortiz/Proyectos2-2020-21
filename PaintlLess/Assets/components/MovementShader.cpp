@@ -1,5 +1,4 @@
 #include "./MovementShader.h"
-#include "Movimiento.h"
 #include "../game/OffsetInfo.h"
 
 MovementShader::MovementShader(Texture* t) {
@@ -20,12 +19,11 @@ void MovementShader::init() {
 }
 
 //método recursivo que se llama en movimiento cuando se selecciona una casilla para comprobar a que casillas se puede mover
-void MovementShader::casillasPosiblesRecu(const Vector2D& cSelected, vector<vector<CasillaMov>>& casillasChecked, uint casillasAMover, bool alq) {
+void MovementShader::casillasPosiblesRecu(const Vector2D& cSelected, vector<vector<CasillaMov>>& casillasChecked, uint casillasAMover) {
 		//matriz igual que el tablero inicializada a false
 
 		//Movimiento en cruz temporal hito
 		Vector2D casillaAMirar;
-		Vector2D casillaAlq;
 		lerpTime = 0;
 		numCasillasPintadas = 0;
 		for (int i = 1; i <= casillasAMover; i++)
@@ -35,53 +33,29 @@ void MovementShader::casillasPosiblesRecu(const Vector2D& cSelected, vector<vect
 			{
 				casillasAPintar.push_back(casillaAMirar);
 				casillasChecked[casillaAMirar.getX()][casillaAMirar.getY()].movPosible = true;
-				if (alq) {
-					casillaAlq = new Vector2D(casillaAMirar + Vector2D(1,0));
-					if (mapa->movimientoPosible(casillaAMirar) && mapa->movimientoPosible(casillaAlq)) {
-						casillasAPintar.push_back(casillaAlq);
-						casillasChecked[casillaAlq.getX()][casillaAlq.getY()].movPosible = true;
-					}
-				}
 			}
+
 			casillaAMirar = new Vector2D(cSelected.getX() - i, cSelected.getY());
 			if (mapa->movimientoPosible(casillaAMirar))
 			{
 				casillasAPintar.push_back(casillaAMirar);
 				casillasChecked[casillaAMirar.getX()][casillaAMirar.getY()].movPosible = true;
-				if (alq) {
-					casillaAlq = new Vector2D(casillaAMirar + Vector2D(-1, 0));
-					if (mapa->movimientoPosible(casillaAMirar) && mapa->movimientoPosible(casillaAlq)) {
-						casillasAPintar.push_back(casillaAlq);
-						casillasChecked[casillaAlq.getX()][casillaAlq.getY()].movPosible = true;
-					}
-				}
 			}
+
 			casillaAMirar = new Vector2D(cSelected.getX(), cSelected.getY() + i);
 			if (mapa->movimientoPosible(casillaAMirar))
 			{
 				casillasAPintar.push_back(casillaAMirar);
 				casillasChecked[casillaAMirar.getX()][casillaAMirar.getY()].movPosible = true;
-				if (alq) {
-					casillaAlq = new Vector2D(casillaAMirar + Vector2D(0, +1));
-					if (mapa->movimientoPosible(casillaAMirar) && mapa->movimientoPosible(casillaAlq)) {
-						casillasAPintar.push_back(casillaAlq);
-						casillasChecked[casillaAlq.getX()][casillaAlq.getY()].movPosible = true;
-					}
-				}
 			}
+
 			casillaAMirar = new Vector2D(cSelected.getX(), cSelected.getY() - i);
 			if (mapa->movimientoPosible(casillaAMirar))
 			{
 				casillasAPintar.push_back(casillaAMirar);
 				casillasChecked[casillaAMirar.getX()][casillaAMirar.getY()].movPosible = true;
-				if (alq) {
-					casillaAlq = new Vector2D(casillaAMirar + Vector2D(0, -1));
-					if (mapa->movimientoPosible(casillaAMirar) && mapa->movimientoPosible(casillaAlq)) {
-						casillasAPintar.push_back(casillaAlq);
-						casillasChecked[casillaAlq.getX()][casillaAlq.getY()].movPosible = true;
-					}
-				}
 			}
+
 		}
 
 		//casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() - 1), casillasChecked, false);

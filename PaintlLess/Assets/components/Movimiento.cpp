@@ -57,7 +57,7 @@ void Movimiento::update() {
 			}
 			else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
 				selected = true;
-				movShader->casillasPosiblesRecu(mapa->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked, casillasAMover, entity_->hasComponent<Ability_Alchemist>());
+				movShader->casillasPosiblesRecu(mapa->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked, casillasAMover);
 				//sdlutils().soundEffects().at("click").setChunkVolume(5);
 				sdlutils().soundEffects().at("click").play(); //-----------------------------------------------------------					
 			}
