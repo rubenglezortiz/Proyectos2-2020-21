@@ -121,15 +121,8 @@ void GameMap::render() {
 }
 
 void GameMap::setColor(const Vector2D& cas, Color color) {
-	Vector2D cas2 = MapCoordsToSDLPoint(cas);
-	int i = 0;
-	bool busqueda = false;
-
-	while (i < casillas.size() && !busqueda) {
-		if (casillas[i]->getComponent<Transform>()->getPos() == cas2)
-			busqueda = true;
-		else i++;
-	}
+	
+	int i = binarySearchCell(cas);
 
 	if (cells[(int)cas.getY()][(int)cas.getX()].tipoCasilla == Pintable) {
 		if (getColor(cas) != color && getColor(cas) != Ninguno && color == Azul) {
@@ -161,6 +154,30 @@ void GameMap::setColor(const Vector2D& cas, Color color) {
 		cells[(int)cas.getY()][(int)cas.getX()].color = color;
 		cout << "Color: " << getColor(cas) << endl;
 	}
+}
+
+void GameMap::paintDeath(Vector2D cas, Color col) {
+	string color;
+	if (col == Azul) color = "rojo";
+	else color = "azul";
+
+	int i = binarySearchCell(cas);
+
+	if (i < casillas.size())
+		casillas[i]->getComponent<Image>()->setTexture(&sdlutils().images().at(color));
+}
+
+int GameMap::binarySearchCell(Vector2D cas) {
+	Vector2D cas2 = MapCoordsToSDLPoint(cas);
+	int i = 0;
+	bool busqueda = false;
+
+	while (i < casillas.size() && !busqueda) {
+		if (casillas[i]->getComponent<Transform>()->getPos() == cas2)
+			busqueda = true;
+		else i++;
+	}
+	return i;
 }
 
 void GameMap::setEstado(const Vector2D& cas, TipoCasilla tipo) {
@@ -233,6 +250,7 @@ bool GameMap::ataquePosible(const Vector2D& cas) {
 	}
 	else return false;
 }
+
 
 //GameMap GameMap::CreaMapa(string filename) {
 //	MapCell s = MapCell.Empty;

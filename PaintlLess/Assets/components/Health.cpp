@@ -1,4 +1,5 @@
 ﻿#include "Health.h"
+#include "../game/PlayState.h"
 
 void Health::init() {
 	tr = entity_->getComponent<Transform>();
@@ -10,8 +11,13 @@ void Health::init() {
 void Health::hit(int damage) {
 	lives -= damage;
 	if (lives <= 0) {
-		mapa->removeCharacter(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos())); //Quitar la entidad muerta		
-		mapa->removeObstaculo(mapa->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos()));
+		Vector2D tr = entity_->getComponent<Transform>()->getPos();
+		mapa->removeCharacter(mapa->SDLPointToMapCoords(tr)); //Quitar la entidad muerta		
+		mapa->removeObstaculo(mapa->SDLPointToMapCoords(tr));
+		Color color;
+		if (mapa->getPlayState()->getCurrentPlayer() == Segundo) color = Rojo;
+		else color = Azul;
+		mapa->paintDeath(mapa->SDLPointToMapCoords(tr), color);
 
 		if (entity_->getComponent<Ability_Golem>() != nullptr) {    //Deja muro si es el golem
 			entity_->getComponent<Ability_Golem>()->generateWall();

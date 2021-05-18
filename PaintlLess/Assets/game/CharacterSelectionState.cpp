@@ -163,6 +163,15 @@ void CharacterSelectionState::update() {
 	mngr_->update();
 	mngr_->refresh();
 
+	if (ih().isKeyDown(SDL_SCANCODE_D)) {
+		updateAlquimista(gameStateMachine);
+		updateBomba(gameStateMachine);
+		updateEsqueleto(gameStateMachine);
+		updateGolem(gameStateMachine);
+		updatePicara(gameStateMachine);
+		updateTanque(gameStateMachine);
+	}
+
 	sdlutils().clearRenderer();
 	mngr_->render();
 	renderSelected();
