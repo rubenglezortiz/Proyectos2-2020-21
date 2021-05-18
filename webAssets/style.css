@@ -137,7 +137,7 @@ html {
 .row-image-anim {
     height: 320px;
     width: 300px;
-    background: transparent url('/webAssets/images/esqueletoazulidle.png');
+    background: transparent url("../webAssets/images/esqueletoazulidle.png");
     animation: play 1s steps(4, end) infinite;
     /* The Animation */
 }
