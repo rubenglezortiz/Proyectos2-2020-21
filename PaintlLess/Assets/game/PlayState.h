@@ -29,7 +29,7 @@ private:
 public:
 
 	// Constructora.
-	PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> charss2);
+	PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> charss2, int mapa, int tileset);
 	// Destructora.
 	virtual ~PlayState();
 

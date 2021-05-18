@@ -212,7 +212,7 @@ void CharacterSelectionState::play(GameStateMachine* gsm) {
 		}
 		else gsm->getCharSel()->play(gsm);
 
-		std::cout << "Modo offline\n";
+		//std::cout << "Modo offline\n";
 	}
 	else
 	{
@@ -226,7 +226,7 @@ void CharacterSelectionState::play(GameStateMachine* gsm) {
 		gsm->getNetworkManager()->sendDeckReady();
 		characterSelectionState->setSelfHasSelected();
 		characterSelectionState->checkGameReady(gsm);
-		std::cout << "Modo ONLINE\n";
+		//std::cout << "Modo ONLINE\n";
 
 		//TODO quitar botón y poner mensaje de esperar al otro jugador
 	}
@@ -237,7 +237,7 @@ void CharacterSelectionState::checkGameReady(GameStateMachine* gsm)
 {
 	CharacterSelectionState* characterSelectionState = static_cast<CharacterSelectionState*>(gsm->currentState());
 	if (characterSelectionState->getEnemySelected() && characterSelectionState->getSelfSelectd()) gsm->getCharSel()->play(gsm);
-	else std::cout << gsm->getNetworkManager()->isMaster() ? "Master esta esperando\n" : "El client esta esperando\n";
+	//else std::cout << gsm->getNetworkManager()->isMaster() ? "Master esta esperando\n" : "El client esta esperando\n";
 }
 
 // ALQUIMISTA

@@ -21,6 +21,7 @@ public:
 	inline void updateManager(std::unique_ptr<Manager*> mngr) { managerState_ = &mngr; };
 
 	void sendDeckReady();
+	void sendCreateGame(int mapa, int tileset);
 
 	inline Uint8 getId() {
 		return id_;
