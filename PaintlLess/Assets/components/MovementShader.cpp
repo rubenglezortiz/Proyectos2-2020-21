@@ -26,35 +26,42 @@ void MovementShader::casillasPosiblesRecu(const Vector2D& cSelected, vector<vect
 		Vector2D casillaAMirar;
 		lerpTime = 0;
 		numCasillasPintadas = 0;
+		//Si se encuentra un obstaculo, el booleano correspondiente se pone a false
+		//y no se comprueba mas por ese camino
+		bool iz, der, up, down = iz = der = up = true; 
 		for (int i = 1; i <= casillasAMover; i++)
 		{
 			casillaAMirar = new Vector2D(cSelected.getX() + i, cSelected.getY());
-			if (mapa->movimientoPosible(casillaAMirar))
+			if (mapa->movimientoPosible(casillaAMirar) && der)
 			{
 				casillasAPintar.push_back(casillaAMirar);
 				casillasChecked[casillaAMirar.getX()][casillaAMirar.getY()].movPosible = true;
 			}
+			else der = false;
 
 			casillaAMirar = new Vector2D(cSelected.getX() - i, cSelected.getY());
-			if (mapa->movimientoPosible(casillaAMirar))
+			if (mapa->movimientoPosible(casillaAMirar) && iz)
 			{
 				casillasAPintar.push_back(casillaAMirar);
 				casillasChecked[casillaAMirar.getX()][casillaAMirar.getY()].movPosible = true;
 			}
+			else iz = false;
 
 			casillaAMirar = new Vector2D(cSelected.getX(), cSelected.getY() + i);
-			if (mapa->movimientoPosible(casillaAMirar))
+			if (mapa->movimientoPosible(casillaAMirar) && up)
 			{
 				casillasAPintar.push_back(casillaAMirar);
 				casillasChecked[casillaAMirar.getX()][casillaAMirar.getY()].movPosible = true;
 			}
+			else up = false;
 
 			casillaAMirar = new Vector2D(cSelected.getX(), cSelected.getY() - i);
-			if (mapa->movimientoPosible(casillaAMirar))
+			if (mapa->movimientoPosible(casillaAMirar) && down)
 			{
 				casillasAPintar.push_back(casillaAMirar);
 				casillasChecked[casillaAMirar.getX()][casillaAMirar.getY()].movPosible = true;
 			}
+			else down = false;
 
 		}
 
