@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include <vector>
+class Network;
 
 using namespace std;
 
@@ -26,6 +27,7 @@ private:
 	Equipo jugadorActual = Segundo;
 	vector<bool> ch1, ch2;
 	GameMap* mapa_;
+	Network* net;
 public:
 
 	// Constructora.
@@ -37,6 +39,7 @@ public:
 	void createMazo(int n, int x, int equipo);
 	void mazoEquipo();
 	void moveMazo();
+	void update() override;
 
 	void pasaTurno();
 	Equipo getTurno() const { return jugadorActual; }

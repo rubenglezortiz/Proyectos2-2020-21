@@ -28,8 +28,12 @@
 #include "../game/Values.h"
 #include "FinState.h"
 #include "GameStateMachine.h"
+#include "Network.h"
 
 PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> charss2, int mapa, int tileset) : GameState(gsm) {
+
+	//Obtener net
+	net = gsm->getNetworkManager();
 
 	// Creación interfaz
 	auto* fondo = mngr_->addEntity(RenderLayer::Fondo);
@@ -180,6 +184,25 @@ void PlayState::moveMazo() {
 			}
 		}
 	}
+}
+
+void PlayState::update()
+{
+
+	if (ih().isKeyDown(SDLK_SPACE)) {
+		if (!gameStateMachine->isOnline())
+		{
+			pasaTurno();
+		}
+		else if (gameStateMachine->isOnline() && 
+			(jugadorActual == Primero && !net->isMaster() ||
+			 jugadorActual == Segundo && net->isMaster()))
+		{
+			pasaTurno();
+			net->sendChangeTurno();
+		}
+	}
+	GameState::update();
 }
 
 void PlayState::pasaTurno() {

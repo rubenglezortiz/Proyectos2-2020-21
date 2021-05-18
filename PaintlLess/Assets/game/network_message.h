@@ -13,7 +13,8 @@ enum MsgType : uint8_nt {
 	_DISCONNECTED_, //
 	_ACTIVE_, //
 	_DECK_RECEIVED_, //
-	_CLIENT_GAME_
+	_CLIENT_GAME_, //
+	_TURN_CHANGE_
 };
 
 struct NetworkMessage {

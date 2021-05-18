@@ -22,6 +22,7 @@ public:
 
 	void sendDeckReady();
 	void sendCreateGame(int mapa, int tileset);
+	void sendChangeTurno();
 
 	inline Uint8 getId() {
 		return id_;

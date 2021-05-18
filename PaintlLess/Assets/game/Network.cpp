@@ -188,6 +188,17 @@ void Network::update() {
 			break;
 		}
 
+		case _TURN_CHANGE_: 
+		{
+			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+			if (playState != nullptr)
+			{
+				playState->pasaTurno();
+			}
+			else std::cout << "Si ves este mensaje es que algo anda mal";
+			break;
+		}
+
 		case _DISCONNECTED_: {
 			DissConnectMsg* m = static_cast<DissConnectMsg*>(m_);
 			isGameReday_ = false;
@@ -246,6 +257,24 @@ void Network::sendCreateGame(int mapa, int tileset)
 
 	// set the message length and the address of the other player
 	p_->len = sizeof(CreateGameMessage);
+	p_->address = otherPlayerAddress_;
+
+	// send the message
+	SDLNet_UDP_Send(conn_, -1, p_);
+}
+
+void Network::sendChangeTurno()
+{
+	// if the other player is not connected do nothing
+	if (!isGameReday_)
+		return;
+
+	// we prepare a message that includes all information
+	NetworkMessage* m = static_cast<NetworkMessage*>(m_);
+	m->_type = _TURN_CHANGE_;
+
+	// set the message length and the address of the other player
+	p_->len = sizeof(NetworkMessage);
 	p_->address = otherPlayerAddress_;
 
 	// send the message
