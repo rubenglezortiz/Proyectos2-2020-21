@@ -17,11 +17,11 @@ SettingsState::SettingsState(GameStateMachine* gsm, PlayState* pS) : GameState(g
 	fondo->addComponent<Image>(&sdlutils().images().at("fondo"));
 
 	auto* barra = mngr_->addEntity(RenderLayer::Interfaz);
-	barra->addComponent<Transform2>(Vector2D(sdlutils().width() / 2 - 450, sdlutils().height() - 150), 900, 100);
+	barra->addComponent<Transform2>(Vector2D(sdlutils().width() / 2 - 450, sdlutils().height() - 150), 900, 75);
 	barra->addComponent<Image>(&sdlutils().images().at("barraVolumen"));
 
 	auto* volumen = mngr_->addEntity(RenderLayer::Interfaz);
-	volumen->addComponent<Transform2>(Vector2D(sdlutils().volume() * 8 + (sdlutils().width() / 2 - 400), sdlutils().height() - 150), 100, 100);
+	volumen->addComponent<Transform2>(Vector2D(sdlutils().volume() * 8 + (sdlutils().width() / 2 - 400), sdlutils().height() - 150), 75, 75);
 	volumen->addComponent<Image>(&sdlutils().images().at("botonVolumen"));
 	volumen->addComponent<ButtonVolume>();
 
@@ -31,15 +31,20 @@ SettingsState::SettingsState(GameStateMachine* gsm, PlayState* pS) : GameState(g
 	botonX->addComponent<MenuButton>(gsm, goBack);
 
 	auto* botonTick = mngr_->addEntity(RenderLayer::Interfaz);
-	botonTick->addComponent<Transform2>(Vector2D(sdlutils().width()/2, sdlutils().height()/2), 100, 100);
+	botonTick->addComponent<Transform2>(Vector2D(sdlutils().width() - 600, 200), 100, 100);
 	botonTick->addComponent<Image>(&sdlutils().images().at("tick1"));
 	botonTick->addComponent<ButtonTick>(&sdlutils().images().at("tick2"), tickVolume);
+
+	auto* botonTick2 = mngr_->addEntity(RenderLayer::Interfaz);
+	botonTick2->addComponent<Transform2>(Vector2D(sdlutils().width() - 600, 400), 100, 100);
+	botonTick2->addComponent<Image>(&sdlutils().images().at("tick1"));
+	botonTick2->addComponent<ButtonTick>(&sdlutils().images().at("tick2"), tickVolume);
 
 	if (pS != nullptr) {
 		playState_ = pS;
 		auto* bRendirse = mngr_->addEntity(RenderLayer::Interfaz);
-		bRendirse->addComponent<Transform2>(Vector2D(sdlutils().width() / 2 - 150, sdlutils().height() / 2 + 150), 100, 100);
-		bRendirse->addComponent<Image>(&sdlutils().images().at("barraVolumen"));
+		bRendirse->addComponent<Transform2>(Vector2D(sdlutils().width() / 2 - 200, sdlutils().height() / 2 + 200), 400, 200);
+		bRendirse->addComponent<Image>(&sdlutils().images().at("rendirse"));
 		bRendirse->addComponent<ButtonSurrender>(pS);
 	}
 }
