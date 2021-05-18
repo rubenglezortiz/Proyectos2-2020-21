@@ -24,7 +24,8 @@ private:
 	 int tipo = -1;
 	 vector<Texture*> personajesSelected;
 	 std::string equipo;
-
+	 bool enemyHasSelected = false;
+	 bool selfHasSelected = false;
 	// Método que renderiza los personajes seleccionados en el mazo.
 	 void renderSelected();
 
@@ -43,6 +44,12 @@ public:
 	 int getTipo() { return tipo; }
 	 void setSelected(bool t) { selected = t; }
 	 bool getSelected() { return selected;  }
+	 void setEnemySelected() { enemyHasSelected = true; }
+	 void setSelfHasSelected() { selfHasSelected = true; }
+
+	 bool getEnemySelected() { return enemyHasSelected; }
+	 bool getSelfSelectd() { return selfHasSelected; }
+	 void checkGameReady(GameStateMachine* gsm);
 
 	// Métodos para seleccionar a los personajes.
 	 static void updateAlquimista(GameStateMachine* gsm);

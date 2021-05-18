@@ -15,10 +15,14 @@ class Network {
 public:
 	Network();
 	virtual ~Network();
-	void init();
+	void init(GameStateMachine* gameStateMachine);
 	void update();
 
 	inline void updateManager(std::unique_ptr<Manager*> mngr) { managerState_ = &mngr; };
+
+	void sendDeckReady();
+	void sendCreateGame(int mapa, int tileset);
+	void sendChangeTurno();
 
 	inline Uint8 getId() {
 		return id_;
@@ -42,7 +46,6 @@ public:
 			std::swap(names_[0], names_[1]);
 		}
 	}
-
 private:
 	const char* host_;
 	Uint16 port_;
@@ -57,6 +60,7 @@ private:
 	std::string remotePlayerName_;
 	std::array<std::string, 2> names_;
 	Uint32 lastTimeActive_;
+	GameStateMachine* gsm;
 
 	std::unique_ptr<Manager*>* managerState_;
 };

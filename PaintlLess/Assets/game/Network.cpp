@@ -5,8 +5,9 @@
 #include <SDL_net.h>
 
 #include "../ecs/Manager.h"
-
-
+#include "../game/GameStateMachine.h"
+#include "../game/CharacterSelectionState.h"
+#include "../game/PlayState.h"
 
 Network::Network(): host_(nullptr), port_(2000),
 	isMaster_(false), isGameReday_(false), id_(0), conn_(), p_(nullptr), otherPlayerAddress_(), localPlayerName_("a"), remotePlayerName_("N/A"),
@@ -37,8 +38,9 @@ Network::~Network() {
 	SDLNet_Quit();
 }
 
-void Network::init() {
+void Network::init(GameStateMachine* gameStateMachine) {
 
+	gsm = gameStateMachine;
 	// Initialise SDLNet
 	if (SDLNet_Init() < 0) {
 		throw SDLNet_GetError();
@@ -167,6 +169,36 @@ void Network::update() {
 			break;
 		}
 
+		case _DECK_RECEIVED_: {
+			//std::cout << "He recibido que estas listo";
+			CharacterSelectionState* characterSelectionState = dynamic_cast<CharacterSelectionState*>(gsm->currentState());
+			if (characterSelectionState == nullptr) return;
+
+			characterSelectionState->setEnemySelected();
+			characterSelectionState->checkGameReady(gsm);
+
+			break;
+		}
+
+		case _CLIENT_GAME_:
+		{
+			std::cout << "Client has received game\n";
+			CreateGameMessage* m = static_cast<CreateGameMessage*>(m_);
+			gsm->getCharSel()->clientPlay(gsm ,m->mapa, m->tileset);
+			break;
+		}
+
+		case _TURN_CHANGE_: 
+		{
+			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+			if (playState != nullptr)
+			{
+				playState->pasaTurno();
+			}
+			else std::cout << "Si ves este mensaje es que algo anda mal";
+			break;
+		}
+
 		case _DISCONNECTED_: {
 			DissConnectMsg* m = static_cast<DissConnectMsg*>(m_);
 			isGameReday_ = false;
@@ -180,15 +212,71 @@ void Network::update() {
 		}
 	}
 
-	if (isGameReday_ && SDL_GetTicks() - lastTimeActive_ > 3000) {
-		isGameReday_ = false;
-		names_[1 - id_] = remotePlayerName_ = "N/A";
-		if (!isMaster_) {
-			SDLNet_UDP_Close(conn_);
-			conn_ = SDLNet_UDP_Open(port_);
-			isMaster_ = true;
-		}
+	//if (isGameReday_ && SDL_GetTicks() - lastTimeActive_ > 3000) {
+	//	isGameReday_ = false;
+	//	names_[1 - id_] = remotePlayerName_ = "N/A";
+	//	if (!isMaster_) {
+	//		SDLNet_UDP_Close(conn_);
+	//		conn_ = SDLNet_UDP_Open(port_);
+	//		isMaster_ = true;
+	//	}
 
-	}
+	//}
 
+}
+
+void Network::sendDeckReady()
+{
+	// if the other player is not connected do nothing
+	if (!isGameReday_)
+		return;
+
+	// we prepare a message that includes all information
+	NetworkMessage* m = static_cast<NetworkMessage*>(m_);
+	m->_type = _DECK_RECEIVED_;
+
+	// set the message length and the address of the other player
+	p_->len = sizeof(NetworkMessage);
+	p_->address = otherPlayerAddress_;
+
+	// send the message
+	SDLNet_UDP_Send(conn_, -1, p_);
+}
+
+void Network::sendCreateGame(int mapa, int tileset)
+{
+	// if the other player is not connected do nothing
+	if (!isGameReday_)
+		return;
+
+	// we prepare a message that includes all information
+	CreateGameMessage* m = static_cast<CreateGameMessage*>(m_);
+	m->_type = _CLIENT_GAME_;
+	m->mapa = mapa;
+	m->tileset = tileset;
+
+	// set the message length and the address of the other player
+	p_->len = sizeof(CreateGameMessage);
+	p_->address = otherPlayerAddress_;
+
+	// send the message
+	SDLNet_UDP_Send(conn_, -1, p_);
+}
+
+void Network::sendChangeTurno()
+{
+	// if the other player is not connected do nothing
+	if (!isGameReday_)
+		return;
+
+	// we prepare a message that includes all information
+	NetworkMessage* m = static_cast<NetworkMessage*>(m_);
+	m->_type = _TURN_CHANGE_;
+
+	// set the message length and the address of the other player
+	p_->len = sizeof(NetworkMessage);
+	p_->address = otherPlayerAddress_;
+
+	// send the message
+	SDLNet_UDP_Send(conn_, -1, p_);
 }

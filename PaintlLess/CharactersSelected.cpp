@@ -1,5 +1,6 @@
 #include "CharactersSelected.h"
 #include "Assets/game/GameStateMachine.h"
+#include "Assets/sdlutils/SDLUtils.h"
 
 CharactersSelected::CharactersSelected() {
     // Se inicializa el vector de selección a false.
@@ -19,8 +20,31 @@ void CharactersSelected::updatePersonaje(Unit pj) {
 }
 
 void CharactersSelected::play(GameStateMachine* gsm) {
-    if (cont == max) gsm->changeState(new PlayState(gsm, chars, chars2));
+    if (cont == max)
+    {
+        int mapa = sdlutils().rand().nextInt(0, 8);
+        std::cout << "Numero de mapa: " << mapa << "\n";
+        int tileSet = 3;
+        if (mapa < 4)
+            tileSet = sdlutils().rand().nextInt(1, 3);
+
+        if (gsm->isOnline() && gsm->getNetworkManager()->isMaster())
+        {
+            std::cout << "Master crear juego: " << mapa << "\n";
+
+            gsm->getNetworkManager()->sendCreateGame(mapa, tileSet);
+            gsm->changeState(new PlayState(gsm, chars, chars2, mapa, tileSet));
+
+        }
+       else if(!gsm->isOnline()) gsm->changeState(new PlayState(gsm, chars, chars2, mapa, tileSet));
+    }
     else cout << "Play";
+}
+
+void CharactersSelected::clientPlay(GameStateMachine* gsm, int mapa, int tileset)
+{
+    std::cout << "Quiero crear un mapa \n";
+    gsm->changeState(new PlayState(gsm, chars, chars2, mapa, tileset));
 }
 
 void CharactersSelected::selectPersonaje(vector<bool>& ch, Unit pj)

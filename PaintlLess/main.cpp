@@ -7,7 +7,7 @@
 
 void start() {
 	Game g;
-
+	srand(time(NULL));
 	g.init();
 	g.start();
 }

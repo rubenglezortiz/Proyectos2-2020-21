@@ -38,6 +38,7 @@ public:
     void updatePersonaje(Unit pj);
     // Método que pasa a la partida cuando se han seleccionado max personajes.
     void play(GameStateMachine* gsm);
+    void clientPlay(GameStateMachine* gsm, int mapa, int tileset);
 
     void setEquipo(int equipo) { equipo_ = equipo; }
     void updateCont() { cont = 0; }

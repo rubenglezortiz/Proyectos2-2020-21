@@ -28,23 +28,22 @@
 #include "../game/Values.h"
 #include "FinState.h"
 #include "GameStateMachine.h"
+#include "Network.h"
 
-PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> charss2) : GameState(gsm) {
+PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> charss2, int mapa, int tileset) : GameState(gsm) {
+
+	//Obtener net
+	net = gsm->getNetworkManager();
 
 	// Creación interfaz
 	auto* fondo = mngr_->addEntity(RenderLayer::Fondo);
 	fondo->addComponent<Transform>(Vector2D(), sdlutils().width(), sdlutils().height());
 
-	int mapa = sdlutils().rand().nextInt(0, 8);
-	int tileSet = 3;
-	if (mapa < 4)
-		tileSet = sdlutils().rand().nextInt(1, 3);
-
-	fondo->addComponent<Image>(&sdlutils().images().at("tablero" + to_string(tileSet)));
+	fondo->addComponent<Image>(&sdlutils().images().at("tablero" + to_string(tileset)));
 
 	// Creacion GameMap
 	auto* m = mngr_->addEntity(RenderLayer::Tablero);
-	m->addComponent<GameMap>(mapa, tileSet, this);
+	m->addComponent<GameMap>(mapa, tileset, this);
 	mngr_.get()->setHandler<Mapa>(m);
 	mapa_ = m->getComponent<GameMap>();
 	m->addComponent<Interfaz>();
@@ -185,6 +184,25 @@ void PlayState::moveMazo() {
 			}
 		}
 	}
+}
+
+void PlayState::update()
+{
+
+	if (ih().isKeyDown(SDLK_SPACE)) {
+		if (!gameStateMachine->isOnline())
+		{
+			pasaTurno();
+		}
+		else if (gameStateMachine->isOnline() && 
+			(jugadorActual == Primero && !net->isMaster() ||
+			 jugadorActual == Segundo && net->isMaster()))
+		{
+			pasaTurno();
+			net->sendChangeTurno();
+		}
+	}
+	GameState::update();
 }
 
 void PlayState::pasaTurno() {

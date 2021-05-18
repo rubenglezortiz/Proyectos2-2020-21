@@ -31,8 +31,9 @@ public:
 	void initState();
 	void update();
 	void setOnline(bool a) { online = a; };
-
+	bool isOnline() { return online; }
 	void refresh();
+	Network* getNetworkManager() { return net; }
 
 	// Devuelve el estado actual.
 	GameState* currentState() { return states.top(); };

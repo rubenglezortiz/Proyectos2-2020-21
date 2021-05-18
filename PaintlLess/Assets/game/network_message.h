@@ -11,11 +11,20 @@ enum MsgType : uint8_nt {
 	_I_WANT_TO_PLAY_,
 	_WELCOME_,
 	_DISCONNECTED_, //
-	_ACTIVE_
+	_ACTIVE_, //
+	_DECK_RECEIVED_, //
+	_CLIENT_GAME_, //
+	_TURN_CHANGE_
 };
 
 struct NetworkMessage {
 	uint8_nt _type;
+};
+
+struct CreateGameMessage : NetworkMessage
+{
+	uint8_nt mapa;
+	uint8_nt tileset;
 };
 
 struct DissConnectMsg : NetworkMessage {

@@ -152,7 +152,7 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 		img1->setTexture(&sdlutils().images().at("p1v"));
 		img2->setTexture(&sdlutils().images().at("p2nv"));
 	}
-	else  { 
+	else {
 		equipo = "circuloR";
 		img1->setTexture(&sdlutils().images().at("p1nv"));
 		img2->setTexture(&sdlutils().images().at("p2v"));
@@ -211,12 +211,41 @@ void CharacterSelectionState::removeCharacterSelected(Texture* tex) {
 }
 
 void CharacterSelectionState::play(GameStateMachine* gsm) {
-	if (gsm->getCharSel()->getEquipo() == 0) {
-		gsm->getCharSel()->setEquipo(1);
-		gsm->getCharSel()->updateCont();
-		gsm->changeState(new CharacterSelectionState(gsm));
+	if (!gsm->isOnline())
+	{
+		if (gsm->getCharSel()->getEquipo() == 0) {
+			gsm->getCharSel()->setEquipo(1);
+			gsm->getCharSel()->updateCont();
+			gsm->changeState(new CharacterSelectionState(gsm));
+		}
+		else gsm->getCharSel()->play(gsm);
+
+		//std::cout << "Modo offline\n";
 	}
-	else gsm->getCharSel()->play(gsm);
+	else
+	{
+	/*	if (!gsm->getNetworkManager()->isGameReady())
+		{
+			std::cout << "No ha conectado el otro jugador\n";
+			return;
+		}*/
+		CharacterSelectionState* characterSelectionState = static_cast<CharacterSelectionState*>(gsm->currentState());
+		if (characterSelectionState->getSelfSelectd()) return;
+		gsm->getNetworkManager()->sendDeckReady();
+		characterSelectionState->setSelfHasSelected();
+		characterSelectionState->checkGameReady(gsm);
+		//std::cout << "Modo ONLINE\n";
+
+		//TODO quitar botón y poner mensaje de esperar al otro jugador
+	}
+
+}
+
+void CharacterSelectionState::checkGameReady(GameStateMachine* gsm)
+{
+	CharacterSelectionState* characterSelectionState = static_cast<CharacterSelectionState*>(gsm->currentState());
+	if (characterSelectionState->getEnemySelected() && characterSelectionState->getSelfSelectd()) gsm->getCharSel()->play(gsm);
+	//else std::cout << gsm->getNetworkManager()->isMaster() ? "Master esta esperando\n" : "El client esta esperando\n";
 }
 
 // ALQUIMISTA
