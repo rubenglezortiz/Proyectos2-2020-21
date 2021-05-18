@@ -28,7 +28,7 @@ html {
     margin-top: -10px;
     height: 80px;
     display: block;
-    background-color:#282B2D;
+    background-color: #282B2D;
 }
 
 .inner_header {
@@ -44,8 +44,7 @@ html {
     float: left;
 }
 
-.logo_container :hover
-{
+.logo_container :hover {
     transition: 0.3s ease-in-out;
     transform: scaleX(-1);
 }
@@ -135,17 +134,38 @@ html {
     font-size: 30px;
 }
 
-.row-image img {  
-    border-style:dashed;
+.row-image-anim {
+    height: 320px;
+    width: 300px;
+    background: transparent url('/webAssets/images/esqueletoAzulIdle.png');
+    animation: play 1s steps(4, end) infinite;
+    /* The Animation */
+}
+
+@keyframes play {
+    100% {
+        background-position: -1280px 0;
+    }
+}
+
+.row-image img {
+    border-style: dashed;
     border-color: #4fc3c7;
     object-fit: contain;
     height: 100%;
     text-align: center;
     font-size: 30px;
+    animation: dashedImage 1s steps(20) alternate infinite;
+    /* The Animation */
+}
+
+@keyframes dashedImage {
+    to {
+        border-radius: 12px;
+    }
 }
 
 .text-box {
-    
     width: calc(70% - 10em);
     height: 65%;
     border-radius: 20px;
@@ -164,7 +184,7 @@ html {
 }
 
 .row-item {
-    /* background-color: #f1f1f1; */    
+    /* background-color: #f1f1f1; */
     height: 100%;
     margin: 0px 20px 0px;
     text-align: center;
