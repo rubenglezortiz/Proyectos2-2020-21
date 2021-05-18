@@ -488,18 +488,6 @@
     <ClInclude Include="Assets\game\SoundManager.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\game\SettingsState.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\ButtonSettings.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\ButtonTick.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\ButtonSurrender.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="Assets\game\network_message.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
@@ -508,6 +496,18 @@
     </ClInclude>
     <ClInclude Include="Assets\game\Network.h">
       <Filter>Archivos de encabezado\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\game\SettingsState.h">
+      <Filter>Archivos de encabezado\game</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\ButtonSettings.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\ButtonSurrender.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\ButtonTick.h">
+      <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

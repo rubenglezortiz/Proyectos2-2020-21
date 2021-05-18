@@ -52,3 +52,10 @@ void SettingsState::tickVolume(bool state) {
 	if (state) sdlutils().changeSFXvolume(0);
 	else sdlutils().restoreAllVolume();
 }
+
+void SettingsState::update() {
+	GameState::update();
+	if (ih().isKeyDown(SDL_SCANCODE_ESCAPE)) {
+		gameStateMachine->popState();
+	}
+}

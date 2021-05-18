@@ -17,7 +17,7 @@ void DescriptionState::init() {
 	sdlutils().presentRenderer();
 }
 void DescriptionState::update() {
-	if (ih().getMouseButtonState(ih().LEFT)) {
+	if (ih().isKeyDown(SDL_SCANCODE_ESCAPE) || ih().getMouseButtonState(ih().LEFT)) {
 		gameStateMachine->popState();
 	}
 }

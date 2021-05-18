@@ -49,7 +49,7 @@ void Game::start() {
 		while (SDL_PollEvent(&event))
 			ih().update(event);
 
-		if (ih().isKeyDown(SDL_SCANCODE_ESCAPE) || ih().quitEvent()) {
+		if (ih().quitEvent()) {
 			exit = true;
 			continue;
 		}
