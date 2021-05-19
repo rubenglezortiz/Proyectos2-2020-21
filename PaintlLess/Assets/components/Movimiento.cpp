@@ -1,7 +1,7 @@
 #include "./Movimiento.h"
 #include "../game/PlayState.h"
 #include "../game/OffsetInfo.h"
-
+#include "../game/GameStateMachine.h"
 
 void Movimiento::init() {
 	tr_ = entity_->getComponent<Transform>();
@@ -9,6 +9,7 @@ void Movimiento::init() {
 	cellWidth = mapa->getCellWidth();
 	cellHeight = mapa->getCellHeight();
 	movShader = entity_->getMngr()->getHandler<BoardManager>()->getComponent<MovementShader>();
+	gsm = playState->getGSM();
 	//mapa->setCharacter(mapa->SDLPointToMapCoords(tr_->getPos()), entity_);
 	initializeCasillasChecked();
 	assert(tr_ != nullptr);
@@ -16,7 +17,11 @@ void Movimiento::init() {
 
 void Movimiento::update() {
 	if (casillasAMover == 0) return;
-	if ((entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero || entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) && stun == 0) {
+	if ((gsm->isOnline() && 
+		((gsm->getNetworkManager()->isMaster() && entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) ||
+		(!gsm->getNetworkManager()->isMaster() && entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero))) ||
+
+		(!gsm->isOnline() && (entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero || entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) && stun == 0)) {
 		if (playState->getAcciones() == 0)return;
 		auto& pos = tr_->getPos();
 		Vector2D posIni = pos;

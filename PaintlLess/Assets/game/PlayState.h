@@ -41,6 +41,7 @@ public:
 	void mazoEquipo();
 	void moveMazo();
 	void update() override;
+	GameMap* getMapa() { return mapa_; }
 
 	void pasaTurno();
 	Equipo getTurno() const { return jugadorActual; }

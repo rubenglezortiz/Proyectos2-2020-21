@@ -8,6 +8,8 @@
 #include "./Transform.h"
 #include "./MovementShader.h"
 
+class GameStateMachine;
+
 class Movimiento : public Component {
 public:
 	Movimiento(PlayState* playState, uint casillasAMover = 1) : tr_(nullptr), mapa(nullptr), selected(false), movShader(nullptr), cellWidth(0), cellHeight(0), playState(playState), casillasAMover(casillasAMover) {}
@@ -49,6 +51,7 @@ private:
 	void initializeCasillasChecked();
 	void resetCasillasChecked();
 	PlayState* playState = nullptr;
+	GameStateMachine* gsm;
 	void colorea(Vector2D posIni, Vector2D posFin, Color color);
 	uint casillasAMover;
 

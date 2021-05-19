@@ -8,6 +8,8 @@
 #include "../game/GameStateMachine.h"
 #include "../game/CharacterSelectionState.h"
 #include "../game/PlayState.h"
+#include "../components/EntityFactory.h"
+#include "../components//GameMap.h"
 
 Network::Network(): host_(nullptr), port_(2000),
 	isMaster_(false), isGameReday_(false), id_(0), conn_(), p_(nullptr), otherPlayerAddress_(), localPlayerName_("a"), remotePlayerName_("N/A"),
@@ -201,7 +203,16 @@ void Network::update() {
 
 		case _SPAWN_CHARACTER_: {
 
-
+			SpawnMessage* m = static_cast<SpawnMessage*>(m_);
+			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+			if (playState != nullptr)
+			{
+				int equipo = playState->getCurrentPlayer() == 0 ? 1 : 0;
+				//int equipo = playState->getCurrentPlayer();
+				EntityFactory::createCharacter(playState->getMapa()->getEntity()->getMngr(), playState->getMapa(), playState, m->personaje, equipo, Vector2D((float)m->posX,(float) m->posY));
+			}
+			else std::cout << "Si ves este mensaje es que algo anda mal";
+			
 			break;
 		}
 
