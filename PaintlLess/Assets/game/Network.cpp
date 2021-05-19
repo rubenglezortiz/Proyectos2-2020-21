@@ -204,7 +204,7 @@ void Network::update() {
 		case _MOVE_CHARACTER_: {
 			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
 			ActionMessage* m = static_cast<ActionMessage*>(m_);
-
+			playState->moveChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY));
 
 			break;
 		}

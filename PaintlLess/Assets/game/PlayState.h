@@ -12,6 +12,7 @@ using namespace std;
 
 enum Equipo { Primero, Segundo };
 class GameMap;
+class Vector2D;
 class PlayState : public GameState
 {
 

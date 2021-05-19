@@ -32,10 +32,10 @@ struct SpawnMessage : NetworkMessage
 
 struct ActionMessage : NetworkMessage
 {
-	uint8_nt mapX;
-	uint8_nt mapY;
-	uint8_nt posX;
-	uint8_nt posY;
+	uint16_nt mapX;
+	uint16_nt mapY;
+	uint16_nt posX;
+	uint16_nt posY;
 };
 
 struct CreateGameMessage : NetworkMessage

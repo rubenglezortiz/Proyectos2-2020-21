@@ -35,10 +35,10 @@ void Movimiento::update() {
 				//esto se debe hacer en movementshader
 				Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
 
-				if (TryMoveCharacter(posMovimiento, posIni))
+				if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible)
 				{
-					//Mandar mensaej
-					gsm->getNetworkManager()->sendMoveMessage(posMovimiento.getX(), posMovimiento.getY(), posIni.getX(), posIni.getY());
+					MoveCharacter(posIni, posMovimiento);
+					if(gsm->isOnline())gsm->getNetworkManager()->sendMoveMessage(posIni.getX(), posIni.getY(), posMovimiento.getX(), posMovimiento.getY());
 				}
 				selected = false;
 				movShader->freeCasillasAPintar();
@@ -69,26 +69,19 @@ void Movimiento::finTurno()
 	}
 }
 
-bool Movimiento::TryMoveCharacter(Vector2D posMovimiento, Vector2D posIni)
+void Movimiento::MoveCharacter(const Vector2D& posIni, const Vector2D& destino)
 {
 	auto& pos = tr_->getPos();
-	bool canMove = false;
-	if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible) {
-		mapa->removeCharacter(mapa->SDLPointToMapCoords(pos));
-		pos.setX((posMovimiento.getX() * cellWidth) + OFFSET_X);
-		pos.setY((posMovimiento.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP);
-		mapa->setCharacter(mapa->SDLPointToMapCoords(pos), entity_);
-		playState->aumentarAcciones();
-		cout << pos;
-		canMove = true;
-	}
-	//sdlutils().soundEffects().at("moveSound").setChunkVolume(5);
-	sdlutils().soundEffects().at("moveSound").play(); //-----------------------------------------------------------		
+	sdlutils().soundEffects().at("moveSound").play();
+	mapa->removeCharacter(mapa->SDLPointToMapCoords(pos));
+	pos.setX((destino.getX() * cellWidth) + OFFSET_X);
+	pos.setY((destino.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP);
+	mapa->setCharacter(mapa->SDLPointToMapCoords(pos), entity_);
+	playState->aumentarAcciones();
+	cout << pos;
 
 	if (entity_->hasGroup<Equipo_Azul>()) colorea(posIni, pos, Azul);
 	else colorea(posIni, pos, Rojo);
-
-	return canMove;
 }
 
 void Movimiento::initializeCasillasChecked() { //AAAAAAAAAAAAAA

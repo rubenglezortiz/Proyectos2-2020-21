@@ -207,10 +207,16 @@ void PlayState::update()
 
 void PlayState::moveChar(Vector2D charPosInMap, Vector2D dest)
 {
-	Entity* entity = mapa_->getCharacter(charPosInMap);
+	//Vector2D aux = mapa_->SDLPointToMapCoords(charPosInMap);
+	//std::cout << "PosIni in Map: " << aux.getX() << " " << aux.getY() << "\n";
+	//std::cout << "PosIni in SDL: " << charPosInMap.getX() << " " << charPosInMap.getY() << "\n";
+	//std::cout << "Dest in Map: " << dest.getX() << " " << dest.getY() << "\n";
+
+	Entity* entity = mapa_->getCharacter(mapa_->SDLPointToMapCoords(charPosInMap));
 	if (entity != nullptr)
 	{
-		Movimiento* movement;
+		Movimiento* movement = entity->getComponent<Movimiento>();
+		movement->MoveCharacter(charPosInMap, dest);
 	}
 	else std::cout << "No deberias estar viendo esto lmao";
 }
