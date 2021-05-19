@@ -22,7 +22,7 @@
 #include "../components/DeckSpawn.h"
 #include "../components/Interfaz.h"
 #include "../components/Transform2.h"
-
+#include "../components/MenuButton.h"
 
 #include "../components/MovementShader.h"
 #include "../game/Values.h"
@@ -68,6 +68,11 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> ch
 	//createTanque(Segundo);
 	sdlutils().showCursor();
 	//pasaTurno();
+
+	// Creacion Botón pasar turno
+	auto* botonTurno = mngr_->addEntity(RenderLayer::Interfaz);
+	botonTurno->addComponent<Transform2>(Vector2D(sdlutils().width() - 305, sdlutils().height() - 120), 225, 100);
+	botonTurno->addComponent<Image>(&sdlutils().images().at("alquimistaMazoR"));
 }
 
 PlayState::~PlayState() {}
@@ -93,7 +98,7 @@ void PlayState::createMazo(int n, int x, int equipo) {
 	if (equipo == 1)
 		x = -sdlutils().width();
 	auto* boton = mngr_->addEntity(RenderLayer::Personajes);
-	boton->addComponent<Transform2>(Vector2D(x * sdlutils().width() / 9, sdlutils().height() - 120), sdlutils().width() / 9, 100);
+	boton->addComponent<Transform2>(Vector2D((x + 0.5) * sdlutils().width() / 9, sdlutils().height() - 120), sdlutils().width() / 9, 100);
 
 	std::string imagen;
 	if (equipo == 1) imagen = "R";
@@ -159,7 +164,7 @@ void PlayState::createMazo(int n, int x, int equipo) {
 
 void PlayState::moveMazo() {
 	int pos = -sdlutils().width();
-	int i = 1;
+	float i = 1.5;
 	if (jugadorActual == Primero) {
 		for (Entity* e : mngr_->getEnteties()) {
 			if (e->hasGroup<Mazo2>()) {
@@ -188,15 +193,21 @@ void PlayState::moveMazo() {
 
 void PlayState::update()
 {
+	int mX = ih().getMousePos().first;
+	int mY = ih().getMousePos().second;
+	if (mX >= (sdlutils().width() - 330) && mX <= (sdlutils().width() - 330 + 225) && mY >= (sdlutils().height() - 120) && mY <= (sdlutils().height() - 120 + 100) &&
+		ih().getMouseButtonState(ih().LEFT)) {
+		pasaTurno();
+	}
 
 	if (ih().isKeyDown(SDLK_SPACE)) {
 		if (!gameStateMachine->isOnline())
 		{
 			pasaTurno();
 		}
-		else if (gameStateMachine->isOnline() && 
+		else if (gameStateMachine->isOnline() &&
 			(jugadorActual == Primero && !net->isMaster() ||
-			 jugadorActual == Segundo && net->isMaster()))
+				jugadorActual == Segundo && net->isMaster()))
 		{
 			pasaTurno();
 			net->sendChangeTurno();
@@ -246,7 +257,7 @@ void PlayState::pasaTurno() {
 		gameStateMachine->pushState(new FinState(gameStateMachine, ganador, porcentaje));
 		cout << "fin de partida\n";
 	}
-	
+
 	else turnosActuales++;
 
 	mngr_->finTurno();

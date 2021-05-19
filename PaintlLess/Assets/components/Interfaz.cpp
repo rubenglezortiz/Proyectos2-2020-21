@@ -20,8 +20,8 @@ void Interfaz::render() {
 	int mana;
 	if (playState->getCurrentPlayer() == 0) mana = playState->getMana2();
 	else mana  = playState->getMana1();
-	destNum.x  = sdlutils().width() - 210;
-	destMana.x = sdlutils().width() - 330;
+	destNum.x  = 200;
+	destMana.x = 80;
 	if (mana == 10)
 		destNum.w = 100;
 	else 
