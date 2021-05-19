@@ -170,6 +170,7 @@
     <ClCompile Include="Assets\components\ButtonTick.cpp" />
     <ClCompile Include="Assets\components\ButtonVolume.cpp" />
     <ClCompile Include="Assets\components\DeckSpawn.cpp" />
+    <ClCompile Include="Assets\components\EntityFactory.cpp" />
     <ClCompile Include="Assets\components\FramedImage.cpp" />
     <ClCompile Include="Assets\components\GameMap.cpp" />
     <ClCompile Include="Assets\components\Health.cpp" />
@@ -245,6 +246,7 @@
     <ClInclude Include="Assets\components\ButtonTick.h" />
     <ClInclude Include="Assets\components\ButtonVolume.h" />
     <ClInclude Include="Assets\components\DeckSpawn.h" />
+    <ClInclude Include="Assets\components\EntityFactory.h" />
     <ClInclude Include="Assets\components\FramedImage.h" />
     <ClInclude Include="Assets\components\GameMap.h" />
     <ClInclude Include="Assets\components\Health.h" />

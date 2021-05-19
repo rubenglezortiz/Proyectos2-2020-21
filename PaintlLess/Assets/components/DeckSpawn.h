@@ -37,15 +37,5 @@ public:
 	void spawnShader(int e);
 	void freeShader();
 
-	void health(Entity* character, int lives);
-	void attack(Entity* character, int damage, string s);
-	void movement(Entity* character, Uint8 casillasAMover = 1);
-	void image(Entity* character, string tex);
-	void animation(Entity* character, string tex, int d, Unit p);
-
-	void createCharacter(int character, int equipo, Vector2D posClick);
-	bool spawneableCell(Vector2D pos);
-
 	virtual void finTurno();
-
 };

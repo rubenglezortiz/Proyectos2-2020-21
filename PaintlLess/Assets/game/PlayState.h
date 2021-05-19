@@ -1,6 +1,7 @@
 #pragma once
 #include "GameState.h"
 #include <vector>
+class EntityFactory;
 class Network;
 
 using namespace std;

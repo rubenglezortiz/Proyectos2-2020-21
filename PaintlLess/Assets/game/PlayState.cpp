@@ -29,6 +29,7 @@
 #include "FinState.h"
 #include "GameStateMachine.h"
 #include "Network.h"
+#include "../components/EntityFactory.h"
 
 PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> charss2, int mapa, int tileset) : GameState(gsm) {
 
@@ -63,7 +64,6 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> ch
 	mngr_.get()->setHandler<BoardManager>(boardManager);
 
 	//boardManager->getComponent<MovementShader>()->getValues();
-
 	mazoEquipo();
 	//createTanque(Segundo);
 	sdlutils().showCursor();

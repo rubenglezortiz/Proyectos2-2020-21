@@ -20,6 +20,7 @@
 #include "../game/Values.h"
 #include "../game/PlayState.h"
 #include "../game/GameStateMachine.h"
+#include "../components/EntityFactory.h"
 
 void DeckSpawn::init() {
 	tr_ = entity_->getComponent<Transform2>();
@@ -29,92 +30,6 @@ void DeckSpawn::init() {
 	cellHeight = mapa->getCellHeight();
 	playState = mapa->getPlayState();
 	turno = playState->getTurno();
-}
-
-void DeckSpawn::health(Entity* c, int l) {
-	c->addComponent<Health>(l);
-}
-
-void DeckSpawn::movement(Entity* c, Uint8 casillasAMover) {
-	c->addComponent<Movimiento>(playState, casillasAMover);
-}
-
-void DeckSpawn::image(Entity* c, string t) {
-	c->addComponent<Image>(&sdlutils().images().at(t));
-}
-
-void DeckSpawn::animation(Entity* c, string tex, int d, Unit p) {	
-	if(c->hasGroup<Equipo_Azul>())
-		c->addComponent<FramedImage>(&sdlutils().images().at(tex+"R"), d, p);
-	else	
-		c->addComponent<FramedImage>(&sdlutils().images().at(tex+"A"), d, p);
-}
-
-void DeckSpawn::attack(Entity* c, int dmg = 1, string s = "ataqueSound") {
-	c->addComponent<Attack>(playState, dmg, s);
-}
-
-void DeckSpawn::createCharacter(int character, int equipo, Vector2D pos) {
-	Entity* ctr = entity_->getMngr()->addEntity(RenderLayer::Personajes);
-
-	ctr->addComponent<Transform>(pos, Vector2D(), 50.0f, 50.0f, 0.0f);
-	ctr->setGroup<Personajes>(ctr);
-	if (equipo == Primero) ctr->setGroup<Equipo_Rojo>(ctr);
-	else ctr->setGroup<Equipo_Azul>(ctr);
-
-	switch (character) {
-	case Alquimista:
-		animation(ctr, "alquimistaSheet", 150, Alquimista);	 movement(ctr,2); health(ctr, 2);
-		ctr->addComponent<Ability_Alchemist>();
-		break;
-	case Arquitecta:
-		animation(ctr, "arquitectaSheet", 150, Arquitecta);	 movement(ctr); health(ctr, 2);
-		ctr->addComponent<Ability_Architect>();
-		break;
-	case Bomba:
-		animation(ctr, "bombaSheet", 150, Bomba);   movement(ctr); health(ctr, 3); 
-		ctr->addComponent<Ability_Bomb>();
-		break;
-	case Cazador:
-		image(ctr, "cazador");  movement(ctr); health(ctr, 1); attack(ctr, 2, "arqueroSound");
-		break;
-	case Druida:
-		animation(ctr, "druidaSheet", 125, Druida);   movement(ctr); health(ctr, 2);
-		ctr->addComponent<Ability_Druid>(playState, (int)equipo);
-		break;
-	case Esqueleto:
-		animation(ctr, "esqueletoSheet", 150, Esqueleto);  movement(ctr); health(ctr, 1); attack(ctr);
-		break;
-	case Golem:
-		animation(ctr, "golemSheet", 120, Golem);	health(ctr, 4); attack(ctr); ctr->addComponent<Movimiento>(playState, 0);
-		ctr->addComponent<Ability_Golem>();
-		break;
-	case Kirin:
-		animation(ctr, "kirinSheet", 150, Kirin);	movement(ctr); health(ctr, 2); attack(ctr);
-		ctr->addComponent<Ability_Kirin>();
-		break;
-	case Lobo:
-		animation(ctr, "loboSheet", 150, Lobo);	  movement(ctr); health(ctr, 2);
-		ctr->addComponent<Ability_Wolf>();
-		break;
-	case Monaguillo:
-		animation(ctr, "monaguilloSheet", 150, Monaguillo); movement(ctr); health(ctr, 1); attack(ctr);
-		ctr->addComponent<Ability_Priest>();
-		break;
-	case Picara:
-		animation(ctr, "picaraSheet", 150, Picara);	  movement(ctr); health(ctr, 2); attack(ctr);
-		ctr->addComponent<Ability_Rogue>();
-		break;
-	case Tanque:
-		animation(ctr, "tanqueSheet", 150, Tanque);    movement(ctr); health(ctr, 4); attack(ctr);
-		ctr->addComponent<Ability_Tank>();
-		break;
-	case Vikingo:
-		animation(ctr, "vikingoSheet", 150,  Vikingo);  movement(ctr); health(ctr, 1);
-		ctr->addComponent<Ability_Viking>();
-		break;
-	}
-	mapa->setCharacter(mapa->SDLPointToMapCoords(ctr->getComponent<Transform>()->getPos()), ctr);
 }
 
 void DeckSpawn::spawnShader(int e) {
@@ -159,16 +74,6 @@ void DeckSpawn::render() {
 		sdlutils().images().at("cold" + to_string(cool0)).render(dest);
 }
 
-bool DeckSpawn::spawneableCell(Vector2D p) {
-	int i = 0;
-	bool encontrado = false;
-	while (i < casillasSpawn.size() && !encontrado) {
-		if (casillasSpawn[i] == p) encontrado = true;
-		else i++;
-	}
-	return encontrado;
-}
-
 void DeckSpawn::update() {
 	auto pos = entity_->getComponent<Transform2>()->getPos();
 	if (ih().getMouseButtonState(ih().LEFT)) {
@@ -178,13 +83,13 @@ void DeckSpawn::update() {
 		if (selected) {
 			//esto se debe hacer en movementshader
 			Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
-			if (spawneableCell(posMovimiento) && playState->getCurrentPlayer() == 1 && playState->restaMana(UnitInfo::mana[personaje], playState->getMana1())) {
-				createCharacter(personaje, 0, posMovimiento);
+			if (EntityFactory::spawneableCell(posMovimiento, casillasSpawn) && playState->getCurrentPlayer() == 1 && playState->restaMana(UnitInfo::mana[personaje], playState->getMana1())) {
+				EntityFactory::createCharacter(entity_->getMngr(), mapa, playState,personaje, 0, posMovimiento);
 				cool1 += UnitInfo::cooldown[personaje];
 				if (playState->getGSM()->isOnline()) playState->getGSM()->getNetworkManager()->sendSpawnCharacter(personaje, posMovimiento.getX(), posMovimiento.getY());
 			}
-			else if (spawneableCell(posMovimiento) && playState->getCurrentPlayer() == 0 && playState->restaMana(UnitInfo::mana[personaje], playState->getMana2())) {
-				createCharacter(personaje, 1, posMovimiento);
+			else if (EntityFactory::spawneableCell(posMovimiento, casillasSpawn) && playState->getCurrentPlayer() == 0 && playState->restaMana(UnitInfo::mana[personaje], playState->getMana2())) {
+				EntityFactory::createCharacter(entity_->getMngr(), mapa, playState, personaje, 1, posMovimiento);
 				cool0 += UnitInfo::cooldown[personaje];
 				if (playState->getGSM()->isOnline()) playState->getGSM()->getNetworkManager()->sendSpawnCharacter(personaje, posMovimiento.getX(), posMovimiento.getY());
 			}
