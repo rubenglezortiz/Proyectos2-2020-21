@@ -193,26 +193,7 @@ void PlayState::moveMazo() {
 
 void PlayState::update()
 {
-	int mX = ih().getMousePos().first;
-	int mY = ih().getMousePos().second;
-	if (mX >= (sdlutils().width() - 330) && mX <= (sdlutils().width() - 330 + 225) && mY >= (sdlutils().height() - 120) && mY <= (sdlutils().height() - 120 + 100) &&
-		ih().getMouseButtonState(ih().LEFT)) {
-		pasaTurno();
-	}
-
-	if (ih().isKeyDown(SDLK_SPACE)) {
-		if (!gameStateMachine->isOnline())
-		{
-			pasaTurno();
-		}
-		else if (gameStateMachine->isOnline() &&
-			(jugadorActual == Primero && !net->isMaster() ||
-				jugadorActual == Segundo && net->isMaster()))
-		{
-			pasaTurno();
-			net->sendChangeTurno();
-		}
-	}
+	CheckPasarTurno();
 	GameState::update();
 }
 
@@ -230,6 +211,26 @@ void PlayState::moveChar(Vector2D charPosInMap, Vector2D dest)
 		movement->MoveCharacter(charPosInMap, dest);
 	}
 	else std::cout << "No deberias estar viendo esto lmao";
+}
+
+void PlayState::CheckPasarTurno()
+{
+	int mX = ih().getMousePos().first;
+	int mY = ih().getMousePos().second;
+	if (ih().isKeyDown(SDLK_SPACE) || (mX >= (sdlutils().width() - 330) && mX <= (sdlutils().width() - 330 + 225) && mY >= (sdlutils().height() - 120) && mY <= (sdlutils().height() - 120 + 100) &&
+		ih().getMouseButtonState(ih().LEFT))) {
+		if (!gameStateMachine->isOnline())
+		{
+			pasaTurno();
+		}
+		else if (gameStateMachine->isOnline() &&
+			(jugadorActual == Primero && !net->isMaster() ||
+				jugadorActual == Segundo && net->isMaster()))
+		{
+			pasaTurno();
+			net->sendChangeTurno();
+		}
+	}
 }
 
 void PlayState::pasaTurno() {

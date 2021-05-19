@@ -43,6 +43,7 @@ public:
 	void moveMazo();
 	void update() override;
 	void moveChar(Vector2D charPosInMap, Vector2D dest);
+	void CheckPasarTurno();
 
 	GameMap* getMapa() { return mapa_; }
 
