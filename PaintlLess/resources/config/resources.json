@@ -52,6 +52,7 @@
     { "id" : "picaraM",         "file" : "resources/images/interfaz/picaraMazo.png" },
     { "id" : "tanqueM",         "file" : "resources/images/interfaz/tanqueMazo.png" },
     { "id" : "vikingoM",        "file" : "resources/images/interfaz/vikingoMazo.png" },
+    { "id" : "botonT",          "file" : "resources/images/interfaz/botonTurno.png" },
 
 	  { "id" : "life",         "file" : "resources/images/sprites/life.png" },
     { "id" : "tileset",      "file" : "resources/images/sprites/tileset2.png" },
@@ -239,7 +240,7 @@
   ],
 
   "musics" : [
-    { "id" : "beat", "file" : "resources/sound/beat.wav" },
+    { "id" : "beat",           "file" : "resources/sound/beat.wav" },
     { "id" : "imperial_march", "file" : "resources/sound/imperial_march.wav" }
   ],
 

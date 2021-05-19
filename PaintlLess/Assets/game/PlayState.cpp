@@ -72,7 +72,7 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> ch
 	// Creacion Botón pasar turno
 	auto* botonTurno = mngr_->addEntity(RenderLayer::Interfaz);
 	botonTurno->addComponent<Transform2>(Vector2D(sdlutils().width() - 305, sdlutils().height() - 120), 225, 100);
-	botonTurno->addComponent<Image>(&sdlutils().images().at("alquimistaMazoR"));
+	botonTurno->addComponent<Image>(&sdlutils().images().at("botonT"));
 }
 
 PlayState::~PlayState() {}
