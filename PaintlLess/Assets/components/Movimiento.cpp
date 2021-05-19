@@ -17,9 +17,9 @@ void Movimiento::init() {
 
 void Movimiento::update() {
 	if (casillasAMover == 0) return;
-	if ((gsm->isOnline() && 
+	if ((gsm->isOnline() &&
 		((gsm->getNetworkManager()->isMaster() && entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) ||
-		(!gsm->getNetworkManager()->isMaster() && entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero))) ||
+			(!gsm->getNetworkManager()->isMaster() && entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero))) ||
 
 		(!gsm->isOnline() && (entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero || entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) && stun == 0)) {
 		if (playState->getAcciones() == 0)return;
@@ -35,30 +35,14 @@ void Movimiento::update() {
 				//esto se debe hacer en movementshader
 				Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
 
-				//si está dentro de los margenes del tablero
-				if (posMovimiento.getX() >= 0 && posMovimiento.getY() >= 0 &&
-					posMovimiento.getX() < mapa->getColumns() && posMovimiento.getY() < mapa->getRows()) {
-
-					if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible) {
-						mapa->removeCharacter(mapa->SDLPointToMapCoords(pos));
-						pos.setX((posMovimiento.getX() * cellWidth) + OFFSET_X);
-						pos.setY((posMovimiento.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP);
-						mapa->setCharacter(mapa->SDLPointToMapCoords(pos), entity_);
-						playState->aumentarAcciones();
-						cout << pos;
-					}
-					selected = false;
-					//sdlutils().soundEffects().at("moveSound").setChunkVolume(5);
-					sdlutils().soundEffects().at("moveSound").play(); //-----------------------------------------------------------		
-
-					if (entity_->hasGroup<Equipo_Azul>()) colorea(posIni, pos, Azul);
-
-					else colorea(posIni, pos, Rojo);
-					 
-					//estos métodos son para cuando se deselcciona yuna casilla para restablecer los valores de los vectores...
-					movShader->freeCasillasAPintar();
-					resetCasillasChecked();
+				if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible)
+				{
+					MoveCharacter(posIni, posMovimiento);
+					if(gsm->isOnline())gsm->getNetworkManager()->sendMoveMessage(posIni.getX(), posIni.getY(), posMovimiento.getX(), posMovimiento.getY());
 				}
+				selected = false;
+				movShader->freeCasillasAPintar();
+				resetCasillasChecked();
 			}
 			else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
 				selected = true;
@@ -83,6 +67,21 @@ void Movimiento::finTurno()
 	{
 		stun--;
 	}
+}
+
+void Movimiento::MoveCharacter(const Vector2D& posIni, const Vector2D& destino)
+{
+	auto& pos = tr_->getPos();
+	sdlutils().soundEffects().at("moveSound").play();
+	mapa->removeCharacter(mapa->SDLPointToMapCoords(pos));
+	pos.setX((destino.getX() * cellWidth) + OFFSET_X);
+	pos.setY((destino.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP);
+	mapa->setCharacter(mapa->SDLPointToMapCoords(pos), entity_);
+	playState->aumentarAcciones();
+	cout << pos;
+
+	if (entity_->hasGroup<Equipo_Azul>()) colorea(posIni, pos, Azul);
+	else colorea(posIni, pos, Rojo);
 }
 
 void Movimiento::initializeCasillasChecked() { //AAAAAAAAAAAAAA

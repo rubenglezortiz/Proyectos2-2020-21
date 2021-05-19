@@ -12,6 +12,7 @@ using namespace std;
 
 enum Equipo { Primero, Segundo };
 class GameMap;
+class Vector2D;
 class PlayState : public GameState
 {
 
@@ -41,6 +42,8 @@ public:
 	void mazoEquipo();
 	void moveMazo();
 	void update() override;
+	void moveChar(Vector2D charPosInMap, Vector2D dest);
+
 	GameMap* getMapa() { return mapa_; }
 
 	void pasaTurno();

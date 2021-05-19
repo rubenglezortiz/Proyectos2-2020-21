@@ -1,5 +1,6 @@
 #include "Attack.h"
 #include "../game/PlayState.h"
+#include "../game/GameStateMachine.h"
 
 void Attack::init() {
 	tr_ = entity_->getComponent<Transform>();
@@ -7,13 +8,18 @@ void Attack::init() {
 	cellWidth = mapa->getCellWidth();
 	cellHeight = mapa->getCellHeight();
 	tex_ = &sdlutils().images().at("selectorA");
+	gsm = playState->getGSM();
 }
 
 void Attack::update() {
-	if ((entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero ||
-		entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) && entity_->hasComponent<Movimiento>()) { 
-		if (entity_->getComponent<Movimiento>()->getStun() == 0)
-		attack();
+	if ((gsm->isOnline() &&
+		((gsm->getNetworkManager()->isMaster() && entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) ||
+			(!gsm->getNetworkManager()->isMaster() && entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero))) ||
+
+		(!gsm->isOnline() && (entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero || entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo))) {
+			{
+				if (entity_->getComponent<Movimiento>()->getStun() == 0) attack();
+			}
 	}
 }
 
@@ -26,24 +32,24 @@ void Attack::finTurno()
 void Attack::attack() {
 	auto& pos = tr_->getPos();
 
-	if (ih().getMouseButtonState(ih().LEFT) ) {
+	if (ih().getMouseButtonState(ih().LEFT)) {
 		int mX = ih().getMousePos().first;
 		int mY = ih().getMousePos().second;
-		if (selected ) {
+		if (selected) {
 			//esto se debe hacer en movementshader
 			Vector2D cas = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
 			// Se tendría que hacer diferenciación entre el equipo del personaje.
 			if (canAttack(cas)) {
 				if (entity_->getComponent<Ability_Rogue>() != nullptr)
-					mapa->getCharacter(cas)->getComponent<Health>()->hit(entity_->getComponent<Ability_Rogue>()->ataqueCritico());								
+					mapa->getCharacter(cas)->getComponent<Health>()->hit(entity_->getComponent<Ability_Rogue>()->ataqueCritico());
 				else {
 					auto* mCha = mapa->getCharacter(cas);
-					if(mCha != nullptr)
+					if (mCha != nullptr)
 						mapa->getCharacter(cas)->getComponent<Health>()->hit(1);
 					auto* mObs = mapa->getObstaculo(cas);
-					if(mObs != nullptr)
+					if (mObs != nullptr)
 						mapa->getObstaculo(cas)->getComponent<Health>()->hit(1);
-				}				
+				}
 				//sdlutils().soundEffects().at(sound).setChunkVolume(15);
 				sdlutils().soundEffects().at(sound).play(); //-----------------------------------------------------------			
 				ability_usable = false;
