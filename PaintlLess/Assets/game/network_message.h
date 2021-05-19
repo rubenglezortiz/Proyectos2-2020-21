@@ -15,7 +15,8 @@ enum MsgType : uint8_nt {
 	_DECK_RECEIVED_, //
 	_CLIENT_GAME_, //
 	_TURN_CHANGE_, //
-	_SPAWN_CHARACTER_
+	_SPAWN_CHARACTER_, //
+	_MOVE_CHARACTER_
 };
 
 struct NetworkMessage {
@@ -25,6 +26,14 @@ struct NetworkMessage {
 struct SpawnMessage : NetworkMessage
 {
 	uint8_nt personaje;
+	uint8_nt posX;
+	uint8_nt posY;
+};
+
+struct ActionMessage : NetworkMessage
+{
+	uint8_nt mapX;
+	uint8_nt mapY;
 	uint8_nt posX;
 	uint8_nt posY;
 };

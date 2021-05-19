@@ -205,6 +205,16 @@ void PlayState::update()
 	GameState::update();
 }
 
+void PlayState::moveChar(Vector2D charPosInMap, Vector2D dest)
+{
+	Entity* entity = mapa_->getCharacter(charPosInMap);
+	if (entity != nullptr)
+	{
+		Movimiento* movement;
+	}
+	else std::cout << "No deberias estar viendo esto lmao";
+}
+
 void PlayState::pasaTurno() {
 	accionesPorTurno = MAX_ACCIONES;
 

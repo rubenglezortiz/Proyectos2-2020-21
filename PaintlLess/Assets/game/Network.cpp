@@ -201,6 +201,14 @@ void Network::update() {
 			break;
 		}
 
+		case _MOVE_CHARACTER_: {
+			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+			ActionMessage* m = static_cast<ActionMessage*>(m_);
+
+
+			break;
+		}
+
 		case _SPAWN_CHARACTER_: {
 
 			SpawnMessage* m = static_cast<SpawnMessage*>(m_);
@@ -313,6 +321,28 @@ void Network::sendSpawnCharacter(int personaje, int posX, int posY)
 
 	// set the message length and the address of the other player
 	p_->len = sizeof(SpawnMessage);
+	p_->address = otherPlayerAddress_;
+
+	// send the message
+	SDLNet_UDP_Send(conn_, -1, p_);
+}
+
+void Network::sendMoveMessage(int mapX, int mapY, int posX, int posY)
+{
+	// if the other player is not connected do nothing
+	if (!isGameReday_)
+		return;
+
+	// we prepare a message that includes all information
+	ActionMessage* m = static_cast<ActionMessage*>(m_);
+	m->_type = _MOVE_CHARACTER_;
+	m->mapX = mapX;
+	m->mapY = mapY;
+	m->posX = posX;
+	m->posY = posY;
+
+	// set the message length and the address of the other player
+	p_->len = sizeof(ActionMessage);
 	p_->address = otherPlayerAddress_;
 
 	// send the message

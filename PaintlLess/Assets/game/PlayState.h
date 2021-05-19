@@ -41,6 +41,8 @@ public:
 	void mazoEquipo();
 	void moveMazo();
 	void update() override;
+	void moveChar(Vector2D charPosInMap, Vector2D dest);
+
 	GameMap* getMapa() { return mapa_; }
 
 	void pasaTurno();

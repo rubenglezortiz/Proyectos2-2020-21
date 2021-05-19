@@ -13,6 +13,7 @@
 */
 
 class PlayState;
+class GameStateMachine;
 class Attack : public Component {
 private:
 	bool selected;
@@ -24,6 +25,7 @@ private:
 	vector<Vector2D> casillasAtaque;
 
 	PlayState* playState;
+	GameStateMachine* gsm;
 	string sound;
 
 public:

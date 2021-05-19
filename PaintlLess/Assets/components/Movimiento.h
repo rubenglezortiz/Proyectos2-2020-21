@@ -23,7 +23,7 @@ public:
 
 	void setStun(int x) { stun = x * 2; }
 	int getStun() const { return stun; }
-
+	bool TryMoveCharacter(Vector2D posMovimiento, Vector2D posIni);
 	//Vector2D MapCoordsToSDLPoint(Vector2D coords) const { //Pasar de coordenadas del mapa a pixeles
 	//	Vector2D p{ (coords.getX() * cellWidth) , (coords.getY() * cellHeight)/* + DESPL*/ };
 	//	cout << p.getX() << " " << p.getY() << endl;

@@ -24,6 +24,7 @@ public:
 	void sendCreateGame(int mapa, int tileset);
 	void sendChangeTurno();
 	void sendSpawnCharacter(int personaje, int posX, int posY);
+	void sendMoveMessage(int mapX, int mapY, int posX, int posY);
 
 	inline Uint8 getId() {
 		return id_;
