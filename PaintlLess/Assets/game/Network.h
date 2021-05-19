@@ -23,6 +23,7 @@ public:
 	void sendDeckReady();
 	void sendCreateGame(int mapa, int tileset);
 	void sendChangeTurno();
+	void sendSpawnCharacter(int personaje, int posX, int posY);
 
 	inline Uint8 getId() {
 		return id_;

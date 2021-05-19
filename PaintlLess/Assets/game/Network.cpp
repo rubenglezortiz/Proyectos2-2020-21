@@ -199,6 +199,12 @@ void Network::update() {
 			break;
 		}
 
+		case _SPAWN_CHARACTER_: {
+
+
+			break;
+		}
+
 		case _DISCONNECTED_: {
 			DissConnectMsg* m = static_cast<DissConnectMsg*>(m_);
 			isGameReday_ = false;
@@ -275,6 +281,27 @@ void Network::sendChangeTurno()
 
 	// set the message length and the address of the other player
 	p_->len = sizeof(NetworkMessage);
+	p_->address = otherPlayerAddress_;
+
+	// send the message
+	SDLNet_UDP_Send(conn_, -1, p_);
+}
+
+void Network::sendSpawnCharacter(int personaje, int posX, int posY)
+{
+	// if the other player is not connected do nothing
+	if (!isGameReday_)
+		return;
+
+	// we prepare a message that includes all information
+	SpawnMessage* m = static_cast<SpawnMessage*>(m_);
+	m->_type = _SPAWN_CHARACTER_;
+	m->personaje = personaje;
+	m->posX = posX;
+	m->posY = posY;
+
+	// set the message length and the address of the other player
+	p_->len = sizeof(SpawnMessage);
 	p_->address = otherPlayerAddress_;
 
 	// send the message

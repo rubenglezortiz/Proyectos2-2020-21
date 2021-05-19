@@ -14,11 +14,19 @@ enum MsgType : uint8_nt {
 	_ACTIVE_, //
 	_DECK_RECEIVED_, //
 	_CLIENT_GAME_, //
-	_TURN_CHANGE_
+	_TURN_CHANGE_, //
+	_SPAWN_CHARACTER_
 };
 
 struct NetworkMessage {
 	uint8_nt _type;
+};
+
+struct SpawnMessage : NetworkMessage
+{
+	uint8_nt personaje;
+	uint8_nt posX;
+	uint8_nt posY;
 };
 
 struct CreateGameMessage : NetworkMessage
