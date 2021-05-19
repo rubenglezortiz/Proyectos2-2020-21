@@ -217,7 +217,7 @@ void PlayState::CheckPasarTurno()
 {
 	int mX = ih().getMousePos().first;
 	int mY = ih().getMousePos().second;
-	if (ih().isKeyDown(SDLK_SPACE) || (mX >= (sdlutils().width() - 330) && mX <= (sdlutils().width() - 330 + 225) && mY >= (sdlutils().height() - 120) && mY <= (sdlutils().height() - 120 + 100) &&
+	if (ih().isKeyDown(SDLK_SPACE) || (mX >= (sdlutils().width() - 330 + 20) && mX <= (sdlutils().width() - 330 + 245) && mY >= (sdlutils().height() - 120) && mY <= (sdlutils().height() - 120 + 100) &&
 		ih().getMouseButtonState(ih().LEFT))) {
 		if (!gameStateMachine->isOnline())
 		{
