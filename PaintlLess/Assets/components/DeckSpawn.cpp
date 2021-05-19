@@ -97,7 +97,7 @@ void DeckSpawn::update() {
 			selected = false;
 			freeShader();
 		}
-		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
+		else if (mX > pos.getX() && mX < pos.getX() + tr_->getW() && mY > pos.getY() && mY < pos.getY() + tr_->getH()) {
 			if (isSpawnable()) {
 				selected = true;
 				spawnShader(playState->getCurrentPlayer());
