@@ -204,8 +204,7 @@ void Network::update() {
 		case _MOVE_CHARACTER_: {
 			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
 			ActionMessage* m = static_cast<ActionMessage*>(m_);
-			playState->moveChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY));
-
+			playState->_net_moveChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY));
 			break;
 		}
 
@@ -225,7 +224,9 @@ void Network::update() {
 		}
 		case _EXECUTE_ABILTY_: {
 			
-			
+			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+			ActionMessage* m = static_cast<ActionMessage*>(m_);
+			playState->_net_abilityChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY));
 			break;
 		}
 
@@ -355,7 +356,8 @@ void Network::sendActionMessage(int&& mapX, int&& mapY, int&& posX, int&& posY, 
 
 void Network::sendMoveMessage(int&& mapX, int&& mapY, int&& posX, int&& posY)
 {
-	sendActionMessage(std::forward<int>(mapX), std::forward<int>(mapY), std::forward<int>(posX), std::forward<int>(posY), _MOVE_CHARACTER_);
+	sendActionMessage(std::forward<int>(mapX), std::forward<int>(mapY), 
+		std::forward<int>(posX), std::forward<int>(posY), _MOVE_CHARACTER_);
 }
 
 void Network::sendExecuteAbility(int&& mapX, int&& mapY, int&& posX, int&& posY)

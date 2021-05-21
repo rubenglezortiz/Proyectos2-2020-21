@@ -24,7 +24,6 @@ public:
 	void sendCreateGame(int mapa, int tileset);
 	void sendChangeTurno();
 	void sendSpawnCharacter(int personaje, int posX, int posY);
-	void sendActionMessage(int&& mapX, int&& mapY, int&& posX, int&& posY, MsgType&& mensaje);
 	void sendMoveMessage(int&& mapX, int&& mapY, int&& posX, int&& posY);
 	void sendExecuteAbility(int&& mapX, int&& mapY, int&& posX, int&& posY);
 
@@ -51,6 +50,8 @@ public:
 		}
 	}
 private:
+	void sendActionMessage(int&& mapX, int&& mapY, int&& posX, int&& posY, MsgType&& mensaje);
+
 	const char* host_;
 	Uint16 port_;
 	bool isMaster_;

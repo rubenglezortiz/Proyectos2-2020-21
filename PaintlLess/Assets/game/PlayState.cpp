@@ -12,6 +12,7 @@
 #include "../components/Health.h"
 #include "../components/PointOnImage.h"
 #include "../components/Ability_Architect.h"
+#include "../components/Ability.h"
 #include "../components/Ability_Bomb.h"
 #include "../components/Ability_Golem.h"
 #include "../components/Ability_Kirin.h"
@@ -197,18 +198,28 @@ void PlayState::update()
 	GameState::update();
 }
 
-void PlayState::moveChar(Vector2D charPosInMap, Vector2D dest)
+void PlayState::_net_moveChar(Vector2D charPosInMap, Vector2D dest)
 {
-	//Vector2D aux = mapa_->SDLPointToMapCoords(charPosInMap);
-	//std::cout << "PosIni in Map: " << aux.getX() << " " << aux.getY() << "\n";
-	//std::cout << "PosIni in SDL: " << charPosInMap.getX() << " " << charPosInMap.getY() << "\n";
-	//std::cout << "Dest in Map: " << dest.getX() << " " << dest.getY() << "\n";
-
 	Entity* entity = mapa_->getCharacter(mapa_->SDLPointToMapCoords(charPosInMap));
 	if (entity != nullptr)
 	{
 		Movimiento* movement = entity->getComponent<Movimiento>();
 		movement->MoveCharacter(charPosInMap, dest);
+	}
+	else std::cout << "No deberias estar viendo esto lmao";
+}
+
+void PlayState::_net_abilityChar(Vector2D charPosInMap, Vector2D dest)
+{
+	Entity* entity = mapa_->getCharacter(mapa_->SDLPointToMapCoords(charPosInMap));
+	if (entity != nullptr)
+	{
+		Ability* characterAbilty = entity->getComponent<Ability>();
+		if (characterAbilty == nullptr)
+		{
+			std::cout << "Lmao no sabe hacer casting\n";
+		}
+		else characterAbilty->AbilityExecute(dest.getX(), dest.getY());
 	}
 	else std::cout << "No deberias estar viendo esto lmao";
 }

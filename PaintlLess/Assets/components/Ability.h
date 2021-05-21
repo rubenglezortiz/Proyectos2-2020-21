@@ -27,6 +27,7 @@ public:
 	virtual void update() ;
 	virtual void finTurno() override;
 
+	virtual void AbilityExecute(int x, int y) {};
 	void AbilityShader(ShaderForm sf, ShaderType st=nullSh, int d = 1);
 	void freeAbilityShader();
 	virtual bool abilityCheck(const Vector2D& pos); //comprueba si en el segundo clic se está clicando 
@@ -44,7 +45,6 @@ protected:
 	bool selected;
 	int cellWidth, cellHeight;
 	int shaderDistance;
-	virtual void AbilityExecute(int x, int y) {};
 	PlayState* playState = nullptr;
 	void SetShaderDistance(int distance) { shaderDistance = distance; };
 

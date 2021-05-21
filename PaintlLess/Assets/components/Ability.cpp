@@ -1,5 +1,6 @@
 #include "./Ability.h"
 #include "../game/PlayState.h"
+#include "../game/GameStateMachine.h"
 
 void Ability::init() {
 	map = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
@@ -229,6 +230,9 @@ void Ability::update() {
 					if (mov != nullptr) mov->focus();
 				}
 				AbilityExecute(x, y);
+				Vector2D charPos = characterTr->getPos();
+				playState->getGSM()->getNetworkManager()->sendExecuteAbility(charPos.getX(), charPos.getY(), 
+					std::forward<int>(x), std::forward<int>(y));
 				playState->aumentarAcciones();
 			}
 			selected = false;

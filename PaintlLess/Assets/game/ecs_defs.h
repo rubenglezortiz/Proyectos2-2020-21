@@ -16,6 +16,7 @@ class Ability_Rogue;
 class Ability_Viking;
 class Ability_Wolf;
 class Ability_Tank;
+class Ability;
 class Attack;
 class ButtonCharacterSelection;
 class ButtonDescription;
@@ -40,6 +41,7 @@ class Transform;
 class Transform2;
 
 #define _CMPS_LIST_  \
+	Ability						    ,  \
 	Ability_Alchemist			    ,  \
 	Ability_Architect			    ,  \
 	Ability_Bomb				 	,  \
