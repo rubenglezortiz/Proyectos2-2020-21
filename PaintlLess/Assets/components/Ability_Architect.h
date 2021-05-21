@@ -5,15 +5,15 @@
 #include "../game/OffsetInfo.h"
 #include "Movimiento.h"
 #include "Health.h"
+#include "../game/AbilityStruct.h"
 
-class Ability_Architect : public Ability {
+struct Ability_Architect : AbilityStruct {
 public:
-	Ability_Architect() : Ability(selector, ShaderForm::Cross, ShaderType::DefenseSh), dest(SDL_Rect()),
-		posArc(Vector2D()), resultado(0), selected(false) {}
+	Ability_Architect() : AbilityStruct(selectorColor::selector, ShaderForm::Cross, ShaderType::DefenseSh),
+		dest(SDL_Rect()), posArc(Vector2D()), resultado(0), selected(false) {}
 	virtual ~Ability_Architect() {  }
-
-	void AbilityExecute(int x, int y);
-	void finTurno() override { ability_usable = true; freeAbilityShader(); }
+	void AbilityExecute(int x, int y) override;
+	void finTurno() override { self->ability_usable = true; self->freeAbilityShader(); }
 private:
 	SDL_Rect dest;
 	Vector2D posArc;

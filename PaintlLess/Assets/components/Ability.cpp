@@ -1,8 +1,13 @@
 #include "./Ability.h"
 #include "../game/PlayState.h"
 #include "../game/GameStateMachine.h"
+#include "../game//AbilityStruct.h"
+
+Ability::Ability(AbilityStruct data) : characterTr(nullptr), tex(nullptr), map(nullptr), abilityData(data),
+sel(abilityData.selector), selected(false), cellWidth(0), cellHeight(0), form(abilityData.shaderForm), type(abilityData.shaderType), shaderDistance(1) { }
 
 void Ability::init() {
+	abilityData.setSelf(this);
 	map = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
 	assert(map != nullptr);
 	characterTr = entity_->getComponent<Transform>();
@@ -246,4 +251,5 @@ void Ability::finTurno()
 {
 	ability_usable = true;
 	freeAbilityShader();
+	abilityData.finTurno();
 }

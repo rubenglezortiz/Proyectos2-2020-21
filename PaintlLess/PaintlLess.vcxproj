@@ -185,6 +185,7 @@
     <ClCompile Include="Assets\components\Transform2.cpp" />
     <ClCompile Include="Assets\ecs\Entity.cpp" />
     <ClCompile Include="Assets\ecs\Manager.cpp" />
+    <ClCompile Include="Assets\game\AbilityStruct.cpp" />
     <ClCompile Include="Assets\game\CardInfo.cpp" />
     <ClCompile Include="Assets\game\CharacterSelectionState.cpp" />
     <ClCompile Include="Assets\game\DescriptionState.cpp" />
@@ -264,6 +265,7 @@
     <ClInclude Include="Assets\ecs\Entity.h" />
     <ClInclude Include="Assets\ecs\Manager.h" />
     <ClInclude Include="Assets\ecs\mpl.h" />
+    <ClInclude Include="Assets\game\AbilityStruct.h" />
     <ClInclude Include="Assets\game\CardInfo.h" />
     <ClInclude Include="Assets\game\CharacterSelectionState.h" />
     <ClInclude Include="Assets\game\DescriptionState.h" />

@@ -9,9 +9,9 @@
 #include "Movimiento.h"
 #include "Health.h"
 
-class Ability_Wolf : public Ability {
+class Ability_Wolf : public AbilityStruct {
 public:
-	Ability_Wolf(): Ability(selectorA, ShaderForm::ShaderWolf, ShaderType::nullSh) {}
+	Ability_Wolf(): AbilityStruct(selectorA, ShaderForm::ShaderWolf, ShaderType::nullSh) {}
 	virtual ~Ability_Wolf() {}
 	void AbilityExecute(int x, int y);
 

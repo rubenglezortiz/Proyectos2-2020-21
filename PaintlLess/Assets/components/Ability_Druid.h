@@ -9,9 +9,9 @@
 #include "Health.h"
 
 class PlayState;
-class Ability_Druid : public Ability {
+class Ability_Druid : public AbilityStruct {
 public:
-	Ability_Druid(PlayState* p, int e) : Ability(selector, ShaderForm::Cross, ShaderType::DruidaSh), dest(SDL_Rect()), equip(e), pSt(p) {}
+	Ability_Druid(PlayState* p, int e) : AbilityStruct(selector, ShaderForm::Cross, ShaderType::DruidaSh), dest(SDL_Rect()), equip(e), pSt(p) {}
 	virtual ~Ability_Druid() {}
 
 	void finTurno() override;

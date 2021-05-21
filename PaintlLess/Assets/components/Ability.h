@@ -5,36 +5,34 @@
 #include<vector>
 #include "../sdlutils/InputHandler.h"
 #include "Movimiento.h"
-
+#include "../game/AbilityStruct.h"
 
 using AbilityFunction = void(int x, int y, GameMap* map, Manager* manager);
 
-enum ShaderType { nullSh,AttackSh, DefenseSh, HealingSh, KirinSh, DruidaSh };
-enum ShaderForm { Cross, TxT, VikingForm, ShaderWolf };
-
-enum selectorColor { selector, selectorA, selectorH };
 
 class Ability : public Component {
 public:
 	Ability() : characterTr(nullptr), tex(nullptr), map(nullptr), selected(false), cellWidth(0), cellHeight(0), form(form), type(type), shaderDistance(1){}
-	Ability(selectorColor s, ShaderForm form, ShaderType type) : characterTr(nullptr), tex(nullptr), map(nullptr),
-		sel(s), selected(false), cellWidth(0), cellHeight(0), form(form), type(type), shaderDistance(1) { }
-	
+	Ability(AbilityStruct data);
+
 	virtual ~Ability() {}
 
 	virtual void init();
 	virtual void render();
 	virtual void update() ;
-	virtual void finTurno() override;
+	virtual void finTurno();
 
-	virtual void AbilityExecute(int x, int y) {};
+	virtual void AbilityExecute(int x, int y) { abilityData.AbilityExecute(x, y); };
 	void AbilityShader(ShaderForm sf, ShaderType st=nullSh, int d = 1);
 	void freeAbilityShader();
 	virtual bool abilityCheck(const Vector2D& pos); //comprueba si en el segundo clic se está clicando 
-											//en una casilla donde se puede colocar la habilidad
+		
+	GameMap* getMap() { return map; }
+													//en una casilla donde se puede colocar la habilidad
 	bool ability_usable = true;
 
 protected:
+	AbilityStruct abilityData;
 	ShaderForm form;
 	ShaderType type;
 	std::vector<Vector2D> abilityCells;

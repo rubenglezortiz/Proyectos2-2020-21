@@ -4,7 +4,7 @@
 void Ability_Architect::AbilityExecute(int x, int y) {
 	// x e y
 	//Crea imagen
-	Entity* e = entity_->getMngr()->addEntity(RenderLayer::Tablero3);
+	Entity* e = self->getEntity()->getMngr()->addEntity(RenderLayer::Tablero3);
 
 	e->addComponent<Transform>(
 		Vector2D(x, y), //Posicion
@@ -15,7 +15,7 @@ void Ability_Architect::AbilityExecute(int x, int y) {
 
 	e->addComponent<Image>(&sdlutils().images().at("wall"));
 	e->addComponent<Health>(2);
-	entity_->getComponent<FramedImage>()->setAnim(A_A_A);
-	map->setObstaculo(Vector2D(x, y), e);
-	map->setColor(Vector2D(x, y), Ninguno);
+	self->getEntity()->getComponent<FramedImage>()->setAnim(A_A_A);
+	self->getMap()->setObstaculo(Vector2D(x, y), e);
+	self->getMap()->setColor(Vector2D(x, y), Ninguno);
 }

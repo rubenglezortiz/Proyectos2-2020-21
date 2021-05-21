@@ -55,53 +55,57 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 	switch (character) {
 	case Alquimista:
 		animation(ctr, "alquimistaSheet", 150, Alquimista);	 movement(playState, ctr,2); health(ctr, 2);
-		ctr->addComponent<Ability_Alchemist>();
+		//ctr->addComponent<Ability_Alchemist>();
 		break;
 	case Arquitecta:
+	{
 		animation(ctr, "arquitectaSheet", 150, Arquitecta);	 movement(playState, ctr); health(ctr, 2);
-		ctr->addComponent<Ability_Architect>();
+		Ability_Architect ab = Ability_Architect();
+		ctr->addComponent<Ability>(ab);
+		//ctr->addComponent<Ability>(new Ability_Architect());
 		break;
+	}
 	case Bomba:
 		animation(ctr, "bombaSheet", 150, Bomba);   movement(playState, ctr); health(ctr, 3);
-		ctr->addComponent<Ability_Bomb>();
+		//ctr->addComponent<Ability_Bomb>();
 		break;
 	case Cazador:
 		image(ctr, "cazador");  movement(playState, ctr); health(ctr, 1); attack(playState, ctr, 2, "arqueroSound");
 		break;
 	case Druida:
 		animation(ctr, "druidaSheet", 125, Druida);   movement(playState,ctr); health(ctr, 2);
-		ctr->addComponent<Ability_Druid>(playState, (int)equipo);
+		//ctr->addComponent<Ability_Druid>(playState, (int)equipo);
 		break;
 	case Esqueleto:
 		animation(ctr, "esqueletoSheet", 150, Esqueleto);  movement(playState, ctr); health(ctr, 1); attack(playState, ctr);
 		break;
 	case Golem:
 		animation(ctr, "golemSheet", 120, Golem);	health(ctr, 4); attack(playState, ctr); ctr->addComponent<Movimiento>(playState, 0);
-		ctr->addComponent<Ability_Golem>();
+		//ctr->addComponent<Ability_Golem>();
 		break;
 	case Kirin:
 		animation(ctr, "kirinSheet", 150, Kirin);	movement(playState, ctr); health(ctr, 2); attack(playState, ctr);
-		ctr->addComponent<Ability_Kirin>();
+		//ctr->addComponent<Ability_Kirin>();
 		break;
 	case Lobo:
 		animation(ctr, "loboSheet", 150, Lobo);	  movement(playState, ctr); health(ctr, 2);
-		ctr->addComponent<Ability_Wolf>();
+		//ctr->addComponent<Ability_Wolf>();
 		break;
 	case Monaguillo:
 		animation(ctr, "monaguilloSheet", 150, Monaguillo); movement(playState, ctr); health(ctr, 1); attack(playState, ctr);
-		ctr->addComponent<Ability_Priest>();
+		//ctr->addComponent<Ability_Priest>();
 		break;
 	case Picara:
 		animation(ctr, "picaraSheet", 150, Picara);	  movement(playState, ctr); health(ctr, 2); attack(playState, ctr);
-		ctr->addComponent<Ability_Rogue>();
+		//ctr->addComponent<Ability_Rogue>();
 		break;
 	case Tanque:
 		animation(ctr, "tanqueSheet", 150, Tanque);    movement(playState, ctr); health(ctr, 4); attack(playState, ctr);
-		ctr->addComponent<Ability_Tank>();
+		//ctr->addComponent<Ability_Tank>();
 		break;
 	case Vikingo:
 		animation(ctr, "vikingoSheet", 150,  Vikingo);  movement(playState, ctr); health(ctr, 1);
-		ctr->addComponent<Ability_Viking>();
+		//ctr->addComponent<Ability_Viking>();
 		break;
 	}
 	mapa->setCharacter(mapa->SDLPointToMapCoords(ctr->getComponent<Transform>()->getPos()), ctr);

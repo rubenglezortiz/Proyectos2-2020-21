@@ -5,10 +5,10 @@
 #include "Transform.h"
 #include "Movimiento.h"
 
-class Ability_Kirin : public Ability {
+struct Ability_Kirin : public AbilityStruct {
 public:
-	Ability_Kirin() : Ability(selector, ShaderForm::Cross, ShaderType::KirinSh) { SetShaderDistance(2); }
+	Ability_Kirin() : AbilityStruct(selector, ShaderForm::Cross, ShaderType::KirinSh) { ; }
 	virtual ~Ability_Kirin() {}
 	virtual void AbilityExecute(int x, int y);
-	void finTurno() override { ability_usable = true; freeAbilityShader(); }
+	void finTurno() override { self->ability_usable = true; self->freeAbilityShader(); }
 };

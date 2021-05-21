@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Ability.h"
 #include "../ecs/Component.h"
 #include "../utils/Vector2D.h"
 #include "../sdlutils/Texture.h"
@@ -9,10 +10,10 @@
 
 #include <vector>
 
-class Ability_Priest : public Ability {
+class Ability_Priest : public AbilityStruct {
 public:
-	Ability_Priest():Ability(selectorH, ShaderForm::TxT, ShaderType::nullSh) {}
+	Ability_Priest(): AbilityStruct(selectorH, ShaderForm::TxT, ShaderType::nullSh) {}
 	virtual ~Ability_Priest() {}
 	void AbilityExecute(int x, int y);
-	void finTurno() override { ability_usable = true; freeAbilityShader(); }
+	void finTurno() override { self->ability_usable = true; self->freeAbilityShader(); }
 };
