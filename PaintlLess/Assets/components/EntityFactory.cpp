@@ -55,16 +55,12 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 	switch (character) {
 	case Alquimista:
 		animation(ctr, "alquimistaSheet", 150, Alquimista);	 movement(playState, ctr,2); health(ctr, 2);
-		//ctr->addComponent<Ability_Alchemist>();
+		ctr->addComponent<Ability>(Ability_Alchemist());
 		break;
 	case Arquitecta:
-	{
 		animation(ctr, "arquitectaSheet", 150, Arquitecta);	 movement(playState, ctr); health(ctr, 2);
-		Ability_Architect ab = Ability_Architect();
- 		ctr->addComponent<Ability>(ab);
-		//ctr->addComponent<Ability>(new Ability_Architect());
+ 		ctr->addComponent<Ability>(Ability_Architect());
 		break;
-	}
 	case Bomba:
 		animation(ctr, "bombaSheet", 150, Bomba);   movement(playState, ctr); health(ctr, 3);
 		//ctr->addComponent<Ability_Bomb>();

@@ -18,8 +18,8 @@ public:
 	ShaderForm  shaderForm;
 	ShaderType shaderType;
 	
-	void initiliceData(Ability* ab);
 	Ability* getAbility();
+	void initiliceData(Ability* ab);
 	virtual void AbilityExecute(int x, int y);
 	virtual void finTurno() {};
 protected:

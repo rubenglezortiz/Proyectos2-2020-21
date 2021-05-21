@@ -8,11 +8,9 @@
 #include "./Health.h"
 #include "./Movimiento.h"
 
-class Ability_Alchemist : public AbilityStruct
+struct Ability_Alchemist : public AbilityStruct
 {
 public:
-	Ability_Alchemist() : AbilityStruct(selectorA, ShaderForm::Cross, ShaderType::AttackSh) {}
-	~Ability_Alchemist() {};
-
-	void AbilityExecute(int x, int y);
+	Ability_Alchemist();
+	virtual ~Ability_Alchemist() {};
 };
