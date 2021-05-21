@@ -15,11 +15,12 @@ public:
 	//using AbilityStructFunction = void(int x, int y, AbilityStruct* father);
 	using AbilityStructFunction = std::function<void(int, int, AbilityStruct* father)>;
 	using DieFunction = std::function<void(AbilityStruct* father)>;
-	AbilityStruct(selectorColor selector, ShaderForm form, ShaderType type);
+	AbilityStruct(selectorColor selector, ShaderForm form, ShaderType type, int distance = 1);
 	AbilityStruct() :self(nullptr) {}
 	selectorColor selector;
 	ShaderForm  shaderForm;
 	ShaderType shaderType;
+	int distance;
 	
 	Ability* getAbility();
 	void OnDie();

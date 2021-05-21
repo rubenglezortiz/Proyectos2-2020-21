@@ -81,7 +81,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 		break;
 	case Kirin:
 		animation(ctr, "kirinSheet", 150, Kirin);	movement(playState, ctr); health(ctr, 2); attack(playState, ctr);
-		//ctr->addComponent<Ability_Kirin>();
+		ctr->addComponent<Ability>(Ability_Kirin());
 		break;
 	case Lobo:
 		animation(ctr, "loboSheet", 150, Lobo);	  movement(playState, ctr); health(ctr, 2);

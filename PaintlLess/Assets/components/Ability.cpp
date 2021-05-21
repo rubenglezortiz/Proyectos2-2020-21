@@ -4,7 +4,8 @@
 #include "../game//AbilityStruct.h"
 
 Ability::Ability(AbilityStruct data) : characterTr(nullptr), tex(nullptr), map(nullptr), abilityData(data),
-sel(abilityData.selector), selected(false), cellWidth(0), cellHeight(0), form(abilityData.shaderForm), type(abilityData.shaderType), shaderDistance(1) { }
+sel(abilityData.selector), selected(false), cellWidth(0), cellHeight(0), 
+form(abilityData.shaderForm), type(abilityData.shaderType), shaderDistance(data.distance) { }
 
 void Ability::init() {
 	abilityData.initiliceData(this);
