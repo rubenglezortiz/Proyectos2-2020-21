@@ -9,10 +9,11 @@
 
 struct Ability_Architect : AbilityStruct {
 public:
-	Ability_Architect() : AbilityStruct(selectorColor::selector, ShaderForm::Cross, ShaderType::DefenseSh),
-		dest(SDL_Rect()), posArc(Vector2D()), resultado(0), selected(false) {}
+	Ability_Architect();
+	
 	virtual ~Ability_Architect() {  }
 	void AbilityExecute(int x, int y) override;
+	AbilityStructFunction* abFunction;
 	void finTurno() override { self->ability_usable = true; self->freeAbilityShader(); }
 private:
 	SDL_Rect dest;

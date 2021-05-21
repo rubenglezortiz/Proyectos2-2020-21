@@ -27,11 +27,17 @@ void Ability::init() {
 		s = "selectorH";
 		break;
 	default:
+		s = "selectorAb";
 		break;
 	}
 	tex = &sdlutils().images().at(s);
 	auto mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
 	playState = mapa->getPlayState();
+}
+
+void Ability::AbilityExecute(int x, int y)
+{
+	abilityData.AbilityExecute(x, y);
 }
 
 void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
@@ -236,7 +242,7 @@ void Ability::update() {
 				}
 				AbilityExecute(x, y);
 				Vector2D charPos = characterTr->getPos();
-				playState->getGSM()->getNetworkManager()->sendExecuteAbility(charPos.getX(), charPos.getY(), 
+				if(playState->getGSM()->isOnline())playState->getGSM()->getNetworkManager()->sendExecuteAbility(charPos.getX(), charPos.getY(), 
 					std::forward<int>(x), std::forward<int>(y));
 				playState->aumentarAcciones();
 			}

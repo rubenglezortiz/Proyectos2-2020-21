@@ -61,7 +61,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 	{
 		animation(ctr, "arquitectaSheet", 150, Arquitecta);	 movement(playState, ctr); health(ctr, 2);
 		Ability_Architect ab = Ability_Architect();
-		ctr->addComponent<Ability>(ab);
+ 		ctr->addComponent<Ability>(ab);
 		//ctr->addComponent<Ability>(new Ability_Architect());
 		break;
 	}

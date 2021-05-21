@@ -22,7 +22,7 @@ public:
 	virtual void update() ;
 	virtual void finTurno();
 
-	virtual void AbilityExecute(int x, int y) { abilityData.AbilityExecute(x, y); };
+	virtual void AbilityExecute(int x, int y);
 	void AbilityShader(ShaderForm sf, ShaderType st=nullSh, int d = 1);
 	void freeAbilityShader();
 	virtual bool abilityCheck(const Vector2D& pos); //comprueba si en el segundo clic se está clicando 
