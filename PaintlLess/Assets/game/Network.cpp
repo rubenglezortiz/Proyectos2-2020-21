@@ -223,6 +223,11 @@ void Network::update() {
 			
 			break;
 		}
+		case _EXECUTE_ABILTY_: {
+			
+			
+			break;
+		}
 
 		case _DISCONNECTED_: {
 			DissConnectMsg* m = static_cast<DissConnectMsg*>(m_);
@@ -327,15 +332,14 @@ void Network::sendSpawnCharacter(int personaje, int posX, int posY)
 	SDLNet_UDP_Send(conn_, -1, p_);
 }
 
-void Network::sendMoveMessage(int mapX, int mapY, int posX, int posY)
+void Network::sendActionMessage(int&& mapX, int&& mapY, int&& posX, int&& posY, MsgType&& mensaje)
 {
 	// if the other player is not connected do nothing
-	if (!isGameReday_)
-		return;
+	if (!isGameReday_)return;
 
 	// we prepare a message that includes all information
 	ActionMessage* m = static_cast<ActionMessage*>(m_);
-	m->_type = _MOVE_CHARACTER_;
+	m->_type = mensaje;
 	m->mapX = mapX;
 	m->mapY = mapY;
 	m->posX = posX;
@@ -347,4 +351,15 @@ void Network::sendMoveMessage(int mapX, int mapY, int posX, int posY)
 
 	// send the message
 	SDLNet_UDP_Send(conn_, -1, p_);
+}
+
+void Network::sendMoveMessage(int&& mapX, int&& mapY, int&& posX, int&& posY)
+{
+	sendActionMessage(std::forward<int>(mapX), std::forward<int>(mapY), std::forward<int>(posX), std::forward<int>(posY), _MOVE_CHARACTER_);
+}
+
+void Network::sendExecuteAbility(int&& mapX, int&& mapY, int&& posX, int&& posY)
+{
+	sendActionMessage(std::forward<int>(mapX), std::forward<int>(mapY), 
+		std::forward<int>(posX), std::forward<int>(posY), _EXECUTE_ABILTY_);
 }

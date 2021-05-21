@@ -16,7 +16,8 @@ enum MsgType : uint8_nt {
 	_CLIENT_GAME_, //
 	_TURN_CHANGE_, //
 	_SPAWN_CHARACTER_, //
-	_MOVE_CHARACTER_
+	_MOVE_CHARACTER_, //
+	_EXECUTE_ABILTY_
 };
 
 struct NetworkMessage {
