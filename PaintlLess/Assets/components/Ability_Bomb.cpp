@@ -1,14 +1,10 @@
 #include "Ability_Bomb.h"
 
-void Ability_Bomb::init()
-{
-	mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
-	assert(mapa != nullptr);
-}
 
-void Ability_Bomb::explode() {
+void AbilityBomb(int x, int y, AbilityStruct* info, const std::vector<Vector2D>& casillas) {
+	Entity* entity_ = info->getAbility()->getEntity();
 	Vector2D posBomb = entity_->getComponent<Transform>()->getPos();
-
+	GameMap* mapa = info->getAbility()->getMap();
 	posBomb = mapa->SDLPointToMapCoords(posBomb);
 
 
@@ -29,4 +25,9 @@ void Ability_Bomb::explode() {
 	}
 	//sdlutils().soundEffects().at("bombaSound").setChunkVolume(50);
 	sdlutils().soundEffects().at("bombaSound").play(); //-----------------------------------------------------------		
+}
+
+Ability_Bomb::Ability_Bomb()
+{
+	setAbility([this](int x, int y, AbilityStruct* info) {AbilityBomb(x, y, info, casillas); });
 }
