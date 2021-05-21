@@ -7,21 +7,11 @@
 #include "../sdlutils/InputHandler.h"
 #include "Movimiento.h"
 #include "Health.h"
+#include "../game/AbilityStruct.h"
 
 class PlayState;
 class Ability_Druid : public AbilityStruct {
 public:
-	Ability_Druid(PlayState* p, int e) : AbilityStruct(selector, ShaderForm::Cross, ShaderType::DruidaSh), dest(SDL_Rect()), equip(e), pSt(p) {}
+	Ability_Druid();
 	virtual ~Ability_Druid() {}
-
-	void finTurno() override;
-	void AbilityExecute(int x, int y);
-
-private:
-	PlayState* pSt;
-	SDL_Rect dest;
-	Vector2D posDruid;	
-	int equip;
-
-	//cuando se metan margenes hay que tener cuidadd y sumarlos
 };

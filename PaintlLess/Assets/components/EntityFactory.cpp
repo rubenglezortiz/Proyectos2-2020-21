@@ -70,7 +70,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 		break;
 	case Druida:
 		animation(ctr, "druidaSheet", 125, Druida);   movement(playState,ctr); health(ctr, 2);
-		//ctr->addComponent<Ability_Druid>(playState, (int)equipo);
+		ctr->addComponent<Ability>(Ability_Druid());
 		break;
 	case Esqueleto:
 		animation(ctr, "esqueletoSheet", 150, Esqueleto);  movement(playState, ctr); health(ctr, 1); attack(playState, ctr);
