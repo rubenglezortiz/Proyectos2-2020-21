@@ -7,7 +7,7 @@ Ability::Ability(AbilityStruct data) : characterTr(nullptr), tex(nullptr), map(n
 sel(abilityData.selector), selected(false), cellWidth(0), cellHeight(0), form(abilityData.shaderForm), type(abilityData.shaderType), shaderDistance(1) { }
 
 void Ability::init() {
-	abilityData.setSelf(this);
+	abilityData.initiliceData(this);
 	map = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
 	assert(map != nullptr);
 	characterTr = entity_->getComponent<Transform>();

@@ -3,7 +3,7 @@
 
 void AbilityArquitect(int x, int y, AbilityStruct* info)
 {
-	Ability* self = info->getSelf();
+	Ability* self = info->getAbility();
 	Entity* e = self->getEntity()->getMngr()->addEntity(RenderLayer::Tablero3);
 
 	e->addComponent<Transform>(
@@ -20,27 +20,7 @@ void AbilityArquitect(int x, int y, AbilityStruct* info)
 	self->getMap()->setColor(Vector2D(x, y), Ninguno);
 }
 
-Ability_Architect::Ability_Architect() : AbilityStruct(selectorColor::selector, ShaderForm::Cross, ShaderType::DefenseSh),
-dest(SDL_Rect()), posArc(Vector2D()), resultado(0), selected(false) {
-	setAbFunction(AbilityArquitect);
+Ability_Architect::Ability_Architect() : AbilityStruct(selectorColor::selector, ShaderForm::Cross, ShaderType::DefenseSh)
+{
+	setAbility(AbilityArquitect);
 }
-
-void Ability_Architect::AbilityExecute(int x, int y) {
-	// x e y
-	//Crea imagen
-	Entity* e = self->getEntity()->getMngr()->addEntity(RenderLayer::Tablero3);
-
-	e->addComponent<Transform>(
-		Vector2D(x, y), //Posicion
-		Vector2D(),     //Velocidad
-		50.0f,          //Ancho
-		50.0f,          //Alto
-		0.0f);
-
-	e->addComponent<Image>(&sdlutils().images().at("wall"));
-	e->addComponent<Health>(2);
-	self->getEntity()->getComponent<FramedImage>()->setAnim(A_A_A);
-	self->getMap()->setObstaculo(Vector2D(x, y), e);
-	self->getMap()->setColor(Vector2D(x, y), Ninguno);
-}
-
