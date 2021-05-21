@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include "./Ability.h"
+#include "../game/AbilityStruct.h"
 #include "../ecs/Entity.h"
 #include "Health.h"
 #include "Image.h"
@@ -8,10 +9,8 @@
 #include "Movimiento.h"
 #include "GameMap.h"
 
-class Ability_Golem : public Ability { //lleva este componente la destrucci�n del objeto??
+class Ability_Golem : public AbilityStruct {
 public:
-    Ability_Golem() {}
-    void generateWall();
-    
-private:
+    Ability_Golem();
+    ~Ability_Golem() {};
 };

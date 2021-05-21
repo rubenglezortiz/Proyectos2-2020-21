@@ -77,7 +77,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 		break;
 	case Golem:
 		animation(ctr, "golemSheet", 120, Golem);	health(ctr, 4); attack(playState, ctr); ctr->addComponent<Movimiento>(playState, 0);
-		//ctr->addComponent<Ability_Golem>();
+		ctr->addComponent<Ability>(Ability_Golem());
 		break;
 	case Kirin:
 		animation(ctr, "kirinSheet", 150, Kirin);	movement(playState, ctr); health(ctr, 2); attack(playState, ctr);
