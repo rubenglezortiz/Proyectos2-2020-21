@@ -224,6 +224,21 @@ void PlayState::_net_abilityChar(Vector2D charPosInMap, Vector2D dest)
 	else std::cout << "No deberias estar viendo esto lmao";
 }
 
+void PlayState::_net_entityDies(Vector2D charPosInMap)
+{
+	Entity* entity = mapa_->getCharacter(mapa_->SDLPointToMapCoords(charPosInMap));
+	if (entity != nullptr)
+	{
+		Ability* characterAbilty = entity->getComponent<Ability>();
+		if (characterAbilty == nullptr)
+		{
+			std::cout << "Lmao no sabe hacer casting\n";
+		}
+		else characterAbilty->OnDie();
+	}
+	else std::cout << "No deberias estar viendo esto lmao";
+}
+
 void PlayState::CheckPasarTurno()
 {
 	int mX = ih().getMousePos().first;

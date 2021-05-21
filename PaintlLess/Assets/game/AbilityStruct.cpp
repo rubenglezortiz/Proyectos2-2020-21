@@ -9,6 +9,12 @@ Ability* AbilityStruct::getAbility()
 {
 	return self;
 }
+
+void AbilityStruct::OnDie()
+{
+	if (onDie != nullptr) onDie(this);
+}
+
 void AbilityStruct::AbilityExecute(int x, int y)
 {
 	if (abFunction != nullptr)abFunction(x, y, this);
@@ -17,4 +23,8 @@ void AbilityStruct::setAbility(AbilityStructFunction abFunction)
 {
 	this->abFunction = abFunction;
 }
-;
+void AbilityStruct::setOnDie(DieFunction onDie)
+{
+	this->onDie = onDie;
+}
+

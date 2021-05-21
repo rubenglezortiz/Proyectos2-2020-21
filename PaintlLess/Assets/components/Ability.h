@@ -21,6 +21,7 @@ public:
 	virtual void render();
 	virtual void update() ;
 	virtual void finTurno();
+	virtual void OnDie();
 
 	virtual void AbilityExecute(int x, int y);
 	void AbilityShader(ShaderForm sf, ShaderType st=nullSh, int d = 1);

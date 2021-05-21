@@ -230,6 +230,14 @@ void Network::update() {
 			break;
 		}
 
+		case _ENTITY_DIES_: {
+
+			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+			ActionMessage* m = static_cast<ActionMessage*>(m_);
+			playState->_net_entityDies(Vector2D(m->mapX, m->mapY));
+			break;
+		}
+
 		case _DISCONNECTED_: {
 			DissConnectMsg* m = static_cast<DissConnectMsg*>(m_);
 			isGameReday_ = false;
@@ -364,4 +372,10 @@ void Network::sendExecuteAbility(int&& mapX, int&& mapY, int&& posX, int&& posY)
 {
 	sendActionMessage(std::forward<int>(mapX), std::forward<int>(mapY), 
 		std::forward<int>(posX), std::forward<int>(posY), _EXECUTE_ABILTY_);
+}
+
+void Network::sendEntityDies(int&& mapX, int&& mapY)
+{
+	sendActionMessage(std::forward<int>(mapX), std::forward<int>(mapY),
+		std::forward<int>(mapX), std::forward<int>(mapX), _ENTITY_DIES_);
 }

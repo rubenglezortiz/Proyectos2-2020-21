@@ -44,6 +44,8 @@ public:
 	void update() override;
 	void _net_moveChar(Vector2D charPosInMap, Vector2D dest);
 	void _net_abilityChar(Vector2D charPosInMap, Vector2D dest);
+	void _net_entityDies(Vector2D charPosInMap);
+
 	void CheckPasarTurno();
 
 	GameMap* getMapa() { return mapa_; }

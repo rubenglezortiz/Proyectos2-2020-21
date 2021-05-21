@@ -8,7 +8,7 @@
 #include "./Health.h"
 #include "./Movimiento.h"
 
-struct Ability_Alchemist : public AbilityStruct
+class Ability_Alchemist : public AbilityStruct
 {
 public:
 	Ability_Alchemist();

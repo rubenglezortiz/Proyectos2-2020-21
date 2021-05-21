@@ -63,7 +63,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 		break;
 	case Bomba:
 		animation(ctr, "bombaSheet", 150, Bomba);   movement(playState, ctr); health(ctr, 3);
-		//ctr->addComponent<Ability_Bomb>();
+		ctr->addComponent<Ability>(Ability_Bomb());
 		break;
 	case Cazador:
 		image(ctr, "cazador");  movement(playState, ctr); health(ctr, 1); attack(playState, ctr, 2, "arqueroSound");

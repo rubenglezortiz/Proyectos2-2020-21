@@ -26,6 +26,7 @@ public:
 	void sendSpawnCharacter(int personaje, int posX, int posY);
 	void sendMoveMessage(int&& mapX, int&& mapY, int&& posX, int&& posY);
 	void sendExecuteAbility(int&& mapX, int&& mapY, int&& posX, int&& posY);
+	void sendEntityDies(int&& mapX, int&& mapY);
 
 	inline Uint8 getId() {
 		return id_;

@@ -14,6 +14,7 @@ class AbilityStruct
 public:
 	//using AbilityStructFunction = void(int x, int y, AbilityStruct* father);
 	using AbilityStructFunction = std::function<void(int, int, AbilityStruct* father)>;
+	using DieFunction = std::function<void(AbilityStruct* father)>;
 	AbilityStruct(selectorColor selector, ShaderForm form, ShaderType type);
 	AbilityStruct() :self(nullptr) {}
 	selectorColor selector;
@@ -21,13 +22,16 @@ public:
 	ShaderType shaderType;
 	
 	Ability* getAbility();
+	void OnDie();
 	void initiliceData(Ability* ab);
 	virtual void AbilityExecute(int x, int y);
 	virtual void finTurno() {};
 protected:
 	Ability* self;
 	void setAbility(AbilityStructFunction abFunction);
+	void setOnDie(DieFunction onDie);
 private:
 	AbilityStructFunction abFunction;
+	DieFunction onDie = nullptr;
 };
 

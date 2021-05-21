@@ -19,15 +19,21 @@ void Health::hit(int damage) {
 		else color = Azul;
 		mapa->paintDeath(mapa->SDLPointToMapCoords(tr), color);
 
-		if (entity_->getComponent<Ability_Golem>() != nullptr) {    //Deja muro si es el golem
-			entity_->getComponent<Ability_Golem>()->generateWall();
+		Ability* ability = entity_->getComponent<Ability>();
+		if (ability != nullptr)
+		{
+			ability->OnDie();
 		}
-		if (entity_->getComponent<Ability_Bomb>() != nullptr) {
-			entity_->getComponent<Ability_Bomb>()->explode();
-		}
-		else {
-			sdlutils().soundEffects().at("muerteSound").play(); //-----------------------------------------------------------	
-		}
+
+		//if (entity_->getComponent<Ability_Golem>() != nullptr) {    //Deja muro si es el golem
+		//	entity_->getComponent<Ability_Golem>()->generateWall();
+		//}
+		//if (entity_->getComponent<Ability_Bomb>() != nullptr) {
+		//	entity_->getComponent<Ability_Bomb>()->explode();
+		//}
+		//else {
+		//	sdlutils().soundEffects().at("muerteSound").play(); //-----------------------------------------------------------	
+		//}
 		if (entity_->getComponent<FramedImage>() != nullptr)
 			entity_->getComponent<FramedImage>()->setAnim(DeathA);
 		else entity_->setActive(false); //ESTO HABRÍA QUE QUITARLO CUANDO SE METAN TODAS LAS ANIM		
