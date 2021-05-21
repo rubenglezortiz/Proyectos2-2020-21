@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <functional>
 
 enum ShaderType { nullSh, AttackSh, DefenseSh, HealingSh, KirinSh, DruidaSh };
 enum ShaderForm { Cross, TxT, VikingForm, ShaderWolf };
@@ -11,7 +12,8 @@ class Ability;
 class AbilityStruct
 {
 public:
-	using AbilityStructFunction = void(int x, int y, AbilityStruct* father);
+	//using AbilityStructFunction = void(int x, int y, AbilityStruct* father);
+	using AbilityStructFunction = std::function<void(int, int, AbilityStruct* father)>;
 	AbilityStruct(selectorColor selector, ShaderForm form, ShaderType type);
 	AbilityStruct() :self(nullptr) {}
 	selectorColor selector;
@@ -24,8 +26,8 @@ public:
 	virtual void finTurno() {};
 protected:
 	Ability* self;
-	void setAbility(AbilityStructFunction* abFunction);
+	void setAbility(AbilityStructFunction abFunction);
 private:
-	AbilityStructFunction* abFunction;
+	AbilityStructFunction abFunction;
 };
 

@@ -14,5 +14,5 @@ void AbilityAlchemist(int x, int y, AbilityStruct* info)
 
 Ability_Alchemist::Ability_Alchemist() : AbilityStruct(selectorA, ShaderForm::Cross, ShaderType::AttackSh) 
 {
-	setAbility(AbilityAlchemist);
+	setAbility([](int x, int y, AbilityStruct* info) {AbilityAlchemist(x,y,info);});
 }

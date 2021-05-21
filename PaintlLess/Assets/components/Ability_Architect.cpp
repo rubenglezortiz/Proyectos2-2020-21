@@ -22,5 +22,5 @@ void AbilityArquitect(int x, int y, AbilityStruct* info)
 
 Ability_Architect::Ability_Architect() : AbilityStruct(selectorColor::selector, ShaderForm::Cross, ShaderType::DefenseSh)
 {
-	setAbility(AbilityArquitect);
+	setAbility([](int x, int y, AbilityStruct* info) {AbilityArquitect(x,y,info); });
 }

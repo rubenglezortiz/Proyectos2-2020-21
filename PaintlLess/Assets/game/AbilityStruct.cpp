@@ -13,7 +13,7 @@ void AbilityStruct::AbilityExecute(int x, int y)
 {
 	if (abFunction != nullptr)abFunction(x, y, this);
 }
-void AbilityStruct::setAbility(AbilityStructFunction* abFunction)
+void AbilityStruct::setAbility(AbilityStructFunction abFunction)
 {
 	this->abFunction = abFunction;
 }
