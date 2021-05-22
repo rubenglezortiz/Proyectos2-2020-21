@@ -156,6 +156,7 @@
     <ClCompile Include="Assets\components\Ability_Kirin.cpp" />
     <ClCompile Include="Assets\components\Ability_Priest.cpp" />
     <ClCompile Include="Assets\components\Ability_Rogue.cpp" />
+    <ClCompile Include="Assets\components\Ability_Skeleton.cpp" />
     <ClCompile Include="Assets\components\Ability_Tank.cpp" />
     <ClCompile Include="Assets\components\Ability_Viking.cpp" />
     <ClCompile Include="Assets\components\Ability_Wolf.cpp" />
@@ -233,6 +234,7 @@
     <ClInclude Include="Assets\components\Ability_Kirin.h" />
     <ClInclude Include="Assets\components\Ability_Priest.h" />
     <ClInclude Include="Assets\components\Ability_Rogue.h" />
+    <ClInclude Include="Assets\components\Ability_Skeleton.h" />
     <ClInclude Include="Assets\components\Ability_Tank.h" />
     <ClInclude Include="Assets\components\Ability_Viking.h" />
     <ClInclude Include="Assets\components\Ability_Wolf.h" />

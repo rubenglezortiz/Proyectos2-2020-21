@@ -13,11 +13,11 @@
 class FramedImage : public Component {
 public:
 	
-	FramedImage(Texture* tex,  int d, Unit personaje);
+	FramedImage(Texture* tex,  int d, Unit personaje, bool orden = false, bool muerto = false);
 	virtual ~FramedImage() {}
 	void init() override;
 	void render() override;
-	void setAnim(UnitAnim ua);
+	void setAnim(UnitAnim ua, bool orden = false);
 	void update() override;
 
 private:
@@ -29,9 +29,12 @@ private:
 	Uint32 time;
 	UnitAnim currentAnim = IdleA;
 	int delay;
+	int delayAux;
 	int rows_, cols_;	 // number of rows & cols in the texture
 	int w_, h_;			 // width & height of the texture
 	int r_, c_;			 // row & col to render
+	bool order = false;
+	bool muertos = false;
 
 	Vector2D lastPosition = { 0, 0 };
 	Vector2D interpolatedTf;

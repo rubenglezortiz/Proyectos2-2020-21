@@ -7,6 +7,7 @@
 #include "Ability_Kirin.h"
 #include "Ability_Priest.h"
 #include "Ability_Rogue.h"
+#include "Ability_Skeleton.h"
 #include "Ability_Tank.h"
 #include "Ability_Viking.h"
 #include "Ability_Wolf.h"
@@ -74,6 +75,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 		break;
 	case Esqueleto:
 		animation(ctr, "esqueletoSheet", 150, Esqueleto);  movement(playState, ctr); health(ctr, 1); attack(playState, ctr);
+		ctr->addComponent<Ability>(new Ability_Skeleton(5));
 		break;
 	case Golem:
 		animation(ctr, "golemSheet", 120, Golem);	health(ctr, 4); attack(playState, ctr); ctr->addComponent<Movimiento>(playState, 0);
