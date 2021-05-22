@@ -31,7 +31,8 @@ bool Ability_Wolf::AbilityExecute(int x, int y)
 		}
 		else if (!map->movimientoPosible(newPos)) //Muere instantaneo
 		{
-			map->getCharacter(abilityCells[i])->getComponent<Health>()->hit(250);
+			//map->getCharacter(abilityCells[i])->getComponent<Health>()->hit(250);
+			Health::kill(map, map->getCharacter(abilityCells[i]));
 			//sdlutils().soundEffects().at("caeraguaSound").setChunkVolume(5);
 			sdlutils().soundEffects().at("caeraguaSound").play(); //-----------------------------------------------------------		
 		}

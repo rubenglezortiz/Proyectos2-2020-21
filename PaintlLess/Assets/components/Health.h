@@ -18,6 +18,7 @@ public:
     void hit(int damage);
     void healMonaguillo(int healing);
     void heal(int healing = 1);
+    static void kill(GameMap* mapa, Entity* entity_);
     //void setLives();
     int getLives() { return lives; };
 

@@ -170,11 +170,16 @@ int GameMap::binarySearchCell(Vector2D cas) {
 }
 
 void GameMap::setEstado(const Vector2D& cas, TipoCasilla tipo) {
-	assert(casillaValida(cas)); //si a este método se le pasa una casilla de fuera del mapa, error de ejecución
+	assert(casillaValida(cas)); //si a este mï¿½todo se le pasa una casilla de fuera del mapa, error de ejecuciï¿½n
 	cells[(int)cas.getY()][(int)cas.getX()].tipoCasilla = tipo;
 }
 
 void GameMap::setCharacter(const Vector2D& cas, Entity* e) {
+	if(getCharacter(cas) != nullptr)
+	{
+		std::cout << "\nSI VES ESTO FALLO EN MAPA SETCHARACTERNER\n";
+		removeCharacter(cas);
+	}
 	cells[(int)cas.getY()][(int)cas.getX()].character = e;
 }
 
@@ -194,14 +199,14 @@ void GameMap::removeObstaculo(const Vector2D& cas) {
 	cells[(int)cas.getY()][(int)cas.getX()].obstaculo = nullptr;
 }
 
-// Salta excepción al no encontrar 4 casillas en el borde inferior.
+// Salta excepciï¿½n al no encontrar 4 casillas en el borde inferior.
 
 
 Color GameMap::getColor(Vector2D cas) {
 	return cells[(int)cas.getY()][(int)cas.getX()].color;
 }
 
-bool GameMap::casillaValida(const Vector2D& cas) //SUPONEMOS QUE ESTÁ BIEN, ACEPTAMOS CAMBIOS XDD
+bool GameMap::casillaValida(const Vector2D& cas) //SUPONEMOS QUE ESTï¿½ BIEN, ACEPTAMOS CAMBIOS XDD
 {
 	return cas.getX() >= 0 && cas.getX() < getColumns() && cas.getY() >= 0 && cas.getY() < getRows();
 }
@@ -230,7 +235,7 @@ bool GameMap::ataquePosible(const Vector2D& cas) {
 		return true;
 	}
 
-	// Ha de hacer distinción entre personaje amigo y enemigo.
+	// Ha de hacer distinciï¿½n entre personaje amigo y enemigo.
 	if (cells[y][x].character != nullptr) {
 		if (playState->getTurno() == Primero)
 			return !cells[y][x].character->hasGroup<Equipo_Azul>();

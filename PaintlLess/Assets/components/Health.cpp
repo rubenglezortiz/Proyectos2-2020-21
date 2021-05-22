@@ -11,27 +11,7 @@ void Health::init() {
 void Health::hit(int damage) {
 	lives -= damage;
 	if (lives <= 0) {
-		Vector2D tr = entity_->getComponent<Transform>()->getPos();
-		mapa->removeCharacter(mapa->SDLPointToMapCoords(tr)); //Quitar la entidad muerta		
-		mapa->removeObstaculo(mapa->SDLPointToMapCoords(tr));
-		Color color;
-		if (mapa->getPlayState()->getCurrentPlayer() == Segundo) color = Rojo;
-		else color = Azul;
-		mapa->setColor(mapa->SDLPointToMapCoords(tr), color);
-
-		Ability* ability = entity_->getComponent<Ability>();
-		if (ability != nullptr)
-		{
-			ability->OnDie();
-		}
-
-		//else {
-		//	sdlutils().soundEffects().at("muerteSound").play(); //-----------------------------------------------------------	
-		//}
-		if (entity_->getComponent<FramedImage>() != nullptr)
-			entity_->getComponent<FramedImage>()->setAnim(DeathA);
-		else entity_->setActive(false); //ESTO HABRÍA QUE QUITARLO CUANDO SE METAN TODAS LAS ANIM		
-
+		kill(mapa, entity_);
 	}
 	std::cout << "Ataca";
 }
@@ -44,6 +24,30 @@ void Health::healMonaguillo(int healing) {
 void Health::heal(int healing) {
 	if (lives != livesMax - 1)
 		lives += healing;
+}
+
+void Health::kill(GameMap* mapa, Entity* entity_)
+{
+	Vector2D tr = entity_->getComponent<Transform>()->getPos();
+	mapa->removeCharacter(mapa->SDLPointToMapCoords(tr)); //Quitar la entidad muerta		
+	mapa->removeObstaculo(mapa->SDLPointToMapCoords(tr));
+	Color color;
+	if (mapa->getPlayState()->getCurrentPlayer() == Segundo) color = Rojo;
+	else color = Azul;
+	mapa->setColor(mapa->SDLPointToMapCoords(tr), color);
+
+	Ability* ability = entity_->getComponent<Ability>();
+	if (ability != nullptr)
+	{
+		ability->OnDie();
+	}
+
+	//else {
+	//	sdlutils().soundEffects().at("muerteSound").play(); //-----------------------------------------------------------	
+	//}
+	if (entity_->getComponent<FramedImage>() != nullptr)
+		entity_->getComponent<FramedImage>()->setAnim(DeathA);
+	else entity_->setActive(false); //ESTO HABRÍA QUE QUITARLO CUANDO SE METAN TODAS LAS ANIM		
 }
 
 void Health::render() {
