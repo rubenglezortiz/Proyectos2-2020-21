@@ -17,7 +17,7 @@ void Health::hit(int damage) {
 		Color color;
 		if (mapa->getPlayState()->getCurrentPlayer() == Segundo) color = Rojo;
 		else color = Azul;
-		mapa->paintDeath(mapa->SDLPointToMapCoords(tr), color);
+		mapa->setColor(mapa->SDLPointToMapCoords(tr), color);
 
 		Ability* ability = entity_->getComponent<Ability>();
 		if (ability != nullptr)
@@ -25,12 +25,6 @@ void Health::hit(int damage) {
 			ability->OnDie();
 		}
 
-		//if (entity_->getComponent<Ability_Golem>() != nullptr) {    //Deja muro si es el golem
-		//	entity_->getComponent<Ability_Golem>()->generateWall();
-		//}
-		//if (entity_->getComponent<Ability_Bomb>() != nullptr) {
-		//	entity_->getComponent<Ability_Bomb>()->explode();
-		//}
 		//else {
 		//	sdlutils().soundEffects().at("muerteSound").play(); //-----------------------------------------------------------	
 		//}

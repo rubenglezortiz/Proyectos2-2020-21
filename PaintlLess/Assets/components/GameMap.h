@@ -74,7 +74,6 @@ public:
 	bool getCreeper(const Vector2D& pos) { return cells[(int)pos.getY()][(int)pos.getX()].enredadera; }
 	TipoCasilla getTipoCasilla(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].tipoCasilla; }
 	PlayState* getPlayState() { return playState; }
-	void paintDeath(Vector2D pos, Color color);
 	int binarySearchCell(Vector2D pos);
 	Vector2D MapCoordsToSDLPoint(Vector2D coords) const { //Pasar de coordenadas del mapa a pixeles
 		Vector2D p{ (coords.getX() * cellWidth) + OFFSET_X, (coords.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP };

@@ -1,6 +1,6 @@
 #include "Ability_Bomb.h"
 
-Ability_Bomb::Ability_Bomb(){}
+Ability_Bomb::Ability_Bomb() {}
 
 void Ability_Bomb::OnDie()
 {
@@ -12,6 +12,8 @@ void Ability_Bomb::explode()
 	Entity* entity_ = this->getAbility()->getEntity();
 	Vector2D posBomb = entity_->getComponent<Transform>()->getPos();
 	GameMap* mapa = this->getAbility()->getMap();
+	Color color = entity_->hasGroup<Equipo_Azul>() ? Azul : Rojo;
+
 	posBomb = mapa->SDLPointToMapCoords(posBomb);
 	std::cout << "X: " << posBomb.getX() << " Y: " << posBomb.getY();
 
@@ -20,14 +22,15 @@ void Ability_Bomb::explode()
 		//Hay personajes ==> Daño
 		std::cout << "X: " << casillas[i].getX() << " Y: " << casillas[i].getY();
 		if (mapa->casillaValida(casillas[i] + posBomb) && mapa->getCharacter(casillas[i] + posBomb) != nullptr) {
-			mapa->getCharacter(casillas[i] + posBomb)->getComponent<Health>()->hit(1);
+			auto character = mapa->getCharacter(casillas[i] + posBomb);
+			if ((character->hasGroup<Equipo_Azul>() && entity_->hasGroup<Equipo_Rojo>()) || (character->hasGroup<Equipo_Rojo>() && entity_->hasGroup<Equipo_Azul>()))
+			{
+				character->getComponent<Health>()->hit(1);
+			}
 		}
 		//Es pintable ==> Pinta
 		if (mapa->movimientoPosible(casillas[i] + posBomb)) {
-			if (entity_->hasGroup<Equipo_Azul>())
-				mapa->setColor(casillas[i] + posBomb, Azul);
-			else
-				mapa->setColor(casillas[i] + posBomb, Rojo);
+			mapa->setColor(casillas[i] + posBomb, color);
 		}
 	}
 	//sdlutils().soundEffects().at("bombaSound").setChunkVolume(50);

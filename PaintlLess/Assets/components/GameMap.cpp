@@ -156,17 +156,6 @@ void GameMap::setColor(const Vector2D& cas, Color color) {
 	}
 }
 
-void GameMap::paintDeath(Vector2D cas, Color col) {
-	string color;
-	if (col == Azul) color = "rojo";
-	else color = "azul";
-
-	int i = binarySearchCell(cas);
-
-	if (i < casillas.size())
-		casillas[i]->getComponent<Image>()->setTexture(&sdlutils().images().at(color));
-}
-
 int GameMap::binarySearchCell(Vector2D cas) {
 	Vector2D cas2 = MapCoordsToSDLPoint(cas);
 	int i = 0;
