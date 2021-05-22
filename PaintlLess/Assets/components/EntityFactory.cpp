@@ -101,7 +101,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 		break;
 	case Vikingo:
 		animation(ctr, "vikingoSheet", 150,  Vikingo);  movement(playState, ctr); health(ctr, 1);
-		//ctr->addComponent<Ability_Viking>();
+		ctr->addComponent<Ability>(Ability_Viking());
 		break;
 	}
 	mapa->setCharacter(mapa->SDLPointToMapCoords(ctr->getComponent<Transform>()->getPos()), ctr);
