@@ -72,14 +72,25 @@ void DeckSpawn::render() {
 		sdlutils().images().at("cold" + to_string(cool1)).render(dest);
 	else if (playState->getCurrentPlayer() == 0 && cool0 > 0)
 		sdlutils().images().at("cold" + to_string(cool0)).render(dest);
+	else {
+		if (hover || selected) {
+			dest.x = tr_->getPos().getX();
+			dest.y = tr_->getPos().getY();
+			dest.h = tr_->getH();
+			dest.w = tr_->getW();
+			sdlutils().images().at("marcoCarta").render(dest);
+		}
+	}	
 }
 
 void DeckSpawn::update() {
 	auto pos = entity_->getComponent<Transform2>()->getPos();
-	if (ih().getMouseButtonState(ih().LEFT)) {
-
-		int mX = ih().getMousePos().first;
-		int mY = ih().getMousePos().second;
+	int mX = ih().getMousePos().first;
+	int mY = ih().getMousePos().second;
+	
+	hover = (mX > pos.getX() && mX < pos.getX() + tr_->getW() && mY > pos.getY() && mY < pos.getY() + tr_->getH()) ? true : false;
+		
+	if (ih().getMouseButtonState(ih().LEFT)) {		
 		if (selected) {
 			//esto se debe hacer en movementshader
 			Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
@@ -98,8 +109,9 @@ void DeckSpawn::update() {
 			freeShader();
 		}
 		else if (mX > pos.getX() && mX < pos.getX() + tr_->getW() && mY > pos.getY() && mY < pos.getY() + tr_->getH()) {
+			
 			if (isSpawnable()) {
-				selected = true;
+				selected = true;			
 				spawnShader(playState->getCurrentPlayer());
 				sdlutils().soundEffects().at("seleccionSound").play();
 			}

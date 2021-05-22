@@ -41,8 +41,8 @@ void Manager::refresh() {
 		renderLayers[i].erase(std::remove_if( //
 			renderLayers[i].begin(), //
 			renderLayers[i].end(), //
-			[](const Entity* i) { //
-				return !i->isActive();
+			[](const Entity* e) { //
+				return !e->isActive();
 			}), //
 			renderLayers[i].end());
 }

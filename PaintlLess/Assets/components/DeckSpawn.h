@@ -19,6 +19,7 @@ private:
 	int cellWidth, cellHeight;
 	int personaje;
 	bool selected = false;
+	bool hover = false;
 	Equipo turno;
 	int cool0, cool1;
 
