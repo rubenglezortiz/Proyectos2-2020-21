@@ -5,7 +5,6 @@
 // components -- forward declaration, i.e., assume they are defined somewhere
 
 class Ability_Alchemist;
-class TanqueA;
 class Ability_Architect;
 class Ability_Bomb;
 class Ability_Creeper;
@@ -76,7 +75,6 @@ class Transform2;
 	Movimiento						,  \
 	PointOnImage					,  \
 	Transform						,  \
-	TanqueA						    ,  \
 	Transform2
 
 	// groups
