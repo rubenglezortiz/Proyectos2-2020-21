@@ -2,7 +2,12 @@
 
 Ability_Bomb::Ability_Bomb(){}
 
-void Ability_Bomb::finTurno()
+void Ability_Bomb::OnDie()
+{
+	explode();
+}
+
+void Ability_Bomb::explode()
 {
 	Entity* entity_ = this->getAbility()->getEntity();
 	Vector2D posBomb = entity_->getComponent<Transform>()->getPos();

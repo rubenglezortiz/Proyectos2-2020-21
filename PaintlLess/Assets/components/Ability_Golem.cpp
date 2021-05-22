@@ -2,7 +2,7 @@
 
 Ability_Golem::Ability_Golem(){}
 
-void Ability_Golem::finTurno()
+void Ability_Golem::OnDie()
 {
     GameMap* map = this->getAbility()->getMap();
     Entity* entity_ = this->getAbility()->getEntity();
