@@ -54,16 +54,16 @@
     { "id" : "vikingoM",        "file" : "resources/images/interfaz/vikingoMazo.png" },
     { "id" : "botonT",          "file" : "resources/images/interfaz/botonTurno.png" },
 
-	  { "id" : "life",         "file" : "resources/images/sprites/life.png" },
+	{ "id" : "life",         "file" : "resources/images/sprites/life.png" },
     { "id" : "tileset",      "file" : "resources/images/sprites/tileset2.png" },
-	  { "id" : "wall",         "file" : "resources/images/sprites/wall.png" },
-	  { "id" : "enredadera",   "file" : "resources/images/sprites/enredaderas.png" },
+	{ "id" : "wall",         "file" : "resources/images/sprites/wall.png" },
+	{ "id" : "enredadera",   "file" : "resources/images/sprites/enredaderas.png" },
 
     { "id" : "tanque",     "file" : "resources/images/sprites/personajes/Tanque/tanque.png"},
     { "id" : "esqueleto",  "file" : "resourceS/images/sprites/personajes/Esqueleto/esqueleto.png"},
     { "id" : "druida",     "file" : "resources/images/sprites/personajes/druida.png"},
     { "id" : "golem",      "file" : "resources/images/sprites/personajes/golem.png"},
-	  { "id" : "bomba",      "file":  "resources/images/sprites/personajes/BombaHumana/bombahumana.png"},
+	{ "id" : "bomba",      "file":  "resources/images/sprites/personajes/BombaHumana/bombahumana.png"},
     { "id" : "picara",     "file" : "resources/images/sprites/personajes/picara.png"},
     { "id" : "cazador",    "file" : "resources/images/sprites/personajes/cazador.png"},
     { "id" : "alquimista", "file" : "resources/images/sprites/personajes/Alquimista/alquimista.png"},  
@@ -158,7 +158,8 @@
     { "id" : "vikingoMazoR",    "file": "resources/images/interfaz/mazo/vikingoMazoRojo.png"},
     
     { "id" : "marcoCarta",      "file": "resources/images/interfaz/mazo/marco.png"},
-    
+    { "id" : "marcoRosa",      "file": "resources/images/interfaz/marcoRosa.png"},
+    { "id" : "marcoAzul",      "file": "resources/images/interfaz/marcoAzul.png"},
 
     { "id" : "alquimistaSheetA",  "file": "resources/images/sprites/personajes/Alquimista/AlquimistaAzulAnimsSheet.png"},
     { "id" : "alquimistaSheetR",  "file": "resources/images/sprites/personajes/Alquimista/AlquimistaRojoAnimsSheet.png"},    

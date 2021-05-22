@@ -138,6 +138,16 @@ void Interfaz::render() {
 	}
 	Texture(sdlutils().renderer(), to_string(casAzul), sdlutils().fonts().at("NES-CHIMERA24"), build_sdlcolor(0x7ce5fbff)).render(numPorcA);
 	Texture(sdlutils().renderer(), to_string(casRojo), sdlutils().fonts().at("NES-CHIMERA24"), build_sdlcolor(0xff00dcff)).render(numPorcR);
+
+	SDL_Rect marco;
+	marco.x = 0;
+	marco.y = 0;
+	marco.w = 1920;
+	marco.h = 1080;
+	if (playState->getCurrentPlayer() == Primero)
+		sdlutils().images().at("marcoRosa").render(marco);
+	else
+		sdlutils().images().at("marcoAzul").render(marco);
 }
 
 void Interfaz::menuOpciones(GameStateMachine* gsm) {

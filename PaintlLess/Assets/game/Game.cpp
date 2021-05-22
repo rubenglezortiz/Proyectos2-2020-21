@@ -29,7 +29,7 @@ Game::~Game() { //revisar
 void Game::init() {
 
 	//mngr_.reset(new Manager());
-	SDLUtils::init("PaintLess", 1920, 1000, "resources/config/resources.json");
+	SDLUtils::init("PaintLess", 1920, 1080, "resources/config/resources.json");
 	stateMachine = new GameStateMachine();
 	stateMachine->pushState(new MainMenuState(stateMachine));
 	
