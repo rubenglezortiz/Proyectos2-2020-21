@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../ecs/Component.h"
+#include "../game/AbilityStruct.h"
 #include "../sdlutils/Texture.h"
 #include "../ecs/Entity.h"
 #include "./Transform.h"
@@ -11,10 +12,7 @@
 
 class Ability_Wolf : public AbilityStruct {
 public:
-	Ability_Wolf(): AbilityStruct(selectorA, ShaderForm::ShaderWolf, ShaderType::nullSh) {}
+	Ability_Wolf();
 	virtual ~Ability_Wolf() {}
-	void AbilityExecute(int x, int y);
-
-
 };
 

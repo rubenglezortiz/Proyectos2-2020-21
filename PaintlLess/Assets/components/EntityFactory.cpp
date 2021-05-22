@@ -85,7 +85,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 		break;
 	case Lobo:
 		animation(ctr, "loboSheet", 150, Lobo);	  movement(playState, ctr); health(ctr, 2);
-		//ctr->addComponent<Ability_Wolf>();
+		ctr->addComponent<Ability>(Ability_Wolf());
 		break;
 	case Monaguillo:
 		animation(ctr, "monaguilloSheet", 150, Monaguillo); movement(playState, ctr); health(ctr, 1); attack(playState, ctr);
