@@ -13,9 +13,9 @@ using AbilityFunction = void(int x, int y, GameMap* map, Manager* manager);
 class Ability : public Component {
 public:
 	Ability() : characterTr(nullptr), tex(nullptr), map(nullptr), selected(false), cellWidth(0), cellHeight(0), form(form), type(type), shaderDistance(1){}
-	Ability(AbilityStruct data);
+	Ability(AbilityStruct* data);
 
-	virtual ~Ability() {}
+	virtual ~Ability() { delete abilityData; }
 
 	virtual void init();
 	virtual void render();
@@ -34,7 +34,7 @@ public:
 	bool ability_usable = true;
 
 protected:
-	AbilityStruct abilityData;
+	AbilityStruct* abilityData;
 	ShaderForm form;
 	ShaderType type;
 	std::vector<Vector2D> abilityCells;

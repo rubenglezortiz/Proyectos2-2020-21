@@ -3,12 +3,12 @@
 #include "../game/GameStateMachine.h"
 #include "../game//AbilityStruct.h"
 
-Ability::Ability(AbilityStruct data) : characterTr(nullptr), tex(nullptr), map(nullptr), abilityData(data),
-sel(abilityData.selector), selected(false), cellWidth(0), cellHeight(0), 
-form(abilityData.shaderForm), type(abilityData.shaderType), shaderDistance(data.distance) { }
+Ability::Ability(AbilityStruct* data) : characterTr(nullptr), tex(nullptr), map(nullptr), abilityData(data),
+sel(abilityData->selector), selected(false), cellWidth(0), cellHeight(0),
+form(abilityData->shaderForm), type(abilityData->shaderType), shaderDistance(data->distance) { }
 
 void Ability::init() {
-	abilityData.initiliceData(this);
+	abilityData->initiliceData(this);
 	map = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
 	assert(map != nullptr);
 	characterTr = entity_->getComponent<Transform>();
@@ -38,7 +38,7 @@ void Ability::init() {
 
 void Ability::AbilityExecute(int x, int y)
 {
-	abilityData.AbilityExecute(x, y);
+	abilityData->AbilityExecute(x, y);
 	freeAbilityShader();
 }
 
@@ -263,12 +263,12 @@ void Ability::update() {
 void Ability::finTurno()
 {
 	ability_usable = true;
-	abilityData.finTurno();
+	abilityData->finTurno();
 }
 
 void Ability::OnDie()
 {
-	abilityData.OnDie();
+	abilityData->OnDie();
 	Vector2D pos = characterTr->getPos();
 	playState->getGSM()->getNetworkManager()->sendEntityDies(pos.getX(), pos.getY());
 }

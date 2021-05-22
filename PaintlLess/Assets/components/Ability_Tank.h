@@ -11,6 +11,7 @@ public:
     void init(AbilityStruct* info);
     void tankPassive(AbilityStruct* info);
 private:
+    Health* mLive;
     int turnos;
     int mTurno;
     int lives;

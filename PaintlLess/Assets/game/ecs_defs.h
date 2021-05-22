@@ -4,18 +4,7 @@
 
 // components -- forward declaration, i.e., assume they are defined somewhere
 
-class Ability_Alchemist;
-class Ability_Architect;
-class Ability_Bomb;
 class Ability_Creeper;
-class Ability_Druid;
-class Ability_Golem;
-class Ability_Kirin;
-class Ability_Priest;
-class Ability_Rogue;
-class Ability_Viking;
-class Ability_Wolf;
-class Ability_Tank;
 class Ability;
 class Attack;
 class ButtonCharacterSelection;
@@ -42,18 +31,7 @@ class Transform2;
 
 #define _CMPS_LIST_  \
 	Ability						    ,  \
-	Ability_Alchemist			    ,  \
-	Ability_Architect			    ,  \
-	Ability_Bomb				 	,  \
 	Ability_Creeper				    ,  \
-	Ability_Druid				    ,  \
-	Ability_Golem					,  \
-	Ability_Kirin					,  \
-	Ability_Priest				    ,  \
-	Ability_Rogue				    ,  \
-	Ability_Viking				    ,  \
-	Ability_Wolf		    	    ,  \
-	Ability_Tank				    ,  \
 	Attack							,  \
 	ButtonCharacterSelection		,  \
 	ButtonDescription               ,  \

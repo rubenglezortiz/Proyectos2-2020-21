@@ -16,7 +16,7 @@ Ability_Tank::Ability_Tank() : lives(0), mTurno(0), turnos(4)
 
 void Ability_Tank::init(AbilityStruct* info) {
 	Entity* entity_ = info->getAbility()->getEntity();
-	Health* mLive = entity_->getComponent<Health>();
+	mLive = entity_->getComponent<Health>();
 	lives = mLive->getLives();
 	mTurno = turnos;
 }
@@ -24,7 +24,6 @@ void Ability_Tank::init(AbilityStruct* info) {
 void Ability_Tank::tankPassive(AbilityStruct* info) {
 
 	Entity* entity_ = info->getAbility()->getEntity();
-	Health* mLive = entity_->getComponent<Health>();
 
 	if (mLive->getLives() < lives) {
 		if (mTurno == 0) {
