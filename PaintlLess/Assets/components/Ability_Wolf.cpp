@@ -8,6 +8,11 @@ void AbilityWolf(AbilityStruct* info)
 	GameMap* map = info->getAbility()->getMap();
 	Entity* entity_ = info->getAbility()->getEntity();
 	std::vector<Vector2D> abilityCells = info->getAbility()->getCells();
+	if (abilityCells.empty())
+	{
+		info->getAbility()->Shade();
+		abilityCells = info->getAbility()->getCells();
+	}
 	Vector2D newPos;
 	for (int i = 0; i < abilityCells.size(); i++)
 	{

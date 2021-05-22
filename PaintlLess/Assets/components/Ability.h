@@ -24,6 +24,7 @@ public:
 	virtual void OnDie();
 
 	virtual void AbilityExecute(int x, int y);
+	void Shade();
 	void AbilityShader(ShaderForm sf, ShaderType st=nullSh, int d = 1);
 	void freeAbilityShader();
 	virtual bool abilityCheck(const Vector2D& pos); //comprueba si en el segundo clic se está clicando 

@@ -39,6 +39,12 @@ void Ability::init() {
 void Ability::AbilityExecute(int x, int y)
 {
 	abilityData.AbilityExecute(x, y);
+	freeAbilityShader();
+}
+
+void Ability::Shade()
+{
+	AbilityShader(form, type, shaderDistance);
 }
 
 void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
@@ -215,7 +221,7 @@ void Ability::update() {
 		{
 			if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && ability_usable) {
 				selected = true;
-				AbilityShader(form, type, shaderDistance);
+				Shade();
 			}
 		}
 		else
@@ -243,12 +249,12 @@ void Ability::update() {
 				}
 				AbilityExecute(x, y);
 				Vector2D charPos = characterTr->getPos();
-				if(playState->getGSM()->isOnline())playState->getGSM()->getNetworkManager()->sendExecuteAbility(charPos.getX(), charPos.getY(), 
+				if(playState->getGSM()->isOnline())
+					playState->getGSM()->getNetworkManager()->sendExecuteAbility(charPos.getX(), charPos.getY(), 
 					std::forward<int>(x), std::forward<int>(y));
 				playState->aumentarAcciones();
 			}
 			selected = false;
-			freeAbilityShader();
 		}
 	}
 }
@@ -257,7 +263,6 @@ void Ability::update() {
 void Ability::finTurno()
 {
 	ability_usable = true;
-	freeAbilityShader();
 	abilityData.finTurno();
 }
 
