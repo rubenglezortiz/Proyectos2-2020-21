@@ -14,7 +14,6 @@ class Ability_Skeleton : public AbilityStruct {
 public:
     Ability_Skeleton(int lv);
     virtual void OnDie() override;
-    void finTurno() override;
     ~Ability_Skeleton() {};
 
 private:

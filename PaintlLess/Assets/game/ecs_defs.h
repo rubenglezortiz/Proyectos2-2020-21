@@ -28,6 +28,7 @@ class Movimiento;
 class PointOnImage;
 class Transform;
 class Transform2;
+class DieAfterXTurns;
 
 #define _CMPS_LIST_  \
 	Ability						    ,  \
@@ -53,7 +54,8 @@ class Transform2;
 	Movimiento						,  \
 	PointOnImage					,  \
 	Transform						,  \
-	Transform2
+	Transform2						,  \
+    DieAfterXTurns
 
 	// groups
 

@@ -40,14 +40,14 @@ void Attack::attack() {
 			Vector2D cas = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
 			// Se tendría que hacer diferenciación entre el equipo del personaje.
 			if (canAttack(cas)) {
-				bool ataqueCrit = (rand() % 100 +1) < probCrit;
+				bool ataqueCrit = (rand() % 100 + 1) < probCrit;
 				int currentDmg = ataqueCrit ? dmgCrit : dmg;
 				attackDelegate(cas, currentDmg);
 				auto gsm = playState->getGSM();
 				if (gsm->isOnline())
 				{
 					Vector2D posInMap = mapa->SDLPointToMapCoords(pos);
-					gsm->getNetworkManager()->sendAttack(posInMap.getX(), posInMap.getY() ,cas.getX(), cas.getY(), std::forward<int>(currentDmg));
+					gsm->getNetworkManager()->sendAttack(posInMap.getX(), posInMap.getY(), cas.getX(), cas.getY(), std::forward<int>(currentDmg));
 				}
 				//sdlutils().soundEffects().at(sound).setChunkVolume(15);
 				ability_usable = false;
@@ -72,7 +72,10 @@ void Attack::attackDelegate(const Vector2D& cas, const int& damage)
 {
 	auto* mCha = mapa->getCharacter(cas);
 	if (mCha != nullptr)
-		mapa->getCharacter(cas)->getComponent<Health>()->hit(damage);
+	{
+		Health* vida = mapa->getCharacter(cas)->getComponent<Health>();
+		if (vida != nullptr) vida->hit(damage);
+	}
 	auto* mObs = mapa->getObstaculo(cas);
 	if (mObs != nullptr)
 		mapa->getObstaculo(cas)->getComponent<Health>()->hit(damage);

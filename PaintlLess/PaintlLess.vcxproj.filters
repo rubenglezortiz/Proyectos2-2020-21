@@ -276,14 +276,17 @@
     <ClCompile Include="Assets\game\Network.cpp">
       <Filter>Archivos de origen\game</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\components\EntityFactory.cpp">
-      <Filter>Archivos de origen\components</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\game\AbilityStruct.cpp">
       <Filter>Archivos de origen\game</Filter>
     </ClCompile>
     <ClCompile Include="Assets\components\Ability_Skeleton.cpp">
       <Filter>Archivos de origen\components\abilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\EntityFactory.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\DieAfterXTurns.cpp">
+      <Filter>Archivos de origen\components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -526,6 +529,9 @@
     </ClInclude>
     <ClInclude Include="Assets\components\Ability_Skeleton.h">
       <Filter>Archivos de encabezado\components\abilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\DieAfterXTurns.h">
+      <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
