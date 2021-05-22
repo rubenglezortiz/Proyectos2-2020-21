@@ -12,5 +12,6 @@
 class Ability_Golem : public AbilityStruct {
 public:
     Ability_Golem();
+    virtual void finTurno() override;
     ~Ability_Golem() {};
 };

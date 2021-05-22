@@ -9,5 +9,8 @@
 class Ability_Bomb : public AbilityStruct { //lleva este componente la destrucci�n del objeto??
 public:
     Ability_Bomb();
+    virtual void finTurno() override;
     virtual ~Ability_Bomb() {}
+private:
+    const std::vector<Vector2D> casillas{ {0, -1}, {-1, -1}, {1, -1}, {1, 0}, {-1, 0}, {0, 1}, {-1, 1}, {1, 1} };
 };

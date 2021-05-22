@@ -9,5 +9,6 @@
 struct Ability_Kirin : public AbilityStruct {
 public:
 	Ability_Kirin();
+	virtual void AbilityExecute(int x, int y) override;
 	virtual ~Ability_Kirin() {}
 };

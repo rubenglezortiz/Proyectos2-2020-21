@@ -1,9 +1,11 @@
 #include "Ability_Architect.h"
 #include "../game/OffsetInfo.h"
 
-void AbilityArquitect(int x, int y, AbilityStruct* info)
+Ability_Architect::Ability_Architect() : AbilityStruct(selectorColor::selector, ShaderForm::Cross, ShaderType::DefenseSh){}
+
+void Ability_Architect::AbilityExecute(int x, int y)
 {
-	Ability* self = info->getAbility();
+	Ability* self = this->getAbility();
 	Entity* e = self->getEntity()->getMngr()->addEntity(RenderLayer::Tablero3);
 
 	e->addComponent<Transform>(
@@ -18,9 +20,4 @@ void AbilityArquitect(int x, int y, AbilityStruct* info)
 	self->getEntity()->getComponent<FramedImage>()->setAnim(A_A_A);
 	self->getMap()->setObstaculo(Vector2D(x, y), e);
 	self->getMap()->setColor(Vector2D(x, y), Ninguno);
-}
-
-Ability_Architect::Ability_Architect() : AbilityStruct(selectorColor::selector, ShaderForm::Cross, ShaderType::DefenseSh)
-{
-	setAbility([](int x, int y, AbilityStruct* info) {AbilityArquitect(x,y,info); });
 }

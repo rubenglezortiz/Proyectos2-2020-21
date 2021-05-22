@@ -13,5 +13,6 @@
 class Ability_Viking : public AbilityStruct {
 public:
 	Ability_Viking();
+	virtual void AbilityExecute(int x, int y) override;
 	virtual ~Ability_Viking() {}
 };

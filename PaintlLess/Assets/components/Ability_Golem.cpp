@@ -1,9 +1,11 @@
 #include "Ability_Golem.h"
 
+Ability_Golem::Ability_Golem(){}
 
-void AbilityGolem (AbilityStruct* info) {
-    GameMap* map = info->getAbility()->getMap();
-    Entity* entity_ = info->getAbility()->getEntity();
+void Ability_Golem::finTurno()
+{
+    GameMap* map = this->getAbility()->getMap();
+    Entity* entity_ = this->getAbility()->getEntity();
     Transform* characterTr = entity_->getComponent<Transform>();
 
     Vector2D pos = map->SDLPointToMapCoords(characterTr->getPos());
@@ -16,10 +18,5 @@ void AbilityGolem (AbilityStruct* info) {
         0.0f);
     e->addComponent<Image>(&sdlutils().images().at("wall"));
     e->addComponent<Health>(2);
-	map->setCharacter(pos, e);
-}
-
-Ability_Golem::Ability_Golem()
-{
-    setOnDie([](AbilityStruct* info) {AbilityGolem(info); });
+    map->setCharacter(pos, e);
 }

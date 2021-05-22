@@ -2,10 +2,12 @@
 #include "Ability_Creeper.h"
 #include "../game/PlayState.h"
 
-void AbilityDruid(int x, int y, AbilityStruct* info) {
+Ability_Druid::Ability_Druid() : AbilityStruct(selector, ShaderForm::Cross, ShaderType::DruidaSh) {}
 
-	Entity* entity_ = info->getAbility()->getEntity();
-	GameMap* map = info->getAbility()->getMap();
+void Ability_Druid::AbilityExecute(int x, int y)
+{
+	Entity* entity_ = this->getAbility()->getEntity();
+	GameMap* map = this->getAbility()->getMap();
 	Vector2D posDruid = entity_->getComponent<Transform>()->getPos();
 	int equip = map->getPlayState()->getCurrentPlayer() == Equipo::Segundo ? Equipo::Primero : Equipo::Segundo;
 	posDruid = map->SDLPointToMapCoords(posDruid);
@@ -53,11 +55,5 @@ void AbilityDruid(int x, int y, AbilityStruct* info) {
 	}
 	entity_->getComponent<FramedImage>()->setAnim(A_A_A);
 	//sdlutils().soundEffects().at("crearEnredaderasSound").setChunkVolume(40);
-	sdlutils().soundEffects().at("crearEnredaderasSound").play(); 
-}
-
-Ability_Druid::Ability_Druid() : AbilityStruct(selector, ShaderForm::Cross, ShaderType::DruidaSh) {
-	setAbility([](int x, int y, AbilityStruct* info) {
-		AbilityDruid(x, y, info);
-		});
+	sdlutils().soundEffects().at("crearEnredaderasSound").play();
 }

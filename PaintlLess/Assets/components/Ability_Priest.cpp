@@ -1,13 +1,16 @@
 #include "Ability_Priest.h"
 
-void AbilityPriest(int x, int y, AbilityStruct* info) {
-	GameMap* map = info->getAbility()->getMap();
-	Entity* entity_ = info->getAbility()->getEntity();
-	std::vector<Vector2D> abilityCells = info->getAbility()->getCells();
+Ability_Priest::Ability_Priest() : AbilityStruct(selectorH, ShaderForm::TxT, ShaderType::nullSh) {}
+
+void Ability_Priest::AbilityExecute(int x, int y)
+{
+	GameMap* map = this->getAbility()->getMap();
+	Entity* entity_ = this->getAbility()->getEntity();
+	std::vector<Vector2D> abilityCells = this->getAbility()->getCells();
 	if (abilityCells.empty())
 	{
-		info->getAbility()->Shade();
-		abilityCells = info->getAbility()->getCells();
+		this->getAbility()->Shade();
+		abilityCells = this->getAbility()->getCells();
 	}
 	for (int i = 0; i < abilityCells.size(); i++) {
 		if (map->getCharacter(abilityCells[i]) != nullptr) {
@@ -16,15 +19,7 @@ void AbilityPriest(int x, int y, AbilityStruct* info) {
 				entity_->getComponent<FramedImage>()->setAnim(A_A_A);
 				sdlutils().soundEffects().at("monaguilloSound").play(); //-----------------------------------------------------------						
 				//sdlutils().soundEffects().at("monaguilloSound").setChunkVolume(127);
-			}				
+			}
 		}
 	}
-}
-
-Ability_Priest::Ability_Priest() : AbilityStruct(selectorH, ShaderForm::TxT, ShaderType::nullSh) 
-{
-	setAbility([](int x, int y, AbilityStruct* info)
-		{
-			AbilityPriest(x, y, info);
-		});
 }

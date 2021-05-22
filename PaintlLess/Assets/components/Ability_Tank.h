@@ -8,8 +8,8 @@ class Ability_Tank : public AbilityStruct { //lleva este componente la destrucci
 public:
     Ability_Tank();
     virtual ~Ability_Tank() {}
-    void init(AbilityStruct* info);
-    void tankPassive(AbilityStruct* info);
+    virtual void initiliceData(Ability* ab) override;
+    virtual void finTurno() override;
 private:
     Health* mLive;
     int turnos;

@@ -255,6 +255,7 @@ void Ability::update() {
 				playState->aumentarAcciones();
 			}
 			selected = false;
+			freeAbilityShader();
 		}
 	}
 }
@@ -263,6 +264,7 @@ void Ability::update() {
 void Ability::finTurno()
 {
 	ability_usable = true;
+	freeAbilityShader();
 	abilityData->finTurno();
 }
 

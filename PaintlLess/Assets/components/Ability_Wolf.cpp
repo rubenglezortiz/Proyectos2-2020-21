@@ -1,17 +1,18 @@
 #include "Ability_Wolf.h"
 
+Ability_Wolf::Ability_Wolf() : AbilityStruct(selectorA, ShaderForm::ShaderWolf, ShaderType::nullSh) {}
 
-void AbilityWolf(AbilityStruct* info)
+void Ability_Wolf::AbilityExecute(int x, int y)
 {
 	//la x e y es la casilla en la que se ha clickado pero aqui da igual, 
 	//se pasan pero no se usan
-	GameMap* map = info->getAbility()->getMap();
-	Entity* entity_ = info->getAbility()->getEntity();
-	std::vector<Vector2D> abilityCells = info->getAbility()->getCells();
+	GameMap* map = this->getAbility()->getMap();
+	Entity* entity_ = this->getAbility()->getEntity();
+	std::vector<Vector2D> abilityCells = this->getAbility()->getCells();
 	if (abilityCells.empty())
 	{
-		info->getAbility()->Shade();
-		abilityCells = info->getAbility()->getCells();
+		this->getAbility()->Shade();
+		abilityCells = this->getAbility()->getCells();
 	}
 	Vector2D newPos;
 	for (int i = 0; i < abilityCells.size(); i++)
@@ -54,12 +55,4 @@ void AbilityWolf(AbilityStruct* info)
 				map->setColor(map->SDLPointToMapCoords(pos), Azul);
 		}
 	}
-}
-
-Ability_Wolf::Ability_Wolf() : AbilityStruct(selectorA, ShaderForm::ShaderWolf, ShaderType::nullSh) 
-{
-	setAbility([](int x, int y, AbilityStruct* info)
-		{
-			AbilityWolf(info);
-		});
 }

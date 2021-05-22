@@ -12,5 +12,6 @@ class Ability_Alchemist : public AbilityStruct
 {
 public:
 	Ability_Alchemist();
+	virtual void AbilityExecute(int x, int y) override;
 	virtual ~Ability_Alchemist() {};
 };
