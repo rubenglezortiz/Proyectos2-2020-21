@@ -7,13 +7,12 @@
 #include "Transform.h"
 #include "GameMap.h"
 #include "Health.h"
+#include "../game/AbilityStruct.h"
 
 #include <vector>
 
 class Ability_Priest : public AbilityStruct {
 public:
-	Ability_Priest(): AbilityStruct(selectorH, ShaderForm::TxT, ShaderType::nullSh) {}
+	Ability_Priest();
 	virtual ~Ability_Priest() {}
-	void AbilityExecute(int x, int y);
-	void finTurno() override { self->ability_usable = true; self->freeAbilityShader(); }
 };

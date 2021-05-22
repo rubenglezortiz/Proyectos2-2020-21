@@ -3,12 +3,12 @@
 
 Ability_Tank::Ability_Tank() : lives(0), mTurno(0), turnos(4)
 {
-	setOnFinTurno([this](AbilityStruct* info)
+	setOnFinTurno([&](AbilityStruct* info)
 		{
 			this->tankPassive(info);
 		});
 
-	setOnInit([&this](AbilityStruct* info)
+	setOnInit([&](AbilityStruct* info)
 		{
 			this->init(info);
 		});

@@ -89,11 +89,10 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 		break;
 	case Monaguillo:
 		animation(ctr, "monaguilloSheet", 150, Monaguillo); movement(playState, ctr); health(ctr, 1); attack(playState, ctr);
-		//ctr->addComponent<Ability_Priest>();
+		ctr->addComponent<Ability>(Ability_Priest());
 		break;
 	case Picara:
 		animation(ctr, "picaraSheet", 150, Picara);	  movement(playState, ctr); health(ctr, 2); attack(playState, ctr, 2, 4, 50);
-		//ctr->addComponent<Ability_Rogue>();
 		break;
 	case Tanque:
 		animation(ctr, "tanqueSheet", 150, Tanque);    movement(playState, ctr); health(ctr, 4); attack(playState, ctr);
