@@ -23,7 +23,7 @@ public:
 	Ability* getAbility();
 	virtual void OnDie();
 	virtual void initiliceData(Ability* ab);
-	virtual void AbilityExecute(int x, int y);
+	virtual bool AbilityExecute(int x, int y);
 	virtual void finTurno();
 protected:
 	Ability* self;

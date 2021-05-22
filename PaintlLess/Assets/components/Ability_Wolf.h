@@ -14,6 +14,6 @@ class Ability_Wolf : public AbilityStruct {
 public:
 	Ability_Wolf();
 	virtual ~Ability_Wolf() {}
-	virtual void AbilityExecute(int x, int y) override;
+	virtual bool AbilityExecute(int x, int y) override;
 };
 

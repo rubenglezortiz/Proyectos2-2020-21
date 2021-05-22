@@ -13,6 +13,6 @@ class PlayState;
 class Ability_Druid : public AbilityStruct {
 public:
 	Ability_Druid();
-	virtual void AbilityExecute(int x, int y) override;
+	virtual bool AbilityExecute(int x, int y) override;
 	virtual ~Ability_Druid() {}
 };

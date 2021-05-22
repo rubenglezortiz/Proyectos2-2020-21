@@ -15,6 +15,6 @@ Ability* AbilityStruct::getAbility()
 }
 
 void AbilityStruct::OnDie(){}
-void AbilityStruct::AbilityExecute(int x, int y){}
+bool AbilityStruct::AbilityExecute(int x, int y) { return true; }
 void AbilityStruct::finTurno(){}
 

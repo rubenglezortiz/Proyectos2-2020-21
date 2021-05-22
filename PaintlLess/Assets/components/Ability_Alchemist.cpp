@@ -2,7 +2,7 @@
 
 Ability_Alchemist::Ability_Alchemist() : AbilityStruct(selectorA, ShaderForm::Cross, ShaderType::AttackSh) {}
 
-void Ability_Alchemist::AbilityExecute(int x, int y)
+bool Ability_Alchemist::AbilityExecute(int x, int y)
 {
 	GameMap* map = this->getAbility()->getMap();
 	Entity* entity_ = this->getAbility()->getEntity();
@@ -12,4 +12,5 @@ void Ability_Alchemist::AbilityExecute(int x, int y)
 		sdlutils().soundEffects().at("alquimistaSound").play(); //-----------------------------------------------------------	
 	}
 	sdlutils().soundEffects().at("alquimistaSound").setChunkVolume(30);
+	return true;
 }

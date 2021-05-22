@@ -15,5 +15,5 @@ class Ability_Priest : public AbilityStruct {
 public:
 	Ability_Priest();
 	virtual ~Ability_Priest() {}
-	virtual void AbilityExecute(int x, int y) override;
+	virtual bool AbilityExecute(int x, int y) override;
 };

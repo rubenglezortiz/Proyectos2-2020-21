@@ -10,6 +10,6 @@
 struct Ability_Architect : AbilityStruct {
 public:
 	Ability_Architect();
-	virtual void AbilityExecute(int x, int y) override;
+	virtual bool AbilityExecute(int x, int y) override;
 	virtual ~Ability_Architect() {  }
 };

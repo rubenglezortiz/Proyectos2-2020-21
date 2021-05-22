@@ -2,7 +2,7 @@
 
 Ability_Kirin::Ability_Kirin() : AbilityStruct(selector, ShaderForm::Cross, ShaderType::KirinSh, 2){ }
 
-void Ability_Kirin::AbilityExecute(int x, int y)
+bool Ability_Kirin::AbilityExecute(int x, int y)
 {
 	GameMap* map = this->getAbility()->getMap();
 	Entity* entity_ = this->getAbility()->getEntity();
@@ -16,4 +16,5 @@ void Ability_Kirin::AbilityExecute(int x, int y)
 	map->setColor(map->SDLPointToMapCoords(pos), color);
 	//sdlutils().soundEffects().at("kirinSound").setChunkVolume(5);
 	sdlutils().soundEffects().at("kirinSound").play();
+	return true;
 }

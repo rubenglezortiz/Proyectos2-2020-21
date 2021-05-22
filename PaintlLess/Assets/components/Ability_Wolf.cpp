@@ -2,7 +2,7 @@
 
 Ability_Wolf::Ability_Wolf() : AbilityStruct(selectorA, ShaderForm::ShaderWolf, ShaderType::nullSh) {}
 
-void Ability_Wolf::AbilityExecute(int x, int y)
+bool Ability_Wolf::AbilityExecute(int x, int y)
 {
 	//la x e y es la casilla en la que se ha clickado pero aqui da igual, 
 	//se pasan pero no se usan
@@ -55,4 +55,5 @@ void Ability_Wolf::AbilityExecute(int x, int y)
 				map->setColor(map->SDLPointToMapCoords(pos), Azul);
 		}
 	}
+	return true;
 }

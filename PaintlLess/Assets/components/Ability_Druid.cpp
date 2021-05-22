@@ -4,7 +4,7 @@
 
 Ability_Druid::Ability_Druid() : AbilityStruct(selector, ShaderForm::Cross, ShaderType::DruidaSh) {}
 
-void Ability_Druid::AbilityExecute(int x, int y)
+bool Ability_Druid::AbilityExecute(int x, int y)
 {
 	Entity* entity_ = this->getAbility()->getEntity();
 	GameMap* map = this->getAbility()->getMap();
@@ -56,4 +56,5 @@ void Ability_Druid::AbilityExecute(int x, int y)
 	entity_->getComponent<FramedImage>()->setAnim(A_A_A);
 	//sdlutils().soundEffects().at("crearEnredaderasSound").setChunkVolume(40);
 	sdlutils().soundEffects().at("crearEnredaderasSound").play();
+	return true;
 }

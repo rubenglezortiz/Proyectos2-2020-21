@@ -36,9 +36,9 @@ void Ability::init() {
 	playState = mapa->getPlayState();
 }
 
-void Ability::AbilityExecute(int x, int y)
+bool Ability::TryExecuteAbility(int x, int y)
 {
-	abilityData->AbilityExecute(x, y);
+	return abilityData->AbilityExecute(x, y);
 	freeAbilityShader();
 }
 
@@ -236,7 +236,6 @@ void Ability::update() {
 			Vector2D posMovimiento = map->SDLPointToMapCoords(Vector2D(mX, mY));
 
 			if (abilityCheck(posMovimiento)) {
-				ability_usable = false;
 				pos.setX(posMovimiento.getX() * cellWidth);
 				pos.setY(posMovimiento.getY() * cellHeight);
 				int x = posMovimiento.getX();
@@ -253,8 +252,11 @@ void Ability::update() {
 					playState->getGSM()->getNetworkManager()->sendExecuteAbility(charPos.getX(), charPos.getY(), 
 					std::forward<int>(x), std::forward<int>(y));
 				
-				AbilityExecute(x, y);
-				playState->aumentarAcciones();
+				if (TryExecuteAbility(x, y))
+				{
+					playState->aumentarAcciones();
+					ability_usable = false;
+				}
 			}
 			selected = false;
 			freeAbilityShader();

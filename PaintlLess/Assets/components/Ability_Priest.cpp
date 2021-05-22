@@ -2,7 +2,7 @@
 
 Ability_Priest::Ability_Priest() : AbilityStruct(selectorH, ShaderForm::TxT, ShaderType::nullSh) {}
 
-void Ability_Priest::AbilityExecute(int x, int y)
+bool Ability_Priest::AbilityExecute(int x, int y)
 {
 	GameMap* map = this->getAbility()->getMap();
 	Entity* entity_ = this->getAbility()->getEntity();
@@ -22,4 +22,5 @@ void Ability_Priest::AbilityExecute(int x, int y)
 			}
 		}
 	}
+	return true;
 }

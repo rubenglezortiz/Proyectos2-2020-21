@@ -3,7 +3,7 @@
 
 Ability_Architect::Ability_Architect() : AbilityStruct(selectorColor::selector, ShaderForm::Cross, ShaderType::DefenseSh){}
 
-void Ability_Architect::AbilityExecute(int x, int y)
+bool Ability_Architect::AbilityExecute(int x, int y)
 {
 	Ability* self = this->getAbility();
 	Entity* e = self->getEntity()->getMngr()->addEntity(RenderLayer::Tablero3);
@@ -20,4 +20,5 @@ void Ability_Architect::AbilityExecute(int x, int y)
 	self->getEntity()->getComponent<FramedImage>()->setAnim(A_A_A);
 	self->getMap()->setObstaculo(Vector2D(x, y), e);
 	self->getMap()->setColor(Vector2D(x, y), Ninguno);
+	return true;
 }

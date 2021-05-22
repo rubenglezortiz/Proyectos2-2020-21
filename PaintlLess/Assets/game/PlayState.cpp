@@ -220,7 +220,7 @@ void PlayState::_net_abilityChar(Vector2D charPosInMap, Vector2D dest)
 		{
 			std::cout << "Lmao no sabe hacer casting\n";
 		}
-		else characterAbilty->AbilityExecute(dest.getX(), dest.getY());
+		else characterAbilty->TryExecuteAbility(dest.getX(), dest.getY());
 	}
 	else std::cout << "\nNET No deberias estar viendo esto lmao\n";
 }
