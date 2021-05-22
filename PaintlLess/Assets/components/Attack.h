@@ -27,10 +27,14 @@ private:
 	PlayState* playState;
 	GameStateMachine* gsm;
 	string sound;
+	int dmg;
+	int dmgCrit;
+	int probCrit;
 
 public:
-	Attack(PlayState* playState, int r = 1, string s = "ataqueSound") :
-		range(r), selected(false), cellWidth(0), cellHeight(0), tr_(nullptr), mapa(nullptr), tex_(nullptr), playState(playState), sound(s)
+	Attack(PlayState* playState, int dmg, int dmgCrit, float probCrit, string s = "ataqueSound") :
+		range(1), selected(false), cellWidth(0), cellHeight(0), tr_(nullptr),
+		mapa(nullptr), tex_(nullptr), playState(playState), sound(s), gsm(nullptr), dmg(dmg), dmgCrit(dmgCrit), probCrit(probCrit)
 	{}
 	~Attack() {}
 

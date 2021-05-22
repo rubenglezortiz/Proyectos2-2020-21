@@ -40,8 +40,8 @@ void EntityFactory::animation(Entity* c, string tex, int d, Unit p) {
 		c->addComponent<FramedImage>(&sdlutils().images().at(tex+"A"), d, p);
 }
 
-void EntityFactory::attack(PlayState* playState, Entity* c, int dmg = 1, string s = "ataqueSound") {
-	c->addComponent<Attack>(playState, dmg, s);
+void EntityFactory::attack(PlayState* playState, Entity* c, int dmg, int dmgCri, int probCritico, string s) {
+	c->addComponent<Attack>(playState, dmg, dmgCri, probCritico, s);
 }
 
 void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* playState, int character, int equipo, Vector2D pos) {
@@ -66,7 +66,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 		ctr->addComponent<Ability>(Ability_Bomb());
 		break;
 	case Cazador:
-		image(ctr, "cazador");  movement(playState, ctr); health(ctr, 1); attack(playState, ctr, 2, "arqueroSound");
+		image(ctr, "cazador");  movement(playState, ctr); health(ctr, 1); attack(playState, ctr, 1, 0, 0 ,"arqueroSound");
 		break;
 	case Druida:
 		animation(ctr, "druidaSheet", 125, Druida);   movement(playState,ctr); health(ctr, 2);
@@ -92,7 +92,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 		//ctr->addComponent<Ability_Priest>();
 		break;
 	case Picara:
-		animation(ctr, "picaraSheet", 150, Picara);	  movement(playState, ctr); health(ctr, 2); attack(playState, ctr);
+		animation(ctr, "picaraSheet", 150, Picara);	  movement(playState, ctr); health(ctr, 2); attack(playState, ctr, 2, 4, 50);
 		//ctr->addComponent<Ability_Rogue>();
 		break;
 	case Tanque:

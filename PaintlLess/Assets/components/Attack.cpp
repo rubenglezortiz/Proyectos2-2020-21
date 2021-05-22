@@ -40,16 +40,15 @@ void Attack::attack() {
 			Vector2D cas = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
 			// Se tendría que hacer diferenciación entre el equipo del personaje.
 			if (canAttack(cas)) {
-				if (entity_->getComponent<Ability_Rogue>() != nullptr)
-					mapa->getCharacter(cas)->getComponent<Health>()->hit(entity_->getComponent<Ability_Rogue>()->ataqueCritico());
-				else {
+				bool ataqueCrit = (rand() % 100 +1) < probCrit;
+
 					auto* mCha = mapa->getCharacter(cas);
 					if (mCha != nullptr)
-						mapa->getCharacter(cas)->getComponent<Health>()->hit(1);
+						mapa->getCharacter(cas)->getComponent<Health>()->hit(ataqueCrit ? dmgCrit : dmg);
 					auto* mObs = mapa->getObstaculo(cas);
 					if (mObs != nullptr)
 						mapa->getObstaculo(cas)->getComponent<Health>()->hit(1);
-				}
+				
 				//sdlutils().soundEffects().at(sound).setChunkVolume(15);
 				sdlutils().soundEffects().at(sound).play(); //-----------------------------------------------------------			
 				ability_usable = false;
