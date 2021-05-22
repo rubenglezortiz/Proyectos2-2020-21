@@ -1,7 +1,32 @@
 #include "Ability_Tank.h"
 #include "../ecs/Entity.h"
+#include "Tanque.h"
 
-Ability_Tank::Ability_Tank() : lives(0), mTurno(0), turnos(4)
+void Ability_Tank::tankPassive(AbilityStruct* info) {
+	Entity* entity_ = info->getAbility()->getEntity();
+	Health* mLive = entity_->getComponent<Health>();
+	TanqueA* tanque = entity_->getComponent<TanqueA>();
+
+	if (mLive->getLives() < tanque->lastVida) {
+		if (tanque->turnoActual == 0) {
+			mLive->heal();
+			tanque->turnoActual = tanque->maxTurnos;
+		}
+		else {
+			tanque->turnoActual--;
+		}
+	}
+	else
+		tanque->turnoActual = tanque->maxTurnos;
+
+	std::cout << "Informe 2: \n";
+	std::cout << "Turnos: " << tanque->turnoActual << "\n";
+	std::cout << "Turnos Max: " << tanque->maxTurnos << "\n";
+	std::cout << "Vida: " << mLive->getLives() << "\n";
+	std::cout << "Objeto: " << this << "\n";
+}
+
+Ability_Tank::Ability_Tank()
 {
 	setOnFinTurno([&](AbilityStruct* info)
 		{
@@ -12,34 +37,10 @@ Ability_Tank::Ability_Tank() : lives(0), mTurno(0), turnos(4)
 		{
 			this->init(info);
 		});
+
 }
 
 void Ability_Tank::init(AbilityStruct* info) {
 	Entity* entity_ = info->getAbility()->getEntity();
-	Health* mLive = entity_->getComponent<Health>();
-	lives = mLive->getLives();
-	mTurno = turnos;
-}
-
-void Ability_Tank::tankPassive(AbilityStruct* info) {
-
-	Entity* entity_ = info->getAbility()->getEntity();
-	Health* mLive = entity_->getComponent<Health>();
-
-	if (mLive->getLives() < lives) {
-		if (mTurno == 0) {
-			mLive->heal();
-			mTurno = turnos;
-		}
-		else {
-			mTurno--;
-		}
-	}
-	else
-		mTurno = turnos;
-
-	std::cout << "Informe: \n";
-	std::cout << "Turnos: " << mTurno << "\n";
-	std::cout << "Turnos Max: " << turnos << "\n";
-	std::cout << "Vida: " << mLive->getLives() << "\n";
+	entity_->addComponent<TanqueA>(0, 4, 4);
 }

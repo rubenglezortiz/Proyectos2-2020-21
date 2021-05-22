@@ -521,6 +521,9 @@
     <ClInclude Include="Assets\game\AbilityStruct.h">
       <Filter>Archivos de encabezado\game</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\components\Tanque.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\config\resources.json">

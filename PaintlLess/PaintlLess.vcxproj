@@ -257,6 +257,7 @@
     <ClInclude Include="Assets\components\MovementShader.h" />
     <ClInclude Include="Assets\components\Movimiento.h" />
     <ClInclude Include="Assets\components\PointOnImage.h" />
+    <ClInclude Include="Assets\components\Tanque.h" />
     <ClInclude Include="Assets\components\Transform.h" />
     <ClInclude Include="Assets\components\Transform2.h" />
     <ClInclude Include="Assets\ecs\Component.h" />

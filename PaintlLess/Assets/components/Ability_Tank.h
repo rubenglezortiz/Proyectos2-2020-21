@@ -10,8 +10,4 @@ public:
     virtual ~Ability_Tank() {}
     void init(AbilityStruct* info);
     void tankPassive(AbilityStruct* info);
-private:
-    int turnos;
-    int mTurno;
-    int lives;
 };
