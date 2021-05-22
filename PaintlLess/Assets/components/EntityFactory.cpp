@@ -75,7 +75,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 		break;
 	case Esqueleto:
 		animation(ctr, "esqueletoSheet", 150, Esqueleto);  movement(playState, ctr); health(ctr, 1); attack(playState, ctr);
-		ctr->addComponent<Ability>(new Ability_Skeleton(5));
+		ctr->addComponent<Ability>(new Ability_Skeleton());
 		break;
 	case Golem:
 		animation(ctr, "golemSheet", 120, Golem);	health(ctr, 4); attack(playState, ctr); ctr->addComponent<Movimiento>(playState, 0);

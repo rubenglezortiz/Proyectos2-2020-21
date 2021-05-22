@@ -12,13 +12,9 @@
 
 class Ability_Skeleton : public AbilityStruct {
 public:
-    Ability_Skeleton(int lv);
+    Ability_Skeleton(int lv = 2);
     virtual void OnDie() override;
     ~Ability_Skeleton() {};
-
 private:
-    int livesSk_;
-    GameMap* mapa_;
-    Transform* tr_;
-    Entity* entity_;
+    int livesOfGeneratedSkeleton;
 };
