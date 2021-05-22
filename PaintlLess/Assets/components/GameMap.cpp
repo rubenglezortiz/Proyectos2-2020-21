@@ -175,11 +175,6 @@ void GameMap::setEstado(const Vector2D& cas, TipoCasilla tipo) {
 }
 
 void GameMap::setCharacter(const Vector2D& cas, Entity* e) {
-	if(getCharacter(cas) != nullptr)
-	{
-		std::cout << "\nSI VES ESTO FALLO EN MAPA SETCHARACTERNER\n";
-		removeCharacter(cas);
-	}
 	cells[(int)cas.getY()][(int)cas.getX()].character = e;
 }
 

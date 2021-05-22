@@ -44,7 +44,6 @@ public:
 	void update() override;
 	void _net_moveChar(Vector2D charPosInMap, Vector2D dest);
 	void _net_abilityChar(Vector2D charPosInMap, Vector2D dest);
-	void _net_entityDies(Vector2D charPosInMap);
 	void _net_attackChar(Vector2D charPosInMap, Vector2D dest, int dmg);
 
 	void CheckPasarTurno();

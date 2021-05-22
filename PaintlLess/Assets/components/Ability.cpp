@@ -276,5 +276,4 @@ void Ability::OnDie()
 {
 	abilityData->OnDie();
 	Vector2D pos = characterTr->getPos();
-	playState->getGSM()->getNetworkManager()->sendEntityDies(pos.getX(), pos.getY());
 }

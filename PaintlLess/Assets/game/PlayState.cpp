@@ -225,21 +225,6 @@ void PlayState::_net_abilityChar(Vector2D charPosInMap, Vector2D dest)
 	else std::cout << "\nNET No deberias estar viendo esto lmao\n";
 }
 
-void PlayState::_net_entityDies(Vector2D charPosInMap)
-{
-	Entity* entity = mapa_->getCharacter(mapa_->SDLPointToMapCoords(charPosInMap));
-	if (entity != nullptr)
-	{
-		Ability* characterAbilty = entity->getComponent<Ability>();
-		if (characterAbilty == nullptr)
-		{
-			std::cout << "Lmao no sabe hacer casting\n";
-		}
-		else characterAbilty->OnDie();
-	}
-	else std::cout << "No deberias estar viendo esto lmao";
-}
-
 void PlayState::_net_attackChar(Vector2D charPosInMap, Vector2D dest, int dmg)
 {
 	Entity* atacante = mapa_->getCharacter(charPosInMap);
@@ -253,7 +238,7 @@ void PlayState::_net_attackChar(Vector2D charPosInMap, Vector2D dest, int dmg)
 		Health* life = atacado->getComponent<Health>();
 		if (life == nullptr)
 		{
-			std::cout << "Lmao no sabe hacer casting\n";
+			std::cout << "No se ha encontrado algo atacable\n";
 		}
 		else life->hit(dmg);
 	}

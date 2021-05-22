@@ -18,7 +18,6 @@ enum MsgType : uint8_nt {
 	_SPAWN_CHARACTER_, //
 	_MOVE_CHARACTER_, //
 	_EXECUTE_ABILTY_,
-	_ENTITY_DIES_, //
 	_ATTACK_MESSAGE_
 };
 
