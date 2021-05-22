@@ -12,6 +12,8 @@ void Ability_Kirin::AbilityExecute(int x, int y)
 	pos.setX(x * map->getCellWidth() + OFFSET_X);
 	pos.setY(y * map->getCellHeight() + OFFSET_Y + OFFSET_TOP);
 	map->setCharacter(map->SDLPointToMapCoords(pos), entity_);
+	Color color = entity_->hasGroup<Equipo_Azul>() ? Azul : Rojo;
+	map->setColor(map->SDLPointToMapCoords(pos), color);
 	//sdlutils().soundEffects().at("kirinSound").setChunkVolume(5);
 	sdlutils().soundEffects().at("kirinSound").play();
 }

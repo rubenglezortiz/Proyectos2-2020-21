@@ -247,11 +247,13 @@ void Ability::update() {
 					auto mov = character->getComponent<Movimiento>();
 					if (mov != nullptr) mov->focus();
 				}
-				AbilityExecute(x, y);
 				Vector2D charPos = characterTr->getPos();
+
 				if(playState->getGSM()->isOnline())
 					playState->getGSM()->getNetworkManager()->sendExecuteAbility(charPos.getX(), charPos.getY(), 
 					std::forward<int>(x), std::forward<int>(y));
+				
+				AbilityExecute(x, y);
 				playState->aumentarAcciones();
 			}
 			selected = false;

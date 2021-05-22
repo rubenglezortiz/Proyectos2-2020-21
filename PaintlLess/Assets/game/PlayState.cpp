@@ -211,7 +211,8 @@ void PlayState::_net_moveChar(Vector2D charPosInMap, Vector2D dest)
 
 void PlayState::_net_abilityChar(Vector2D charPosInMap, Vector2D dest)
 {
-	Entity* entity = mapa_->getCharacter(mapa_->SDLPointToMapCoords(charPosInMap));
+	charPosInMap = mapa_->SDLPointToMapCoords(charPosInMap);
+	Entity* entity = mapa_->getCharacter(charPosInMap);
 	if (entity != nullptr)
 	{
 		Ability* characterAbilty = entity->getComponent<Ability>();
@@ -221,7 +222,7 @@ void PlayState::_net_abilityChar(Vector2D charPosInMap, Vector2D dest)
 		}
 		else characterAbilty->AbilityExecute(dest.getX(), dest.getY());
 	}
-	else std::cout << "No deberias estar viendo esto lmao";
+	else std::cout << "\nNET No deberias estar viendo esto lmao\n";
 }
 
 void PlayState::_net_entityDies(Vector2D charPosInMap)
