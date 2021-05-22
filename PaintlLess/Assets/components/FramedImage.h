@@ -19,6 +19,7 @@ public:
 	void render() override;
 	void setAnim(UnitAnim ua, bool orden = false);
 	void update() override;
+	void renderStun() ;
 
 private:
 	Unit personaje;
@@ -39,4 +40,11 @@ private:
 	Vector2D lastPosition = { 0, 0 };
 	Vector2D interpolatedTf;
 	float lerpTime = 1;
+
+	//Stun
+	Texture* tex_stun;
+	SDL_Rect src_stun;
+	Uint32 time_stun;
+	int w_stun, h_stun;
+	int r_stun, c_stun;
 };

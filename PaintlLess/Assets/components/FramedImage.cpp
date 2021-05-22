@@ -1,4 +1,5 @@
 #include "FramedImage.h"
+#include "Movimiento.h"
 #include "../game/LerpingFunctions.h"
 
 
@@ -35,6 +36,15 @@ FramedImage::FramedImage(Texture* tex, int d, Unit p, bool orden, bool muerto)
 	cols_ = UnitInfo::spriteSheetInfo[personaje].cols;
 	w_ = w;
 	h_ = h;
+
+	//stun
+	tex_stun = &sdlutils().images().at("stun");
+	time_stun = r_stun = c_stun = 0;
+	auto ws = tex_stun->width() / 3;
+	auto hs = tex_stun->height();
+	src_stun = { ws * c_stun, hs * r_stun, ws, hs };
+	w_stun = ws;
+	h_stun = hs;	
 }
 
 void FramedImage::init() {
@@ -100,6 +110,42 @@ void FramedImage::render() {
 			tex_->render(src_, dest, rot, nullptr, SDL_FLIP_HORIZONTAL);
 		else
 			tex_->render(src_, dest, rot);
+	}
+	if (entity_->getComponent<Movimiento>()->getStun() != 0)
+		renderStun();
+}
+
+
+void FramedImage::renderStun() {
+	auto& pos = interpolatedTf;
+	auto rot = tr_->getRot();
+
+	if (sdlutils().currRealTime() - time_stun >= delay) { // Si se tiene que actualizar la imagen
+		time_stun = sdlutils().currRealTime();
+		SDL_Rect dest = build_sdlrect(pos, 75, 60);
+		dest.x += 40;
+		dest.y -= 40;
+		if (c_stun > 3)		// Si se ha llegado a la ult col			
+			c_stun = 0;		//se reinicia la columna solo en la animaci�n Idle		 
+
+		else c_stun++;
+
+		src_stun = { w_stun * c_stun, h_stun * r_stun, w_stun, h_stun };
+		if (entity_->hasGroup<Equipo_Azul>())
+			tex_stun->render(src_stun, dest, rot, nullptr, SDL_FLIP_HORIZONTAL);
+		else
+			tex_stun->render(src_stun, dest, rot);
+	}
+	else {
+		SDL_Rect dest = build_sdlrect(pos, 75, 60);
+		dest.x += 40;
+		dest.y -= 40;
+		src_stun = { w_stun * c_stun, h_stun * r_stun, w_stun, h_stun };
+
+		if (entity_->hasGroup<Equipo_Azul>())
+			tex_stun->render(src_stun, dest, rot, nullptr, SDL_FLIP_HORIZONTAL);
+		else
+			tex_stun->render(src_stun, dest, rot);
 	}
 }
 
