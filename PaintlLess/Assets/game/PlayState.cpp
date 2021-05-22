@@ -240,6 +240,26 @@ void PlayState::_net_entityDies(Vector2D charPosInMap)
 	else std::cout << "No deberias estar viendo esto lmao";
 }
 
+void PlayState::_net_attackChar(Vector2D charPosInMap, Vector2D dest, int dmg)
+{
+	Entity* atacante = mapa_->getCharacter(charPosInMap);
+	Entity* atacado = mapa_->getCharacter(dest);
+	if (atacante != nullptr)
+	{
+		atacante->getComponent<Attack>()->attackSound();
+	}
+	if (atacado != nullptr)
+	{
+		Health* life = atacado->getComponent<Health>();
+		if (life == nullptr)
+		{
+			std::cout << "Lmao no sabe hacer casting\n";
+		}
+		else life->hit(dmg);
+	}
+	else std::cout << "No deberias estar viendo esto lmao";
+}
+
 void PlayState::CheckPasarTurno()
 {
 	int mX = ih().getMousePos().first;

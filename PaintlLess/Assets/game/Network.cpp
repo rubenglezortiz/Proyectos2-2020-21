@@ -238,6 +238,12 @@ void Network::update() {
 			break;
 		}
 
+		case _ATTACK_MESSAGE_: {
+			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+			AttackMessage* m = static_cast<AttackMessage*>(m_);
+			playState->_net_attackChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY), m->dmg);
+			break;
+		}
 		case _DISCONNECTED_: {
 			DissConnectMsg* m = static_cast<DissConnectMsg*>(m_);
 			isGameReday_ = false;
@@ -378,4 +384,27 @@ void Network::sendEntityDies(int&& mapX, int&& mapY)
 {
 	sendActionMessage(std::forward<int>(mapX), std::forward<int>(mapY),
 		std::forward<int>(mapX), std::forward<int>(mapX), _ENTITY_DIES_);
+}
+
+void Network::sendAttack(int&& mapX, int&& mapY, int&& posX, int&& posY, int&& dmg)
+{
+	// if the other player is not connected do nothing
+	if (!isGameReday_)return;
+
+	// we prepare a message that includes all information
+	AttackMessage* m = static_cast<AttackMessage*>(m_);
+	m->_type = _ATTACK_MESSAGE_;
+	m->mapX = mapX;
+	m->mapY = mapY;
+	m->posX = posX;
+	m->posY = posY;
+	m->dmg = dmg;
+	
+
+	// set the message length and the address of the other player
+	p_->len = sizeof(AttackMessage);
+	p_->address = otherPlayerAddress_;
+
+	// send the message
+	SDLNet_UDP_Send(conn_, -1, p_);
 }

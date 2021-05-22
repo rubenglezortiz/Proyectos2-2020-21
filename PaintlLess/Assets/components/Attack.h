@@ -44,6 +44,8 @@ public:
 	void finTurno() override;
 	// Método que detecta los clicks y gestiona el ataque.
 	void attack();
+	void attackDelegate(const Vector2D& cas, const int& damage);
+	void attackSound();
 	// Método que detecta las casillas que se pueden atacar y renderiza.
 	void attackShader();
 	// Método que devuelve true si en la casilla hay un personaje.

@@ -41,19 +41,18 @@ void Attack::attack() {
 			// Se tendría que hacer diferenciación entre el equipo del personaje.
 			if (canAttack(cas)) {
 				bool ataqueCrit = (rand() % 100 +1) < probCrit;
-
-					auto* mCha = mapa->getCharacter(cas);
-					if (mCha != nullptr)
-						mapa->getCharacter(cas)->getComponent<Health>()->hit(ataqueCrit ? dmgCrit : dmg);
-					auto* mObs = mapa->getObstaculo(cas);
-					if (mObs != nullptr)
-						mapa->getObstaculo(cas)->getComponent<Health>()->hit(1);
-				
+				int currentDmg = ataqueCrit ? dmgCrit : dmg;
+				attackDelegate(cas, currentDmg);
+				auto gsm = playState->getGSM();
+				if (gsm->isOnline())
+				{
+					Vector2D posInMap = mapa->SDLPointToMapCoords(pos);
+					gsm->getNetworkManager()->sendAttack(posInMap.getX(), posInMap.getY() ,cas.getX(), cas.getY(), std::forward<int>(currentDmg));
+				}
 				//sdlutils().soundEffects().at(sound).setChunkVolume(15);
-				sdlutils().soundEffects().at(sound).play(); //-----------------------------------------------------------			
 				ability_usable = false;
 				playState->aumentarAcciones(); //en realidad se restan acciones 
-				entity_->getComponent<FramedImage>()->setAnim(A_A_A);
+				attackSound();
 			}
 			selected = false;
 			casillasAtaque.clear();
@@ -67,6 +66,22 @@ void Attack::attack() {
 		selected = false;
 		casillasAtaque.clear();
 	}
+}
+
+void Attack::attackDelegate(const Vector2D& cas, const int& damage)
+{
+	auto* mCha = mapa->getCharacter(cas);
+	if (mCha != nullptr)
+		mapa->getCharacter(cas)->getComponent<Health>()->hit(damage);
+	auto* mObs = mapa->getObstaculo(cas);
+	if (mObs != nullptr)
+		mapa->getObstaculo(cas)->getComponent<Health>()->hit(damage);
+}
+
+void Attack::attackSound()
+{
+	entity_->getComponent<FramedImage>()->setAnim(A_A_A);
+	sdlutils().soundEffects().at(sound).play(); //-----
 }
 
 void Attack::attackShader() {

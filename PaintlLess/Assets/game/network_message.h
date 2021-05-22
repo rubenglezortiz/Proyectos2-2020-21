@@ -18,7 +18,8 @@ enum MsgType : uint8_nt {
 	_SPAWN_CHARACTER_, //
 	_MOVE_CHARACTER_, //
 	_EXECUTE_ABILTY_,
-	_ENTITY_DIES_
+	_ENTITY_DIES_, //
+	_ATTACK_MESSAGE_
 };
 
 struct NetworkMessage {
@@ -38,6 +39,11 @@ struct ActionMessage : NetworkMessage
 	uint16_nt mapY;
 	uint16_nt posX;
 	uint16_nt posY;
+};
+
+struct AttackMessage : ActionMessage
+{
+	uint16_nt dmg;
 };
 
 struct CreateGameMessage : NetworkMessage
