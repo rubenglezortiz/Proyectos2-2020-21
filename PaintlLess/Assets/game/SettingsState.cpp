@@ -10,6 +10,7 @@
 #include "../components/ButtonTick.h"
 #include "../components/MenuButton.h"
 #include "../game/GameStateMachine.h"
+#include "../game/ControlState.h"
 
 SettingsState::SettingsState(GameStateMachine* gsm, PlayState* pS) : GameState(gsm) {
 	auto* fondo = mngr_->addEntity(RenderLayer::Fondo);
@@ -31,14 +32,19 @@ SettingsState::SettingsState(GameStateMachine* gsm, PlayState* pS) : GameState(g
 	botonX->addComponent<MenuButton>(gsm, goBack);
 
 	auto* botonTick = mngr_->addEntity(RenderLayer::Interfaz);
-	botonTick->addComponent<Transform2>(Vector2D(sdlutils().width() - 600, 200), 100, 100);
+	botonTick->addComponent<Transform2>(Vector2D(sdlutils().width() - 600, 100), 125, 125);
 	botonTick->addComponent<Image>(&sdlutils().images().at("tick1"));
 	botonTick->addComponent<ButtonTick>(&sdlutils().images().at("tick2"), tickVolume);
 
 	auto* botonTick2 = mngr_->addEntity(RenderLayer::Interfaz);
-	botonTick2->addComponent<Transform2>(Vector2D(sdlutils().width() - 600, 400), 100, 100);
+	botonTick2->addComponent<Transform2>(Vector2D(sdlutils().width() - 600, 300), 125, 125);
 	botonTick2->addComponent<Image>(&sdlutils().images().at("tick1"));
 	botonTick2->addComponent<ButtonTick>(&sdlutils().images().at("tick2"), tickVolume);
+
+	auto* botonControles = mngr_->addEntity(RenderLayer::Interfaz);
+	botonControles->addComponent<Transform>(Vector2D(sdlutils().width() - 600, sdlutils().height() / 2 + 145), 125, 125);
+	botonControles->addComponent<Image>(&sdlutils().images().at("mando"));
+	botonControles->addComponent<MenuButton>(gsm, goControles);
 
 	if (pS != nullptr) {
 		playState_ = pS;
@@ -63,4 +69,9 @@ void SettingsState::update() {
 	if (ih().isKeyDown(SDL_SCANCODE_ESCAPE)) {
 		gameStateMachine->popState();
 	}
+}
+
+
+void SettingsState::goControles(GameStateMachine* gsm) {
+	gsm->pushState(new ControlState(gsm, &sdlutils().images().at("controles"), false));
 }

@@ -164,7 +164,7 @@ void CharacterSelectionState::update() {
 	mngr_->refresh();
 
 	if (ih().isKeyDown(SDL_SCANCODE_D)) {
-		updateAlquimista(gameStateMachine);
+		updateArquitecta(gameStateMachine);
 		updateBomba(gameStateMachine);
 		updateEsqueleto(gameStateMachine);
 		updateGolem(gameStateMachine);

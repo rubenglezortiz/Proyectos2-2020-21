@@ -190,6 +190,7 @@
     <ClCompile Include="Assets\game\AbilityStruct.cpp" />
     <ClCompile Include="Assets\game\CardInfo.cpp" />
     <ClCompile Include="Assets\game\CharacterSelectionState.cpp" />
+    <ClCompile Include="Assets\game\ControlState.cpp" />
     <ClCompile Include="Assets\game\DescriptionState.cpp" />
     <ClCompile Include="Assets\game\FinState.cpp" />
     <ClCompile Include="Assets\game\Game.cpp" />
@@ -272,6 +273,7 @@
     <ClInclude Include="Assets\game\AbilityStruct.h" />
     <ClInclude Include="Assets\game\CardInfo.h" />
     <ClInclude Include="Assets\game\CharacterSelectionState.h" />
+    <ClInclude Include="Assets\game\ControlState.h" />
     <ClInclude Include="Assets\game\DescriptionState.h" />
     <ClInclude Include="Assets\game\ecs_defs.h" />
     <ClInclude Include="Assets\game\FinState.h" />

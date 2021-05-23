@@ -13,4 +13,5 @@ public:
 	static void goBack(GameStateMachine* gsm);
 	static void tickVolume(bool state);
 	static void surrender(GameStateMachine* gsm);
+	static void goControles(GameStateMachine* gsm);
 };
