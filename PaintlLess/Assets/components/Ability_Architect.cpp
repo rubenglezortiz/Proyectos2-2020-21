@@ -7,6 +7,7 @@ bool Ability_Architect::AbilityExecute(int x, int y)
 {
 	Ability* self = this->getAbility();
 	Entity* e = self->getEntity()->getMngr()->addEntity(RenderLayer::Tablero3);
+	e->setGroup<Muro>(true);
 
 	e->addComponent<Transform>(
 		Vector2D(x, y), //Posicion

@@ -65,6 +65,7 @@ struct Defense;
 struct Utility;
 struct Mazo1;
 struct Mazo2;
+struct Muro;
 struct Equipo_Rojo;
 struct Equipo_Azul;
 
@@ -75,6 +76,7 @@ struct Equipo_Azul;
 	Utility , \
 	Mazo1       , \
 	Mazo2       , \
+	Muro,    \
 	Equipo_Rojo , \
 	Equipo_Azul 
 
