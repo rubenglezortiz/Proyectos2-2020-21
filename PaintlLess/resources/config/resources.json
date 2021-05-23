@@ -18,6 +18,7 @@
     { "id" : "selectorSp",      "file" : "resources/images/interfaz/selectorSpawn.png" },
     { "id" : "selectorH",       "file" : "resources/images/interfaz/selectorHeal.png" },
     { "id" : "selectorMov",     "file" : "resources/images/interfaz/selectorMov.png" },
+    { "id" : "MovShader",       "file" : "resources/images/interfaz/MovShader.png" },
     { "id" : "selector",        "file" : "resources/images/interfaz/selector.png" },
     { "id" : "circuloA",        "file" : "resources/images/interfaz/circuloA.png" },
     { "id" : "circuloR",        "file" : "resources/images/interfaz/circuloR.png" },

@@ -60,7 +60,7 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> ch
 	// Creación boardManager
 	Entity* boardManager = mngr_->addEntity(RenderLayer::Tablero2);
 	boardManager->addComponent<PointOnImage>(&sdlutils().images().at("selector"));
-	boardManager->addComponent<MovementShader>(&sdlutils().images().at("selector"));
+	boardManager->addComponent<MovementShader>(&sdlutils().images().at("MovShader"));
 
 	mngr_.get()->setHandler<BoardManager>(boardManager);
 
