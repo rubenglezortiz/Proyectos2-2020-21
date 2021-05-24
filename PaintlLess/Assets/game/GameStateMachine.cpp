@@ -1,4 +1,5 @@
 #include "GameStateMachine.h"
+#include "PlayState.h"
 
 GameStateMachine::~GameStateMachine() {
 	popState_ = states.size();
@@ -51,4 +52,14 @@ void GameStateMachine::changeState(GameState* state) {
 	else
 		delete lastChanged;
 	lastChanged = state;
+}
+
+void GameStateMachine::setPlayState(PlayState* playState)
+{
+	this->playState = playState;
+}
+
+PlayState* GameStateMachine::getPlayState()
+{
+	return this->playState;
 }

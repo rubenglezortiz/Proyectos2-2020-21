@@ -67,7 +67,6 @@ private:
 	std::array<std::string, 2> names_;
 	Uint32 lastTimeActive_;
 	GameStateMachine* gsm;
-
 	std::unique_ptr<Manager*>* managerState_;
 };
 

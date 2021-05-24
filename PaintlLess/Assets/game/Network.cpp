@@ -11,13 +11,13 @@
 #include "../components/EntityFactory.h"
 #include "../components//GameMap.h"
 
-Network::Network(): host_(nullptr), port_(2000),
-	isMaster_(false), isGameReday_(false), id_(0), conn_(), p_(nullptr), otherPlayerAddress_(), localPlayerName_("a"), remotePlayerName_("N/A"),
-	lastTimeActive_(0), managerState_(nullptr) { }
+Network::Network() : host_(nullptr), port_(2000),
+isMaster_(false), isGameReday_(false), id_(0), conn_(), p_(nullptr), otherPlayerAddress_(), localPlayerName_("a"), remotePlayerName_("N/A"),
+lastTimeActive_(0), managerState_(nullptr) { }
 
 
 Network::~Network() {
-	
+
 	if (conn_) {
 		DissConnectMsg* m = static_cast<DissConnectMsg*>(m_);
 		m->_type = _DISCONNECTED_;
@@ -122,13 +122,13 @@ void Network::init(GameStateMachine* gameStateMachine) {
 			names_[0] = localPlayerName_;
 			names_[1] = remotePlayerName_;
 		}
-		
+
 
 	}
 	else { // if started as  other player
 
 	 // we use id 1, and open a socket to send/receive messages
-		
+
 
 	}
 
@@ -186,13 +186,13 @@ void Network::update() {
 		{
 			std::cout << "Client has received game\n";
 			CreateGameMessage* m = static_cast<CreateGameMessage*>(m_);
-			gsm->getCharSel()->clientPlay(gsm ,m->mapa, m->tileset);
+			gsm->getCharSel()->clientPlay(gsm, m->mapa, m->tileset);
 			break;
 		}
 
-		case _TURN_CHANGE_: 
+		case _TURN_CHANGE_:
 		{
-			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+			PlayState* playState = gsm->getPlayState();
 			if (playState != nullptr)
 			{
 				playState->pasaTurno();
@@ -202,38 +202,44 @@ void Network::update() {
 		}
 
 		case _MOVE_CHARACTER_: {
-			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+			PlayState* playState = gsm->getPlayState();
 			ActionMessage* m = static_cast<ActionMessage*>(m_);
-			playState->_net_moveChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY));
+			if (playState != nullptr)
+				playState->_net_moveChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY));
+			else std::cout << "No puedes mover character si no hay playstate\n";
 			break;
 		}
 
 		case _SPAWN_CHARACTER_: {
 
 			SpawnMessage* m = static_cast<SpawnMessage*>(m_);
-			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+			PlayState* playState = gsm->getPlayState();
 			if (playState != nullptr)
 			{
 				int equipo = playState->getCurrentPlayer() == 0 ? 1 : 0;
 				//int equipo = playState->getCurrentPlayer();
-				EntityFactory::createCharacter(playState->getMapa()->getEntity()->getMngr(), playState->getMapa(), playState, m->personaje, equipo, Vector2D((float)m->posX,(float) m->posY));
+				EntityFactory::createCharacter(playState->getMapa()->getEntity()->getMngr(), playState->getMapa(), playState, m->personaje, equipo, Vector2D((float)m->posX, (float)m->posY));
 			}
 			else std::cout << "Si ves este mensaje es que algo anda mal";
-			
+
 			break;
 		}
 		case _EXECUTE_ABILTY_: {
-			
-			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+
+			PlayState* playState = gsm->getPlayState();
 			ActionMessage* m = static_cast<ActionMessage*>(m_);
-			playState->_net_abilityChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY));
+			if (playState != nullptr)
+				playState->_net_abilityChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY));
+			else std::cout << "Si ves este mensaje es que algo anda mal";
 			break;
 		}
 
 		case _ATTACK_MESSAGE_: {
-			PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+			PlayState* playState = gsm->getPlayState();
 			AttackMessage* m = static_cast<AttackMessage*>(m_);
-			playState->_net_attackChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY), m->dmg);
+			if (playState != nullptr)
+				playState->_net_attackChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY), m->dmg);
+			else std::cout << "Si ves este mensaje es que algo anda mal";
 			break;
 		}
 
@@ -363,13 +369,13 @@ void Network::sendActionMessage(int&& mapX, int&& mapY, int&& posX, int&& posY, 
 
 void Network::sendMoveMessage(int&& mapX, int&& mapY, int&& posX, int&& posY)
 {
-	sendActionMessage(std::forward<int>(mapX), std::forward<int>(mapY), 
+	sendActionMessage(std::forward<int>(mapX), std::forward<int>(mapY),
 		std::forward<int>(posX), std::forward<int>(posY), _MOVE_CHARACTER_);
 }
 
 void Network::sendExecuteAbility(int&& mapX, int&& mapY, int&& posX, int&& posY)
 {
-	sendActionMessage(std::forward<int>(mapX), std::forward<int>(mapY), 
+	sendActionMessage(std::forward<int>(mapX), std::forward<int>(mapY),
 		std::forward<int>(posX), std::forward<int>(posY), _EXECUTE_ABILTY_);
 }
 
@@ -386,7 +392,7 @@ void Network::sendAttack(int&& mapX, int&& mapY, int&& posX, int&& posY, int&& d
 	m->posX = posX;
 	m->posY = posY;
 	m->dmg = dmg;
-	
+
 
 	// set the message length and the address of the other player
 	p_->len = sizeof(AttackMessage);
