@@ -226,6 +226,7 @@ bool GameMap::movimientoPosibleEnredadera(const Vector2D& cas) {
 	else return false;
 }
 
+// Solo ataca a los personajes y obstáculos que no estén en base.
 bool GameMap::ataquePosible(const Vector2D& cas) {
 	if (!casillaValida(cas)) return false;
 	int x = cas.getX(); int y = cas.getY();
