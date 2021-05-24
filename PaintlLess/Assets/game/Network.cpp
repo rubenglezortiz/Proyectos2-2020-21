@@ -416,6 +416,7 @@ void Network::restartConnection()
 	isGameReday_ = false;
 	host_ = nullptr;
 	isMaster_ = false;
+	gsm->setOnline(false);
 
 	if (conn_)
 		SDLNet_UDP_Close(conn_);
