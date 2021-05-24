@@ -71,6 +71,7 @@ void FinState::update() {
 }
 
 void FinState::exitMenu(GameStateMachine* gsm) { //Volver al menu
+	gsm->getNetworkManager()->restartConnection();
 	delete gsm->getCharSel();
 	gsm->getCharSel() = new CharactersSelected();
 	gsm->popState();

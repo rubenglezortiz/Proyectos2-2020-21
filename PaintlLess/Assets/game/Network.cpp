@@ -437,6 +437,7 @@ void Network::endGame()
 	else
 	{
 		gsm->popState();
+		gsm->refresh();
 		playState = dynamic_cast<PlayState*>(gsm->currentState());
 		if (playState != nullptr)
 		{
