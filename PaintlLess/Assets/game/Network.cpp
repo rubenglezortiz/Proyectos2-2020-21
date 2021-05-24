@@ -428,6 +428,7 @@ void Network::endGame()
 {
 	restartConnection();
 	PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+	gsm->restartCharacterSelection();
 	if (playState != nullptr) playState->_net_endGame();
 	else
 	{

@@ -9,12 +9,12 @@
 #include "../components/ButtonHovered.h"
 #include "ControlState.h"
 
-FinState::FinState(GameStateMachine* gsm, int e, int p) : GameState(gsm){
+FinState::FinState(GameStateMachine* gsm, int e, int p) : GameState(gsm) {
 	porcentaje = p;
 	equipo = e;
 
 	auto* bSalir = mngr_->addEntity(RenderLayer::Fondo);
-	bSalir->addComponent<Transform>(Vector2D((sdlutils().width() / 2) - w / 2, (sdlutils().height() - 2 * h)-50), w, h);
+	bSalir->addComponent<Transform>(Vector2D((sdlutils().width() / 2) - w / 2, (sdlutils().height() - 2 * h) - 50), w, h);
 	bSalir->addComponent<Image>(&sdlutils().images().at("salir2"));
 	bSalir->addComponent<MenuButton>(gsm, exitMenu);
 }
@@ -26,7 +26,7 @@ void FinState::init() {
 	dest.w = WIDTH;
 	dest.h = HEIGHT;
 
-	
+
 	if (equipo == 1) {
 		sdlutils().images().at("finpartida").render(dest);
 		dest.x = sdlutils().width() / 2 + 450;
@@ -40,7 +40,7 @@ void FinState::init() {
 		dest.y = sdlutils().height() / 2 + 3;
 		Texture(sdlutils().renderer(), to_string(porcentaje) + "%", sdlutils().fonts().at("NES-CHIMERA24"), build_sdlcolor(0x639bffff)).render(dest);
 	}
-	else if (equipo == 0){
+	else if (equipo == 0) {
 		sdlutils().images().at("finpartida").render(dest);
 		dest.x = sdlutils().width() / 2 + 450;
 		dest.y = sdlutils().height() / 2 - 113;
@@ -72,8 +72,7 @@ void FinState::update() {
 
 void FinState::exitMenu(GameStateMachine* gsm) { //Volver al menu
 	gsm->getNetworkManager()->restartConnection();
-	delete gsm->getCharSel();
-	gsm->getCharSel() = new CharactersSelected();
+	gsm->restartCharacterSelection();
 	gsm->popState();
-	gsm->popState();	
+	gsm->popState();
 }

@@ -38,6 +38,12 @@ void GameStateMachine::refresh() {
 	}
 }
 
+void GameStateMachine::restartCharacterSelection()
+{
+	delete getCharSel();
+	getCharSel() = new CharactersSelected();
+}
+
 void GameStateMachine::popState() {
 	popState_++;
 }

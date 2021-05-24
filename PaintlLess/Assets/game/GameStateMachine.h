@@ -33,6 +33,7 @@ public:
 	void setOnline(bool a) { online = a; };
 	bool isOnline() { return online; }
 	void refresh();
+	void restartCharacterSelection();
 	Network* getNetworkManager() { return net; }
 
 	// Devuelve el estado actual.
