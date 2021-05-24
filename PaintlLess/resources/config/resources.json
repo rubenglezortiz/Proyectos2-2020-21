@@ -56,6 +56,10 @@
     { "id" : "botonT",          "file" : "resources/images/interfaz/botonTurno.png" },
 
 	  { "id" : "life",         "file" : "resources/images/sprites/life.png" },
+	  { "id" : "vidaA",        "file" : "resources/images/sprites/vidasA.png" },
+	  { "id" : "vidaA2",       "file" : "resources/images/sprites/vidasA2.png" },
+	  { "id" : "vidaR",        "file" : "resources/images/sprites/vidasR.png" },
+	  { "id" : "vidaR2",       "file" : "resources/images/sprites/vidasR2.png" },
     { "id" : "tileset",      "file" : "resources/images/sprites/tileset2.png" },
 	  { "id" : "wall",         "file" : "resources/images/sprites/wall.png" },
 	  { "id" : "enredadera",   "file" : "resources/images/sprites/enredaderas.png" },

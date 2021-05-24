@@ -138,7 +138,9 @@ void Movimiento::colorea(Vector2D posIni, Vector2D posFin, Color color)
 		}
 	}
 
-	if (haCambiado)
-		entity_->getComponent<Ability>()->OnCross();
+	if (haCambiado) {
+		Ability* ab = entity_->getComponent<Ability>();
+		if (ab != nullptr) ab->OnCross();
+	}
 
 }

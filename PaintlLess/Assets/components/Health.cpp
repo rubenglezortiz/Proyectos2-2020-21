@@ -52,13 +52,16 @@ void Health::kill(GameMap* mapa, Entity* entity_)
 
 void Health::render() {
 	if (lives < 50) {
+		entity_->hasGroup<Equipo_Azul>() ? Azul : Rojo;
+		tex = entity_->hasGroup<Equipo_Azul>() ? &sdlutils().images().at("vidaR") : &sdlutils().images().at("vidaA");
+
 		SDL_Rect src;
 		src.x = 0; src.y = 0; src.w = tex->width(); src.h = tex->height();
 
 		Vector2D pos = tr->getPos();
 
 		SDL_Rect dest;
-		dest.w = tr->getW() / 6; dest.h = tr->getH() / 5;
+		dest.w = tr->getW() / 6 - 10; dest.h = tr->getH() / 5;
 		dest.x = pos.getX() + tr->getW() / 2; dest.y = pos.getY() - 50;
 		switch (lives) {
 		case 1:
@@ -74,7 +77,6 @@ void Health::render() {
 			dest.x -= 2 * dest.w;
 			break;
 		}
-
 		for (int i = 0; i < lives; ++i) {
 			tex->render(src, dest, 0);
 			//Cada vez que pinta uno cambia la posici�n x del siguiente
