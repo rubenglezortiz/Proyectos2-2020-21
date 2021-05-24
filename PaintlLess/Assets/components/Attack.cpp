@@ -57,7 +57,7 @@ void Attack::attack() {
 			selected = false;
 			casillasAtaque.clear();
 		}
-		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && playState->getAcciones() > 0 && ability_usable) {
+		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && playState->getAcciones() > 0 && ability_usable && mapa->getTipoCasilla(mapa->SDLPointToMapCoords(Vector2D(mX, mY))) != Base) {
 			selected = true;
 			attackShader();
 		}

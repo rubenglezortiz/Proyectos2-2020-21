@@ -1,4 +1,5 @@
 #include "GameMap.h"
+#include "Ability.h"
 #include <iostream>
 #include <fstream>
 #include <tmxlite/Map.hpp>
@@ -120,7 +121,7 @@ void GameMap::render() {
 	}*/
 }
 
-void GameMap::setColor(const Vector2D& cas, Color color) {
+void GameMap::setColor(const Vector2D& cas, Color color, int bomb) {
 	
 	int i = binarySearchCell(cas);
 
@@ -129,11 +130,13 @@ void GameMap::setColor(const Vector2D& cas, Color color) {
 			casillas[i]->getComponent<Image>()->setTexture(&sdlutils().images().at("rojo"));
 			playState->aumentaPintado1(1);
 			playState->aumentaPintado2(-1);
+			if (bomb != 0) getCharacter(SDLPointToMapCoords(casillas[i]->getComponent<Transform>()->getPos()))->getComponent<Ability>()->OnDie();
 		}
 		else if (getColor(cas) != color && getColor(cas) != Ninguno && color == Rojo) {
 			casillas[i]->getComponent<Image>()->setTexture(&sdlutils().images().at("azul"));
 			playState->aumentaPintado2(1);
 			playState->aumentaPintado1(-1);
+			if (bomb != 0) getCharacter(SDLPointToMapCoords(casillas[i]->getComponent<Transform>()->getPos()))->getComponent<Ability>()->OnDie();
 		}
 		else if (getColor(cas) != Ninguno && color == Ninguno) {
 			casillas[i]->removeComponent<Image>();
@@ -223,15 +226,16 @@ bool GameMap::movimientoPosibleEnredadera(const Vector2D& cas) {
 	else return false;
 }
 
+// Solo ataca a los personajes y obstáculos que no estén en base.
 bool GameMap::ataquePosible(const Vector2D& cas) {
 	if (!casillaValida(cas)) return false;
 	int x = cas.getX(); int y = cas.getY();
-	if (cells[y][x].obstaculo != nullptr) {
+	if (cells[y][x].obstaculo != nullptr && getTipoCasilla(cas) != Base) {
 		return true;
 	}
 
 	// Ha de hacer distinci�n entre personaje amigo y enemigo.
-	if (cells[y][x].character != nullptr) {
+	if (cells[y][x].character != nullptr && getTipoCasilla(cas) != Base) {
 		if (playState->getTurno() == Primero)
 			return !cells[y][x].character->hasGroup<Equipo_Azul>();
 		else

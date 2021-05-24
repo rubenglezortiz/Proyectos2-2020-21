@@ -26,8 +26,9 @@ void EntityFactory::health(Entity* c, int l) {
 	c->addComponent<Health>(l);
 }
 
-void EntityFactory::movement(PlayState* playState, Entity* c, Uint8 casillasAMover) {
-	c->addComponent<Movimiento>(playState, casillasAMover);
+void EntityFactory::movement(PlayState* playState, Entity* c, Uint8 casillasAMover, int bomba) {
+	c->addComponent<Movimiento>(playState, casillasAMover, bomba);
+	cout << bomba;
 }
 
 void EntityFactory::image(Entity* c, string t) {
@@ -63,7 +64,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
  		ctr->addComponent<Ability>(new Ability_Architect());
 		break;
 	case Bomba:
-		animation(ctr, "bombaSheet", 150, Bomba);   movement(playState, ctr); health(ctr, 2);
+		animation(ctr, "bombaSheet", 150, Bomba);   movement(playState, ctr, 1, 1); health(ctr, 2);
 		ctr->addComponent<Ability>(new Ability_Bomb());
 		break;
 	case Cazador:

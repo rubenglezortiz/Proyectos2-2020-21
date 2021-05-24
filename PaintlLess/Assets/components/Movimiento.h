@@ -12,7 +12,7 @@ class GameStateMachine;
 
 class Movimiento : public Component {
 public:
-	Movimiento(PlayState* playState, uint casillasAMover = 1) : tr_(nullptr), mapa(nullptr), selected(false), movShader(nullptr), cellWidth(0), cellHeight(0), playState(playState), casillasAMover(casillasAMover) {}
+	Movimiento(PlayState* playState, uint casillasAMover = 1, int bomba = 0) : tr_(nullptr), mapa(nullptr), selected(false), movShader(nullptr), cellWidth(0), cellHeight(0), bomb(bomba), playState(playState), casillasAMover(casillasAMover) {}
 	virtual ~Movimiento() {};
 
 
@@ -48,6 +48,7 @@ private:
 	bool selected;
 	int cellWidth;
 	int cellHeight;
+	int bomb;
 	void initializeCasillasChecked();
 	void resetCasillasChecked();
 	PlayState* playState = nullptr;
