@@ -14,7 +14,7 @@ private:
 	int equip;
 
 public:
-	Ability_Creeper(int e) : mapa(nullptr), tr_(nullptr), lifeCreeper(3), equip(e){}
+	Ability_Creeper(int e) : mapa(nullptr), tr_(nullptr), lifeCreeper(2), equip(e){}
 	~Ability_Creeper() {}
 
 	void init() override;
