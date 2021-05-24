@@ -23,7 +23,7 @@ private:
 	const int INCREMENTO_MANA = 3;
 	int mana_1 = 10;
 	int mana_2 = 10;
-	int accionesPorTurno = MAX_ACCIONES, turnosActuales = 0;
+	int accionesPorTurno = MAX_ACCIONES, turnosActuales = 1;
 	int mana;
 	int pintado_1, pintado_2;
 	Equipo jugadorActual = Segundo;
