@@ -2,6 +2,7 @@
 #include "../game/PlayState.h"
 #include "../game/OffsetInfo.h"
 #include "../game/GameStateMachine.h"
+#include "Ability.h"
 
 void Movimiento::init() {
 	tr_ = entity_->getComponent<Transform>();
@@ -109,16 +110,16 @@ void Movimiento::colorea(Vector2D posIni, Vector2D posFin, Color color)
 
 	desplX = posCoor.getX() - posIniCoor.getX();
 	desplY = posCoor.getY() - posIniCoor.getY();
-
+	bool haCambiado = false;;
 	if (desplX != 0) {
 		if (desplX > 0) {  //mirar el alquimista si pinta de mas
 			for (int a = posIniCoor.getX(); a <= posCoor.getX(); a++) {
-				mapa->setColor((Vector2D(a, posCoor.getY())), color);
+				haCambiado = mapa->setColor((Vector2D(a, posCoor.getY())), color);
 			}
 		}
 		else {
 			for (int a = posIniCoor.getX(); a >= posCoor.getX(); a--) {
-				mapa->setColor((Vector2D(a, posCoor.getY())), color);
+				haCambiado = mapa->setColor((Vector2D(a, posCoor.getY())), color);
 			}
 		}
 	}
@@ -127,13 +128,17 @@ void Movimiento::colorea(Vector2D posIni, Vector2D posFin, Color color)
 	if (desplY != 0) {
 		if (desplY > 0) {
 			for (int a = posIniCoor.getY(); a <= posCoor.getY(); a++) {
-				mapa->setColor((Vector2D(posCoor.getX(), a)), color);
+				haCambiado = mapa->setColor((Vector2D(posCoor.getX(), a)), color);
 			}
 		}
 		else {
 			for (int a = posIniCoor.getY(); a >= posCoor.getY(); a--) {
-				mapa->setColor((Vector2D(posCoor.getX(), a)), color);
+				haCambiado = mapa->setColor((Vector2D(posCoor.getX(), a)), color);
 			}
 		}
 	}
+
+	if (haCambiado)
+		entity_->getComponent<Ability>()->OnCross();
+
 }

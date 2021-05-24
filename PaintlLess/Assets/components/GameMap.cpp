@@ -121,30 +121,23 @@ void GameMap::render() {
 	}*/
 }
 
-void GameMap::setColor(const Vector2D& cas, Color color) {
+bool GameMap::setColor(const Vector2D& cas, Color color) {
 	
 	int i = binarySearchCell(cas);
+	bool colorChanged = false;
 	Casilla casillaActual = cells[(int)cas.getY()][(int)cas.getX()];
 	if (casillaActual.tipoCasilla == Pintable) {
 		if (getColor(cas) != color && getColor(cas) != Ninguno && color == Azul) {
 			casillas[i]->getComponent<Image>()->setTexture(&sdlutils().images().at("rojo"));
 			playState->aumentaPintado1(1);
 			playState->aumentaPintado2(-1);
-			if (casillaActual.character != nullptr)
-			{
-				Ability* ab = casillaActual.character->getComponent<Ability>();
-				if (ab != nullptr) ab->OnCross();
-			}
+			colorChanged = true;
 		}
 		else if (getColor(cas) != color && getColor(cas) != Ninguno && color == Rojo) {
 			casillas[i]->getComponent<Image>()->setTexture(&sdlutils().images().at("azul"));
 			playState->aumentaPintado2(1);
 			playState->aumentaPintado1(-1);
-			if (casillaActual.character != nullptr)
-			{
-				Ability* ab = casillaActual.character->getComponent<Ability>();
-				if (ab != nullptr) ab->OnCross();
-			}
+			colorChanged = true;
 		}
 		else if (getColor(cas) != Ninguno && color == Ninguno) {
 			casillas[i]->removeComponent<Image>();
@@ -164,6 +157,7 @@ void GameMap::setColor(const Vector2D& cas, Color color) {
 
 		cells[(int)cas.getY()][(int)cas.getX()].color = color;
 		std::cout << "Color: " << getColor(cas) << endl;
+		return colorChanged;
 	}
 }
 
