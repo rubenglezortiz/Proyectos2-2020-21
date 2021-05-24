@@ -11,7 +11,7 @@ void Interfaz::init() {
 	numCasillasPintables = entity_->getComponent<GameMap>()->getNumCasPintables();
 	gsm_ = playState->getGSM();
 	auto* opciones = entity_->getMngr()->addEntity(RenderLayer::Interfaz);
-	opciones->addComponent<Transform2>(Vector2D(sdlutils().width() - 275 + 40, 10), 78, 78);
+	opciones->addComponent<Transform2>(Vector2D(sdlutils().width() - 275 + 65, 10), 78, 78);
 	opciones->addComponent<Image>(&sdlutils().images().at("opciones"));
 	opciones->addComponent<ButtonSettings>(gsm_, menuOpciones);
 }
@@ -35,18 +35,18 @@ void Interfaz::render() {
 
 	destAcciones.x = sdlutils().width()-550 + 40;	//BARRA DE ACCION
 	destAcciones.y = 25;
-	destAcciones.w = 240;
+	destAcciones.w = 265;
 	destAcciones.h = 45;
 	sdlutils().images().at("barraAccion").render(destAcciones);
 
-	destEnergy.x = sdlutils().width() - 520 + 40;	//ENERGIA
+	destEnergy.x = sdlutils().width() - 520 + 42;	//ENERGIA
 	destEnergy.y = 33;
 	destEnergy.w = 30;
 	destEnergy.h = 29;	
 
 	for (int i = 0; i < playState->getAcciones(); ++i){
 		texEnergy->render(destEnergy);
-		destEnergy.x = destEnergy.x + destEnergy.w + 20;
+		destEnergy.x = destEnergy.x + destEnergy.w + 15;
 	}	
 
 	int turnos = playState->getTurnosActuales();
