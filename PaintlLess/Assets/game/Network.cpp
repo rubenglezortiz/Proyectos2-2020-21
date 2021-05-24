@@ -243,7 +243,7 @@ void Network::update() {
 		}
 
 		case _DISCONNECTED_: {
-			endGame();
+			//endGame();
 		}
 		}
 	}
