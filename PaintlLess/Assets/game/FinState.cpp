@@ -7,6 +7,7 @@
 #include "../components/Image.h"
 #include "../components/MenuButton.h"
 #include "../components/ButtonHovered.h"
+#include "ControlState.h"
 
 FinState::FinState(GameStateMachine* gsm, int e, int p) : GameState(gsm){
 	porcentaje = p;

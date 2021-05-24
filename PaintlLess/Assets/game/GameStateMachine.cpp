@@ -3,12 +3,12 @@
 
 GameStateMachine::~GameStateMachine() {
 	popState_ = states.size();
+	net->sendEndGame();
 	refresh();
 }
 
 void GameStateMachine::initOnline()
 {
-	net->restartConnection();
 	net->init(this);
 	setOnline(true);
 	charSel->setEquipo(net->isMaster() ? 0 : 1); //Master: Equipo 0

@@ -41,7 +41,6 @@ Network::~Network() {
 }
 
 void Network::init(GameStateMachine* gameStateMachine) {
-
 	gsm = gameStateMachine;
 	// Initialise SDLNet
 	if (SDLNet_Init() < 0) {
@@ -118,12 +117,6 @@ void Network::init(GameStateMachine* gameStateMachine) {
 			if (!isGameReday_)
 				throw "Failed to connect!";
 		}
-		else {
-			names_[0] = localPlayerName_;
-			names_[1] = remotePlayerName_;
-		}
-
-
 	}
 	else { // if started as  other player
 
@@ -421,18 +414,34 @@ void Network::sendEndGame()
 void Network::restartConnection()
 {
 	isGameReday_ = false;
-	SDLNet_UDP_Close(conn_);
-	//conn_ = SDLNet_UDP_Open(port_);
 	host_ = nullptr;
 	isMaster_ = false;
+
+	if (conn_)
+		SDLNet_UDP_Close(conn_);
+
+	// free the packet
+	if (p_) {
+		SDLNet_FreePacket(p_);
+	}
+
+	// close SDLNet
+	SDLNet_Quit();
 }
 
 void Network::endGame()
 {
 	restartConnection();
-
-	PlayState* playState = gsm->getPlayState();
-	if (playState != nullptr)
-		playState->_net_endGame();
-	else std::cout << "Si ves este mensaje es que algo anda mal";
+	PlayState* playState = dynamic_cast<PlayState*>(gsm->currentState());
+	if (playState != nullptr) playState->_net_endGame();
+	else
+	{
+		gsm->popState();
+		playState = dynamic_cast<PlayState*>(gsm->currentState());
+		if (playState != nullptr)
+		{
+			playState->_net_endGame();
+		}
+		else std::cout << "No estoy en play";
+	}
 }

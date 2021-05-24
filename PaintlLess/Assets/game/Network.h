@@ -49,7 +49,6 @@ public:
 	void switchId() {
 		if (isMaster_ && !isGameReday_) {
 			id_ = 1 - id_;
-			std::swap(names_[0], names_[1]);
 		}
 	}
 private:
