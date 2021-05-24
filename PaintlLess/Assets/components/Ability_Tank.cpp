@@ -1,7 +1,7 @@
 #include "Ability_Tank.h"
 #include "../ecs/Entity.h"
 
-Ability_Tank::Ability_Tank() : lives(0), mTurno(0), turnos(4){}
+Ability_Tank::Ability_Tank() : lives(0), mTurno(0), turnos(3){}
 
 void Ability_Tank::initiliceData(Ability* ab)
 {

@@ -97,7 +97,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 		animation(ctr, "picaraSheet", 150, Picara);	  movement(playState, ctr); health(ctr, 2); attack(playState, ctr, 2, 4, 50);
 		break;
 	case Tanque:
-		animation(ctr, "tanqueSheet", 150, Tanque);    movement(playState, ctr); health(ctr, 4); attack(playState, ctr);
+		animation(ctr, "tanqueSheet", 150, Tanque);    movement(playState, ctr); health(ctr, 3); attack(playState, ctr);
 		ctr->addComponent<Ability>(new Ability_Tank());
 		break;
 	case Vikingo:
