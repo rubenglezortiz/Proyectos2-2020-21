@@ -72,6 +72,7 @@ public:
 	Entity* getCharacter(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].character; }
 	Entity* getObstaculo(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].obstaculo; }
 	bool getCreeper(const Vector2D& pos) { return cells[(int)pos.getY()][(int)pos.getX()].enredadera; }
+	bool esPintable(const Vector2D& pos);
 	TipoCasilla getTipoCasilla(Vector2D pos) { return cells[(int)pos.getY()][(int)pos.getX()].tipoCasilla; }
 	PlayState* getPlayState() { return playState; }
 	int binarySearchCell(Vector2D pos);
@@ -80,7 +81,7 @@ public:
 		//cout << p.getX() << " " << p.getY() << endl;
 		return p;
 	}
-
+	
 	Vector2D SDLPointToMapCoords(Vector2D p) { //Pasar de pixeles a coordenadas del mapa
 		//como las casillas neceitan int se hace aqui el casteo
 		int X = (p.getX() - OFFSET_X) / cellWidth;

@@ -240,6 +240,14 @@ bool GameMap::ataquePosible(const Vector2D& cas) {
 	else return false;
 }
 
+bool GameMap::esPintable(const Vector2D& pos) {
+	if (!casillaValida(pos)) return false;
+	auto character = getCharacter(pos);
+	if (character != nullptr && character->hasComponent<Transform>())
+		return (getTipoCasilla(SDLPointToMapCoords(getCharacter(pos)->getComponent<Transform>()->getPos())) == Pintable);
+	else throw "En esta casilla no hay ningún personaje con Transform";
+}
+
 
 //GameMap GameMap::CreaMapa(string filename) {
 //	MapCell s = MapCell.Empty;

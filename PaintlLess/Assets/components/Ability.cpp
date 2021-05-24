@@ -94,21 +94,21 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 	}
 	else if (sf == TxT) {
 		Vector2D posUp = Vector2D(0, -1) + posCh;
-		if (map->casillaValida(posUp) && map->getTipoCasilla(posUp) != NoPintable) abilityCells.push_back(posUp);
+		if (map->casillaValida(posUp) && map->getTipoCasilla(posUp) == Pintable) abilityCells.push_back(posUp);
 		Vector2D posUpLeft = Vector2D(-1, -1) + posCh;
-		if (map->casillaValida(posUpLeft) && map->getTipoCasilla(posUpLeft) != NoPintable) abilityCells.push_back(posUpLeft);
+		if (map->casillaValida(posUpLeft) && map->getTipoCasilla(posUpLeft) == Pintable) abilityCells.push_back(posUpLeft);
 		Vector2D posUpRight = Vector2D(1, -1) + posCh;
-		if (map->casillaValida(posUpRight) && map->getTipoCasilla(posUpRight) != NoPintable) abilityCells.push_back(posUpRight);
+		if (map->casillaValida(posUpRight) && map->getTipoCasilla(posUpRight) == Pintable) abilityCells.push_back(posUpRight);
 		Vector2D posRight = Vector2D(1, 0) + posCh;
-		if (map->casillaValida(posRight) && map->getTipoCasilla(posRight) != NoPintable) abilityCells.push_back(posRight);
+		if (map->casillaValida(posRight) && map->getTipoCasilla(posRight) == Pintable) abilityCells.push_back(posRight);
 		Vector2D posLeft = Vector2D(-1, 0) + posCh;
-		if (map->casillaValida(posLeft) && map->getTipoCasilla(posLeft) != NoPintable) abilityCells.push_back(posLeft);
+		if (map->casillaValida(posLeft) && map->getTipoCasilla(posLeft) == Pintable) abilityCells.push_back(posLeft);
 		Vector2D posDown = Vector2D(0, 1) + posCh;
-		if (map->casillaValida(posDown) && map->getTipoCasilla(posDown) != NoPintable) abilityCells.push_back(posDown);
+		if (map->casillaValida(posDown) && map->getTipoCasilla(posDown) == Pintable) abilityCells.push_back(posDown);
 		Vector2D posDownLeft = Vector2D(-1, 1) + posCh;
-		if (map->casillaValida(posDownLeft) && map->getTipoCasilla(posDownLeft) != NoPintable) abilityCells.push_back(posDownLeft);
+		if (map->casillaValida(posDownLeft) && map->getTipoCasilla(posDownLeft) == Pintable) abilityCells.push_back(posDownLeft);
 		Vector2D posDownRight = Vector2D(1, 1) + posCh;
-		if (map->casillaValida(posDownRight) && map->getTipoCasilla(posDownRight) != NoPintable) abilityCells.push_back(posDownRight);
+		if (map->casillaValida(posDownRight) && map->getTipoCasilla(posDownRight) == Pintable) abilityCells.push_back(posDownRight);
 	}
 	else if (sf == ShaderWolf) {
 		std::vector<Vector2D> casillas;
@@ -127,13 +127,20 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 		for (int i = 0; i < casillas.size(); i++) { // 12, 2 por cada lao
 			if (map->casillaValida(casillas[i] + posWolf)) {
 				//Hay personaje en el 1
-				if (map->getCharacter(casillas[i] + posWolf) != nullptr) {
-					if (map->casillaValida(casillas[i] + posWolf + detras)) abilityCells.push_back(casillas[i] + posWolf);
+				Entity* character = map->getCharacter(casillas[i] + posWolf);
+				if (character != nullptr) {
+					if (map->esPintable(map->SDLPointToMapCoords(character->getComponent<Transform>()->getPos())))
+						if (map->casillaValida(casillas[i] + posWolf + detras))
+							abilityCells.push_back(casillas[i] + posWolf);
 				}
 				//Hay personaje en el 2
-				else if (map->getCharacter(casillas[i + 1] + posWolf) != nullptr)
-				{
-					if (map->casillaValida(casillas[i] + posWolf + detras * 2)) abilityCells.push_back(casillas[i + 1] + posWolf);
+				else {
+					character = map->getCharacter(casillas[i + 1] + posWolf);
+					if (character != nullptr)
+						if (map->esPintable(map->SDLPointToMapCoords(character->getComponent<Transform>()->getPos())))
+							if (map->casillaValida(character->getComponent<Transform>()->getPos() + detras * 2))
+								abilityCells.push_back(casillas[i + 1] + posWolf);
+
 				}
 			}
 			i++;
@@ -217,15 +224,13 @@ void Ability::update() {
 	int mX = ih().getMousePos().first;
 	int mY = ih().getMousePos().second;
 	if (ih().getMouseButtonState(ih().RIGHT)) {
-		if (!selected && entity_->hasComponent<Movimiento>() && playState->getAcciones() > 0 && entity_->getComponent<Movimiento>()->getStun() == 0)
-		{
-			if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && ability_usable) {
+		if (!selected && entity_->hasComponent<Movimiento>() && playState->getAcciones() > 0 && entity_->getComponent<Movimiento>()->getStun() == 0) {
+			if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && ability_usable && map->esPintable(map->SDLPointToMapCoords(pos))) {
 				selected = true;
 				Shade();
 			}
 		}
-		else
-		{
+		else {
 			selected = false;
 			freeAbilityShader();
 		}
@@ -241,19 +246,17 @@ void Ability::update() {
 				int x = posMovimiento.getX();
 				int y = posMovimiento.getY();
 				auto character = this->map->getCharacter(Vector2D(x, y));
-				if (character != nullptr)
-				{
+				if (character != nullptr) {
 					auto mov = character->getComponent<Movimiento>();
 					if (mov != nullptr) mov->focus();
 				}
 				Vector2D charPos = characterTr->getPos();
 
-				if(playState->getGSM()->isOnline())
-					playState->getGSM()->getNetworkManager()->sendExecuteAbility(charPos.getX(), charPos.getY(), 
-					std::forward<int>(x), std::forward<int>(y));
-				
-				if (TryExecuteAbility(x, y))
-				{
+				if (playState->getGSM()->isOnline())
+					playState->getGSM()->getNetworkManager()->sendExecuteAbility(charPos.getX(), charPos.getY(),
+						std::forward<int>(x), std::forward<int>(y));
+
+				if (TryExecuteAbility(x, y)) {
 					playState->aumentarAcciones();
 					ability_usable = false;
 				}
