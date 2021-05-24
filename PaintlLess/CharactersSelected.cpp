@@ -31,12 +31,12 @@ void CharactersSelected::play(GameStateMachine* gsm) {
         if (gsm->isOnline() && gsm->getNetworkManager()->isMaster())
         {
             std::cout << "Master crear juego: " << mapa << "\n";
-
             gsm->getNetworkManager()->sendCreateGame(mapa, tileSet);
-            gsm->changeState(new PlayState(gsm, chars, chars2, mapa, tileSet));
-
         }
-       else if(!gsm->isOnline()) gsm->changeState(new PlayState(gsm, chars, chars2, mapa, tileSet));
+ 
+        PlayState* playState = new PlayState(gsm, chars, chars2, mapa, tileSet);
+        gsm->changeState(playState);
+        gsm->setPlayState(playState);
     }
     else cout << "Play";
 }
@@ -44,7 +44,9 @@ void CharactersSelected::play(GameStateMachine* gsm) {
 void CharactersSelected::clientPlay(GameStateMachine* gsm, int mapa, int tileset)
 {
     std::cout << "Quiero crear un mapa \n";
-    gsm->changeState(new PlayState(gsm, chars, chars2, mapa, tileset));
+    PlayState* playState = new PlayState(gsm, chars, chars2, mapa, tileset);
+    gsm->changeState(playState);
+    gsm->setPlayState(playState);
 }
 
 void CharactersSelected::selectPersonaje(vector<bool>& ch, Unit pj)

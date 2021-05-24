@@ -4,7 +4,7 @@
 #include "GameState.h"
 #include "../../CharactersSelected.h"
 #include "Network.h"
-
+class PlayState;
 //#include "checkML.h"
 
 using namespace std;
@@ -14,7 +14,7 @@ private:
 	stack<GameState*> states;    // Pila de estados.
 	CharactersSelected* charSel; // Vector de personajes.
 	Network* net;
-
+	PlayState* playState;
 	bool initChangedState;
 	GameState* lastChanged;
 	uint popState_ = 0;
@@ -45,4 +45,7 @@ public:
 	void changeState(GameState* state);
 	// Devuelve el puntero a CharactersSelected.
 	CharactersSelected* &getCharSel() { return charSel; };
+
+	void setPlayState(PlayState* playState);
+	PlayState* getPlayState();
 };
