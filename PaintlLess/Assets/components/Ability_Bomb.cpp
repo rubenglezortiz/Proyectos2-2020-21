@@ -7,6 +7,11 @@ void Ability_Bomb::OnDie()
 	explode();
 }
 
+void Ability_Bomb::OnCross()
+{
+	explode();
+}
+
 void Ability_Bomb::explode()
 {
 	Entity* entity_ = this->getAbility()->getEntity();

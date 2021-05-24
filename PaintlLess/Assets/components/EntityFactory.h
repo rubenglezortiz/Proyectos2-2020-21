@@ -15,7 +15,7 @@ public:
 
 	static void health(Entity* character, int lives);
 	static void attack(PlayState* playState, Entity* character, int damage = 1, int dmgCri = 0, int probCritico = 0, string s = "ataqueSound");
-	static void movement(PlayState* playState, Entity* character, Uint8 casillasAMover = 1, int bomb = 0);
+	static void movement(PlayState* playState, Entity* character, Uint8 casillasAMover = 1);
 	static void image(Entity* character, string tex);
 	static void animation(Entity* character, string tex, int d, Unit p);
 

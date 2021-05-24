@@ -22,6 +22,7 @@ public:
 	virtual void update() ;
 	virtual void finTurno();
 	virtual void OnDie();
+	virtual void OnCross();
 
 	virtual bool TryExecuteAbility(int x, int y);
 	void Shade();

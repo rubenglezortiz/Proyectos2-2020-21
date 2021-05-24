@@ -10,6 +10,7 @@ class Ability_Bomb : public AbilityStruct { //lleva este componente la destrucci
 public:
     Ability_Bomb();
     virtual void OnDie() override;
+    virtual void OnCross() override;
     void explode();
     virtual ~Ability_Bomb() {}
 private:

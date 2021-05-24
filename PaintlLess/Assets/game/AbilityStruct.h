@@ -25,6 +25,7 @@ public:
 	virtual void initiliceData(Ability* ab);
 	virtual bool AbilityExecute(int x, int y);
 	virtual void finTurno();
+	virtual void OnCross() {};
 protected:
 	Ability* self;
 };

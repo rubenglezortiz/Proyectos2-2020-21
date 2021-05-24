@@ -280,3 +280,8 @@ void Ability::OnDie()
 	abilityData->OnDie();
 	Vector2D pos = characterTr->getPos();
 }
+
+void Ability::OnCross()
+{
+	abilityData->OnCross();
+}
