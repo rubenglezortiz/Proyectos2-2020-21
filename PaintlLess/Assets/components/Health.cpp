@@ -80,7 +80,7 @@ void Health::render() {
 		for (int i = 0; i < lives; ++i) {
 			tex->render(src, dest, 0);
 			//Cada vez que pinta uno cambia la posici�n x del siguiente
-			dest.x = dest.x + dest.w;
+			dest.x = dest.x + dest.w + 2;
 		}
 
 	}
