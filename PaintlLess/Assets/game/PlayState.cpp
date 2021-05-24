@@ -286,6 +286,14 @@ void PlayState::pasaTurno() {
 	}
 	cout << endl << "MANA_1: " << mana_1 << endl << "MANA_2: " << mana_2 << endl;
 
+	checkEndGame();
+
+	mngr_->finTurno();
+	cout << "Turno pasado\n";
+}
+
+void PlayState::checkEndGame()
+{
 	if (turnosActuales + 1 > MAX_TURNOS * 2) {
 		int numCasillasPintables = mapa_->getNumCasPintables();
 		int casRojo = getPintado1() * 100 / numCasillasPintables;
@@ -308,10 +316,27 @@ void PlayState::pasaTurno() {
 	}
 
 	else turnosActuales++;
+}
 
-	mngr_->finTurno();
-	cout << "Turno pasado\n";
-
+void PlayState::_net_endGame()
+{
+	int numCasillasPintables = mapa_->getNumCasPintables();
+	int casRojo = getPintado1() * 100 / numCasillasPintables;
+	int casAzul = getPintado2() * 100 / numCasillasPintables;
+	int ganador, porcentaje;
+	if (casRojo > casAzul) {
+		ganador = 0;
+		porcentaje = casRojo;
+	}
+	else if (casRojo < casAzul) {
+		ganador = 1;
+		porcentaje = casAzul;
+	}
+	else {
+		ganador = 2;
+		porcentaje = casRojo;
+	}
+	gameStateMachine->pushState(new FinState(gameStateMachine, ganador, porcentaje));
 }
 
 int PlayState::getPorcentaje() {

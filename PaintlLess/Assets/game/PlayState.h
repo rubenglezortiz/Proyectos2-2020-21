@@ -45,12 +45,14 @@ public:
 	void _net_moveChar(Vector2D charPosInMap, Vector2D dest);
 	void _net_abilityChar(Vector2D charPosInMap, Vector2D dest);
 	void _net_attackChar(Vector2D charPosInMap, Vector2D dest, int dmg);
+	void _net_endGame();
 
 	void CheckPasarTurno();
 
 	GameMap* getMapa() { return mapa_; }
 
 	void pasaTurno();
+	void checkEndGame();
 	Equipo getTurno() const { return jugadorActual; }
 
 	PlayState* getPlayState() { return this; }

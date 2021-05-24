@@ -234,6 +234,12 @@ void Network::update() {
 			break;
 		}
 
+		case _FINISH_GAME_:
+		{
+			endGame();
+			break;
+		}
+
 		case _ATTACK_MESSAGE_: {
 			PlayState* playState = gsm->getPlayState();
 			AttackMessage* m = static_cast<AttackMessage*>(m_);
@@ -244,14 +250,7 @@ void Network::update() {
 		}
 
 		case _DISCONNECTED_: {
-			DissConnectMsg* m = static_cast<DissConnectMsg*>(m_);
-			isGameReday_ = false;
-			names_[1 - m->id] = remotePlayerName_ = "N/A";
-			if (!isMaster_) {
-				SDLNet_UDP_Close(conn_);
-				conn_ = SDLNet_UDP_Open(port_);
-				isMaster_ = true;
-			}
+			endGame();
 		}
 		}
 	}
@@ -400,4 +399,40 @@ void Network::sendAttack(int&& mapX, int&& mapY, int&& posX, int&& posY, int&& d
 
 	// send the message
 	SDLNet_UDP_Send(conn_, -1, p_);
+}
+
+void Network::sendEndGame()
+{
+	// if the other player is not connected do nothing
+	if (!isGameReday_)return;
+
+	// we prepare a message that includes all information
+	NetworkMessage* m = static_cast<NetworkMessage*>(m_);
+	m->_type = _FINISH_GAME_;
+
+	// set the message length and the address of the other player
+	p_->len = sizeof(NetworkMessage);
+	p_->address = otherPlayerAddress_;
+
+	// send the message
+	SDLNet_UDP_Send(conn_, -1, p_);
+}
+
+void Network::restartConnection()
+{
+	isGameReday_ = false;
+	SDLNet_UDP_Close(conn_);
+	//conn_ = SDLNet_UDP_Open(port_);
+	host_ = nullptr;
+	isMaster_ = false;
+}
+
+void Network::endGame()
+{
+	restartConnection();
+
+	PlayState* playState = gsm->getPlayState();
+	if (playState != nullptr)
+		playState->_net_endGame();
+	else std::cout << "Si ves este mensaje es que algo anda mal";
 }

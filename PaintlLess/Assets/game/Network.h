@@ -27,6 +27,8 @@ public:
 	void sendMoveMessage(int&& mapX, int&& mapY, int&& posX, int&& posY);
 	void sendExecuteAbility(int&& mapX, int&& mapY, int&& posX, int&& posY);
 	void sendAttack(int&& mapX, int&& mapY, int&& posX, int&& posY, int&& dmg);
+	void sendEndGame();
+	void restartConnection();
 
 	inline Uint8 getId() {
 		return id_;
@@ -52,6 +54,7 @@ public:
 	}
 private:
 	void sendActionMessage(int&& mapX, int&& mapY, int&& posX, int&& posY, MsgType&& mensaje);
+	void endGame();
 
 	const char* host_;
 	Uint16 port_;
