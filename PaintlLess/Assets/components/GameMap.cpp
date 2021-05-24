@@ -229,12 +229,12 @@ bool GameMap::movimientoPosibleEnredadera(const Vector2D& cas) {
 bool GameMap::ataquePosible(const Vector2D& cas) {
 	if (!casillaValida(cas)) return false;
 	int x = cas.getX(); int y = cas.getY();
-	if (cells[y][x].obstaculo != nullptr) {
+	if (cells[y][x].obstaculo != nullptr && getTipoCasilla(cas) != Base) {
 		return true;
 	}
 
 	// Ha de hacer distinci�n entre personaje amigo y enemigo.
-	if (cells[y][x].character != nullptr) {
+	if (cells[y][x].character != nullptr && getTipoCasilla(cas) != Base) {
 		if (playState->getTurno() == Primero)
 			return !cells[y][x].character->hasGroup<Equipo_Azul>();
 		else
