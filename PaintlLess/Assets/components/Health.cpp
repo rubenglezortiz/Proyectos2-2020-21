@@ -26,8 +26,7 @@ void Health::heal(int healing) {
 		lives += healing;
 }
 
-void Health::kill(GameMap* mapa, Entity* entity_)
-{
+void Health::kill(GameMap* mapa, Entity* entity_) {
 	Vector2D tr = entity_->getComponent<Transform>()->getPos();
 	mapa->removeCharacter(mapa->SDLPointToMapCoords(tr)); //Quitar la entidad muerta		
 	mapa->removeObstaculo(mapa->SDLPointToMapCoords(tr));
@@ -62,25 +61,12 @@ void Health::render() {
 
 		SDL_Rect dest;
 		dest.w = tr->getW() / 6 - 10; dest.h = tr->getH() / 5;
-		dest.x = pos.getX() + tr->getW() / 2; dest.y = pos.getY() - 50;
-		switch (lives) {
-		case 1:
-			dest.x -= dest.w / 2;
-			break;
-		case 2:
-			dest.x -= dest.w;
-			break;
-		case 3:
-			dest.x -= (1.5) * dest.w;
-			break;
-		case 4:
-			dest.x -= 2 * dest.w;
-			break;
-		}
+		dest.x = entity_->hasGroup<Equipo_Azul>() ? pos.getX() + tr->getW() - tex->width() - 10 : pos.getX() + 10;
+		dest.y = pos.getY() + tr->getH() - 20; 
 		for (int i = 0; i < lives; ++i) {
 			tex->render(src, dest, 0);
 			//Cada vez que pinta uno cambia la posici�n x del siguiente
-			dest.x = dest.x + dest.w + 2;
+			dest.x = entity_->hasGroup<Equipo_Azul>() ? dest.x - dest.w - 2 : dest.x + dest.w + 2;
 		}
 
 	}
