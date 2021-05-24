@@ -9,7 +9,7 @@ void Ability_Bomb::OnDie()
 
 void Ability_Bomb::OnCross()
 {
-	explode();
+	Health::kill(this->getAbility()->getMap(), this->getAbility()->getEntity());
 }
 
 void Ability_Bomb::explode()
