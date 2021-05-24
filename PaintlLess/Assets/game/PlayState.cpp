@@ -324,17 +324,24 @@ void PlayState::_net_endGame()
 	int casRojo = getPintado1() * 100 / numCasillasPintables;
 	int casAzul = getPintado2() * 100 / numCasillasPintables;
 	int ganador, porcentaje;
-	if (casRojo > casAzul) {
-		ganador = 0;
-		porcentaje = casRojo;
-	}
-	else if (casRojo < casAzul) {
-		ganador = 1;
-		porcentaje = casAzul;
+	if (turnosActuales == MAX_TURNOS)
+	{
+		if (casRojo > casAzul) {
+			ganador = 0;
+			porcentaje = casRojo;
+		}
+		else if (casRojo < casAzul) {
+			ganador = 1;
+			porcentaje = casAzul;
+		}
+		else {
+			ganador = 2;
+			porcentaje = casRojo;
+		}
 	}
 	else {
-		ganador = 2;
-		porcentaje = casRojo;
+		ganador = getCurrentPlayer() == Equipo::Primero ? 1 : 0;
+		porcentaje = 0;
 	}
 	gameStateMachine->pushState(new FinState(gameStateMachine, ganador, porcentaje));
 }
