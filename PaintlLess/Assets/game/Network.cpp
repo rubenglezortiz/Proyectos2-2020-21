@@ -420,11 +420,6 @@ void Network::restartConnection()
 	if (conn_)
 		SDLNet_UDP_Close(conn_);
 
-	// free the packet
-	if (p_) {
-		SDLNet_FreePacket(p_);
-	}
-
 	// close SDLNet
 	SDLNet_Quit();
 }
