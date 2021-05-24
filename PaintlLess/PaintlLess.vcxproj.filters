@@ -264,15 +264,6 @@
     <ClCompile Include="Assets\game\SettingsState.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\components\ButtonSettings.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\components\ButtonTick.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\components\ButtonSurrender.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\game\Network.cpp">
       <Filter>Archivos de origen\game</Filter>
     </ClCompile>
@@ -290,6 +281,15 @@
     </ClCompile>
     <ClCompile Include="Assets\game\ControlState.cpp">
       <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\ButtonSettings.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\ButtonSurrender.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\components\ButtonTick.cpp">
+      <Filter>Archivos de origen\components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
