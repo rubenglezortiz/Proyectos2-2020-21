@@ -51,7 +51,7 @@ public:
 	virtual ~GameMap();
 	virtual void init();
 	void loadMap();
-	void setColor(const Vector2D& cas, Color color);
+	void setColor(const Vector2D& cas, Color color, int bomb = 0);
 	void setEstado(const Vector2D& cas, TipoCasilla tipo);
 	void setCharacter(const Vector2D& cas, Entity* e);
 	void setObstaculo(const Vector2D& cas, Entity* e);
