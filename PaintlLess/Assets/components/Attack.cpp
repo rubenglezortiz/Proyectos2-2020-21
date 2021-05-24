@@ -96,6 +96,11 @@ void Attack::attackShader() {
 
 	while (i <= range && canAt) {
 		Vector2D posUp = Vector2D(0, i) + pos;
+		if (mapa->getTipoCasilla(pos) == TipoCasilla::Base)
+		{
+			i++;
+			continue;
+		}
 		if (mapa->casillaValida(posUp)) {
 			if (mapa->ataquePosible(posUp))
 				casillasAtaque.push_back(posUp);
@@ -107,6 +112,11 @@ void Attack::attackShader() {
 
 	while (i <= range && canAt) {
 		Vector2D posRight = Vector2D(i, 0) + pos;
+		if (mapa->getTipoCasilla(pos) == TipoCasilla::Base)
+		{
+			i++;
+			continue;
+		}
 		if (mapa->casillaValida(posRight)) {
 			if (mapa->ataquePosible(posRight))
 				casillasAtaque.push_back(posRight);
@@ -118,6 +128,11 @@ void Attack::attackShader() {
 
 	while (i <= range && canAt) {
 		Vector2D posLeft = Vector2D(-i, 0) + pos;
+		if (mapa->getTipoCasilla(pos) == TipoCasilla::Base)
+		{
+			i++;
+			continue;
+		}
 		if (mapa->casillaValida(posLeft)) {
 			if (mapa->ataquePosible(posLeft))
 				casillasAtaque.push_back(posLeft);
@@ -129,6 +144,11 @@ void Attack::attackShader() {
 
 	while (i <= range && canAt) {
 		Vector2D posDown = Vector2D(0, -i) + pos;
+		if (mapa->getTipoCasilla(pos) == TipoCasilla::Base)
+		{
+			i++;
+			continue;
+		}
 		if (mapa->casillaValida(posDown)) {
 			if (mapa->ataquePosible(posDown))
 				casillasAtaque.push_back(posDown);
