@@ -15,9 +15,8 @@ void UniversalShader::render()
 		int aux = casillasRendered;
 		for (Vector2D casilla : *arrayPointer) {
 			float lerp = 0;
-
-			if (aux > 0) lerp = 1;
-			else if (aux == 0) lerp = lerpTime;
+			if (aux > 0 && delayedCellsRender) lerp = 1;
+			else if (aux == 0 || !delayedCellsRender) lerp = lerpTime;
 
 			dest.w = cellWidth * lerp;
 			dest.h = cellHeight * lerp;
@@ -27,6 +26,7 @@ void UniversalShader::render()
 			tex->render(dest);
 			if (aux <= 0 && lerpTime >= 1)
 			{
+				if (!delayedCellsRender) continue;
 				lerpTime = 0;
 				casillasRendered++;
 				break;
@@ -62,7 +62,7 @@ void UniversalShader::resetAnim()
 	resetCasillasRendered();
 }
 
-void UniversalShader::casillasPosiblesRecu(const Vector2D& cSelected, uint casillasAMover, GameMap* mapa, std::vector<Vector2D>* casillasAPintar)
+void UniversalShader::checkCasillasPosiblesMov(const Vector2D& cSelected, uint casillasAMover, GameMap* mapa, std::vector<Vector2D>* casillasAPintar)
 {
 	Vector2D casillaAMirar;
 	//Si se encuentra un obstaculo, el booleano correspondiente se pone a false

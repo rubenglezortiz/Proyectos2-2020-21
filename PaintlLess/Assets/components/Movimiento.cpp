@@ -12,6 +12,7 @@ void Movimiento::init() {
 	gsm = playState->getGSM();
 	assert(tr_ != nullptr);
 	movementShader = playState->getMovementShader();
+	movementShader->setDelayCellsRender(false);
 	casillasPintarShader = new vector<Vector2D>();
 }
 
@@ -49,7 +50,7 @@ void Movimiento::update() {
 			else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
 				selected = true;
 				//movShader->casillasPosiblesRecu(mapa->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked, casillasAMover);
-				UniversalShader::casillasPosiblesRecu(mapa->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasAMover, mapa, casillasPintarShader);
+				UniversalShader::checkCasillasPosiblesMov(mapa->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasAMover, mapa, casillasPintarShader);
 				movementShader->setCells(casillasPintarShader);
 				movementShader->resetAnim();
 				//sdlutils().soundEffects().at("click").setChunkVolume(5);
