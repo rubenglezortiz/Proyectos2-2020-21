@@ -6,6 +6,7 @@
 #include "../sdlutils/InputHandler.h"
 #include "Movimiento.h"
 #include "../game/AbilityStruct.h"
+#include "UniversalShader.h"
 
 using AbilityFunction = void(int x, int y, GameMap* map, Manager* manager);
 
@@ -18,7 +19,6 @@ public:
 	virtual ~Ability() { delete abilityData; }
 
 	virtual void init();
-	virtual void render();
 	virtual void update() ;
 	virtual void finTurno();
 	virtual void OnDie();
@@ -42,14 +42,11 @@ protected:
 	Transform* characterTr; //¿lo necesitan todas las habilidades?
 	Texture* tex;
 	GameMap* map;
+	UniversalShader* abilityShader;
 	selectorColor sel;
 	bool selected;
 	int cellWidth, cellHeight;
 	int shaderDistance;
 	PlayState* playState = nullptr;
 	void SetShaderDistance(int distance) { shaderDistance = distance; };
-
-	float lerpTime = 0;
-	int casillasRendered = 0;
-	float delayTime = 0;
 };

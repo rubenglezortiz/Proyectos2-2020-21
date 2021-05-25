@@ -33,6 +33,7 @@ public:
 	void setOnline(bool a) { online = a; };
 	bool isOnline() { return online; }
 	void refresh();
+	int getSize() { return states.size(); }
 	void restartCharacterSelection();
 	Network* getNetworkManager() { return net; }
 

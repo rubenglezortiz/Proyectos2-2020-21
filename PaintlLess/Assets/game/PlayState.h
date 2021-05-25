@@ -1,6 +1,8 @@
 #pragma once
 #include "GameState.h"
 #include <vector>
+#include "../components/UniversalShader.h"
+
 class EntityFactory;
 class Network;
 
@@ -30,6 +32,8 @@ private:
 	vector<bool> ch1, ch2;
 	GameMap* mapa_;
 	Network* net;
+	Entity* shaderManager;
+	UniversalShader* abililyShader;
 public:
 
 	// Constructora.
@@ -58,6 +62,7 @@ public:
 	PlayState* getPlayState() { return this; }
 	Equipo getCurrentPlayer() { return jugadorActual; }
 	GameStateMachine* getGSM() { return gameStateMachine; }
+	UniversalShader* getAbilityShader() { return abililyShader; }
 
 	void aumentarAcciones() { accionesPorTurno--; };
 	int getAcciones() const { return accionesPorTurno; }	

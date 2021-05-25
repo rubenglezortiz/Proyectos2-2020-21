@@ -17,6 +17,8 @@ FinState::FinState(GameStateMachine* gsm, int e, int p) : GameState(gsm) {
 	bSalir->addComponent<Transform>(Vector2D((sdlutils().width() / 2) - w / 2, (sdlutils().height() - 2 * h) - 50), w, h);
 	bSalir->addComponent<Image>(&sdlutils().images().at("salir2"));
 	bSalir->addComponent<MenuButton>(gsm, exitMenu);
+
+	std::cout << "El tamaño es: "  <<gsm->getSize() << "\n";
 }
 
 void FinState::init() {
@@ -71,7 +73,7 @@ void FinState::update() {
 }
 
 void FinState::exitMenu(GameStateMachine* gsm) { //Volver al menu
-	gsm->getNetworkManager()->restartConnection();
+	if(gsm->isOnline())gsm->getNetworkManager()->restartConnection();
 	gsm->restartCharacterSelection();
 	gsm->popState();
 	gsm->popState();

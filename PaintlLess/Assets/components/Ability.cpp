@@ -34,6 +34,8 @@ void Ability::init() {
 	tex = &sdlutils().images().at(s);
 	auto mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
 	playState = mapa->getPlayState();
+	abilityShader = playState->getAbilityShader();
+	abilityShader->setTexture(tex);
 }
 
 bool Ability::TryExecuteAbility(int x, int y)
@@ -45,13 +47,14 @@ bool Ability::TryExecuteAbility(int x, int y)
 void Ability::Shade()
 {
 	AbilityShader(form, type, shaderDistance);
+	abilityShader->setCells(&abilityCells);
 }
 
 void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 	Vector2D posCh = entity_->getComponent<Transform>()->getPos();
 	posCh = entity_->getComponent<Transform>()->getPos();
 	posCh = map->SDLPointToMapCoords(posCh);
-	lerpTime = 0;
+	abilityShader->resetLerp();
 	if (sf == Cross) {
 		Vector2D posUp = Vector2D(0, d) + posCh;
 		Vector2D posRight = Vector2D(d, 0) + posCh;
@@ -168,7 +171,7 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 		}
 		if (!findObj)freeAbilityShader();
 	}
-	casillasRendered = 0;
+	abilityShader->resetCasillasRendered();
 }
 
 void Ability::freeAbilityShader() { abilityCells.clear(); }
@@ -183,41 +186,11 @@ bool Ability::abilityCheck(const Vector2D& pos) {
 	return check;
 }
 
-
-void Ability::render() {
-	SDL_Rect dest;
-	if (abilityCells.size() > 0) {
-		int aux = casillasRendered;
-		for (Vector2D casilla : abilityCells) {
-			float lerp = 0;
-
-			if (aux > 0) lerp = 1;
-			else if (aux == 0) lerp = lerpTime;
-
-			dest.w = cellWidth * lerp;
-			dest.h = cellHeight * lerp;
-			dest.x = (casilla.getX() * cellWidth + OFFSET_X) + cellWidth / 2 - dest.w / 2;
-			dest.y = ((casilla.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP) + cellHeight / 2 - dest.h / 2;
-
-			tex->render(dest);
-			if (aux <= 0 && lerpTime >= 1)
-			{
-				lerpTime = 0;
-				casillasRendered++;
-				break;
-			}
-			else aux--;
-		}
-	}
-}
-
 void Ability::update() {
 	if (map->getPlayState()->getTurno() == Primero && entity_->hasGroup<Equipo_Rojo>())
 		return;
 	if (map->getPlayState()->getTurno() == Segundo && entity_->hasGroup<Equipo_Azul>())
 		return;
-
-	if (lerpTime < 1) lerpTime += 0.25;
 
 	auto pos = entity_->getComponent<Transform>()->getPos();
 

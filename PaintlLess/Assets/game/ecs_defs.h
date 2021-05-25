@@ -29,6 +29,7 @@ class PointOnImage;
 class Transform;
 class Transform2;
 class DieAfterXTurns;
+class UniversalShader;
 
 #define _CMPS_LIST_  \
 	Ability						    ,  \
@@ -55,7 +56,8 @@ class DieAfterXTurns;
 	PointOnImage					,  \
 	Transform						,  \
 	Transform2						,  \
-    DieAfterXTurns
+    DieAfterXTurns					,  \
+	UniversalShader
 
 	// groups
 
