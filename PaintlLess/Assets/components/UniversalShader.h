@@ -6,10 +6,8 @@
 #include "GameMap.h"
 #include "../game/OffsetInfo.h"
 
-struct CasillaMov {
-	bool checked;
-	bool movPosible;
-};
+enum ShaderForm;
+enum ShaderType;
 
 class UniversalShader : public Component
 {
@@ -30,6 +28,7 @@ public:
 	//Para movimiento, ataque y habilidad respectivamente
 	static void checkCasillasPosiblesMov(const Vector2D& cSelected, uint casillasAMover, GameMap* mapa, std::vector<Vector2D>* casillasAPintar);
 	static void attackShader(const Vector2D& pos, GameMap* mapa, std::vector<Vector2D>* casillasAtaque, int range);
+	static void AbilityShader(ShaderForm sf, ShaderType st, int d, Entity* entity_, GameMap* map, std::vector<Vector2D>* abilityCells);
 private:
 	std::vector<Vector2D>* arrayPointer;
 	Texture* tex;
