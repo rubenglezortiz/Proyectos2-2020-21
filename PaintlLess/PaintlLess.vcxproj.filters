@@ -78,9 +78,6 @@
     <ClCompile Include="Assets\sdlutils\SDLUtils.cpp">
       <Filter>Archivos de origen\sdlutils</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\sdlutils\sdlutils_demo.cpp">
-      <Filter>Archivos de origen\sdlutils</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\sdlutils\SoundEffect.cpp">
       <Filter>Archivos de origen\sdlutils</Filter>
     </ClCompile>

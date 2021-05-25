@@ -207,7 +207,6 @@
     <ClCompile Include="Assets\json\json_demo.cpp" />
     <ClCompile Include="Assets\sdlutils\RandomNumberGenerator.cpp" />
     <ClCompile Include="Assets\sdlutils\SDLUtils.cpp" />
-    <ClCompile Include="Assets\sdlutils\sdlutils_demo.cpp" />
     <ClCompile Include="Assets\sdlutils\SoundEffect.cpp" />
     <ClCompile Include="Assets\sdlutils\Texture.cpp" />
     <ClCompile Include="Assets\utils\Collisions.cpp" />
