@@ -32,8 +32,8 @@ private:
 	int probCrit;
 
 public:
-	Attack(PlayState* playState, int dmg, int dmgCrit, float probCrit, string s = "ataqueSound") :
-		range(1), selected(false), cellWidth(0), cellHeight(0), tr_(nullptr),
+	Attack(PlayState* playState, int dmg, int dmgCrit, float probCrit, int range = 1, string s = "ataqueSound") :
+		range(range), selected(false), cellWidth(0), cellHeight(0), tr_(nullptr),
 		mapa(nullptr), playState(playState), sound(s), gsm(nullptr), dmg(dmg), dmgCrit(dmgCrit), probCrit(probCrit)
 	{}
 	~Attack() {}

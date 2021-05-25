@@ -31,7 +31,7 @@ namespace UnitInfo {
 	const SpriteSheetInfo spriteSheetInfo[numUnidades] = {{{4,5,6}, 3, 6},   //Alquimista
 														  {{4,5,6}, 3, 6},   //Arquitecta
 														  {{4,6,0}, 2, 6},   //Bomba
-														  {{0,0,0}, 0, 0},   //Cazador
+														  {{4,6,6}, 3, 6},   //Cazador
 														  {{5,6,6}, 3, 6},   //Druida
 														  {{4,5,4}, 3, 5},   //Esqueleto
 														  {{7,8,7}, 3, 8},   //Golem

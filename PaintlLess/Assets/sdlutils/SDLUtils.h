@@ -114,7 +114,7 @@ public:
 		sounds_.at("moveSound").setChunkVolume(volume);
 		sounds_.at("seleccionSound").setChunkVolume(volume);
 
-		volume_ = volume;
+		volumeSFX_ = volume;
 	}
 
 	inline void changeMusicVolume(int volume) {
@@ -122,6 +122,8 @@ public:
 		sounds_.at("ice").setChunkVolume(volume);
 		sounds_.at("field").setChunkVolume(volume);
 		sounds_.at("castle").setChunkVolume(volume);
+
+		volumeMUS_ = volume;
 	}
 
 	inline void restoreAllVolume() {
@@ -160,7 +162,8 @@ public:
 		return tiled_;
 	}
 
-	inline int volume() { return volume_; }
+	inline int volumeSFX() { return volumeSFX_; }
+	inline int volumeMUS() { return volumeMUS_; }
 	// Access to the random number generator. It is important to always
 	// use this generator, this way you can regenerate the same sequence
 	// if you start from the same seed
@@ -198,7 +201,8 @@ private:
 	std::string windowTitle_; // window title
 	int width_; // window width
 	int height_; // window height
-	int volume_ = 64; // volume
+	int volumeSFX_ = 64; // volume
+	int volumeMUS_ = 64; // volume
 
 	SDL_Window *window_; // the window
 	SDL_Renderer *renderer_; // the renderer

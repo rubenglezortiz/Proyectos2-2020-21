@@ -195,6 +195,8 @@
 	{ "id" : "tanqueSheetR",      "file": "resources/images/sprites/personajes/Tanque/TanqueRojoAnimsSheet.png"},
     { "id" : "vikingoSheetA",     "file": "resources/images/sprites/personajes/Vikingo/SpriteSheetVikingoAzul.png"},
     { "id" : "vikingoSheetR",     "file": "resources/images/sprites/personajes/Vikingo/SpriteSheetVikingoRojo.png"},
+    { "id" : "cazadorSheetA",     "file": "resources/images/sprites/personajes/Cazador/cazadorAZUL.png"},
+    { "id" : "cazadorSheetR",     "file": "resources/images/sprites/personajes/Cazador/cazadorROJO.png"},
 	       	
     
     { "id" : "cold1",           "file" : "resources/images/interfaz/mazo/cold1.png" },
