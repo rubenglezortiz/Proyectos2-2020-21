@@ -14,6 +14,9 @@ void Movimiento::init() {
 	//mapa->setCharacter(mapa->SDLPointToMapCoords(tr_->getPos()), entity_);
 	initializeCasillasChecked();
 	assert(tr_ != nullptr);
+	movementShader = playState->getMovementShader();
+	movementShader->setTexture(&sdlutils().images().at("MovShader"));
+	casillasPintarShader = new vector<Vector2D>();
 }
 
 void Movimiento::update() {
@@ -34,19 +37,27 @@ void Movimiento::update() {
 			if (selected) {
 				//esto se debe hacer en movementshader
 				Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
-
-				if (casillasChecked[posMovimiento.getX()][posMovimiento.getY()].movPosible)
+				bool shouldMove = false;
+				for (Vector2D casilla : *casillasPintarShader)
+				{
+					shouldMove |= posMovimiento == casilla;
+				}
+				if (shouldMove)
 				{
 					MoveCharacter(posIni, posMovimiento);
 					if(gsm->isOnline())gsm->getNetworkManager()->sendMoveMessage(posIni.getX(), posIni.getY(), posMovimiento.getX(), posMovimiento.getY());
 				}
 				selected = false;
-				movShader->freeCasillasAPintar();
+				//movShader->freeCasillasAPintar();
+				casillasPintarShader->clear();
 				resetCasillasChecked();
 			}
 			else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
 				selected = true;
-				movShader->casillasPosiblesRecu(mapa->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked, casillasAMover);
+				//movShader->casillasPosiblesRecu(mapa->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasChecked, casillasAMover);
+				UniversalShader::casillasPosiblesRecu(mapa->SDLPointToMapCoords(Vector2D(pos.getX(), pos.getY())), casillasAMover, mapa, casillasPintarShader);
+				movementShader->setCells(casillasPintarShader);
+				movementShader->resetAnim();
 				//sdlutils().soundEffects().at("click").setChunkVolume(5);
 				sdlutils().soundEffects().at("click").play(); //-----------------------------------------------------------					
 			}
@@ -56,6 +67,8 @@ void Movimiento::update() {
 			focused = false;
 			resetCasillasChecked();
 			movShader->freeCasillasAPintar();
+			casillasPintarShader->clear();
+
 		}
 	}
 }
@@ -63,6 +76,8 @@ void Movimiento::update() {
 void Movimiento::finTurno()
 {
 	movShader->freeCasillasAPintar();
+	casillasPintarShader->clear();
+
 	selected = false;
 	if (stun > 0)
 	{

@@ -55,3 +55,61 @@ void UniversalShader::resetCasillasRendered()
 {
 	casillasRendered = 0;
 }
+
+void UniversalShader::resetAnim()
+{
+	resetLerp();
+	resetCasillasRendered();
+}
+
+void UniversalShader::casillasPosiblesRecu(const Vector2D& cSelected, uint casillasAMover, GameMap* mapa, std::vector<Vector2D>* casillasAPintar)
+{
+	vector<pair<Vector2D, int>> casillasBaseRecorridas;
+
+	//Movimiento en cruz temporal hito
+	Vector2D casillaAMirar;
+	//Si se encuentra un obstaculo, el booleano correspondiente se pone a false
+	//y no se comprueba mas por ese camino
+	bool iz, der, up, down = iz = der = up = true;
+	for (int i = 1; i <= casillasAMover; i++)
+	{
+		casillaAMirar = new Vector2D(cSelected.getX() + i, cSelected.getY());
+		if (mapa->movimientoPosible(casillaAMirar) && der)
+		{
+			casillasAPintar->push_back(casillaAMirar);
+		}
+		else der = false;
+
+		casillaAMirar = new Vector2D(cSelected.getX() - i, cSelected.getY());
+		if (mapa->movimientoPosible(casillaAMirar) && iz)
+		{
+			casillasAPintar->push_back(casillaAMirar);
+		}
+		else iz = false;
+
+		casillaAMirar = new Vector2D(cSelected.getX(), cSelected.getY() + i);
+		if (mapa->movimientoPosible(casillaAMirar) && up)
+		{
+			casillasAPintar->push_back(casillaAMirar);
+		}
+		else up = false;
+
+		casillaAMirar = new Vector2D(cSelected.getX(), cSelected.getY() - i);
+		if (mapa->movimientoPosible(casillaAMirar) && down)
+		{
+			casillasAPintar->push_back(casillaAMirar);
+		}
+		else down = false;
+
+	}
+
+	//casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() - 1), casillasChecked, false);
+	//casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX() + 1, cSelected.getY()), casillasChecked, false);
+	//casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX(), cSelected.getY() + 1), casillasChecked, false);
+	//casillasPosiblesRecuAux(casillasAMover - 1, cSelected, Vector2D(cSelected.getX() - 1, cSelected.getY()), casillasChecked, false);
+
+	casillasBaseRecorridas.clear();
+
+
+	//if (!(cSelected.getX() == 0 && cActual.getX() != 0))
+}

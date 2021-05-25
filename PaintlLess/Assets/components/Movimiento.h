@@ -7,6 +7,7 @@
 #include "../ecs/Entity.h"
 #include "./Transform.h"
 #include "./MovementShader.h"
+class UniversalShader;
 
 class GameStateMachine;
 
@@ -43,6 +44,7 @@ public:
 private:
 	vector<vector<MovementShader::CasillaMov>> casillasChecked;
 	MovementShader* movShader;
+	UniversalShader* movementShader;
 	Transform* tr_;
 	GameMap* mapa;
 	bool selected;
@@ -54,6 +56,7 @@ private:
 	GameStateMachine* gsm;
 	void colorea(Vector2D posIni, Vector2D posFin, Color color);
 	uint casillasAMover;
+	std::vector<Vector2D>* casillasPintarShader;
 
 	int stun = false;
 	bool focused;
