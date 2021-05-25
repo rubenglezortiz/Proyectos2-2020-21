@@ -128,6 +128,10 @@
     { "id" : "arquitectaD",  "file" : "resources/images/menus/SP/descripcion/descripcionArquitecta.png"},
     { "id" : "picaraD",      "file" : "resources/images/menus/SP/descripcion/descripcionPicara.png"},
     { "id" : "loboD",        "file" : "resources/images/menus/SP/descripcion/descripcionLobo.png"},
+    { "id" : "druidaD",      "file" : "resources/images/menus/SP/descripcion/descripcionDruida.png"},
+    { "id" : "cazadorD",     "file" : "resources/images/menus/SP/descripcion/descripcionCazador.png"},
+    { "id" : "monaguilloD",  "file" : "resources/images/menus/SP/descripcion/descripcionMonaguillo.png"},
+    { "id" : "kirinD",       "file" : "resources/images/menus/SP/descripcion/descripcionKirin.png"},
 
     { "id" : "botonAtras",     "file" : "resources/images/menus/opciones/botonAtras.png"},
     { "id" : "tick1",          "file" : "resources/images/menus/opciones/altavoz2.png"},

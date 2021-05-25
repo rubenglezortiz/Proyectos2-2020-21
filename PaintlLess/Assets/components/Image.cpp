@@ -9,8 +9,10 @@ void Image::render()  {
 
 		}
 		else if (entity_->hasGroup<Muro>()) {
-			dest.y -= 25;
-			dest.h += 25;
+			dest.w -= 20;
+			dest.x += 10;
+			dest.y -= 40;
+			dest.h += 30;
 		}
 		if (entity_->hasGroup<Equipo_Azul>())
 			tex_->render(src_, dest, tr_->getRot(), nullptr, SDL_FLIP_HORIZONTAL);

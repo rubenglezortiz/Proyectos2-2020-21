@@ -68,14 +68,14 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Cazador->addComponent<Transform>(Vector2D(posX + w / 2, offsetY), w, h);
 	Cazador->addComponent<Image>(&sdlutils().images().at("cazadorSP"));
 	Cazador->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("cazadorSP2"), &sdlutils().images().at("cazadorM"), updateCazador);
-	Cazador->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("star"));
+	Cazador->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("cazadorD"));
 	Cazador->setGroup<Attack>(true);
 
 	auto* Druida = mngr_->addEntity(RenderLayer::Fondo);
 	Druida->addComponent<Transform>(Vector2D(posX + 3 * w / 2, offsetY), w, h);
 	Druida->addComponent<Image>(&sdlutils().images().at("druidaSP"));
 	Druida->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("druidaSP2"), &sdlutils().images().at("druidaM"), updateDruida);
-	Druida->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("star"));
+	Druida->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("druidaD"));
 	Druida->setGroup<Attack>(true);
 
 	auto* Esqueleto = mngr_->addEntity(RenderLayer::Fondo);
@@ -96,7 +96,7 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Kirin->addComponent<Transform>(Vector2D(posX + w / 2, h + offsetY), w, h);
 	Kirin->addComponent<Image>(&sdlutils().images().at("kirinSP"));
 	Kirin->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("kirinSP2"), &sdlutils().images().at("kirinM"), updateKirin);
-	Kirin->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("star"));
+	Kirin->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("kirinD"));
 	Kirin->setGroup<Attack>(true);
 
 	auto* Lobo = mngr_->addEntity(RenderLayer::Fondo);
@@ -110,7 +110,7 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	Monaguillo->addComponent<Transform>(Vector2D(posX - 3 * w / 2, 2 * h + offsetY), w, h);
 	Monaguillo->addComponent<Image>(&sdlutils().images().at("monaguilloSP"));
 	Monaguillo->addComponent<ButtonSelected>(gsm, &sdlutils().images().at("monaguilloSP2"), &sdlutils().images().at("monaguilloM"), updateMonaguillo);
-	Monaguillo->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("star"));
+	Monaguillo->addComponent<ButtonDescription>(gsm, &sdlutils().images().at("monaguilloD"));
 	Monaguillo->setGroup<Defense>(true);
 
 	auto* Picara = mngr_->addEntity(RenderLayer::Fondo);
