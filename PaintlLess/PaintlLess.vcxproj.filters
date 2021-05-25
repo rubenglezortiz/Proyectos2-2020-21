@@ -294,6 +294,9 @@
     <ClCompile Include="Assets\components\UniversalShader.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
+    <ClCompile Include="Assets\components\ComponentBuffer.cpp">
+      <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Assets\game\ecs_defs.h">
@@ -543,6 +546,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="Assets\components\UniversalShader.h">
+      <Filter>Archivos de encabezado\components</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\components\ComponentBuffer.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
   </ItemGroup>

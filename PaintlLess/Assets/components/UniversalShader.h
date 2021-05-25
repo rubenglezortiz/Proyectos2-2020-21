@@ -11,7 +11,7 @@ class UniversalShader : public Component
 public:
 	UniversalShader(GameMap* mapa) : 
 		arrayPointer(nullptr), tex(nullptr), lerpTime(0),
-		mapa(mapa){};
+		mapa(mapa), casillasRendered(0) {};
 
 	virtual void update() override;
 	virtual void render() override;

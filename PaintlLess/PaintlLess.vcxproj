@@ -170,6 +170,7 @@
     <ClCompile Include="Assets\components\ButtonSurrender.cpp" />
     <ClCompile Include="Assets\components\ButtonTick.cpp" />
     <ClCompile Include="Assets\components\ButtonVolume.cpp" />
+    <ClCompile Include="Assets\components\ComponentBuffer.cpp" />
     <ClCompile Include="Assets\components\DeckSpawn.cpp" />
     <ClCompile Include="Assets\components\DieAfterXTurns.cpp" />
     <ClCompile Include="Assets\components\EntityFactory.cpp" />
@@ -251,6 +252,7 @@
     <ClInclude Include="Assets\components\ButtonSurrender.h" />
     <ClInclude Include="Assets\components\ButtonTick.h" />
     <ClInclude Include="Assets\components\ButtonVolume.h" />
+    <ClInclude Include="Assets\components\ComponentBuffer.h" />
     <ClInclude Include="Assets\components\DeckSpawn.h" />
     <ClInclude Include="Assets\components\DieAfterXTurns.h" />
     <ClInclude Include="Assets\components\EntityFactory.h" />

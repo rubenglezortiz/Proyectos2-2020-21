@@ -7,8 +7,9 @@ void Attack::init() {
 	mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
 	cellWidth = mapa->getCellWidth();
 	cellHeight = mapa->getCellHeight();
-	tex_ = &sdlutils().images().at("selectorA");
 	gsm = playState->getGSM();
+	attackShader_ = playState->getAttackShader();
+	attackShader_->setTexture(&sdlutils().images().at("selectorA"));
 }
 
 void Attack::update() {
@@ -157,18 +158,10 @@ void Attack::attackShader() {
 		i++;
 	}
 	i = 1; canAt = true;
-}
 
-void Attack::render() {
-	SDL_Rect dest;
-	for (Vector2D casilla : casillasAtaque) {
-		dest.x = casilla.getX() * cellWidth + OFFSET_X;
-		dest.y = casilla.getY() * cellHeight + OFFSET_Y + OFFSET_TOP;
-		dest.h = cellHeight;
-		dest.w = cellWidth;
-
-		tex_->render(dest);
-	}
+	attackShader_->resetLerp();
+	attackShader_->resetCasillasRendered();
+	attackShader_->setCells(&casillasAtaque);
 }
 
 bool Attack::canAttack(Vector2D cas) {

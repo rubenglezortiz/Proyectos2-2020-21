@@ -7,6 +7,7 @@
 #include "Health.h"
 
 #include <vector>
+#include "UniversalShader.h"
 
 /*
 * Attack gestiona la habilidad de ataque básico de todos los personajes.
@@ -21,7 +22,6 @@ private:
 	int cellWidth, cellHeight, range;
 	Transform* tr_;
 	GameMap* mapa;
-	Texture* tex_;
 	vector<Vector2D> casillasAtaque;
 
 	PlayState* playState;
@@ -34,12 +34,11 @@ private:
 public:
 	Attack(PlayState* playState, int dmg, int dmgCrit, float probCrit, string s = "ataqueSound") :
 		range(1), selected(false), cellWidth(0), cellHeight(0), tr_(nullptr),
-		mapa(nullptr), tex_(nullptr), playState(playState), sound(s), gsm(nullptr), dmg(dmg), dmgCrit(dmgCrit), probCrit(probCrit)
+		mapa(nullptr), playState(playState), sound(s), gsm(nullptr), dmg(dmg), dmgCrit(dmgCrit), probCrit(probCrit)
 	{}
 	~Attack() {}
 
 	void init() override;
-	void render() override;
 	void update() override;
 	void finTurno() override;
 	// Método que detecta los clicks y gestiona el ataque.
@@ -50,4 +49,6 @@ public:
 	void attackShader();
 	// Método que devuelve true si en la casilla hay un personaje.
 	bool canAttack(Vector2D pos);
+private:
+	UniversalShader* attackShader_;
 };

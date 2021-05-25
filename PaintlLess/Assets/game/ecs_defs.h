@@ -30,6 +30,7 @@ class Transform;
 class Transform2;
 class DieAfterXTurns;
 class UniversalShader;
+class ComponentBuffer;
 
 #define _CMPS_LIST_  \
 	Ability						    ,  \
@@ -57,7 +58,8 @@ class UniversalShader;
 	Transform						,  \
 	Transform2						,  \
     DieAfterXTurns					,  \
-	UniversalShader
+	UniversalShader					,  \
+	ComponentBuffer
 
 	// groups
 

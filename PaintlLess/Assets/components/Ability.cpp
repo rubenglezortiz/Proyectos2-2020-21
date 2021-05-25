@@ -48,13 +48,14 @@ void Ability::Shade()
 {
 	AbilityShader(form, type, shaderDistance);
 	abilityShader->setCells(&abilityCells);
+	abilityShader->resetCasillasRendered();
+	abilityShader->resetLerp();
 }
 
 void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 	Vector2D posCh = entity_->getComponent<Transform>()->getPos();
 	posCh = entity_->getComponent<Transform>()->getPos();
 	posCh = map->SDLPointToMapCoords(posCh);
-	abilityShader->resetLerp();
 	if (sf == Cross) {
 		Vector2D posUp = Vector2D(0, d) + posCh;
 		Vector2D posRight = Vector2D(d, 0) + posCh;
@@ -171,7 +172,6 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 		}
 		if (!findObj)freeAbilityShader();
 	}
-	abilityShader->resetCasillasRendered();
 }
 
 void Ability::freeAbilityShader() { abilityCells.clear(); }

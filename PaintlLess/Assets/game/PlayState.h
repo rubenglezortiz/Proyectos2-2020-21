@@ -34,6 +34,8 @@ private:
 	Network* net;
 	Entity* shaderManager;
 	UniversalShader* abililyShader;
+	UniversalShader* movementShader;
+	UniversalShader* attackShader;
 public:
 
 	// Constructora.
@@ -63,6 +65,8 @@ public:
 	Equipo getCurrentPlayer() { return jugadorActual; }
 	GameStateMachine* getGSM() { return gameStateMachine; }
 	UniversalShader* getAbilityShader() { return abililyShader; }
+	UniversalShader* getMovementShader() { return movementShader; }
+	UniversalShader* getAttackShader() { return attackShader; }
 
 	void aumentarAcciones() { accionesPorTurno--; };
 	int getAcciones() const { return accionesPorTurno; }	

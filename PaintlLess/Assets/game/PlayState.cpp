@@ -31,6 +31,7 @@
 #include "GameStateMachine.h"
 #include "Network.h"
 #include "../components/EntityFactory.h"
+#include "../components/ComponentBuffer.h"
 
 PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> charss2, int mapa, int tileset) : GameState(gsm) {
 
@@ -75,7 +76,16 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> ch
 	botonTurno->addComponent<Transform2>(Vector2D(sdlutils().width() - 305, sdlutils().height() - 120), 225, 100);
 	botonTurno->addComponent<Image>(&sdlutils().images().at("botonT"));
 	shaderManager = mngr_->addEntity(RenderLayer::Tablero2);
-	abililyShader = shaderManager->addComponent<UniversalShader>(mapa_);
+	ComponentBuffer* buffer = shaderManager->addComponent<ComponentBuffer>();
+
+	abililyShader = new UniversalShader(mapa_);
+	movementShader = new UniversalShader(mapa_);
+	attackShader = new UniversalShader(mapa_);
+
+	buffer->addComponent(abililyShader);
+	buffer->addComponent(movementShader);
+	buffer->addComponent(attackShader);
+
 }
 
 PlayState::~PlayState() {}
