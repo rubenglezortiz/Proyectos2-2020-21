@@ -16,7 +16,6 @@
 #include "../components/Health.h"
 #include "../components/PointOnImage.h"
 
-#include "../components/MovementShader.h"
 #include "../game/PlayState.h"
 
 Game::Game() {

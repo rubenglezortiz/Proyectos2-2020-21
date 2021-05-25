@@ -23,7 +23,6 @@ class Health;
 class Image;
 class Interfaz;
 class MenuButton;
-class MovementShader;
 class Movimiento;
 class PointOnImage;
 class Transform;
@@ -52,7 +51,6 @@ class ComponentBuffer;
 	Image							,  \
 	Interfaz						,  \
 	MenuButton				   	    ,  \
-	MovementShader				    ,  \
 	Movimiento						,  \
 	PointOnImage					,  \
 	Transform						,  \

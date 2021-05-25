@@ -180,7 +180,6 @@
     <ClCompile Include="Assets\components\Image.cpp" />
     <ClCompile Include="Assets\components\Interfaz.cpp" />
     <ClCompile Include="Assets\components\MenuButton.cpp" />
-    <ClCompile Include="Assets\components\MovementShader.cpp" />
     <ClCompile Include="Assets\components\Movimiento.cpp" />
     <ClCompile Include="Assets\components\Ability_Architect.cpp" />
     <ClCompile Include="Assets\components\PointOnImage.cpp" />
@@ -262,7 +261,6 @@
     <ClInclude Include="Assets\components\Image.h" />
     <ClInclude Include="Assets\components\Interfaz.h" />
     <ClInclude Include="Assets\components\MenuButton.h" />
-    <ClInclude Include="Assets\components\MovementShader.h" />
     <ClInclude Include="Assets\components\Movimiento.h" />
     <ClInclude Include="Assets\components\PointOnImage.h" />
     <ClInclude Include="Assets\components\Transform.h" />

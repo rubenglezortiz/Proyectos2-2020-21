@@ -171,9 +171,6 @@
     <ClCompile Include="Assets\components\Attack.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\components\MovementShader.cpp">
-      <Filter>Archivos de origen\components</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\components\Movimiento.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
@@ -381,9 +378,6 @@
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
     <ClInclude Include="Assets\components\Movimiento.h">
-      <Filter>Archivos de encabezado\components</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\components\MovementShader.h">
       <Filter>Archivos de encabezado\components</Filter>
     </ClInclude>
     <ClInclude Include="Assets\components\GameMap.h">

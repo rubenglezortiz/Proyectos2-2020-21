@@ -9,13 +9,9 @@ void Movimiento::init() {
 	mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
 	cellWidth = mapa->getCellWidth();
 	cellHeight = mapa->getCellHeight();
-	movShader = entity_->getMngr()->getHandler<BoardManager>()->getComponent<MovementShader>();
 	gsm = playState->getGSM();
-	//mapa->setCharacter(mapa->SDLPointToMapCoords(tr_->getPos()), entity_);
-	initializeCasillasChecked();
 	assert(tr_ != nullptr);
 	movementShader = playState->getMovementShader();
-	movementShader->setTexture(&sdlutils().images().at("MovShader"));
 	casillasPintarShader = new vector<Vector2D>();
 }
 
@@ -48,9 +44,7 @@ void Movimiento::update() {
 					if(gsm->isOnline())gsm->getNetworkManager()->sendMoveMessage(posIni.getX(), posIni.getY(), posMovimiento.getX(), posMovimiento.getY());
 				}
 				selected = false;
-				//movShader->freeCasillasAPintar();
 				casillasPintarShader->clear();
-				resetCasillasChecked();
 			}
 			else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
 				selected = true;
@@ -65,8 +59,6 @@ void Movimiento::update() {
 		if (ih().getMouseButtonState(ih().RIGHT) || focused) {
 			selected = false;
 			focused = false;
-			resetCasillasChecked();
-			movShader->freeCasillasAPintar();
 			casillasPintarShader->clear();
 
 		}
@@ -75,7 +67,6 @@ void Movimiento::update() {
 
 void Movimiento::finTurno()
 {
-	movShader->freeCasillasAPintar();
 	casillasPintarShader->clear();
 
 	selected = false;
@@ -98,21 +89,6 @@ void Movimiento::MoveCharacter(const Vector2D& posIni, const Vector2D& destino)
 
 	if (entity_->hasGroup<Equipo_Azul>()) colorea(posIni, pos, Azul);
 	else colorea(posIni, pos, Rojo);
-}
-
-void Movimiento::initializeCasillasChecked() { //AAAAAAAAAAAAAA
-	//ese método es porque no sabemos inicializar el vector y daba errores UwU
-	vector<vector<MovementShader::CasillaMov>> casillasCheckedAux(mapa->getColumns(), vector<MovementShader::CasillaMov>(mapa->getRows(), { false, false }));;
-	casillasChecked = casillasCheckedAux;
-}
-
-void Movimiento::resetCasillasChecked() {
-	for (int x = 0; x < mapa->getColumns(); x++) {
-		for (int y = 0; y < mapa->getRows(); y++) {
-			casillasChecked[x][y].checked = false;
-			casillasChecked[x][y].movPosible = false;
-		}
-	}
 }
 
 void Movimiento::colorea(Vector2D posIni, Vector2D posFin, Color color)

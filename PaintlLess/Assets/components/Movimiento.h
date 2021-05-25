@@ -6,14 +6,13 @@
 #include "../sdlutils/SDLUtils.h"
 #include "../ecs/Entity.h"
 #include "./Transform.h"
-#include "./MovementShader.h"
 class UniversalShader;
 
 class GameStateMachine;
 
 class Movimiento : public Component {
 public:
-	Movimiento(PlayState* playState, uint casillasAMover = 1) : tr_(nullptr), mapa(nullptr), selected(false), movShader(nullptr), cellWidth(0), cellHeight(0), playState(playState), casillasAMover(casillasAMover) {}
+	Movimiento(PlayState* playState, uint casillasAMover = 1) : tr_(nullptr), mapa(nullptr), selected(false), cellWidth(0), cellHeight(0), playState(playState), casillasAMover(casillasAMover) {}
 	virtual ~Movimiento() {};
 
 
@@ -42,16 +41,12 @@ public:
 	//}
 
 private:
-	vector<vector<MovementShader::CasillaMov>> casillasChecked;
-	MovementShader* movShader;
 	UniversalShader* movementShader;
 	Transform* tr_;
 	GameMap* mapa;
 	bool selected;
 	int cellWidth;
 	int cellHeight;
-	void initializeCasillasChecked();
-	void resetCasillasChecked();
 	PlayState* playState = nullptr;
 	GameStateMachine* gsm;
 	void colorea(Vector2D posIni, Vector2D posFin, Color color);

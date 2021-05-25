@@ -9,7 +9,6 @@ void Attack::init() {
 	cellHeight = mapa->getCellHeight();
 	gsm = playState->getGSM();
 	attackShader_ = playState->getAttackShader();
-	attackShader_->setTexture(&sdlutils().images().at("selectorA"));
 }
 
 void Attack::update() {

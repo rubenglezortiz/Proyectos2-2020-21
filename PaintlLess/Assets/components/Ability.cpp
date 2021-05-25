@@ -35,7 +35,6 @@ void Ability::init() {
 	auto mapa = entity_->getMngr()->getHandler<Mapa>()->getComponent<GameMap>();
 	playState = mapa->getPlayState();
 	abilityShader = playState->getAbilityShader();
-	abilityShader->setTexture(tex);
 }
 
 bool Ability::TryExecuteAbility(int x, int y)
@@ -48,8 +47,8 @@ void Ability::Shade()
 {
 	AbilityShader(form, type, shaderDistance);
 	abilityShader->setCells(&abilityCells);
-	abilityShader->resetCasillasRendered();
-	abilityShader->resetLerp();
+	abilityShader->resetAnim();
+	abilityShader->setTexture(tex);
 }
 
 void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
