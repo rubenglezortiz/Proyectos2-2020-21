@@ -35,14 +35,14 @@ void EntityFactory::image(Entity* c, string t) {
 }
 
 void EntityFactory::animation(Entity* c, string tex, int d, Unit p) {
-	if(c->hasGroup<Equipo_Azul>())
-		c->addComponent<FramedImage>(&sdlutils().images().at(tex+"R"), d, p);
-	else	
-		c->addComponent<FramedImage>(&sdlutils().images().at(tex+"A"), d, p);
+	if (c->hasGroup<Equipo_Azul>())
+		c->addComponent<FramedImage>(&sdlutils().images().at(tex + "R"), d, p);
+	else
+		c->addComponent<FramedImage>(&sdlutils().images().at(tex + "A"), d, p);
 }
 
-void EntityFactory::attack(PlayState* playState, Entity* c, int dmg, int dmgCri, int probCritico, string s) {
-	c->addComponent<Attack>(playState, dmg, dmgCri, probCritico, s);
+void EntityFactory::attack(PlayState* playState, Entity* c, int dmg, int dmgCri, int probCritico, int range, string s) {
+	c->addComponent<Attack>(playState, dmg, dmgCri, probCritico, range, s);
 }
 
 void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* playState, int character, int equipo, Vector2D pos) {
@@ -55,22 +55,23 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 
 	switch (character) {
 	case Alquimista:
-		animation(ctr, "alquimistaSheet", 150, Alquimista);	 movement(playState, ctr,2); health(ctr, 2);
+		animation(ctr, "alquimistaSheet", 150, Alquimista);	 movement(playState, ctr, 2); health(ctr, 2);
 		ctr->addComponent<Ability>(new Ability_Alchemist());
 		break;
 	case Arquitecta:
 		animation(ctr, "arquitectaSheet", 150, Arquitecta);	 movement(playState, ctr); health(ctr, 2);
- 		ctr->addComponent<Ability>(new Ability_Architect());
+		ctr->addComponent<Ability>(new Ability_Architect());
 		break;
 	case Bomba:
 		animation(ctr, "bombaSheet", 150, Bomba);   movement(playState, ctr, 1); health(ctr, 2);
 		ctr->addComponent<Ability>(new Ability_Bomb());
 		break;
 	case Cazador:
-		image(ctr, "cazador");  movement(playState, ctr); health(ctr, 1); attack(playState, ctr, 1, 0, 0 ,"arqueroSound");
+		animation(ctr, "cazadorSheet", 180, Cazador); movement(playState, ctr);
+		health(ctr, 1); attack(playState, ctr, 1, 0, 0, 2, "arqueroSound");
 		break;
 	case Druida:
-		animation(ctr, "druidaSheet", 125, Druida);   movement(playState,ctr); health(ctr, 2);
+		animation(ctr, "druidaSheet", 125, Druida);   movement(playState, ctr); health(ctr, 2);
 		ctr->addComponent<Ability>(new Ability_Druid());
 		break;
 	case Esqueleto:
@@ -101,7 +102,7 @@ void EntityFactory::createCharacter(Manager* manager, GameMap* mapa, PlayState* 
 		ctr->addComponent<Ability>(new Ability_Tank());
 		break;
 	case Vikingo:
-		animation(ctr, "vikingoSheet", 150,  Vikingo);  movement(playState, ctr); health(ctr, 1);
+		animation(ctr, "vikingoSheet", 150, Vikingo);  movement(playState, ctr); health(ctr, 1);
 		ctr->addComponent<Ability>(new Ability_Viking());
 		break;
 	}
