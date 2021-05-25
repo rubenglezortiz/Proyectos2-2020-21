@@ -9,7 +9,7 @@ void UniversalShader::update()
 
 void UniversalShader::render()
 {
-	if (arrayPointer == nullptr || tex == nullptr) return;
+	if (arrayPointer == nullptr || tex == nullptr || arrayPointer->empty()) return;
 	SDL_Rect dest;
 	int cellWidth = mapa->getCellWidth();
 	int cellHeight = mapa->getCellHeight();
@@ -64,8 +64,9 @@ void UniversalShader::resetAnim()
 	resetCasillasRendered();
 }
 
-void UniversalShader::checkCasillasPosiblesMov(const Vector2D& cSelected, uint casillasAMover, GameMap* mapa, std::vector<Vector2D>* casillasAPintar)
+void UniversalShader::checkCasillasPosiblesMov(const Vector2D& cSelected, uint casillasAMover, GameMap* mapa, std::vector<Vector2D>* casillasAPintar, const int& stun)
 {
+	if (stun > 0) return;
 	Vector2D casillaAMirar;
 	//Si se encuentra un obstaculo, el booleano correspondiente se pone a false
 	//y no se comprueba mas por ese camino
