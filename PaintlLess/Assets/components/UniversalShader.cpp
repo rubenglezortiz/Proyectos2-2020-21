@@ -111,7 +111,11 @@ void UniversalShader::attackShader(const Vector2D& pos, GameMap* mapa, std::vect
 		if (mapa->casillaValida(posUp)) {
 			if (mapa->ataquePosible(posUp))
 				casillasAtaque->push_back(posUp);
-			else if (mapa->getObstaculo(posUp) != nullptr) canAt = false;
+			else if (mapa->getObstaculo(posUp) != nullptr)
+			{
+				casillasAtaque->push_back(posUp);
+				canAt = false;
+			}
 		}
 		i++;
 	}
@@ -127,7 +131,11 @@ void UniversalShader::attackShader(const Vector2D& pos, GameMap* mapa, std::vect
 		if (mapa->casillaValida(posRight)) {
 			if (mapa->ataquePosible(posRight))
 				casillasAtaque->push_back(posRight);
-			else if (mapa->getObstaculo(posRight) != nullptr) canAt = false;
+			else if (mapa->getObstaculo(posRight) != nullptr)
+			{
+				casillasAtaque->push_back(posRight);
+				canAt = false;
+			}
 		}
 		i++;
 	}
@@ -143,7 +151,11 @@ void UniversalShader::attackShader(const Vector2D& pos, GameMap* mapa, std::vect
 		if (mapa->casillaValida(posLeft)) {
 			if (mapa->ataquePosible(posLeft))
 				casillasAtaque->push_back(posLeft);
-			else if (mapa->getObstaculo(posLeft) != nullptr) canAt = false;
+			else if (mapa->getObstaculo(posLeft) != nullptr)
+			{
+				casillasAtaque->push_back(posLeft);
+				canAt = false;
+			}
 		}
 		i++;
 	}
@@ -159,7 +171,11 @@ void UniversalShader::attackShader(const Vector2D& pos, GameMap* mapa, std::vect
 		if (mapa->casillaValida(posDown)) {
 			if (mapa->ataquePosible(posDown))
 				casillasAtaque->push_back(posDown);
-			else if (mapa->getObstaculo(posDown) != nullptr) canAt = false;
+			else if (mapa->getObstaculo(posDown) != nullptr)
+			{
+				casillasAtaque->push_back(posDown);
+				canAt = false;
+			}
 		}
 		i++;
 	}
