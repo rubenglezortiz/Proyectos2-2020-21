@@ -28,6 +28,7 @@ private:
 	int accionesPorTurno = MAX_ACCIONES, turnosActuales = 1;
 	int mana;
 	int pintado_1, pintado_2;
+	std::string music;
 	Equipo jugadorActual = Segundo;
 	vector<bool> ch1, ch2;
 	GameMap* mapa_;

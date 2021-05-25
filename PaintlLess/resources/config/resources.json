@@ -225,7 +225,7 @@
     { "id" : "arqueroSound",         "file" : "resources/sound/arquero.wav" },  
     { "id" : "ataqueSound",          "file" : "resources/sound/ataquebasico.wav" },
     { "id" : "bangLarge",            "file" : "resources/sound/bangLarge.wav" },
-    { "id"  : "bangSmall",           "file"  : "resources/sound/bangSmall.wav"},
+    { "id" : "bangSmall",           "file"  : "resources/sound/bangSmall.wav"},
     { "id" : "beatSound",            "file" : "resources/sound/beat.wav" },
     { "id" : "bombaSound",           "file" : "resources/sound/bomba.wav" },
     { "id" : "caeraguaSound",        "file" : "resources/sound/caeragua.wav" },
@@ -244,8 +244,10 @@
     { "id" : "seleccionSound",       "file" : "resources/sound/seleccion.mp3" },
     { "id" : "vikingoSound",         "file" : "resources/sound/vikingo.wav" },
     { "id" : "wall_hitSound",        "file" : "resources/sound/wall_hit.wav" },
-    { "id" : "explosion",            "file" : "resources/sound/explosion.wav" }  
-    
+    { "id" : "explosion",            "file" : "resources/sound/explosion.wav" },  
+    { "id" : "ice",                  "file" : "resources/sound/ice.wav" },
+    { "id" : "field",                "file" : "resources/sound/field.wav" }, 
+    { "id" : "castle",               "file" : "resources/sound/castle.wav" }
   ],
 
   "musics" : [

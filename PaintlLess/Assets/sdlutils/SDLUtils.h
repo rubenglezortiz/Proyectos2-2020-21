@@ -117,8 +117,16 @@ public:
 		volume_ = volume;
 	}
 
+	inline void changeMusicVolume(int volume) {
+		// Música
+		sounds_.at("ice").setChunkVolume(volume);
+		sounds_.at("field").setChunkVolume(volume);
+		sounds_.at("castle").setChunkVolume(volume);
+	}
+
 	inline void restoreAllVolume() {
 		changeSFXvolume(64);
+		changeMusicVolume(64);
 	}
 	// All resource maps can be modified from outside, this way you can store
 	// your own dynamically. Be careful when modifying them!
@@ -169,6 +177,10 @@ public:
 	// Access to real time
 	inline Uint32 currRealTime() const {
 		return SDL_GetTicks();
+	}
+
+	inline void deleteSong(std::string song) {
+		sounds_.erase(song);
 	}
 
 private:

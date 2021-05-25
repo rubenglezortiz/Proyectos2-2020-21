@@ -4,6 +4,7 @@
 #include "../ecs/Entity.h"
 #include "../sdlutils/InputHandler.h"
 #include "../sdlutils/SDLUtils.h"
+#include "../sdlutils/SoundEffect.h"
 
 #include "../ecs/Manager.h"
 #include "../utils/Vector2D.h"
@@ -87,9 +88,25 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> ch
 	buffer->addComponent(abililyShader);
 	buffer->addComponent(movementShader);
 	buffer->addComponent(attackShader);
+
+	switch (tileset) {
+	case 1:
+		music = "field";
+		break;
+	case 2:
+		music = "ice";
+		break;
+	case 3:
+		music = "castle";
+		break;
+	}
+	sdlutils().soundEffects().at(music).play(1000);
+	sdlutils().soundEffects().at(music).setChunkVolume(64);
 }
 
-PlayState::~PlayState() {}
+PlayState::~PlayState() {
+	sdlutils().soundEffects().at(music).haltChannel();
+}
 
 void PlayState::mazoEquipo() {
 	int x = 1;

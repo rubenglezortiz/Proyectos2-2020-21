@@ -276,9 +276,6 @@
     <ClCompile Include="Assets\components\DieAfterXTurns.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\game\ControlState.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\components\ButtonSettings.cpp">
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
@@ -293,6 +290,9 @@
     </ClCompile>
     <ClCompile Include="Assets\components\ComponentBuffer.cpp">
       <Filter>Archivos de origen\components</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\game\ControlState.cpp">
+      <Filter>Archivos de origen\game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
