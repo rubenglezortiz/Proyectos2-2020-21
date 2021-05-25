@@ -31,7 +31,6 @@ void Movimiento::update() {
 		if (ih().getMouseButtonState(ih().LEFT)) {
 			int mX = ih().getMousePos().first;
 			int mY = ih().getMousePos().second;
-
 			if (selected) {
 				//esto se debe hacer en movementshader
 				Vector2D posMovimiento = mapa->SDLPointToMapCoords(Vector2D(mX, mY));
@@ -64,6 +63,7 @@ void Movimiento::update() {
 void Movimiento::finTurno()
 {
 	movShader->freeCasillasAPintar();
+	selected = false;
 	if (stun > 0)
 	{
 		stun--;

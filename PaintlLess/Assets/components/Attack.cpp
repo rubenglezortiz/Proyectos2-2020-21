@@ -27,6 +27,7 @@ void Attack::update() {
 void Attack::finTurno()
 {
 	casillasAtaque.clear();
+	selected = false;
 	ability_usable = true;
 }
 
