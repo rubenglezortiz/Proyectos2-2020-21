@@ -27,8 +27,9 @@ public:
 	void resetAnim();
 	void setDelayCellsRender(bool&& delay) { delayedCellsRender = delay; }
 
-	//Para movimiento
+	//Para movimiento, ataque y habilidad respectivamente
 	static void checkCasillasPosiblesMov(const Vector2D& cSelected, uint casillasAMover, GameMap* mapa, std::vector<Vector2D>* casillasAPintar);
+	static void attackShader(const Vector2D& pos, GameMap* mapa, std::vector<Vector2D>* casillasAtaque, int range);
 private:
 	std::vector<Vector2D>* arrayPointer;
 	Texture* tex;

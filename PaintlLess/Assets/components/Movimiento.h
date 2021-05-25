@@ -51,7 +51,7 @@ private:
 	GameStateMachine* gsm;
 	void colorea(Vector2D posIni, Vector2D posFin, Color color);
 	uint casillasAMover;
-	std::vector<Vector2D>* casillasPintarShader;
+	std::vector<Vector2D> casillasPintarShader;
 
 	int stun = false;
 	bool focused;

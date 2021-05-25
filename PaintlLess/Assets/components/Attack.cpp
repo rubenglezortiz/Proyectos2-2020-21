@@ -89,76 +89,8 @@ void Attack::attackSound()
 }
 
 void Attack::attackShader() {
-	Vector2D pos = tr_->getPos();
 
-	pos = mapa->SDLPointToMapCoords(pos);
-
-	int i = 1; bool canAt = true;
-
-	while (i <= range && canAt) {
-		Vector2D posUp = Vector2D(0, i) + pos;
-		if (mapa->getTipoCasilla(pos) == TipoCasilla::Base)
-		{
-			i++;
-			continue;
-		}
-		if (mapa->casillaValida(posUp)) {
-			if (mapa->ataquePosible(posUp))
-				casillasAtaque.push_back(posUp);
-			else if (mapa->getObstaculo(posUp) != nullptr) canAt = false;
-		}
-		i++;
-	}
-	i = 1; canAt = true;
-
-	while (i <= range && canAt) {
-		Vector2D posRight = Vector2D(i, 0) + pos;
-		if (mapa->getTipoCasilla(pos) == TipoCasilla::Base)
-		{
-			i++;
-			continue;
-		}
-		if (mapa->casillaValida(posRight)) {
-			if (mapa->ataquePosible(posRight))
-				casillasAtaque.push_back(posRight);
-			else if (mapa->getObstaculo(posRight) != nullptr) canAt = false;
-		}
-		i++;
-	}
-	i = 1; canAt = true;
-
-	while (i <= range && canAt) {
-		Vector2D posLeft = Vector2D(-i, 0) + pos;
-		if (mapa->getTipoCasilla(pos) == TipoCasilla::Base)
-		{
-			i++;
-			continue;
-		}
-		if (mapa->casillaValida(posLeft)) {
-			if (mapa->ataquePosible(posLeft))
-				casillasAtaque.push_back(posLeft);
-			else if (mapa->getObstaculo(posLeft) != nullptr) canAt = false;
-		}
-		i++;
-	}
-	i = 1; canAt = true;
-
-	while (i <= range && canAt) {
-		Vector2D posDown = Vector2D(0, -i) + pos;
-		if (mapa->getTipoCasilla(pos) == TipoCasilla::Base)
-		{
-			i++;
-			continue;
-		}
-		if (mapa->casillaValida(posDown)) {
-			if (mapa->ataquePosible(posDown))
-				casillasAtaque.push_back(posDown);
-			else if (mapa->getObstaculo(posDown) != nullptr) canAt = false;
-		}
-		i++;
-	}
-	i = 1; canAt = true;
-
+	UniversalShader::attackShader(tr_->getPos(), mapa, &casillasAtaque, range);
 	attackShader_->resetLerp();
 	attackShader_->resetCasillasRendered();
 	attackShader_->setCells(&casillasAtaque);
