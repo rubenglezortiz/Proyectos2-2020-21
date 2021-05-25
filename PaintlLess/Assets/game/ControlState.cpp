@@ -20,10 +20,10 @@ void ControlState::init() {
 	dest.h = height;
 	desc_->render(dest);
 	if (!playState_) {
-		dest.x = sdlutils().width() - 150;
+		dest.x = sdlutils().width() - 125;
 		dest.y = 0;
-		dest.w = 150;
-		dest.h = 150;
+		dest.w = 125;
+		dest.h = 125;
 		tr_ = Vector2D(dest.x, dest.y);
 		sdlutils().images().at("botonAtras").render(dest);
 	}

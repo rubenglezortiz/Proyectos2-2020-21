@@ -17,17 +17,26 @@ SettingsState::SettingsState(GameStateMachine* gsm, PlayState* pS) : GameState(g
 	fondo->addComponent<Transform2>(Vector2D(0, 0), sdlutils().width(), sdlutils().height());
 	fondo->addComponent<Image>(&sdlutils().images().at("fondo"));
 
-	auto* barra = mngr_->addEntity(RenderLayer::Interfaz);
-	barra->addComponent<Transform2>(Vector2D(sdlutils().width() / 2 - 450, sdlutils().height() - 150), 900, 75);
-	barra->addComponent<Image>(&sdlutils().images().at("barraVolumen"));
+	auto* barraSFX = mngr_->addEntity(RenderLayer::Interfaz);
+	barraSFX->addComponent<Transform2>(Vector2D(225, sdlutils().height() / 2 + 30), 900, 75);
+	barraSFX->addComponent<Image>(&sdlutils().images().at("barraVolumen"));
 
-	auto* volumen = mngr_->addEntity(RenderLayer::Interfaz);
-	volumen->addComponent<Transform2>(Vector2D(sdlutils().volume() * 8 + (sdlutils().width() / 2 - 400), sdlutils().height() - 150), 75, 75);
-	volumen->addComponent<Image>(&sdlutils().images().at("botonVolumen"));
-	volumen->addComponent<ButtonVolume>();
+	auto* barraMUS = mngr_->addEntity(RenderLayer::Interfaz);
+	barraMUS->addComponent<Transform2>(Vector2D(225, 265), 900, 75);
+	barraMUS->addComponent<Image>(&sdlutils().images().at("barraVolumen"));
+
+	auto* volumenSFX = mngr_->addEntity(RenderLayer::Interfaz);
+	volumenSFX->addComponent<Transform2>(Vector2D(325, 270), 75, 75);
+	volumenSFX->addComponent<Image>(&sdlutils().images().at("botonVolumen"));
+	volumenSFX->addComponent<ButtonVolume>(false);
+
+	auto* volumenMUS = mngr_->addEntity(RenderLayer::Interfaz);
+	volumenMUS->addComponent<Transform2>(Vector2D(325, sdlutils().height() / 2 + 30), 75, 75);
+	volumenMUS->addComponent<Image>(&sdlutils().images().at("botonVolumen"));
+	volumenMUS->addComponent<ButtonVolume>(true);
 
 	auto* botonX = mngr_->addEntity(RenderLayer::Interfaz);
-	botonX->addComponent<Transform>(Vector2D(sdlutils().width() - 150, 0), 150, 150);
+	botonX->addComponent<Transform>(Vector2D(sdlutils().width() - 125, 0), 125, 125);
 	botonX->addComponent<Image>(&sdlutils().images().at("botonAtras"));
 	botonX->addComponent<MenuButton>(gsm, goBack);
 
@@ -42,14 +51,14 @@ SettingsState::SettingsState(GameStateMachine* gsm, PlayState* pS) : GameState(g
 	botonTick2->addComponent<ButtonTick>(&sdlutils().images().at("tick2"), tickVolume);
 
 	auto* botonControles = mngr_->addEntity(RenderLayer::Interfaz);
-	botonControles->addComponent<Transform>(Vector2D(sdlutils().width() - 600, sdlutils().height() / 2 + 145), 125, 125);
+	botonControles->addComponent<Transform>(Vector2D(sdlutils().width() / 2 - 180, sdlutils().height() / 2 + 175), 125, 125);
 	botonControles->addComponent<Image>(&sdlutils().images().at("mando"));
 	botonControles->addComponent<MenuButton>(gsm, goControles);
 
 	if (pS != nullptr) {
 		playState_ = pS;
 		auto* bRendirse = mngr_->addEntity(RenderLayer::Interfaz);
-		bRendirse->addComponent<Transform2>(Vector2D(sdlutils().width() / 2 - 200, sdlutils().height() / 2 + 200), 400, 200);
+		bRendirse->addComponent<Transform2>(Vector2D(sdlutils().width() / 2 - 200, sdlutils().height() / 2 + 350), 400, 200);
 		bRendirse->addComponent<Image>(&sdlutils().images().at("rendirse"));
 		bRendirse->addComponent<ButtonSurrender>(pS);
 	}

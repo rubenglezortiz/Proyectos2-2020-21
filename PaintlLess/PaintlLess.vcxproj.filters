@@ -258,9 +258,6 @@
     <ClCompile Include="Assets\game\SoundManager.cpp">
       <Filter>Archivos de origen\game</Filter>
     </ClCompile>
-    <ClCompile Include="Assets\game\SettingsState.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
     <ClCompile Include="Assets\game\Network.cpp">
       <Filter>Archivos de origen\game</Filter>
     </ClCompile>
@@ -292,6 +289,9 @@
       <Filter>Archivos de origen\components</Filter>
     </ClCompile>
     <ClCompile Include="Assets\game\ControlState.cpp">
+      <Filter>Archivos de origen\game</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\game\SettingsState.cpp">
       <Filter>Archivos de origen\game</Filter>
     </ClCompile>
   </ItemGroup>

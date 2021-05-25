@@ -26,6 +26,6 @@ void ButtonTick::update() {
 		selected = !selected;
 		cbOnClick(selected);
 	}
-	if (sdlutils().volume() > 0) img_->setTexture(tx1_);
+	if (sdlutils().volumeSFX() > 0) img_->setTexture(tx1_);
 	else img_->setTexture(tx2_);
 }
