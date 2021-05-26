@@ -24,8 +24,8 @@ namespace UnitInfo {
 	const uint numUnidades = 13;
 
 	const uint Movimiento[2] = { 4, 2 };
-	const uint mana[numUnidades] = { 3, 3, 3, 2, 3, 1, 4, 3, 3, 3, 2, 4, 2 };
-	const uint cooldown[numUnidades] = { 3, 3, 3, 2, 3, 1, 3, 2, 2, 2, 3, 2, 2 };
+	const uint mana[numUnidades] =	   { 3, 3, 3, 2, 3, 1, 4, 2, 3, 3, 2, 4, 3 };
+	const uint cooldown[numUnidades] = { 3, 3, 3, 2, 3, 1, 3, 3, 2, 2, 3, 2, 3 };
 
 										//Nº sprites por fila , nº filas nª columnas
 	const SpriteSheetInfo spriteSheetInfo[numUnidades] = {{{4,5,6}, 3, 6},   //Alquimista
