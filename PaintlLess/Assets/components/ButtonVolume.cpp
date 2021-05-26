@@ -18,14 +18,18 @@ void ButtonVolume::update() {
 
 	int mX = ih().getMousePos().first;
 	int mY = ih().getMousePos().second;
+
+	//Deshabilita la seleccion del botón al dejar de pulsar el ratón
+	if (ih().mouseButtonEvent() && pulse_)
+		pulse_ = false;
 	// Si ha clicado el botón, lo selecciona o deja de seleccionar.
 	if (mX >= tr_->getPos().getX() && mX <= tr_->getW() + tr_->getPos().getX() && ih().getMouseButtonState(ih().LEFT) && mY >= tr_->getPos().getY() && mY <= tr_->getH() + tr_->getPos().getY())
-		pulse_ = !pulse_;
+		pulse_ = true;
 	// Controla el volumen según la posición del ratón.
 	if (pulse_) 
 		tr_->getPos().setX(mX - tr_->getW() / 2);
 	// Deshabilita la selección del botón si se ha salido de los bordes.
-	if (tr_->getPos().getX() < borde || tr_->getPos().getX() + tr_->getW() > borde + 870) 
+	if (tr_->getPos().getX() < borde || tr_->getPos().getX() + tr_->getW() > borde + 870)
 		pulse_ = false;
 	// Gestiona el entero del volumen, asignándole un valor correspondiente a la posición del botón (simula el scroll lateral).
 	volumen = ((tr_->getPos().getX() - borde) / 9);
