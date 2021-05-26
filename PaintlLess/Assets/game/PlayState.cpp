@@ -103,7 +103,7 @@ PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> ch
 		break;
 	}
 	sdlutils().soundEffects().at(music).play(1000);
-	sdlutils().soundEffects().at(music).setChunkVolume(64);
+	sdlutils().soundEffects().at(music).setChunkVolume(sdlutils().volumeMUS());
 }
 
 PlayState::~PlayState() {
