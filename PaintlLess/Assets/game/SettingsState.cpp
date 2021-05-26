@@ -41,14 +41,14 @@ SettingsState::SettingsState(GameStateMachine* gsm, PlayState* pS) : GameState(g
 	botonX->addComponent<MenuButton>(gsm, goBack);
 
 	auto* botonTick = mngr_->addEntity(RenderLayer::Interfaz);
-	botonTick->addComponent<Transform2>(Vector2D(sdlutils().width() - 600, 100), 125, 125);
+	botonTick->addComponent<Transform2>(Vector2D(sdlutils().width() - 600, 105), 125, 125);
 	botonTick->addComponent<Image>(&sdlutils().images().at("tick1"));
 	botonTick->addComponent<ButtonTick>(&sdlutils().images().at("tick2"), tickVolume);
 
 	auto* botonTick2 = mngr_->addEntity(RenderLayer::Interfaz);
-	botonTick2->addComponent<Transform2>(Vector2D(sdlutils().width() - 600, 300), 125, 125);
+	botonTick2->addComponent<Transform2>(Vector2D(sdlutils().width() - 600, 405), 125, 125);
 	botonTick2->addComponent<Image>(&sdlutils().images().at("tick1"));
-	botonTick2->addComponent<ButtonTick>(&sdlutils().images().at("tick2"), tickVolume);
+	botonTick2->addComponent<ButtonTick>(&sdlutils().images().at("tick2"), tickVolume2);
 
 	auto* botonControles = mngr_->addEntity(RenderLayer::Interfaz);
 	botonControles->addComponent<Transform>(Vector2D(sdlutils().width() / 2 - 180, sdlutils().height() / 2 + 175), 125, 125);
@@ -70,6 +70,11 @@ void SettingsState::goBack(GameStateMachine* gsm) {
 
 void SettingsState::tickVolume(bool state) {
 	if (state) sdlutils().changeSFXvolume(0);
+	else sdlutils().restoreAllVolume();
+}
+
+void SettingsState::tickVolume2(bool state) {
+	if (state) sdlutils().changeMusicVolume(0);
 	else sdlutils().restoreAllVolume();
 }
 

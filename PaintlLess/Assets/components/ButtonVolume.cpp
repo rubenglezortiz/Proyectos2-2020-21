@@ -10,15 +10,16 @@ void ButtonVolume::init() {
 void ButtonVolume::update() {
 	int borde = 230;
 
-	int volumen = 0;
+	int volumen;
 	if (music) volumen = sdlutils().volumeMUS();
 	else volumen = sdlutils().volumeSFX();
 
 	tr_->getPos().setX(volumen * 9 + borde);
 
 	int mX = ih().getMousePos().first;
+	int mY = ih().getMousePos().second;
 	// Si ha clicado el botón, lo selecciona o deja de seleccionar.
-	if (mX >= tr_->getPos().getX() && mX <= tr_->getW() + tr_->getPos().getX() && ih().getMouseButtonState(ih().LEFT))
+	if (mX >= tr_->getPos().getX() && mX <= tr_->getW() + tr_->getPos().getX() && ih().getMouseButtonState(ih().LEFT) && mY >= tr_->getPos().getY() && mY <= tr_->getH() + tr_->getPos().getY())
 		pulse_ = !pulse_;
 	// Controla el volumen según la posición del ratón.
 	if (pulse_) 
