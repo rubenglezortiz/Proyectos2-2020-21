@@ -1,6 +1,7 @@
 #include "UniversalShader.h"
 #include "../game/AbilityStruct.h"
 #include "../game/PlayState.h"
+#include "../../checkML.h"
 
 void UniversalShader::update()
 {
@@ -73,22 +74,22 @@ void UniversalShader::checkCasillasPosiblesMov(const Vector2D& cSelected, uint c
 	bool iz, der, up, down = iz = der = up = true;
 	for (int i = 1; i <= casillasAMover; i++)
 	{
-		casillaAMirar = new Vector2D(cSelected.getX() + i, cSelected.getY());
+		casillaAMirar = Vector2D(cSelected.getX() + i, cSelected.getY());
 		if (mapa->movimientoPosible(casillaAMirar) && der)
 			casillasAPintar->push_back(casillaAMirar);
 		else der = false;
 
-		casillaAMirar = new Vector2D(cSelected.getX() - i, cSelected.getY());
+		casillaAMirar = Vector2D(cSelected.getX() - i, cSelected.getY());
 		if (mapa->movimientoPosible(casillaAMirar) && iz)
 			casillasAPintar->push_back(casillaAMirar);
 		else iz = false;
 
-		casillaAMirar = new Vector2D(cSelected.getX(), cSelected.getY() + i);
+		casillaAMirar = Vector2D(cSelected.getX(), cSelected.getY() + i);
 		if (mapa->movimientoPosible(casillaAMirar) && up)
 			casillasAPintar->push_back(casillaAMirar);
 		else up = false;
 
-		casillaAMirar = new Vector2D(cSelected.getX(), cSelected.getY() - i);
+		casillaAMirar = Vector2D(cSelected.getX(), cSelected.getY() - i);
 		if (mapa->movimientoPosible(casillaAMirar) && down)
 			casillasAPintar->push_back(casillaAMirar);
 		else down = false;
