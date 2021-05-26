@@ -56,7 +56,7 @@ void Ability::AbilityShader(ShaderForm sf, ShaderType st, int d) {
 	UniversalShader::AbilityShader(sf, st, d, entity_, map, &abilityCells);
 }
 
-void Ability::freeAbilityShader() { abilityCells.clear(); }
+void Ability::freeAbilityShader() { abilityCells.clear(); abilityShader->setCells(nullptr); }
 
 bool Ability::abilityCheck(const Vector2D& pos) {
 	bool check = false;
@@ -133,6 +133,7 @@ void Ability::finTurno()
 void Ability::OnDie()
 {
 	abilityData->OnDie();
+	freeAbilityShader();
 	Vector2D pos = characterTr->getPos();
 }
 

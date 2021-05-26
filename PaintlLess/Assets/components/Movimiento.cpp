@@ -47,6 +47,7 @@ void Movimiento::update() {
 				}
 				selected = false;
 				casillasPintarShader.clear();
+				movementShader->setCells(nullptr);
 			}
 			else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
 				selected = true;
@@ -62,7 +63,7 @@ void Movimiento::update() {
 			selected = false;
 			focused = false;
 			casillasPintarShader.clear();
-
+			movementShader->setCells(nullptr);
 		}
 	}
 }
@@ -70,7 +71,7 @@ void Movimiento::update() {
 void Movimiento::finTurno()
 {
 	casillasPintarShader.clear();
-
+	movementShader->setCells(nullptr);
 	selected = false;
 	if (stun > 0)
 	{
