@@ -26,6 +26,7 @@ void Attack::update() {
 void Attack::finTurno()
 {
 	casillasAtaque.clear();
+	attackShader_->setCells(nullptr);
 	selected = false;
 	ability_usable = true;
 }
@@ -57,6 +58,7 @@ void Attack::attack() {
 			}
 			selected = false;
 			casillasAtaque.clear();
+			attackShader_->setCells(nullptr);
 		}
 		else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight && playState->getAcciones() > 0 && ability_usable) {
 			selected = true;
@@ -66,6 +68,7 @@ void Attack::attack() {
 	if (ih().getMouseButtonState(ih().RIGHT)) {
 		selected = false;
 		casillasAtaque.clear();
+		attackShader_->setCells(nullptr);
 	}
 }
 
