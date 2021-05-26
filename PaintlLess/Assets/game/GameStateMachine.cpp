@@ -5,6 +5,8 @@ GameStateMachine::~GameStateMachine() {
 	popState_ = states.size();
 	net->sendEndGame();
 	refresh();
+	delete net;
+	delete charSel;
 }
 
 void GameStateMachine::initOnline()
