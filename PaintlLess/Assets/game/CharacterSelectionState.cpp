@@ -159,6 +159,8 @@ CharacterSelectionState::CharacterSelectionState(GameStateMachine* gsm) : GameSt
 	}
 }
 
+CharacterSelectionState::~CharacterSelectionState(){}
+
 void CharacterSelectionState::update() {
 	mngr_->update();
 	mngr_->refresh();

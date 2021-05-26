@@ -6,6 +6,7 @@
 #include "../sdlutils/InputHandler.h"
 #include "../game/LerpingFunctions.h"
 #include "../game/OffsetInfo.h"
+#include "../../checkML.h"
 
 class PointOnImage : public Component {
 public:

@@ -16,7 +16,7 @@ GameMap::GameMap(int level, int tileSet, PlayState* playState) : playState(playS
 
 GameMap::~GameMap() {
 	for (int r = 0; r < rows; ++r)
-		delete[] cells[r];
+		delete cells[r];
 	delete[] cells;
 }
 
@@ -34,9 +34,7 @@ void GameMap::loadMap() {
 			cols = tileLayer.getSize().x; rows = tileLayer.getSize().y;
 			cells = new Casilla * [rows];
 			for (int r = 0; r < rows; ++r) {
-				for (int c = 0; c < cols; ++c) {
 					cells[r] = new Casilla[cols];
-				}
 			}
 
 			int alto = sdlutils().height() - OFFSET_Y * 2;

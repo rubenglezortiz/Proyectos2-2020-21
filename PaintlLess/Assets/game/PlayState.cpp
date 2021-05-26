@@ -33,6 +33,8 @@
 #include "../components/EntityFactory.h"
 #include "../components/ComponentBuffer.h"
 
+#include "../../checkML.h"
+
 PlayState::PlayState(GameStateMachine* gsm, vector<bool> charss, vector<bool> charss2, int mapa, int tileset) : GameState(gsm) {
 
 	//Obtener net

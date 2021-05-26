@@ -4,6 +4,7 @@
 #include "../sdlutils/Texture.h"
 #include "../../CharactersSelected.h"
 #include <vector>
+#include "../../checkML.h"
 
 class GameStateMachine;
 class Manager;
@@ -32,7 +33,7 @@ private:
 public:
 	// Cargamos los botones de los personajes.
 	 CharacterSelectionState(GameStateMachine* gsm);
-	 ~CharacterSelectionState() {};
+	 ~CharacterSelectionState();
 
 	// Método que carga la partida.
 	 static void play(GameStateMachine* gsm);

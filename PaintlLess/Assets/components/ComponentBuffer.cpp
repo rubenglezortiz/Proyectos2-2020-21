@@ -1,5 +1,11 @@
 #include "ComponentBuffer.h"
 
+ComponentBuffer::~ComponentBuffer()
+{
+	for (Component* component : components)
+		delete component;
+}
+
 void ComponentBuffer::update()
 {
 	for (Component* component : components)
