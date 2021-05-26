@@ -38,4 +38,6 @@ void ControlState::update() {
 			gameStateMachine->popState();
 		}
 	}
+	if (ih().isKeyDown(SDL_SCANCODE_ESCAPE))
+		gameStateMachine->popState();
 }
