@@ -173,7 +173,6 @@ void Network::update() {
 		}
 
 		case _DECK_RECEIVED_: {
-			//std::cout << "He recibido que estas listo";
 			CharacterSelectionState* characterSelectionState = dynamic_cast<CharacterSelectionState*>(gsm->currentState());
 			if (characterSelectionState == nullptr) return;
 
@@ -198,7 +197,6 @@ void Network::update() {
 			{
 				playState->pasaTurno();
 			}
-			else std::cout << "Si ves este mensaje es que algo anda mal";
 			break;
 		}
 
@@ -207,7 +205,6 @@ void Network::update() {
 			ActionMessage* m = static_cast<ActionMessage*>(m_);
 			if (playState != nullptr)
 				playState->_net_moveChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY));
-			else std::cout << "No puedes mover character si no hay playstate\n";
 			break;
 		}
 
@@ -221,8 +218,6 @@ void Network::update() {
 				//int equipo = playState->getCurrentPlayer();
 				EntityFactory::createCharacter(playState->getMapa()->getEntity()->getMngr(), playState->getMapa(), playState, m->personaje, equipo, Vector2D((float)m->posX, (float)m->posY));
 			}
-			else std::cout << "Si ves este mensaje es que algo anda mal";
-
 			break;
 		}
 		case _EXECUTE_ABILTY_: {
@@ -231,7 +226,6 @@ void Network::update() {
 			ActionMessage* m = static_cast<ActionMessage*>(m_);
 			if (playState != nullptr)
 				playState->_net_abilityChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY));
-			else std::cout << "Si ves este mensaje es que algo anda mal";
 			break;
 		}
 
@@ -246,7 +240,6 @@ void Network::update() {
 			AttackMessage* m = static_cast<AttackMessage*>(m_);
 			if (playState != nullptr)
 				playState->_net_attackChar(Vector2D(m->mapX, m->mapY), Vector2D(m->posX, m->posY), m->dmg);
-			else std::cout << "Si ves este mensaje es que algo anda mal";
 			break;
 		}
 
@@ -448,6 +441,5 @@ void Network::endGame()
 		{
 			playState->_net_endGame();
 		}
-		else std::cout << "No estoy en play";
 	}
 }

@@ -165,15 +165,6 @@ void CharacterSelectionState::update() {
 	mngr_->update();
 	mngr_->refresh();
 
-	if (ih().isKeyDown(SDL_SCANCODE_D)) {
-		updateArquitecta(gameStateMachine);
-		updateBomba(gameStateMachine);
-		updateEsqueleto(gameStateMachine);
-		updateGolem(gameStateMachine);
-		updatePicara(gameStateMachine);
-		updateTanque(gameStateMachine);
-	}
-
 	sdlutils().clearRenderer();
 	mngr_->render();
 	renderSelected();
@@ -221,23 +212,14 @@ void CharacterSelectionState::play(GameStateMachine* gsm) {
 			gsm->changeState(new CharacterSelectionState(gsm));
 		}
 		else gsm->getCharSel()->play(gsm);
-
-		//std::cout << "Modo offline\n";
 	}
 	else
 	{
-	/*	if (!gsm->getNetworkManager()->isGameReady())
-		{
-			std::cout << "No ha conectado el otro jugador\n";
-			return;
-		}*/
 		CharacterSelectionState* characterSelectionState = static_cast<CharacterSelectionState*>(gsm->currentState());
 		if (characterSelectionState->getSelfSelectd()) return;
 		gsm->getNetworkManager()->sendDeckReady();
 		characterSelectionState->setSelfHasSelected();
 		characterSelectionState->checkGameReady(gsm);
-		//std::cout << "Modo ONLINE\n";
-
 		//TODO quitar botón y poner mensaje de esperar al otro jugador
 	}
 
@@ -247,83 +229,70 @@ void CharacterSelectionState::checkGameReady(GameStateMachine* gsm)
 {
 	CharacterSelectionState* characterSelectionState = static_cast<CharacterSelectionState*>(gsm->currentState());
 	if (characterSelectionState->getEnemySelected() && characterSelectionState->getSelfSelectd()) gsm->getCharSel()->play(gsm);
-	//else std::cout << gsm->getNetworkManager()->isMaster() ? "Master esta esperando\n" : "El client esta esperando\n";
+	//else std:: << gsm->getNetworkManager()->isMaster() ? "Master esta esperando\n" : "El client esta esperando\n";
 }
 
 // ALQUIMISTA
 void CharacterSelectionState::updateAlquimista(GameStateMachine* gsm) {
 	gsm->getCharSel()->updatePersonaje(Alquimista);
-	cout << "Alquimista " << endl;
 }
 
 // ARQUITECTA
 void CharacterSelectionState::updateArquitecta(GameStateMachine* gsm) {
 	gsm->getCharSel()->updatePersonaje(Arquitecta);
-	cout << "Arquitecta " << endl;
 }
 
 // BOMBA
 void CharacterSelectionState::updateBomba(GameStateMachine* gsm) {
 	gsm->getCharSel()->updatePersonaje(Bomba);
-	cout << "Bomba " << endl;
 }
 
 // CAZADOR
 void CharacterSelectionState::updateCazador(GameStateMachine* gsm) {
 	gsm->getCharSel()->updatePersonaje(Cazador);
-	cout << "Cazador " << endl;
 }
 
 // DRUIDA
 void CharacterSelectionState::updateDruida(GameStateMachine* gsm) {
 	gsm->getCharSel()->updatePersonaje(Druida);
-	cout << "Druida " << endl;
 }
 
 // ESQUELETO
 void CharacterSelectionState::updateEsqueleto(GameStateMachine* gsm) {
 	gsm->getCharSel()->updatePersonaje(Esqueleto);
-	cout << "Esqueleto " << endl;
 }
 
 // GOLEM
 void CharacterSelectionState::updateGolem(GameStateMachine* gsm) {
 	gsm->getCharSel()->updatePersonaje(Golem);
-	cout << "Golem " << endl;
 }
 
 // KIRIN
 void CharacterSelectionState::updateKirin(GameStateMachine* gsm) {
 	gsm->getCharSel()->updatePersonaje(Kirin);
-	cout << "Kirin " << endl;
 }
 
 // LOBO
 void CharacterSelectionState::updateLobo(GameStateMachine* gsm) {
 	gsm->getCharSel()->updatePersonaje(Lobo);
-	cout << "Lobo " << endl;
 }
 
 // MONAGUILLO
 void CharacterSelectionState::updateMonaguillo(GameStateMachine* gsm) {
 	gsm->getCharSel()->updatePersonaje(Monaguillo);
-	cout << "Monaguillo " << endl;
 }
 
 // PICARA
 void CharacterSelectionState::updatePicara(GameStateMachine* gsm) {
 	gsm->getCharSel()->updatePersonaje(Picara);
-	cout << "Picara " << endl;
 }
 
 // TANQUE
 void CharacterSelectionState::updateTanque(GameStateMachine* gsm) {
 	gsm->getCharSel()->updatePersonaje(Tanque);
-	cout << "Tanque " << endl;
 }
 
 // VIKINGO
 void CharacterSelectionState::updateVikingo(GameStateMachine* gsm) {
 	gsm->getCharSel()->updatePersonaje(Vikingo);
-	cout << "Vikingo " << endl;
 }

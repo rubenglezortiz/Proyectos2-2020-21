@@ -238,7 +238,6 @@ void PlayState::_net_moveChar(Vector2D charPosInMap, Vector2D dest)
 		Movimiento* movement = entity->getComponent<Movimiento>();
 		movement->MoveCharacter(charPosInMap, dest);
 	}
-	else std::cout << "No deberias estar viendo esto lmao";
 }
 
 void PlayState::_net_abilityChar(Vector2D charPosInMap, Vector2D dest)
@@ -248,13 +247,8 @@ void PlayState::_net_abilityChar(Vector2D charPosInMap, Vector2D dest)
 	if (entity != nullptr)
 	{
 		Ability* characterAbilty = entity->getComponent<Ability>();
-		if (characterAbilty == nullptr)
-		{
-			std::cout << "Lmao no sabe hacer casting\n";
-		}
-		else characterAbilty->TryExecuteAbility(dest.getX(), dest.getY());
+		characterAbilty->TryExecuteAbility(dest.getX(), dest.getY());
 	}
-	else std::cout << "\nNET No deberias estar viendo esto lmao\n";
 }
 
 void PlayState::_net_attackChar(Vector2D charPosInMap, Vector2D dest, int dmg)
@@ -268,13 +262,8 @@ void PlayState::_net_attackChar(Vector2D charPosInMap, Vector2D dest, int dmg)
 	if (atacado != nullptr)
 	{
 		Health* life = atacado->getComponent<Health>();
-		if (life == nullptr)
-		{
-			std::cout << "No se ha encontrado algo atacable\n";
-		}
-		else life->hit(dmg);
+		if (life != nullptr) life->hit(dmg);
 	}
-	else std::cout << "No deberias estar viendo esto lmao";
 }
 
 void PlayState::CheckPasarTurno()
@@ -316,12 +305,9 @@ void PlayState::pasaTurno() {
 			mana_2 += INCREMENTO_MANA;
 		moveMazo();
 	}
-	cout << endl << "MANA_1: " << mana_1 << endl << "MANA_2: " << mana_2 << endl;
-
 	checkEndGame();
 
 	mngr_->finTurno();
-	cout << "Turno pasado\n";
 }
 
 void PlayState::checkEndGame()
@@ -344,7 +330,6 @@ void PlayState::checkEndGame()
 			porcentaje = casRojo;
 		}
 		gameStateMachine->pushState(new FinState(gameStateMachine, ganador, porcentaje));
-		cout << "fin de partida\n";
 	}
 
 	else turnosActuales++;

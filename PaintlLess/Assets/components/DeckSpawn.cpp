@@ -104,7 +104,6 @@ void DeckSpawn::update() {
 				cool0 += UnitInfo::cooldown[personaje];
 				if (playState->getGSM()->isOnline()) playState->getGSM()->getNetworkManager()->sendSpawnCharacter(personaje, posMovimiento.getX(), posMovimiento.getY());
 			}
-			else cout << "Esa casilla no figura en los spawns.";
 			selected = false;
 			freeShader();
 		}

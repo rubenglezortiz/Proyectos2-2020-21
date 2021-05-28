@@ -21,12 +21,10 @@ void Ability_Bomb::explode()
 	Health* health;
 
 	posBomb = mapa->SDLPointToMapCoords(posBomb);
-	std::cout << "X: " << posBomb.getX() << " Y: " << posBomb.getY();
 
 	//FALTA QUE EXPLOTE AL PISAR AREA ENEMIGA -------------------------------------------------------------------------
 	for (int i = 0; i < casillas.size(); i++) {
 		//Hay personajes ==> Daño
-		std::cout << "X: " << casillas[i].getX() << " Y: " << casillas[i].getY();
 		if (mapa->casillaValida(casillas[i] + posBomb) && mapa->getCharacter(casillas[i] + posBomb) != nullptr && mapa->esPintable(casillas[i] + posBomb)) {
 			auto character = mapa->getCharacter(casillas[i] + posBomb);
 			if ((character->hasGroup<Equipo_Azul>() && entity_->hasGroup<Equipo_Rojo>()) || (character->hasGroup<Equipo_Rojo>() && entity_->hasGroup<Equipo_Azul>()))

@@ -14,7 +14,7 @@ inline void print_ip(Uint32 ip, bool newline = false) {
 		<< ((ip >> 16) & 0xFF) << "." //
 		<< ((ip >> 24) & 0xFF);
 	if (newline)
-		std::cout << std::endl;
+		std::cout << "\n";
 }
 
 // these are the classical functions for converting

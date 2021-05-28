@@ -200,7 +200,6 @@ void UniversalShader::AbilityShader(ShaderForm sf, ShaderType st, int d, Entity*
 			if (map->ataquePosible(posDown)) abilityCells->push_back(posDown);
 		}
 		else if (st == KirinSh) {
-			cout << "Mi Posicion: " << map->SDLPointToMapCoords(entity_->getComponent<Transform>()->getPos()) << "Pos que miro: " << posUp;
 			if (map->movimientoPosible(posUp) && (map->getCharacter(posUp + Vector2D(0, -1)) != nullptr ||
 				map->getCreeper(posUp + Vector2D(0, -1))))abilityCells->push_back(posUp);
 
