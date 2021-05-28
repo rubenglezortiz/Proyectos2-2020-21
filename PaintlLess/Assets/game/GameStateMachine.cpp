@@ -9,11 +9,15 @@ GameStateMachine::~GameStateMachine() {
 	delete charSel;
 }
 
-void GameStateMachine::initOnline()
+bool GameStateMachine::initOnline()
 {
-	net->init(this);
-	setOnline(true);
-	charSel->setEquipo(net->isMaster() ? 0 : 1); //Master: Equipo 0
+	bool connected = net->init(this);
+	if (connected) {
+		setOnline(true);
+		charSel->setEquipo(net->isMaster() ? 0 : 1); //Master: Equipo 0
+	}
+	return connected;
+	
 }
 
 void GameStateMachine::initState() {

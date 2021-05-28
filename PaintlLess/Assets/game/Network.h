@@ -15,7 +15,7 @@ class Network {
 public:
 	Network();
 	virtual ~Network();
-	void init(GameStateMachine* gameStateMachine);
+	bool init(GameStateMachine* gameStateMachine);
 	void update();
 
 	inline void updateManager(std::unique_ptr<Manager*> mngr) { managerState_ = &mngr; };

@@ -41,7 +41,8 @@ Network::~Network() {
 	SDLNet_Quit();
 }
 
-void Network::init(GameStateMachine* gameStateMachine) {
+bool Network::init(GameStateMachine* gameStateMachine) {
+	bool connected = true;
 	gsm = gameStateMachine;
 	// Initialise SDLNet
 	if (SDLNet_Init() < 0) {
@@ -100,7 +101,7 @@ void Network::init(GameStateMachine* gameStateMachine) {
 			SDLNet_UDP_AddSocket(socketSet, conn_);
 
 			// wait for response
-			if (SDLNet_CheckSockets(socketSet, 3000)) {
+			if (SDLNet_CheckSockets(socketSet, 500)) {
 				if (SDLNet_SocketReady(conn_)) {
 					if (SDLNet_UDP_Recv(conn_, p_) > 0) {
 
@@ -122,17 +123,15 @@ void Network::init(GameStateMachine* gameStateMachine) {
 			SDLNet_FreeSocketSet(socketSet);
 
 			// if did not succeed to connect, throw an exception
-			if (!isGameReday_)
-				throw "Failed to connect!";
+			if (!isGameReday_) {
+				connected = false;
+				host_ = nullptr;
+			//throw "Failed to connect!";
+			}
 		}
 	}
-	else { // if started as  other player
-
-	 // we use id 1, and open a socket to send/receive messages
-
-
-	}
-
+	
+	return connected;
 }
 
 void Network::update() {

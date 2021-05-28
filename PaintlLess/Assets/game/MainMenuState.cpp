@@ -55,7 +55,7 @@ void MainMenuState::newGame(GameStateMachine* gsm) { //Nuevo partida
 
 void MainMenuState::loadGame(GameStateMachine* gsm) { //Cargar partida
 	
-	gsm->initOnline();
+	if(gsm->initOnline())
 	gsm->pushState(new CharacterSelectionState(gsm));
 }
 

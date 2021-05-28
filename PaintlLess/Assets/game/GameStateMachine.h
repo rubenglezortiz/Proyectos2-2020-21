@@ -26,7 +26,7 @@ public:
 	~GameStateMachine();
 
 	bool initChanged() { return initChangedState; };
-	void initOnline();
+	bool initOnline();
 
 	void initState();
 	void update();

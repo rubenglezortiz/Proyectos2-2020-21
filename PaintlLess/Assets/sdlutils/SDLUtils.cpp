@@ -39,16 +39,22 @@ void SDLUtils::initWindow() {
 	// Create window
 	window_ = SDL_CreateWindow(windowTitle_.c_str(),
 	SDL_WINDOWPOS_UNDEFINED,
-	SDL_WINDOWPOS_UNDEFINED, width_, height_, SDL_WINDOW_SHOWN); //SDL_WINDOW_FULLSCREEN y en el init en game.cpp 1920x1080
+	SDL_WINDOWPOS_UNDEFINED, width_, height_, SDL_WINDOW_FULLSCREEN); //SDL_WINDOW_FULLSCREEN y en el init en game.cpp 1920x1080
 	assert(window_ != nullptr);
 
 	// Create the renderer
 	renderer_ = SDL_CreateRenderer(window_, -1,
 			SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 	assert(renderer_ != nullptr);
-
+	
+	SDL_Surface* icon = IMG_Load("resources/images/logo.png");
+	SDL_SetWindowIcon(window_, icon);
 	// hide cursor by default
 	hideCursor();
+
+
+	
+
 
 }
 

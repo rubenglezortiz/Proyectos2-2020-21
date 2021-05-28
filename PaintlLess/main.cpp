@@ -5,15 +5,21 @@
 #include "..\PaintlLess\Assets\game\Game.h"
 #include <SDL_stdinc.h>
 #include <iomanip>
-
+#include <Windows.h>
 void start() {
+	
 	Game g;
 	srand(time(NULL));
 	g.init();
 	g.start();
+
+
 }
 
 int main(int argc, char** argv) {
+
+
+	FreeConsole();
 	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
 	try {
 		start();
