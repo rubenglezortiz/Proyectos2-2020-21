@@ -17,115 +17,110 @@ Documento de diseño de juego
 | **Público objetivo:** Dirigido a personas de entre 13 a 40 años | **Plataformas:** Windows x64 |
 
 **Descripción:**
-PaintLess es un juego multijugador de estrategia por turnos en el cual los jugadores disponen de un amplio abanico de personajes con distintas habilidades de los cuales deben seleccionar seis. El juego se desarrolla en un tablero 9x10 donde los jugadores deben mover a sus diferentes personajes para cubrir la mayor área de juego posible. Esto es debido a que según los personajes se mueven, colorean las casillas por las que se han desplazado. El ganador será aquel que pasados 10 turnos, tenga cubierta la mayor de las partes coloreadas. En dicho momento, se terminará la partida.
+Descripción: PaintLess es un juego multijugador de estrategia por turnos en el cual los jugadores disponen de un amplio abanico de personajes con distintas habilidades de los cuales deben seleccionar seis. El juego se desarrolla en un tablero 8x10 donde los jugadores deben mover a sus diferentes personajes para cubrir la mayor área de juego posible. Esto es debido a que según los personajes se mueven, colorean las casillas por las que se han desplazado. El ganador será aquel que pasado un número determinado de turnos, tenga cubierta la mayor zona del mapa coloreada.
 
 ## **Páginas de interés**
 ### [Página web](https://rubenglezortiz.github.io/Proyectos2-2020-21/)
 ### [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/2489055)
 ### [Repositorio](https://github.com/rubenglezortiz/Proyectos2-2020-21)
+### [Informe Testing/QA](https://docs.google.com/document/d/1SECKg8W8UhA9YVVsTymynRhNhotF5HouHmP8w92xcbc/edit?usp=sharing)
 
 # Menú
-foto del menú
+![LOGO](./webAssets/images/menu.png)
 
 El esquema del menú principal es simple, con una disposición vertical y centrada de diferentes botones, cada uno con su respectiva función:
 - Botón para  entrar al modo multijugador: Permite o bien crear un lobby para invitar a otras personas a través de un código o bien unirse a otro jugador introduciendo uno.
 - Local: Permite elegir al jugador el número de jugadores, y jugar con otros jugadores usando el mismo equipo.
 - Opciones: Permite modificar el volumen.
+![LOGO](./webAssets/images/opciones.png)
 - Salir: Cierra el juego.
  
- foto interfaz
+ Antes de comenzar la partida, cada jugador debe elegir 6 personajes distintos de entre todos los distintos personajes para conformar su mazo. Este menú consta de 3 botones superiores los cuales permitirán al usuario separar a los personajes por tipos de habilidades y así ayudarle a formar su mazo. Cuando se pulse con el botón derecho sobre un botón de personaje, también se mostrará una tarjeta informativa con una pequeña descripción de las habilidades del personaje y de su lore.
+![LOGO](./webAssets/images/seleccionpersonajes.png)
  
- Antes de comenzar la partida, cada jugador debe elegir 6 personajes distintos de entre todos los distintos personajes para conformar su mazo.
- 
- foto interfaz
- 
- Durante la partida, el jugador puede entrar en un Menú de Pausa con una disposición de botones similar a la del menú principal, con diferentes opciones:
-- Reanudar: Permite volver a la pantalla de juego, pudiendo proseguir con la partida.
-- Rendirse: Permite al jugador abandonar la partida en caso de que no quiera seguir jugando, dándole la victoria al otro jugador/ dejando que el resto de jugadores prosigan con la partida.
-- Opciones: Permite modificar el volumen.
-- Salir. Permite abandonar el juego.
+Durante la partida, el jugador puede entrar en un Menú de ajustes. Dicho menú es una extensión del menú de ajustes inicial, al que se le suma un botón de rendirse para terminar la partida si así lo desea el usuario.
+![LOGO](./webAssets/images/pausa.png)
 
 # Interfaz
-
-Durante la partida, la interfaz muestra diferentes datos, con una disposición similar a la siguiente imagen:
-
-foto interfaz
-
- En la parte superior de la pantalla, se indican los turnos restantes hasta que termine la partida.
- A ambos extremos del tablero se refleja qué porcentaje del mapa tiene coloreado cada jugador. Esto es indicado mediante una barrita vertical que ayuda a ver visualmente la diferencia.
- En la zona inferior, cada jugador puede ver los personajes que conforman su baraja, así como sus características, véase vida, cooldown, coste etc. También se puede ver el maná total del que dispone en el turno actual.
+Durante la partida, la interfaz muestra diferentes datos, como se puede apreciar en la siguiente imagen:
+![LOGO](./webAssets/images/cap1.png)
+-En la esquina superior izquierda del tablero se refleja qué porcentaje del mapa tiene coloreado cada jugador. Esto es indicado mediante una barrita horizontal que ayuda a ver visualmente la diferencia.
+-En la parte superior central de la pantalla, se indican los turnos restantes hasta que termine la partida.
+-En la parte superior derecha también se aprecia el número de acciones que le quedan en dicho turno al jugador actual.
 
 # Jugabilidad
-
 ## Mecánicas
- Durante cada turno de la partida el jugador puede crear tropas en el tablero usando maná y moverse/atacar utilizando 4 puntos de acción, los cuales se regenerarán en cada turno.
-Cada personaje dispone de una habilidad específica con la cual puede eliminar a los personajes enemigos y ganar terreno en el mapa. Algunas de estas habilidades tienen un cooldown que limita el uso de las mismas en turnos.
-## Movimiento
-El jugador puede mover cada personaje dentro del tablero gastando puntos de acción (1 movimiento = 1 punto). Todos los personajes se mueven de una casilla en una casilla (a no ser que tengan una habilidad que les permita desplazarse varias casillas en una sola acción), incluso intercalando movimiento con ataque. Los personajes se pueden mover en 4 direcciones (vertical y horizontal), pero no en diagonal (excepto los personajes con habilidades especiales que se lo permitan). Los personajes no pueden atravesarse los unos a los otros ni a muros u obstáculos.
-## Ataque
-Cada unidad individual tiene un ataque diferente (definido en la tabla en la página siguiente). Para atacar, el jugador debe gastar puntos de acción (1 ataque = 1 punto). Dependiendo del personaje, el ataque causará más o menos daño y tendrá un rango distinto. Cada personaje solo podrá atacar una vez por turno.
-## Maná
-El jugador dispone puntos de maná que le permite sacar personajes desde el mazo al terreno de juego. El coste de cada personaje viene indicado arriba a la derecha de su ficha. 
-El máximo de maná es 10 y cada turno se regenera 3 puntos. 
-foto
-## Personajes
-Para el transcurso de la batalla, el jugador saca personajes arrastrándolos al terreno de juego gastando maná. El jugador podrá sacarlos (o en su zona de spawn + 2 filas pintadas / o en su zona pintada (dentro de su 50% de campo))
-cada personaje ataca en 4 direcciones.
+Durante cada turno de la partida el jugador puede crear tropas en el tablero usando 10 de maná y moverse/atacar utilizando 5 puntos de acción, los cuales se regenerarán en cada turno.
+Cada personaje dispone de una habilidad específica la cual puede usar para eliminar personajes enemigos, curar personajes aliados o moverse más rápidamente para aumentar la velocidad del pintado de mapa. Cada habilidad (salvo habilidades pasivas) se puede utilizar una única vez por turno.
+Anotación: hay personajes que sólo pueden atacar, otros que sólo tienen habilidades y otros que tienen ambas.
+### Sacar personajes (spawnear)
+El jugador podrá sacar sus personajes en la columna base. Y, a medida que vaya pintando el mapa, podrá sacarlos en las dos primeras columnas de su parte del tablero (la de base y la siguiente). El gólem tiene una excepción, ya que al no poder moverse, podrá ser spawneado en las primeras 4 columnas de la parte del mapa del jugador. Siempre y cuando estén pintadas (a excepción de la columna base).
+### Movimiento
+El jugador puede mover cada personaje dentro del tablero gastando puntos de acción (1 movimiento = 1 punto). Todos los personajes se mueven de una casilla en una casilla (a excepción del alquimista), incluso intercalando movimiento con ataque. Los personajes se pueden mover en 4 direcciones (vertical y horizontal). Los personajes no pueden atravesarse los unos a los otros ni a muros u obstáculos.
+### Ataque
+Ciertas unidades pueden atacar a unidades del equipo rival. Dicho ataque varía en daño y alcance en función de la unidad, de hecho, hay unidades que no atacan (ver en la tabla de la siguiente página). Cada ataque gasta un punto de acción (1 ataque = 1 punto).  Cada personaje solo podrá atacar una vez por turno.
+### Maná
+El jugador dispone puntos de maná que le permite sacar personajes desde el mazo al terreno de juego. El coste de cada personaje viene indicado en la zona media de cada ficha. El máximo de maná es 10 y cada turno se regenera 3 puntos.
+![LOGO](./webAssets/images/mazointerfaz.png)
+### Personajes
+Para el transcurso de la batalla, el jugador puede sacar a los personajes clicando en un personaje y luego en la casilla de mapa que quiera sacarlo gastando maná. El jugador únicamente puede sacarlos en su zona de spawn + 2 filas pintadas.
+Los personajes pueden atacar en 4 direcciones (vertical y horizontal) a excepción del lobo.
 
-| SPRITE | MANÁ | CD | VIDA | DAÑO | PASIVA |
-| --- | --- | --- | --- | --- | --- |
-| PÍCARA | 2 | 3 | 2 | 2 | 25% para hacer x2 daño |
-| ESQUELETO | 1 | 1 | 1 | 1 |  |
-| VIKINGO | 2 | 2 | 1 | 1 | Disparo a larga distancia |
-| KIRIN | 3 | 2 | 2 | 1 | Salta por encima de un obstáculo |
-| DRUIDA | 3 | 3 | 2 | 1 | Saca enredaderas que dura 3 turnos|
-| CAZADOR | 2 | 2 | 1 | 1 | Alcance aumentado |
-| TANQUE | 4 | 2 | 3 | 0 | Regenera 1 de vida cada turno |
-| GOLEM | 4 | 3 | 4 | 1 | No se puede mover |
-| MONAGUILLO | 3 | 2 | 1 | 1 | +1 HP a los aliados de 3x3 |
-| ARQUITECTA| 3 | 3 | 2 | 1 | Puede crear muros de 1 HP |
-| BOMBA | 3 | 3 | 3 | 0 | Hace 1 de daño en 3x3 al morir o llegar a casillas enemigas |
-| ALQUIMISTA | 3 | 3 | 2 | 0 | Su ataque stunea a los enemigos un turno y se mueve 2 casillas |
-| LOBO | 3 | 2 | 2 | 0 | Echa hacia atrás a los enemigos 1 casilla. Si el empujado choca con un personaje, inflige 1 de daño |
+| SPRITE | VIDA | CD | MANÁ | DAÑO | PASIVA | ATAQUE / HABILIDAD | TIPO DE UNIDAD |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| PÍCARA | 2 | 3 | 2 | 2 | Tiene 25% probabilidad de hacer x2 daño | Ataque | Ataque |
+| ESQUELETO | 1 | 1 | 1 | 1 | Cuando el esqueleto muere, es utilizable dos turnos más sin que este pueda ser eliminado de nuevo | Ataque | Ataque |
+| VIKINGO | 1 | 3 | 3 | 1 | Disparo a larga distancia (Alcance infinito, afecta al objetivo más próximo en la horizontal) | Habilidad | Ataque |
+| KIRIN | 2 | 3 | 2 | 1 | Atraviesa un aliado/enemigo/muro/enredaderas | Ataque y Habilidad | Ataque |
+| DRUIDA | 2 | 3 | 3 | 0 | Invoca 3 enredaderas pudiendo elegir en qué  lado ponerlas (delante, arriba, debajo o detrás). Al cabo de 4 turnos desaparecen. | Habilidad | Ataque |
+| CAZADOR | 2 | 2 | 2 | 1 | Alcance aumentado | Ataque | Ataque |
+| TANQUE | 3 | 2 | 4 | 1 | Regenera 1 de vida cada 3 turnos | Habilidad | Defensa |
+| GÓLEM | 4 | 3 | 4 | 1 | No se puede mover y deja un muro al morir de 1HP | Ataque Y Habilidad | Defensa |
+| MONAGUILLO | 1 | 2 | 3 | 1 | +1 HP a los aliados de 3x3 (Habilidad activa. Gasta 1 acción) | Habilidad | Defensa |
+| ARQUITECTA | 2 | 3 | 3 | 0 | Puede crear muros de 2HP a su alrededor (Habilidad activa. Gasta 1 acción) | Habilidad | Utilidad |
+| BOMBA | 2 | 3 | 3 | 0 | Al morir hace 1 de daño en 3x3 y pinta las casillas explotadas | Habilidad | Utilidad |
+| ALQUIMISTA | 2 | 3 | 3 | 0 | Su ataque stunea a los enemigos un turno y se mueve 2 casillas | Habilidad | Utilidad |
+| LOBO | 2 | 2 | 3 | 0 | Empuja a los enemigos 1 casilla. Afecta a 3 casillas. Si el empujado choca con un personaje, inflige 1 de daño a ambos | Habilidad | Utilidad |
 
-## Tablero
-foto interfaz
-El tablero del juego será de tamaño y forma variable, y tendrá espacio para mantener un juego entre, como mínimo, dos jugadores.
-
-En los extremos del tablero estarán los spawns(ocupando una fila completa) de cada jugador, casillas marcadas con un color neutral. En dichas casillas de spawn, los personajes no podrán ser heridos ni tampoco podrán atacar y defenderse, sólo moverse.
-
+### Obstáculos
+| SPRITE | VIDA | DAÑO | DESCRIPCIÓN |
+| --- | --- | --- | --- |
+| MURO | 2 | 0 (1 Si el lobo empuja a un personaje y éste choca contra el muro) | Puede ser desplegado por la Arquitecta y el Gólem al morir |
+| ENREDADERA | 1 | 1 Daño por turno a los que se queden atrapados en ella, se pueden mover los personajes a través de ellas. Únicamente recibirán daño si se quedan en la misma casilla que las enredaderas. No se  destruir | Desplegado por Druida |
+| RIO/PINCHOS/HIELO | Indestructible | Si un personaje cae en el río/hielo (habilidad del Lobo) o choca con los pinchos, muere | Se encuentran desde el inicio en el mapa |
+### Tablero
+![LOGO](./webAssets/images/cap2.png)
+El tablero del juego será de 8x10 y forma rectangular, teniendo espacio para mantener un juego entre dos jugadores. 
+En ambos lados del tablero están las bases (zonas de spawn) ocupando la columna de cada jugador (primera y última columna del tablero). Dichas bases no son casillas que se puedan colorear, si no casillas donde los personajes no podrán ser heridos ni tampoco podrán atacar y defenderse.- Sólo moverse.
 El resto de casillas del tablero comenzarán sin color, y a medida que los personajes de cada jugador avancen las convertirán del color propio del jugador.
- 
-En el tablero también aparecerán obstáculos, los cuales no podrán ser atravesados por los personajes del tablero (a no ser que tengan una habilidad que lo permita, i.e.: un personaje con la habilidad de saltar por encima de un obstáculo). 
- 
-Como el objetivo del juego es tener el mayor número de casillas de tu color, en pantalla aparecerá el porcentaje de terreno que cada jugador tiene.
+En el tablero también aparecerán obstáculos, los cuales no podrán ser atravesados por los personajes del tablero (a excepción del kirin).
 
-# Dinámicas
-## Objetivo del juego
-El jugador deberá de tener la mayor parte del tablero de su color al finalizar todos los turnos.
+## Dinámicas
+### Objetivo del juego
+El objetivo del juego es pintar el mayor número de casillas posibles que componen el tablero. Por tanto, el ganador de la partida será aquel jugador que al haberse gastado los turnos que forman una partida haya conseguido cubrir el mayor porcentaje de este. También existe la posibilidad de que un jugador se rinda a mitad de partida seleccionando la opción “rendirse” en el menú de ajustes.
+![LOGO](./webAssets/images/finpartida.png)
+### Combinaciones de habilidades
+Lo que enriquece a Paintless es el distinto tipo de personajes que cada jugador puede escoger para formar su mazo y como puede explotarlos para desarrollar así distintas estrategias que le permitan ganar terreno. Dado que hay un total de 13 personajes, y cada jugador solo puede seleccionar 6 por partida, el juego es muy versátil, y  cada partida es única, motivando al jugador a que juegue más de una vez probando otros personajes y otras combinaciones.
+Un ejemplo de las muchas combinaciones posibles es utilizar el Kirin, el cual puede atravesar obstáculos, para que salte por encima de un muro que haya puesto el enemigo así acabar con él, gastando un total de 2 puntos de acción.
+Otra combinación es utilizar personajes de defensa como la arquitecta o la bomba humana a modo de escudos para ir avanzando en el tablero de manera segura o anular la ventaja de los posibles personajes de larga distancia que el otro jugador haya puesto en esa misma fila.
 
-# Estética
-
-## Ambientación y gráficos
-El arte del juego será Pixel 16-bit, tanto los jugadores como los mapas y los menús. Tendrá influencias fantásticas y medievales, pues el juego está ubicado en un espacio-tiempo similar al de la Edad Media, con ápices de fantasía. Los colores predominantes serán tonalidades vibrantes de verde, rojo, morado y amarillo. 
-
+## Estética
+### Ambientación y gráficos
+El arte del juego es en Pixel 16-bit, tanto los jugadores como los mapas y los menús. Este consta de influencias fantásticas y medievales, debido a que el juego está ubicado en un espacio-tiempo fantástico-medieval. Los colores predominantes serán tonalidades vibrantes de verde, rojo, morado, amarillo y azul. 
 La resolución será de pantalla completa.
-
-## Experiencia de juego
-
-El jugador tomará el papel de un candidato a Adamantín, y combatirá con otros candidatos para ascender a Adamantín. La batalla transcurrirá por turnos y cada jugador podrá invocar a los diferentes guerreros del mundo, conocer sus historias y controlarlos por el tablero.
-
+### Experiencia de juego
+El jugador toma el papel de un candidato a Adamantín (ver apartado Historia para más información), y combatirá con otros candidatos para obtener dicho puesto. La batalla transcurrirá por turnos y cada jugador podrá invocar a los diferentes guerreros del mundo, conocer sus historias y controlarlos por el tablero.
 Ya que los candidatos combatirán para convertirse en Adamantines, las decisiones que tome el jugador en torno a las acciones del personaje serán decisivas y tendrá que pensar de manera estratégica para hacerse con la victoria.
 
 # Contenido
 ## Historia 
-En un mundo de dioses el destino del mundo está escrito sobre el Pergamino Celeste, y son los Adamantines los que se encargan de escribir en este pergamino el transcurso de la historia.
-
-Recientemente, uno de los Adamantines fue expulsado del Consejo Diamante por infringir las normas establecidas 14000 años atrás y alterar el ritmo de la historia, y es por esto que los Adamantines han empezado una Guerra para poder declarar al nuevo Adamantín.
-
+El mundo ficticio en el que desarrolla el juego es un mundo fantástico medieval donde una asociación de 13 seres divinos conocidos como los Adamantines está al cargo de escribir y documentar la historia de todos los seres que habitan dicho mundo en un documento conocido como el Pergamino Celeste.
+Durante milenios, los Adamantines han sido el grupo más influyente de todo el mundo, pues no solo comparten sangre con los dioses, sino que poseen un amplio conocimiento sobre los distintos países, lo cual a su vez les permite mantener una fuerte influencia sobre ellos. Recientemente, uno de los Adamantines fue expulsado del Consejo Diamante por infringir las normas establecidas 14000 años atrás y alterar el ritmo de la historia, y es por esto que los Adamantines han empezado una Guerra para poder declarar al nuevo Adamantín.
 Los candidatos a Adamantín poseen la capacidad de invocar guerreros que un día lucharon por su propia causa, y hoy luchan a favor de cada candidato. Estos guerreros son nativos del mundo que los Adamantines se encargan de regir, pero cada uno vino de una diferente época y de un diferente lugar.
-
 Los candidatos deberán demostrar sus cualidades como Adamantín mediante el buen control de estos personajes a los que invocan y su capacidad de pintar su historia y sus acciones.
+## Mapas
+Las partidas de Paintless se desarrollan en distintos mapas. Estos mapas son de distintos tipos, y aparecen de manera aleatoria. En estos mapas, también aparecerán obstáculos, también en posiciones aleatorias. Ningún personaje salvo el kirin podrá moverse a través de estos obstáculos. Cómo ya se ha mencionado, las bases de spawn se encontrarán en los laterales.
+![LOGO](./webAssets/images/tiles.png)
 
 ## Personajes
 ### Druida 
@@ -159,6 +154,25 @@ Tras tantas batallas los soldados caídos en combate han perdido todo aquello qu
 
 # Modo de juego
 ## Multijugador local
-El jugador podrá elegir el número de adversarios contra los que quiere jugar. Todos ellos jugarán desde el mismo dispositivo.
-## Multijugador online
-El jugador podrá elegir entre crear sala o unirse a una, dependiendo de la elección.	
+Un usuario podrá jugar contra otro jugador en el mismo ordenador, es decir, dos jugadores.
+Se comienza eligiendo las cartas del primer mazo del jugador 1 y acto seguido el del jugador 2. Una vez en el tablero de juego, los personajes se diferenciarán con sutiles toques de color para identificar a que jugador pertenece, azul o rojo.
+El equipo azul será el del jugador que ha elegido en primer lugar su mazo, mientras que el segundo jugador tendrá el jugador rojo.
+En la parte inferior aparecerá el mazo de cada jugador según a quien le pertenezca el turno. Cuando un jugador haya acabado podrá pulsar un botón para pasar turno. Estas distinciones entre equipos y mecánicas de turnos también se muestran en el modo Online.
+## Online
+El jugador que cree la sala será equipo azul y el que se una será equipo rojo. En este modo los jugadores no podrán ver las elecciones de cartas que ha hecho el contrincante, guardando así la estrategia que usará durante la partida.
+
+# Primeros minutos de juego
+Al empezar PaintLess, el jugador verá el menú de inicio en el que aparecerán 4 botones:
+Multijugador online. Para jugar a partidas online con otros jugadores que estén conectados en el juego. Un jugador inicia la partida y otro podrá unirse a ella en el menú selección de personaje.
+Multijugador local. El jugador podrá jugar a partidas desde el mismo ordenador con otro jugador que esté presente. Compartirán los mismos controles y se irán turnando para jugar la partida.
+Opciones. El jugador podrá gestionar las diferentes preferencias de volumen que tenga: deshabilitar la música y los sonidos y cambiar el volumen de todos los sonidos en el juego.
+Salir. El botón para cerrar la aplicación y salir del juego.
+Sin importar qué tipo de multijugador escoja el jugador, procederá a la pantalla de selección de personaje, en la que ambos seleccionarán 6 personajes de entre los 13 personajes disponibles, y son estos 6 los que formarán el mazo de cada jugador. Al seleccionar un personaje, aparecerá dicho personaje resaltado, para indicar que se ha seleccionado. Dentro de este menú podrás consultar información de cada personaje.
+Cuando los dos jugadores hayan seleccionado a sus respectivos 6 personajes, aparecerán en el tablero, y empezará el juego dando el turno al primer jugador.
+Este dispondrá del mazo que ha formado antes (el cual aparecerá centrado abajo de la pantalla), y a la izquierda de este mazo aparecerá la cantidad de maná de la que dispone (10 puntos para empezar) y un botón para pasar el turno. Haciendo click izquierdo sobre un personaje de su mazo, aparecerán resaltadas en el tablero las casillas en las que puede spawnear dicho personaje, que al principio de la partida, son la primera columna del tablero para el jugador 1 y la última columna para el jugador 2. Si el jugador clica en alguna de estas casillas resaltadas, spawneará allí al personaje que haya escogido y se le restará el coste de dicho personaje al total de maná del que disponga. 
+Una vez haya colocado al personaje en el tablero, podrá interactuar con él de la siguiente manera: si le da click izquierdo, aparecerán en azul las casillas a las que puede moverse y atacar a un enemigo si se encuentra en el rango de ataque (siempre que la unidad pueda atacar), y en rojo los personajes enemigos a los que puede atacar (en caso de haberlos). Cualquiera de estas acciones consume un punto de acción del jugador, el cual comenzará con 4.
+Cuando el jugador 1 haya terminado de spawnear a sus personajes y haya hecho las acciones que quiera, se pasará el turno al siguiente jugador, el cual podrá también spawnear personajes y realizar acciones con ellos.
+Cada turno de cada jugador en concreto restaura 3 puntos de maná al total que tenían, de manera que si el jugador 1 ha finalizado el primer turno con 5 de maná, en el segundo turno tendrá 8 de maná. En ningún caso el maná superará el valor 9.
+
+# Diagrama UML
+![LOGO](./webAssets/images/tiles.png)
