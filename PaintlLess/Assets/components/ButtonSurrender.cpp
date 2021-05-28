@@ -23,7 +23,7 @@ void ButtonSurrender::update() {
 		if (!gsm->isOnline() || ((pst_->getCurrentPlayer() == Equipo::Segundo && net->isMaster()) || (pst_->getCurrentPlayer() == Equipo::Primero && !net->isMaster())))
 		{
 			pst_->getGSM()->getNetworkManager()->sendEndGame();
-			pst_->getGSM()->changeState(new FinState(pst_->getGSM(), (pst_->getCurrentPlayer() + 1) % 2, pst_->getPorcentaje()));
+			pst_->getGSM()->changeState(new FinState(pst_->getGSM(), (pst_->getCurrentPlayer() + 1) % 2, pst_->getPorcentajeSurrender()));
 		}
 	}
 }

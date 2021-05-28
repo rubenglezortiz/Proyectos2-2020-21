@@ -385,6 +385,13 @@ int PlayState::getPorcentaje() {
 		return (pintado_2 * 100) / mapa_->getNumCasPintables();
 }
 
+int PlayState::getPorcentajeSurrender() {
+	if (jugadorActual != Primero)
+		return (pintado_1 * 100) / mapa_->getNumCasPintables();
+	else
+		return (pintado_2 * 100) / mapa_->getNumCasPintables();
+}
+
 bool PlayState::restaMana(int m, int& mana)
 {
 	if (mana - m >= 0) {

@@ -80,6 +80,7 @@ public:
 	bool manaSuficiente(int m, int mana) const;
 
 	int getPorcentaje();
+	int getPorcentajeSurrender();
 
 	int getPintado1() { return pintado_1; };
 	int getPintado2() { return pintado_2; };
