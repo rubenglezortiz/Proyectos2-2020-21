@@ -373,7 +373,7 @@ void PlayState::_net_endGame()
 	}
 	else {
 		ganador = getCurrentPlayer() == Equipo::Primero ? 1 : 0;
-		porcentaje = 0;
+		porcentaje = getPorcentajeSurrender();
 	}
 	gameStateMachine->pushState(new FinState(gameStateMachine, ganador, porcentaje));
 }
