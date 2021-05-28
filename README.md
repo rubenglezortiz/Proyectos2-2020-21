@@ -243,8 +243,12 @@ Hemos realizado el QA con un grupo de unas 20 personas, de las cuales 15 han res
 Este cuestionario gira, principalmente, en torno a qué dificultades se han encontrado los usuarios a la hora de interpretar y aprender a utilizar las distintas mecánicas, ya fuese debido a la complejidad de los controles, o a la gran variedad de personajes. También hay preguntas relacionadas con la estética: animaciones, sonidos, y diferencia de colores en los respectivos niveles. Por último les preguntamos si habían detectado algún bug y dejamos una última pregunta para que nos diesen sus opiniones y cambios que quisieran realizar.
 
 ### Ejemplos de preguntas y respuestas:
-
-
+![LOGO](./webAssets/images/11.png)
+![LOGO](./webAssets/images/12.png)
+![LOGO](./webAssets/images/13.png)
+![LOGO](./webAssets/images/14.png)
+![LOGO](./webAssets/images/15.png)
+![LOGO](./webAssets/images/16.png)
 
 ### Conclusión general de las pruebas
 Como se aprecia en las imágenes y ya habíamos predicho (basándonos en algunas pruebas de testeo que habíamos realizado previamente), todo aquello relacionado con el diseño de la interfaz, personajes, y los sonidos y animaciones que habían sido implementados han tenido una recepción positiva por parte de los usuarios. Por otro lado, los distintos controles resultaron bastante confusos, no solo debido a que no venían explicados en el juego, si no que muchas acciones importantes como spawnear o atacar solo se podían realizar con el click derecho, y por costumbre, se suele utilizar el botón izquierdo en la amplia mayoría de aplicaciones existentes en todo el mundo.
