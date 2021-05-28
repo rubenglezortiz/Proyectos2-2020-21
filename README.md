@@ -68,7 +68,7 @@ Los personajes pueden atacar en 4 direcciones (vertical y horizontal) a excepci�
 
 | SPRITE | VIDA | CD | MANÁ | DAÑO | PASIVA | ATAQUE / HABILIDAD | TIPO DE UNIDAD |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| PÍCARA | 2 | 3 | 2 | 2 | Tiene 25% probabilidad de hacer x2 daño | Ataque | Ataque |
+| PÍCARA ![LOGO](./webAssets/images/picaraw.png) | 2 | 3 | 2 | 2 | Tiene 25% probabilidad de hacer x2 daño | Ataque | Ataque |
 | ESQUELETO | 1 | 1 | 1 | 1 | Cuando el esqueleto muere, es utilizable dos turnos más sin que este pueda ser eliminado de nuevo | Ataque | Ataque |
 | VIKINGO | 1 | 3 | 3 | 1 | Disparo a larga distancia (Alcance infinito, afecta al objetivo más próximo en la horizontal) | Habilidad | Ataque |
 | KIRIN | 2 | 3 | 2 | 1 | Atraviesa un aliado/enemigo/muro/enredaderas | Ataque y Habilidad | Ataque |
@@ -120,6 +120,7 @@ Los candidatos a Adamantín poseen la capacidad de invocar guerreros que un día
 Los candidatos deberán demostrar sus cualidades como Adamantín mediante el buen control de estos personajes a los que invocan y su capacidad de pintar su historia y sus acciones.
 ## Mapas
 Las partidas de Paintless se desarrollan en distintos mapas. Estos mapas son de distintos tipos, y aparecen de manera aleatoria. En estos mapas, también aparecerán obstáculos, también en posiciones aleatorias. Ningún personaje salvo el kirin podrá moverse a través de estos obstáculos. Cómo ya se ha mencionado, las bases de spawn se encontrarán en los laterales.
+
 ![LOGO](./webAssets/images/tiles.png)
 
 ## Personajes
@@ -127,7 +128,7 @@ Las partidas de Paintless se desarrollan en distintos mapas. Estos mapas son de 
 Ermitaño que entra en la guerra para preservar la naturaleza y ponerle fin a la destrucción que sucede. Es capaz de comunicarse con las plantas, y mediante un elixir que fabrica (cooldown) es capaz de mutarlas, haciendo que crezcan y atrapen a sus enemigos.
 ### Tanque 
 Ex-militar que formaba parte de la División Alpha y era la mejor en su quinta. Pasó la mayor parte de su vida en el campo de batalla, y entabló muchas amistades con sus compañeros, a los que consideraba familia. Tras tener que presenciar la muerte de todos ellos, surge un cambio dentro de ella que la hace dejar la ofensiva para siempre y defender a todo el que pudiera en el campo de batalla.
-### Rogue
+### Pícara
 Dentro de la ciudad, en los barrios más pobres se crió una mujer como arma cuyo objetivo es matar al objetivo que el cliente desea, ganándose la vida y escalando poco a poco al nivel más alto de la sociedad.
 ### Monaguillo
 Niño huérfano que fue acogido por la Iglesia y le echaron de ésta por su conducta rebelde. Nunca atendía a las lecciones de misa o hacía las tareas, ni mostraba asertividad con nadie. Estaba en un entorno en el que no podía ser él mismo. Cuando le echaron, se aseguraron de que no pudiera cometer ningún acto rebelde y le revocaron las artes mágicas que poseía, dejándole solo con artes curativas. Al salir, tuvo que buscarse la vida y se topó con un grupo del ejército, y encontró el objetivo de su vida. Aunque no pudiera dedicarse a atacar, lucharía en la guerra utilizando sus artes curativas.
@@ -175,4 +176,4 @@ Cuando el jugador 1 haya terminado de spawnear a sus personajes y haya hecho las
 Cada turno de cada jugador en concreto restaura 3 puntos de maná al total que tenían, de manera que si el jugador 1 ha finalizado el primer turno con 5 de maná, en el segundo turno tendrá 8 de maná. En ningún caso el maná superará el valor 9.
 
 # Diagrama UML
-![LOGO](./webAssets/images/tiles.png)
+![LOGO](./webAssets/images/uml.png)
