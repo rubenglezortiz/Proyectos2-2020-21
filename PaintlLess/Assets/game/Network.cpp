@@ -10,6 +10,7 @@
 #include "../game/PlayState.h"
 #include "../components/EntityFactory.h"
 #include "../components//GameMap.h"
+#include <iostream>
 
 Network::Network() : host_(nullptr), port_(2000),
 isMaster_(false), isGameReday_(false), id_(0), conn_(), p_(nullptr), otherPlayerAddress_(), localPlayerName_("a"), remotePlayerName_("N/A"),
@@ -52,14 +53,21 @@ void Network::init(GameStateMachine* gameStateMachine) {
 	m_ = reinterpret_cast<NetworkMessage*>(p_->data);
 
 	if (host_ == nullptr) { // if started as a master player
-
 		// we use id 0, and open a socket to send/receive messages
 		isMaster_ = true;
 		id_ = 0;
 		conn_ = SDLNet_UDP_Open(port_);
-		if (!conn_) {
+
+		if (true) {
 			isMaster_ = false;
 			host_ = "localhost";
+			ifstream file = ifstream();
+			string ip;
+			file.open("./ip/ip.txt");
+			getline(file, ip);
+			file.close();
+			host_ = ip.c_str();
+
 
 			//		id_ = 1;
 			conn_ = SDLNet_UDP_Open(0);
