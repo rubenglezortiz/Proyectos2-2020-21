@@ -14,7 +14,7 @@ Documento de diseño de juego
 
 | **Géneros:** Turn-Based-Strategy | **Modos:** Multijugador online y local |
 | --- | --- |
-| **Público objetivo:** ![LOGO](./webAssets/images/pegi7.png) | **Plataformas:** Windows x64 |
+|![LOGO](./webAssets/images/pegi7.png)| **Plataformas:** Windows x64 |
 
 **Descripción:**
 Descripción: PaintLess es un juego multijugador de estrategia por turnos en el cual los jugadores disponen de un amplio abanico de personajes con distintas habilidades de los cuales deben seleccionar seis. El juego se desarrolla en un tablero 8x10 donde los jugadores deben mover a sus diferentes personajes para cubrir la mayor área de juego posible. Esto es debido a que según los personajes se mueven, colorean las casillas por las que se han desplazado. El ganador será aquel que pasado un número determinado de turnos, tenga cubierta la mayor zona del mapa coloreada.
