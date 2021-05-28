@@ -177,3 +177,9 @@ Cada turno de cada jugador en concreto restaura 3 puntos de maná al total que t
 
 # Diagrama UML
 ![LOGO](./webAssets/images/uml.png)
+
+# Gestión del proyecto
+La gestión del proyecto se ha llevado a cabo a través de Pivotal Tracker, desglosando el gdd en historias de usuario y estimandolas para luego repartirlas entre los miembros del grupo.
+
+# Comunicación en el proyecto
+La comunicación del proyecto se ha realizado mediante Discord, donde nos juntamos para las reuniones del grupo a lo largo de la semana, trabajar en conjunto y compartir las ideas y recursos en los distintos canales de texto y voz que creamos para una mayor organización.
