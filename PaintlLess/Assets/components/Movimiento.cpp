@@ -22,7 +22,11 @@ void Movimiento::update() {
 			(!gsm->getNetworkManager()->isMaster() && entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero))) ||
 
 		(!gsm->isOnline() && (entity_->hasGroup<Equipo_Azul>() && playState->getTurno() == Primero || entity_->hasGroup<Equipo_Rojo>() && playState->getTurno() == Segundo) && stun == 0)) {
-		if (playState->getAcciones() == 0)return;
+		if (playState->getAcciones() == 0)
+		{
+			clearMovShader();
+			return;
+		}
 		auto& pos = tr_->getPos();
 		Vector2D posIni = pos;
 		//poner el puntero de entidad de la casilla del mapa a NULL
@@ -46,8 +50,7 @@ void Movimiento::update() {
 					if(gsm->isOnline())gsm->getNetworkManager()->sendMoveMessage(posIni.getX(), posIni.getY(), posMovimiento.getX(), posMovimiento.getY());
 				}
 				selected = false;
-				casillasPintarShader.clear();
-				movementShader->setCells(nullptr);
+				clearMovShader();
 			}
 			else if (mX > pos.getX() && mX < pos.getX() + cellWidth && mY > pos.getY() && mY < pos.getY() + cellHeight) {
 				selected = true;
@@ -62,21 +65,25 @@ void Movimiento::update() {
 		if (ih().getMouseButtonState(ih().RIGHT) || focused) {
 			selected = false;
 			focused = false;
-			casillasPintarShader.clear();
-			movementShader->setCells(nullptr);
+			clearMovShader();
 		}
 	}
 }
 
 void Movimiento::finTurno()
 {
-	casillasPintarShader.clear();
-	movementShader->setCells(nullptr);
+	clearMovShader();
 	selected = false;
 	if (stun > 0)
 	{
 		stun--;
 	}
+}
+
+void Movimiento::clearMovShader()
+{
+	casillasPintarShader.clear();
+	movementShader->setCells(nullptr);
 }
 
 void Movimiento::MoveCharacter(const Vector2D& posIni, const Vector2D& destino)

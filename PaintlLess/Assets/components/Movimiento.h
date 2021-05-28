@@ -20,6 +20,7 @@ public:
 	void update() override;
 	void finTurno() override;
 	void focus() { focused = true; };
+	void clearMovShader();
 
 	void setStun(int x) { stun = x * 2; }
 	int getStun() const { return stun; }
