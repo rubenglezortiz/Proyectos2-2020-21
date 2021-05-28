@@ -14,7 +14,7 @@ Documento de diseño de juego
 
 | **Géneros:** Turn-Based-Strategy | **Modos:** Multijugador online y local |
 | --- | --- |
-| **Público objetivo:** Dirigido a personas de entre 13 a 40 años | **Plataformas:** Windows x64 |
+| **Público objetivo:** ![LOGO](./webAssets/images/pegi7.png) | **Plataformas:** Windows x64 |
 
 **Descripción:**
 Descripción: PaintLess es un juego multijugador de estrategia por turnos en el cual los jugadores disponen de un amplio abanico de personajes con distintas habilidades de los cuales deben seleccionar seis. El juego se desarrolla en un tablero 8x10 donde los jugadores deben mover a sus diferentes personajes para cubrir la mayor área de juego posible. Esto es debido a que según los personajes se mueven, colorean las casillas por las que se han desplazado. El ganador será aquel que pasado un número determinado de turnos, tenga cubierta la mayor zona del mapa coloreada.
@@ -26,18 +26,22 @@ Descripción: PaintLess es un juego multijugador de estrategia por turnos en el 
 ### [Informe Testing/QA](https://docs.google.com/document/d/1SECKg8W8UhA9YVVsTymynRhNhotF5HouHmP8w92xcbc/edit?usp=sharing)
 
 # Menú
+## Menú principal
 ![LOGO](./webAssets/images/menu.png)
-
 El esquema del menú principal es simple, con una disposición vertical y centrada de diferentes botones, cada uno con su respectiva función:
 - Botón para  entrar al modo multijugador: Permite o bien crear un lobby para invitar a otras personas a través de un código o bien unirse a otro jugador introduciendo uno.
 - Local: Permite elegir al jugador el número de jugadores, y jugar con otros jugadores usando el mismo equipo.
 - Opciones: Permite modificar el volumen.
-![LOGO](./webAssets/images/opciones.png)
 - Salir: Cierra el juego.
- 
- Antes de comenzar la partida, cada jugador debe elegir 6 personajes distintos de entre todos los distintos personajes para conformar su mazo. Este menú consta de 3 botones superiores los cuales permitirán al usuario separar a los personajes por tipos de habilidades y así ayudarle a formar su mazo. Cuando se pulse con el botón derecho sobre un botón de personaje, también se mostrará una tarjeta informativa con una pequeña descripción de las habilidades del personaje y de su lore.
+![LOGO](./webAssets/images/opciones.png)
+## Pantalla de controles
+ ![LOGO](./webAssets/images/controles.png)
+ Aparecen en un recuadro azul las funcionalidades del clic izquierdo y en un recuadro naranja las funcionalidades del clic derecho.
+## Selección de personajes
 ![LOGO](./webAssets/images/seleccionpersonajes.png)
- 
+ Antes de comenzar la partida, cada jugador debe elegir 6 personajes distintos de entre todos los distintos personajes para conformar su mazo. Este menú consta de 3 botones superiores los cuales permitirán al usuario separar a los personajes por tipos de habilidades y así ayudarle a formar su mazo. Cuando se pulse con el botón derecho sobre un botón de personaje, también se mostrará una tarjeta informativa con una pequeña descripción de las habilidades del personaje y de su lore.
+ ![LOGO](./webAssets/images/infocarta.png)
+## Menú de opciones (in-game)
 Durante la partida, el jugador puede entrar en un Menú de ajustes. Dicho menú es una extensión del menú de ajustes inicial, al que se le suma un botón de rendirse para terminar la partida si así lo desea el usuario.
 ![LOGO](./webAssets/images/pausa.png)
 
