@@ -155,6 +155,6 @@ private:
 	float y_;  // second coordinate
 };
 
-// needed for printing a value of tyep Vector2D with std::cout.
+// needed for printing a value of tyep Vector2D with std::.
 // The definition is in .cpp
 std::ostream& operator<<(std::ostream& os, const Vector2D& v);

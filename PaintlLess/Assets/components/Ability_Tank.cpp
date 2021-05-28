@@ -27,9 +27,4 @@ void Ability_Tank::finTurno() {
 	}
 	else
 		mTurno = turnos;
-
-	std::cout << "Informe: \n";
-	std::cout << "Turnos: " << mTurno << "\n";
-	std::cout << "Turnos Max: " << turnos << "\n";
-	std::cout << "Vida: " << mLive->getLives() << "\n";
 }

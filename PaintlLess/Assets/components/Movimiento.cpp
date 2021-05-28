@@ -95,7 +95,6 @@ void Movimiento::MoveCharacter(const Vector2D& posIni, const Vector2D& destino)
 	pos.setY((destino.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP);
 	mapa->setCharacter(mapa->SDLPointToMapCoords(pos), entity_);
 	playState->aumentarAcciones();
-	cout << pos;
 
 	if (entity_->hasGroup<Equipo_Azul>()) colorea(posIni, pos, Azul);
 	else colorea(posIni, pos, Rojo);

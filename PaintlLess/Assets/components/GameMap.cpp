@@ -154,7 +154,6 @@ bool GameMap::setColor(const Vector2D& cas, Color color) {
 		}
 
 		cells[(int)cas.getY()][(int)cas.getX()].color = color;
-		std::cout << "Color: " << getColor(cas) << endl;
 		return colorChanged;
 	}
 }

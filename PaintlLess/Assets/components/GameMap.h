@@ -79,7 +79,6 @@ public:
 	int binarySearchCell(Vector2D pos);
 	Vector2D MapCoordsToSDLPoint(Vector2D coords) const { //Pasar de coordenadas del mapa a pixeles
 		Vector2D p{ (coords.getX() * cellWidth) + OFFSET_X, (coords.getY() * cellHeight) + OFFSET_Y + OFFSET_TOP };
-		//cout << p.getX() << " " << p.getY() << endl;
 		return p;
 	}
 	
@@ -89,7 +88,6 @@ public:
 		int Y = (p.getY() - OFFSET_Y - OFFSET_TOP) / cellHeight;
 		//como vector2D es float se hace el casteo pero el valor va a ser .0000
 		Vector2D coords{ std::min(std::max((float)X, 0.0f), (float)cols - 1), std::min(std::max((float)Y, 0.0f), (float)rows - 1) };
-		//cout << coords.getX() << " " << coords.getY() << endl;
 		return coords;
 	}
 };

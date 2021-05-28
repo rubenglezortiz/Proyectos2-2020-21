@@ -13,7 +13,6 @@ void Health::hit(int damage) {
 	if (lives <= 0) {
 		kill(mapa, entity_);
 	}
-	std::cout << "Ataca";
 }
 
 void Health::healMonaguillo(int healing) {
