@@ -69,18 +69,18 @@ Los personajes pueden atacar en 4 direcciones (vertical y horizontal) a excepci�
 | SPRITE | VIDA | CD | MANÁ | DAÑO | PASIVA | ATAQUE / HABILIDAD | TIPO DE UNIDAD |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | PÍCARA ![LOGO](./webAssets/images/picaraw.png) | 2 | 3 | 2 | 2 | Tiene 25% probabilidad de hacer x2 daño | Ataque | Ataque |
-| ESQUELETO | 1 | 1 | 1 | 1 | Cuando el esqueleto muere, es utilizable dos turnos más sin que este pueda ser eliminado de nuevo | Ataque | Ataque |
-| VIKINGO | 1 | 3 | 3 | 1 | Disparo a larga distancia (Alcance infinito, afecta al objetivo más próximo en la horizontal) | Habilidad | Ataque |
-| KIRIN | 2 | 3 | 2 | 1 | Atraviesa un aliado/enemigo/muro/enredaderas | Ataque y Habilidad | Ataque |
-| DRUIDA | 2 | 3 | 3 | 0 | Invoca 3 enredaderas pudiendo elegir en qué  lado ponerlas (delante, arriba, debajo o detrás). Al cabo de 4 turnos desaparecen. | Habilidad | Ataque |
-| CAZADOR | 2 | 2 | 2 | 1 | Alcance aumentado | Ataque | Ataque |
-| TANQUE | 3 | 2 | 4 | 1 | Regenera 1 de vida cada 3 turnos | Habilidad | Defensa |
-| GÓLEM | 4 | 3 | 4 | 1 | No se puede mover y deja un muro al morir de 1HP | Ataque Y Habilidad | Defensa |
-| MONAGUILLO | 1 | 2 | 3 | 1 | +1 HP a los aliados de 3x3 (Habilidad activa. Gasta 1 acción) | Habilidad | Defensa |
-| ARQUITECTA | 2 | 3 | 3 | 0 | Puede crear muros de 2HP a su alrededor (Habilidad activa. Gasta 1 acción) | Habilidad | Utilidad |
-| BOMBA | 2 | 3 | 3 | 0 | Al morir hace 1 de daño en 3x3 y pinta las casillas explotadas | Habilidad | Utilidad |
-| ALQUIMISTA | 2 | 3 | 3 | 0 | Su ataque stunea a los enemigos un turno y se mueve 2 casillas | Habilidad | Utilidad |
-| LOBO | 2 | 2 | 3 | 0 | Empuja a los enemigos 1 casilla. Afecta a 3 casillas. Si el empujado choca con un personaje, inflige 1 de daño a ambos | Habilidad | Utilidad |
+| ESQUELETO ![LOGO](./webAssets/images/esqueletow.png) | 1 | 1 | 1 | 1 | Cuando el esqueleto muere, es utilizable dos turnos más sin que este pueda ser eliminado de nuevo | Ataque | Ataque |
+| VIKINGO ![LOGO](./webAssets/images/vikingow.png) | 1 | 3 | 3 | 1 | Disparo a larga distancia (Alcance infinito, afecta al objetivo más próximo en la horizontal) | Habilidad | Ataque |
+| KIRIN ![LOGO](./webAssets/images/kirinw.png) | 2 | 3 | 2 | 1 | Atraviesa un aliado/enemigo/muro/enredaderas | Ataque y Habilidad | Ataque |
+| DRUIDA ![LOGO](./webAssets/images/druidaw.png) | 2 | 3 | 3 | 0 | Invoca 3 enredaderas pudiendo elegir en qué  lado ponerlas (delante, arriba, debajo o detrás). Al cabo de 4 turnos desaparecen. | Habilidad | Ataque |
+| CAZADOR ![LOGO](./webAssets/images/cazadorw.png) | 2 | 2 | 2 | 1 | Alcance aumentado | Ataque | Ataque |
+| TANQUE ![LOGO](./webAssets/images/tanquew.png) | 3 | 2 | 4 | 1 | Regenera 1 de vida cada 3 turnos | Habilidad | Defensa |
+| GÓLEM ![LOGO](./webAssets/images/golemw.png) | 4 | 3 | 4 | 1 | No se puede mover y deja un muro al morir de 1HP | Ataque Y Habilidad | Defensa |
+| MONAGUILLO ![LOGO](./webAssets/images/monaguillow.png) | 1 | 2 | 3 | 1 | +1 HP a los aliados de 3x3 (Habilidad activa. Gasta 1 acción) | Habilidad | Defensa |
+| ARQUITECTA ![LOGO](./webAssets/images/arquitectaw.png) | 2 | 3 | 3 | 0 | Puede crear muros de 2HP a su alrededor (Habilidad activa. Gasta 1 acción) | Habilidad | Utilidad |
+| BOMBA ![LOGO](./webAssets/images/bombahumanaw.png) | 2 | 3 | 3 | 0 | Al morir hace 1 de daño en 3x3 y pinta las casillas explotadas | Habilidad | Utilidad |
+| ALQUIMISTA ![LOGO](./webAssets/images/alquimistaw.png) | 2 | 3 | 3 | 0 | Su ataque stunea a los enemigos un turno y se mueve 2 casillas | Habilidad | Utilidad |
+| LOBO ![LOGO](./webAssets/images/lobow.png) | 2 | 2 | 3 | 0 | Empuja a los enemigos 1 casilla. Afecta a 3 casillas. Si el empujado choca con un personaje, inflige 1 de daño a ambos | Habilidad | Utilidad |
 
 ### Obstáculos
 | SPRITE | VIDA | DAÑO | DESCRIPCIÓN |
