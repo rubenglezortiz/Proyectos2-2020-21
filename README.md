@@ -182,6 +182,119 @@ Cada turno de cada jugador en concreto restaura 3 puntos de maná al total que t
 # Diagrama UML
 ![LOGO](./webAssets/images/uml.png)
 
+# Informe de pruebas QA
+## HITO 1
+### ¿Cómo hemos desarrollado el testing?
+En el hito 1, el testing se enfocó a consolidar, dentro de lo posible, las mecánicas y habilidades de los distintos personajes que habíamos diseñado en el hito 0/principios del hito 1. Para realizar esto nos dividimos en parejas para jugar en papel/Paint/Photoshop, de tal manera que cada pareja debía probar unas dimensiones de tablero y atributos de personaje distintos. De este modo, fuimos capaces de debatir qué personajes eran más útiles, y qué número de vidas/maná/turnos era más óptimo para que la partida no se hiciese pesada. Aunque los 10 desarrolladores realizamos estas partidas de testeo durante un sprint entero, en sprints posteriores, algunos desarrolladores siguieron probando y comunicando al resto sus “hallazgos”. Es decir, el proceso de testeo y actualización de mecánicas ha sido un proceso fluido, dinámico, y continuo a lo largo de todo el desarrollo, con ciertos puntos de inflexión en algunos sprints, donde se le dio mayor protagonismo.
+
+### Conclusión general de las pruebas:
+En este hito establecimos los primeros cambios de balanceo de personajes, puesto que vimos que había una gran variabilidad de los mismos en cuanto a utilidad, ya fuese debido a que algunos personajes estaban muy “rotos” o que eran prácticamente inútiles.
+Otra parte importante del testing viene dada por el cambio de tamaño del mapa, puesto que antes, al ser un mapa de 9x10, se tardaban demasiados turnos en empezar a tener combates entre los jugadores.
+Por último, aclaramos varias dudas que teníamos acerca del comportamiento de los personajes que no se definieron de manera concisa en el GDD.
+
+### Cambios que hemos realizado:
+Las dimensiones del mapa cambian (9 x 10 -> 8 x 10).
+La vida del Druida es demasiado alta (se baja de 4 a 2).
+El Vikingo tiene poco cooldown (se sube a 1 a 3).
+El Gólem no tiene una funcionalidad tan útil como el resto de personajes. Queda pendiente de balanceo en el hito 2.
+Las enredaderas hacen daño a personajes tanto enemigos como aliados.
+La habilidad de la Arquitecta se podía ejecutar en casillas donde no se debía poder ejecutar.
+La habilidad del Vikingo atraviesa muros. Se cambió para que no pudiera atravesarlos.
+
+### Problemas y/o limitaciones que hemos tenido
+Dado que estas formas de testeo no requerían de tener nada implementado en el proyecto, no hubo ningún impedimento para realizar estas pruebas.
+
+## HITO 2
+
+### ¿Cómo hemos desarrollado el testing?
+En el hito 2 terminamos de programar las habilidades de todos los personajes, por lo que fue más fácil poder probar las mecánicas y dinámicas del juego, que era el objetivo principal de este testing.
+Para hacer pruebas, nos pusimos de 2 en 2 y mantuvimos partidas el uno con el otro, en las que prestábamos atención a las interacciones de los personajes con el entorno, con otros personajes y con la interfaz. Todo aquello que daba fallos o no funcionaba correctamente, lo anotamos y pusimos en historias de Pivotal Tracker para realizar las modificaciones pertinentes. 
+
+### Conclusión general de las pruebas
+En general, las mecánicas que habíamos implementado funcionaban correctamente, pero a veces desencadenaban errores al ejecutarse, ya que había algunos cálculos de comprobación de las casillas que no se realizaban correctamente, y por tanto daban lugar a excepciones.
+También encontramos que algunos personajes todavía necesitaban más balanceo, por lo que tuvimos que hacer un proceso de cambios para ajustar los personajes a sus necesidades. 
+A su vez, había algunos errores, como por ejemplo, que las casillas no se pintaban correctamente y que se podían atacar a los personajes aún estando en base.
+
+### Cambios que hemos realizado
+· Aumento de casillas con posible spawneo del Gólem (2 -> 4)
+· Corregido un bug del cazador que podía atacar a través de obstáculos.
+· Las casillas de la base ya no se pueden pintar.
+· El Vikingo puede atacar en la dirección en la que esté el enemigo en vez de solo hacia la derecha.
+· La Bomba ya no provoca excepción al explotar en los bordes de la pantalla.
+· La Pícara ahora hace más daño (normal 1->2 - crítico 2->4).
+· Los personajes muertos ahora se eliminan correctamente del vector de entidades.
+· El Gólem ahora deja muro al morir.
+· El shader de las habilidades se borra cuando se pasa de turno.
+· Ya no se puede spawnear un personaje encima de otro.
+· El Kirin ahora salta enemigos correctamente.
+· El movimiento de los personajes ahora funciona correctamente.
+· El Druida ya no provoca excepción al dejar enredadera.
+· La habilidad del Monaguillo ya no provoca excepción cuando se ejecuta en los bordes de la pantalla.
+
+### Problemas y/o limitaciones que hemos tenido
+En cuanto a problemas y limitaciones, nos encontramos con que no pudimos dedicarle el tiempo que hubiéramos querido para hacer el testing, ya que teníamos bastantes tareas de desarrollo y las priorizamos al testing, puesto que en el hito 3 ya íbamos a realizar un QA.
+Este testing estuvo principalmente enfocado a comprobar que las habilidades desempeñasen su correcto funcionamiento según estaban especificadas en el documento de diseño y a resolver errores de ejecución que pudieran haber surgido.
+
+## HITO 3
+
+### ¿Cómo hemos desarrollado el QA?
+Como ya hemos mencionado con anterioridad, hemos estructurado la planificación del proyecto de tal manera que la gran mayoría, si no todas las mecánicas estuviesen implementadas en el proyecto una vez finalizado el hito 2. Esto fue con el fin de poder realizar el QA a lo largo del tercer y último hito, orientándolo en torno al feedback que habíamos recopilado en algunas pruebas de testeo previamente realizadas, ya hubiesen sido realizadas por nosotros mismos (los desarrolladores), o por usuarios “desechables”. 
+Hemos realizado el QA con un grupo de unas 20 personas, de las cuales 15 han respondido a las preguntas del siguiente cuestionario.
+Este cuestionario gira, principalmente, en torno a qué dificultades se han encontrado los usuarios a la hora de interpretar y aprender a utilizar las distintas mecánicas, ya fuese debido a la complejidad de los controles, o a la gran variedad de personajes. También hay preguntas relacionadas con la estética: animaciones, sonidos, y diferencia de colores en los respectivos niveles. Por último les preguntamos si habían detectado algún bug y dejamos una última pregunta para que nos diesen sus opiniones y cambios que quisieran realizar.
+
+### Ejemplos de preguntas y respuestas:
+
+
+
+### Conclusión general de las pruebas
+Como se aprecia en las imágenes y ya habíamos predicho (basándonos en algunas pruebas de testeo que habíamos realizado previamente), todo aquello relacionado con el diseño de la interfaz, personajes, y los sonidos y animaciones que habían sido implementados han tenido una recepción positiva por parte de los usuarios. Por otro lado, los distintos controles resultaron bastante confusos, no solo debido a que no venían explicados en el juego, si no que muchas acciones importantes como spawnear o atacar solo se podían realizar con el click derecho, y por costumbre, se suele utilizar el botón izquierdo en la amplia mayoría de aplicaciones existentes en todo el mundo.
+Tras ver los resultados de los cuestionarios, llegamos a la conclusión de que había que cambiar algunos controles para que fuesen más intuitivos, retocar algunos aspectos estéticos, y balancear algunos personajes como el Vikingo.
+
+### ¿Cómo se ha aplicado la información del QA en el proyecto?
+A partir de las estadísticas que hemos obtenido con el formulario del QA, se han hecho modificaciones en el proyecto con el motivo de mejorar la calidad del mismo. Tras reunir tanto bugs como sugerencias, y debatir todos los miembros del equipo, decidimos implementar la mayoría de las sugerencias que nos habían hecho (pues creíamos que podían resultar beneficiosas y mejorar la experiencia de juego) y corregimos los bugs.
+A su vez, y aunque no hubiese preguntas concretas de ello, nos fijamos en cómo reaccionaban los usuarios a la interfaz, al desarrollo del juego y a la estética de este, y anotamos los aspectos que nos parecían relevantes y/o a cambiar.
+Para seleccionar los personajes, algunos usuarios no entendían por qué se pasaba de una pantalla (la del jugador 1) a otra (la del jugador 2), por lo que hemos añadido unos iconos que indican qué jugador está eligiendo en esa pantalla.
+Al empezar la pantalla de juego, muchos de los usuarios necesitaban ser guiados para poder empezar a jugar, por lo que hemos añadido una pantalla de controles accesible desde el menú de opciones. 
+Como no les resultaba muy indicativo, hemos añadido también un resaltado en las cartas del mazo que se activa cuando el usuario coloca el cursor sobre alguna de las cartas del mazo, indicando qué carta se va a sacar.
+
+### Cambios que hemos realizado:
+· Retocado sprites que hacían overlapping (HP, UI, casillas pintadas).
+· Añadida la capacidad de ataque al golem.
+· Arregladas algunas animaciones que crasheaban el juego.
+· El vikingo no hace daño a los personajes que estén en base.
+· Arreglamos el borrado del ability/movement shader.
+· Se puede elegir personajes tras jugar una partida (BUG).
+· La barra del volumen se ajusta.
+· El alquimista tiene movilidad de 2 casillas.
+· El hombre bomba explota correctamente (BUG).
+· Ambos equipos ahora tienen la misma cantidad de turnos (BUG).
+· El vikingo puede atacar a un enemigo que se encuentre en una enredadera.
+· Los muros son atacables (BUG).
+· El botón de opciones es funcional.
+· El ataque del vikingo no atraviesa muros (BUG).
+· Las casillas en las que haya obstáculos son de color nulo.
+· Aumentada la cantidad de acciones por turnos a 5.
+· Añadido un indicador de turno para cada jugador.
+· Rediseñado el sprite del movement shader.
+· Rediseñado el sprite de la alfombra (Tileset castillo).
+· El juego no se cierra al pulsar Esc.
+· Añadido un botón de pasar turno.
+· Cambios de balanceo al cazador (Aumento de vida +1).
+· Cambios de balanceo al hombre bomba (Reducción de vida -1).
+· Cambios de balanceo al tanque (Reducción de vida -1).
+· Reducido el número de turnos de las enredaderas.
+· Cambios de balanceo al vikingo (Aumento de cooldown y maná +1).
+· Rediseño de cartas de spawn para que el maná sea más reconocible.
+· Cambio de controles (Spawn con click izquierdo y casteo de habilidad con click derecho y click izquierdo para ejecutar).
+· Se recupera un total de 2 de maná cada turno.
+· Se destacan las cartas de spawn.
+· Ya no se puede atacar a un personaje si está en base (BUG).
+
+### Problemas y/o limitaciones que hemos tenido
+En cuanto a problemas, no esperábamos tener tantas sugerencias ni información como la que tuvimos. Por una parte, fue beneficioso para el proyecto pues recaudamos bastantes datos para mejorarlo, pero por otra, al hacerlo en el hito final, nos encontramos ante demasiadas sugerencias comparado con el relativo poco tiempo en el que también teníamos tareas principales de desarrollo pendientes, las cuales debimos compatibilizar. Esto ha ocasionado que los últimos sprints del desarrollo estén más cargados de lo que habíamos previsto, con el fin de poder meter todas las sugerencias que consideramos oportunas. Aunque no ha sido necesario realizar ningún crunch, el aumento de trabajo si ha sido notable. (Si lo midiésemos en puntos, se trataría de un incremento del 42%, habiendo aumentado la cantidad de puntos de un sprint de unos 35 puntos a más de 50.)
+
+Algunas limitaciones que hemos tenido han sido que no hemos podido testear el modo online en el QA, pues según nuestra planificación el online tenía que hacerse a mediados del tercer hito, e hicimos el QA a principios. Esto conllevó a que no tuviéramos posible información que hubiéramos obtenido de haber podido probar el online con gente que nunca ha jugado a nuestro juego.
+
 # Gestión del proyecto
 La gestión del proyecto se ha llevado a cabo a través de Pivotal Tracker, desglosando el gdd en historias de usuario y estimandolas para luego repartirlas entre los miembros del grupo.
 
